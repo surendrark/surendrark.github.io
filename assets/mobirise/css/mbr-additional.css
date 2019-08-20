@@ -3370,10 +3370,7 @@ body {
   text-align: left;
 }
 .cid-rzC8gaC8qF {
-  padding-top: 90px;
-  padding-bottom: 90px;
-  background-color: #cebfaf;
-  background: linear-gradient(45deg, #cebfaf, #55b4d4);
+  background-image: url("../../../assets/images/unadjustednonraw-thumb-2db6-1854x428.jpeg");
 }
 .cid-rzC8gaC8qF .media-container-row {
   flex-direction: row-reverse;
@@ -3395,6 +3392,9 @@ body {
   .cid-rzC8gaC8qF .mbr-text {
     text-align: center;
   }
+}
+.cid-rzC8gaC8qF H1 {
+  color: #ffffff;
 }
 .cid-rzBM2nPFqW .navbar {
   background: #ffffff;
