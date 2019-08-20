@@ -8,40 +8,40 @@
     
     <script type='text/javascript'>
 	<!-- ADD YOUR VISITED COUNTRIES HERE -->
-	var countries = {'IN':'#0069C0','US':'#0069C0','CN':'#0069C0','AE':'#0069C0','AU':'#0069C0'};
+	var countries = {'IN':'#50483F','US':'#50483F','CN':'#50483F','AE':'#50483F','AU':'#50483F'};
 	<!-- ADD YOUR VISITED CITIES AND THEIR COORDINATES HERE -->
         var markersVar = [
 			<!-- WORK RELATED VISITS -->
-			{latLng: [33.449060, -112.069691], name: 'Phoenix - 2018 INFORMS Conference', style: {fill: '#f5f779', r:4}},
-			{latLng: [19.132955, 72.917282], name: 'Mumbai - 2018 WCTR Conference', style: {fill: '#f5f779', r:4}},
-			{latLng: [13.016774, 77.567120], name: 'Banglore - 2019 SPARC Workshop', style: {fill: '#f5f779', r:4}},
-			{latLng: [30.340496, 78.045155], name: 'Dehradun - 2015 FOSS4G Conference', style: {fill: '#f5f779', r:4}},
-			{latLng: [36.157536, -86.776858], name: 'Nashville - 2016 INFORMS Conference', style: {fill: '#f5f779', r:4}},
-			{latLng: [22.378427, 114.211580], name: 'HongKong - 2107 INFORMS TSL Workshop', style: {fill: '#f5f779', r:4}},
+			{latLng: [33.449060, -112.069691], name: 'Phoenix - 2018 INFORMS Conference', style: {fill: '#5EB8FF', r:4}},
+			{latLng: [19.132955, 72.917282], name: 'Mumbai - 2018 WCTR Conference', style: {fill: '#5EB8FF', r:4}},
+			{latLng: [13.016774, 77.567120], name: 'Banglore - 2019 SPARC Workshop', style: {fill: '#5EB8FF', r:4}},
+			{latLng: [30.340496, 78.045155], name: 'Dehradun - 2015 FOSS4G Conference', style: {fill: '#5EB8FF', r:4}},
+			{latLng: [36.157536, -86.776858], name: 'Nashville - 2016 INFORMS Conference', style: {fill: '#5EB8FF', r:4}},
+			{latLng: [22.378427, 114.211580], name: 'HongKong - 2107 INFORMS TSL Workshop', style: {fill: '#5EB8FF', r:4}},
 
-			{latLng: [38.904792, -77.022017], name: 'Washington D.C. - 2016 TRB Conference', style: {fill: '#f5f779', r:4}},
+			{latLng: [38.904792, -77.022017], name: 'Washington D.C. - 2016 TRB Conference', style: {fill: '#5EB8FF', r:4}},
 
 			<!-- HOLIDAY RELATED VISITS -->
-			{latLng: [-37.799191, 144.960936], name: 'Melbourne', style: {fill: '#f989f6', r:4}},
-			{latLng: [-33.852804, 151.210408], name: 'Sydney', style: {fill: '#f989f6', r:4}},
-			{latLng: [-16.921313, 145.776041], name: 'Cairns', style: {fill: '#f989f6', r:4}},
-			{latLng: [17.393410, 78.474330], name: 'Hyderabad', style: {fill: '#f989f6', r:4}},
-			{latLng: [17.717599, 83.330292], name: 'Visakhapatnam', style: {fill: '#f989f6', r:4}},
-			{latLng: [28.612827, 77.229324], name: 'New Delhi', style: {fill: '#f989f6', r:4}},
-			{latLng: [12.991482, 80.233783], name: 'Chennai', style: {fill: '#f989f6', r:4}},			
-			{latLng: [25.197088, 55.273962], name: 'Dubai - Citytrip', style: {fill: '#f989f6', r:4}},
-			{latLng: [40.770117, -73.974460], name: 'New York City', style: {fill: '#f989f6', r:4}},
-			{latLng: [40.715677, -74.081997], name: 'Jersey City', style: {fill: '#f989f6', r:4}},
-			{latLng: [41.865464, -87.614119], name: 'Chicago', style: {fill: '#f989f6', r:4}},
-			{latLng: [37.815207, -122.477865], name: 'San Francisco', style: {fill: '#f989f6', r:4}},	
-			{latLng: [34.118958, -118.300495], name: 'Los Angeles', style: {fill: '#f989f6', r:4}},	
-			{latLng: [32.733852, -117.151007], name: 'San Diago', style: {fill: '#f989f6', r:4}},		
-			{latLng: [42.023792, -93.644663], name: 'Ames', style: {fill: '#f989f6', r:4}},	
-			{latLng: [40.425116, -86.904523], name: 'Indianapolis', style: {fill: '#f989f6', r:4}},	
-			{latLng: [44.856534, -93.240666], name: 'Minneapolis', style: {fill: '#f989f6', r:4}},	
-			{latLng: [32.724319, -97.123549], name: 'Dallas', style: {fill: '#f989f6', r:4}},	
-			{latLng: [30.269784, -97.748651], name: 'Austin', style: {fill: '#f989f6', r:4}},		
-			{latLng: [29.424506, -98.488539], name: 'San Antonio', style: {fill: '#f989f6', r:4}},												
+			{latLng: [-37.799191, 144.960936], name: 'Melbourne', style: {fill: '#30A704', r:4}},
+			{latLng: [-33.852804, 151.210408], name: 'Sydney', style: {fill: '#30A704', r:4}},
+			{latLng: [-16.921313, 145.776041], name: 'Cairns', style: {fill: '#30A704', r:4}},
+			{latLng: [17.393410, 78.474330], name: 'Hyderabad', style: {fill: '#30A704', r:4}},
+			{latLng: [17.717599, 83.330292], name: 'Visakhapatnam', style: {fill: '#30A704', r:4}},
+			{latLng: [28.612827, 77.229324], name: 'New Delhi', style: {fill: '#30A704', r:4}},
+			{latLng: [12.991482, 80.233783], name: 'Chennai', style: {fill: '#30A704', r:4}},			
+			{latLng: [25.197088, 55.273962], name: 'Dubai - Citytrip', style: {fill: '#30A704', r:4}},
+			{latLng: [40.770117, -73.974460], name: 'New York City', style: {fill: '#30A704', r:4}},
+			{latLng: [40.715677, -74.081997], name: 'Jersey City', style: {fill: '#30A704', r:4}},
+			{latLng: [41.865464, -87.614119], name: 'Chicago', style: {fill: '#30A704', r:4}},
+			{latLng: [37.815207, -122.477865], name: 'San Francisco', style: {fill: '#30A704', r:4}},	
+			{latLng: [34.118958, -118.300495], name: 'Los Angeles', style: {fill: '#30A704', r:4}},	
+			{latLng: [32.733852, -117.151007], name: 'San Diago', style: {fill: '#30A704', r:4}},		
+			{latLng: [42.023792, -93.644663], name: 'Ames', style: {fill: '#30A704', r:4}},	
+			{latLng: [40.425116, -86.904523], name: 'Indianapolis', style: {fill: '#30A704', r:4}},	
+			{latLng: [44.856534, -93.240666], name: 'Minneapolis', style: {fill: '#30A704', r:4}},	
+			{latLng: [32.724319, -97.123549], name: 'Dallas', style: {fill: '#30A704', r:4}},	
+			{latLng: [30.269784, -97.748651], name: 'Austin', style: {fill: '#30A704', r:4}},		
+			{latLng: [29.424506, -98.488539], name: 'San Antonio', style: {fill: '#30A704', r:4}},												
 		     ];
 
         $(function(e){
@@ -53,11 +53,11 @@
 			zoomButtons : false,
 			regionStyle: {
 				initial: {
-					fill: '#6EC6FF'
+					fill: '#a19385'
 				},
 				hover: {
-					fill: '#0095EB',
-					'fill-opacity': 0.3
+					fill: '#C3B29E',
+					'fill-opacity': 0.6
 				},
 			},
 			series: {
