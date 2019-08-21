@@ -3861,7 +3861,13 @@ body {
 .cid-rzDuz7tdMV .progress1 .progressbar-number:before,
 .cid-rzDuz7tdMV .progress2 .progressbar-number:before,
 .cid-rzDuz7tdMV .progress3 .progressbar-number:before,
-.cid-rzDuz7tdMV .progress4 .progressbar-number:before {
+.cid-rzDuz7tdMV .progress4 .progressbar-number:before,
+.cid-rzDuz7tdMV .progress5 .progressbar-number:before,
+.cid-rzDuz7tdMV .progress6 .progressbar-number:before,
+.cid-rzDuz7tdMV .progress7 .progressbar-number:before,
+.cid-rzDuz7tdMV .progress8 .progressbar-number:before,
+.cid-rzDuz7tdMV .progress9 .progressbar-number:before,
+.cid-rzDuz7tdMV .progress10 .progressbar-number:before {
   position: absolute;
   right: 15px;
   top: 0;
@@ -3889,6 +3895,24 @@ body {
 }
 .cid-rzDuz7tdMV .progress4 .progressbar-number:before {
   content: '80';
+}
+.cid-rzDuz7tdMV .progress5 .progressbar-number:before {
+  content: '60';
+}
+.cid-rzDuz7tdMV .progress6 .progressbar-number:before {
+  content: '80';
+}
+.cid-rzDuz7tdMV .progress7 .progressbar-number:before {
+  content: '80';
+}
+.cid-rzDuz7tdMV .progress8 .progressbar-number:before {
+  content: '85';
+}
+.cid-rzDuz7tdMV .progress9 .progressbar-number:before {
+  content: '95';
+}
+.cid-rzDuz7tdMV .progress10 .progressbar-number:before {
+  content: '95';
 }
 .cid-rzDuz7tdMV .progress-primary {
   background: rgba(206, 206, 206, 0.4);
