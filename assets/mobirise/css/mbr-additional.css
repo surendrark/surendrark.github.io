@@ -2773,7 +2773,8 @@ body {
   text-align: left;
 }
 .cid-rzC8gaC8qF {
-  background-color: #cec4af;
+  background-color: #efefef;
+  background: linear-gradient(45deg, #efefef, #e9dac0);
 }
 @media (min-width: 992px) {
   .cid-rzC8gaC8qF .mbr-figure {
