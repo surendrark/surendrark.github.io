@@ -464,7 +464,7 @@ body {
   border-color: #ffffff;
 }
 .text-primary {
-  color: #149dcc !important;
+  color: #ffffff !important;
 }
 .text-secondary {
   color: #ff3366 !important;
@@ -489,7 +489,7 @@ body {
 }
 a.text-primary:hover,
 a.text-primary:focus {
-  color: #0b566f !important;
+  color: #188BC1 !important;
 }
 a.text-secondary:hover,
 a.text-secondary:focus {
@@ -1519,6 +1519,9 @@ body {
   padding-bottom: 1.4rem;
   text-align: left;
 }
+.dev-icons{font-size:4.5rem}
+.dev-icons{color:#737B84}
+.list-inline-item i:hover{color:#188BC1}
 .cid-rzBM2nPFqW .dropdown .dropdown-menu .dropdown-item {
   width: auto;
   padding: 0.235em 1.5385em 0.235em 1.5385em !important;
