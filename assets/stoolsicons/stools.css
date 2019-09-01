@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?3vtnki');
-  src:  url('fonts/icomoon.eot?3vtnki#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?3vtnki') format('truetype'),
-    url('fonts/icomoon.woff?3vtnki') format('woff'),
-    url('fonts/icomoon.svg?3vtnki#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?z4x7zq');
+  src:  url('fonts/icomoon.eot?z4x7zq#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?z4x7zq') format('truetype'),
+    url('fonts/icomoon.woff?z4x7zq') format('woff'),
+    url('fonts/icomoon.svg?z4x7zq#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -28,11 +28,11 @@
 .icon-vissim:before {
   content: "\e906";
 }
-.icon-Aimsun:before {
-  content: "\e907";
-}
 .icon-latex:before {
   content: "\e904";
+}
+.icon-Aimsun:before {
+  content: "\e907";
 }
 .icon-flask:before {
   content: "\e900";
