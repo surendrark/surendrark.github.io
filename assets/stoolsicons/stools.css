@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?tpvfud');
-  src:  url('fonts/icomoon.eot?tpvfud#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?tpvfud') format('truetype'),
-    url('fonts/icomoon.woff?tpvfud') format('woff'),
-    url('fonts/icomoon.svg?tpvfud#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?15v8xe');
+  src:  url('fonts/icomoon.eot?15v8xe#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?15v8xe') format('truetype'),
+    url('fonts/icomoon.woff?15v8xe') format('woff'),
+    url('fonts/icomoon.svg?15v8xe#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,10 +25,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-cplex:before {
-  content: "\e900";
+.icon-latex:before {
+  content: "\e904";
 }
 .icon-flask:before {
+  content: "\e900";
+}
+.icon-cplex:before {
   content: "\e901";
 }
 .icon-gams:before {
@@ -36,9 +39,6 @@
 }
 .icon-gurobi:before {
   content: "\e903";
-}
-.icon-latex:before {
-  content: "\e904";
 }
 .icon-msoffice:before {
   content: "\e905";
