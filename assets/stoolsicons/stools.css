@@ -28,10 +28,10 @@
 .icon-latex:before {
   content: "\e904";
 }
-.icon-flask:before {
+.icon-cplex:before {
   content: "\e900";
 }
-.icon-cplex:before {
+.icon-flask:before {
   content: "\e901";
 }
 .icon-gams:before {
