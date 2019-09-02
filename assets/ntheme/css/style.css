@@ -253,7 +253,7 @@ button:focus {
 }
 
 .bg-overlay {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     position: absolute;
     top: 0;
     right: 0;
@@ -458,6 +458,10 @@ button:focus {
     position: relative;
 }
 
+.v-middle {
+  z-index: 11;
+}
+
 .home-table-center {
     display: table-cell;
     vertical-align: middle;
@@ -526,55 +530,14 @@ button:focus {
     transition: all .2s;
 }
 
-/*----DEMO 4/5/6----*/
-
-.creative:after {
-    content: "";
-    position: absolute;
-    bottom: -40px;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100px;
-    background: transparent;
-    background-size: 100% 100%;
-    background-image: url(../images/bottom-color.png);
+#particles-js {
+  top: 130%;
+  z-index: 2;
+  position: relative;
+  width: 100%;
+  height: 125%;  
 }
 
-/*----DEMO 7/8/9-----*/
-
-.clip-home{
-    clip-path: polygon(0 0, 100% 0, 100% 83%, 50% 100%, 0 83%);
-}
-
-/*----DEMO 10/11/12/13----*/
-
-.jarallax{
-    background-size: cover;
-    background-position: center center;
-}
-
-/*----DEMO 14----*/
-
-.home-bg-slider {
-    position: relative;
-}
-
-.home-bg-slider .carousel-control-next,
-.carousel-control-prev {
-    width: 6%;
-}
-
-.home-bg-slider .carousel-item,
-.home-bg-slider .carousel {
-    height: 100vh;
-    width: 100%;
-}
-
-.home-bg-slider .carousel-item {
-    background-position: center center;
-    background-size: cover;
-}
 
 /*==========================
         5.ABOUT ME
