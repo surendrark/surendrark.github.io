@@ -253,7 +253,7 @@ button:focus {
 }
 
 .bg-overlay {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
     position: absolute;
     top: 0;
     right: 0;
@@ -452,7 +452,7 @@ button:focus {
 ============================*/
 
 .home-bg {
-    background-image: url(../../images/home-bg-2.jpg);
+    background-image: url(../../images/home-bg2.jpg);
     background-position: center center;
     background-size: cover;
     position: relative;
