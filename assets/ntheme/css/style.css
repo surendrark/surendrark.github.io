@@ -352,7 +352,7 @@ button:focus {
     z-index: 999;
     margin-bottom: 0px;
     transition: all 0.5s ease-in-out;
-    background-color: transparent;
+    background-color: transparent !important;
 }
 
 .custom-nav.stickyadd {
@@ -372,14 +372,14 @@ button:focus {
     transition: all 0.4s;
 }
 
-.custom-nav .navbar-nav li.active a:before,
+/*.custom-nav .navbar-nav li.active a:before,
 .custom-nav .navbar-nav li:hover a:before,
 .custom-nav .navbar-nav li:active a:before,
 .custom-nav.stickyadd .navbar-nav li.active a:before,
 .custom-nav.stickyadd .navbar-nav li:hover a:before,
 .custom-nav.stickyadd .navbar-nav li:active a:before {
     opacity: 1;
-}
+}*/
 
 .custom-nav .navbar-nav li a:before,
 .custom-nav.stickyadd .navbar-nav li a:before {

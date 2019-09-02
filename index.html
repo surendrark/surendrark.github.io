@@ -28,7 +28,7 @@
 </head>
 <body>
 	  <section class="menu cid-rzBM2nPFqW" once="menu" id="menu2-5">
-	    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
+	    <nav class="navbar navbar-expand navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm custom-nav sticky">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <div class="hamburger">
                 <span></span>
@@ -37,14 +37,12 @@
                 <span></span>
             </div>
         </button>
-        <div class="menu-logo">
-            <div class="navbar-brand">
-                
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-danger display-4" href="#page-top">Surendra Reddy Kancharla</a></span>
+        <div class="navbar-brand logo">
+                <a style="color: #fff" class="img-fluid logo-light" href="#page-top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Surendra Reddy Kancharla</a>
+                <a style="color: #000" class="img-fluid logo-dark" href="#page-top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Surendra Reddy Kancharla</a>
             </div>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item dropdown"><a class="nav-link link text-danger dropdown-toggle display-4" href="" data-toggle="dropdown-submenu" aria-expanded="true">Bio</a><div class="dropdown-menu"><a class="dropdown-item display-4" href="#edu">Education</a><a class="dropdown-item display-4" href="#skill" aria-expanded="false">Skills</a><a class="dropdown-item display-4" href="#award" aria-expanded="false">Awards</a></div></li><li class="nav-item dropdown"><a class="nav-link link text-danger dropdown-toggle display-4" href="" data-toggle="dropdown-submenu" aria-expanded="false">Academic</a><div class="dropdown-menu"><a class="dropdown-item display-4" href="#research">Research</a><a class="dropdown-item display-4" href="#pub" aria-expanded="false">Publications<br></a></div></li><li class="nav-item"><a class="nav-link link text-danger display-4" href="#fun">Travel</a></li><li class="nav-item"><a class="nav-link link text-danger display-4" href="#contact">Contact</a></li></ul>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto" data-app-modern-menu="true"><li class="nav-item dropdown"><a class="nav-link link dropdown-toggle display-4" href="" data-toggle="dropdown-submenu" aria-expanded="true">Bio</a><div class="dropdown-menu"><a class="dropdown-item text-black display-4" href="#edu">Education</a><a class="dropdown-item text-black display-4" href="#skill">Skills</a><a class="dropdown-item text-black display-4" href="#award" >Awards</a></div></li><li class="nav-item dropdown"><a class="nav-link link dropdown-toggle display-4" href="" data-toggle="dropdown-submenu" aria-expanded="false">Academic</a><div class="dropdown-menu"><a class="dropdown-item text-black display-4" href="#research">Research</a><a class="dropdown-item text-black display-4" href="#pub" >Publications<br></a></div></li><li class="nav-item"><a class="nav-link link display-4" href="#fun">Travel</a></li><li class="nav-item"><a class="nav-link link display-4" href="#contact">Contact</a></li></ul>
             
         </div>
     </nav>
@@ -672,6 +670,7 @@ $(document).ready(function () {
   <!-- TYPED -->
  <script src="assets/ntheme/js/typed.js"></script>  
   <!--CUSTOM JS-->
+  <script src="assets/ntheme/js/custom.js"></script>
   <script>
     $(".element").each(function() {
           var $this = $(this);
