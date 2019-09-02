@@ -472,6 +472,7 @@ button:focus {
     font-size: 13px;
     z-index: 8;
 }
+
 .scroll_down i {
     position: relative;
     -webkit-animation: bounce 2s infinite;
@@ -533,7 +534,12 @@ button:focus {
     z-index: -1;
     transition: all .2s;
 }
-
+.anchor{
+  display: block;
+  height: 60px; /*same height as header*/
+  margin-top: -60px; /*same height as header*/
+  visibility: hidden;
+}
 #particles-js {
   top: 125%;
   z-index: 1;
