@@ -532,7 +532,7 @@ button:focus {
   visibility: hidden;
 }
 #particles-js {
-  top: 124%;
+  top: 930px;
   z-index: 1;
   position: relative;
   width: 100%;
