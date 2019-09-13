@@ -8,4 +8,4 @@
 *-----------------------------------------------------------------------
 */
 
-        $("#status").fadeOut(),$("#preloader").delay(350).fadeOut("slow"),$("body").delay(350).css({overflow:"visible"}),$(window).on("scroll",function(){$(window).scrollTop()>=350?$(".sticky").addClass("stickyadd"):$(".sticky").removeClass("stickyadd")});
+        $("#status").fadeOut(),$("#preloader").delay(350).fadeOut("slow"),$("body").delay(350).css({overflow:"visible"}),$(window).on("scroll",function(){$(window).scrollTop()>=150?$(".sticky").addClass("stickyadd"):$(".sticky").removeClass("stickyadd")});
