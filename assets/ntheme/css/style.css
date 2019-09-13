@@ -216,7 +216,7 @@ button:focus {
 }
 
 .bg-overlay-gredient {
-    background: linear-gradient(32deg, rgba(18, 166, 181, 0.8) 0%, rgba(16, 12, 242, 0.7) 100%);
+    background: linear-gradient(32deg, rgba(43, 135, 164, 0.5) 0%, rgba(85, 163, 79, 0.4) 100%);
     position: absolute;
     top: 0;
     right: 0;
@@ -227,7 +227,7 @@ button:focus {
 }
 
 .bg-overlay {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 0;
     right: 0;
