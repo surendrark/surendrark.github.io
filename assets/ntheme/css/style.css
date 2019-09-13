@@ -227,7 +227,7 @@ button:focus {
 }
 
 .bg-overlay {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     position: absolute;
     top: 0;
     right: 0;
