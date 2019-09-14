@@ -145,9 +145,11 @@ button:focus {
     padding-top: 80px;
     padding-bottom: 80px;
     position: relative;
-    background-color: #fff;
+    background-color: #efefef;
 }
-
+.section .mbr-section-title {
+  color: #4f4943;
+}
 .bg-dark {
     background-color: #000;
 }
@@ -567,4 +569,70 @@ button:focus {
     background-position: center center;
     background-size: cover;
 }
+/*==========================
+        16.FOOTER
+============================*/
+
+.fot_social .social-icon {
+    border: 2px solid #868e96;
+    border-radius: 50%;
+    transition: all 0.5s;
+    width: 42px;
+    height: 42px;
+    display: block;
+    font-size: 18px;
+    line-height: 38px;
+    text-align: center;
+}
+
+.fot_social .social-icon:hover {
+    border-color: #000;
+    color: #000 !important;
+    transform: rotate(360deg);
+}
+
+.copy-rights {
+    line-height: 43px;
+}
+
+/*************************************************
+ *  Contact
+ **************************************************/
+.home-section {
+    padding-top: 40px;
+    padding-bottom: 10px;
+    position: relative;
+    background-color: #efefef;
+}
+
+
+.home-section .fa-ul {
+  margin-left: 3.14285714rem; /* Must be > `fa-2x` icon size. */
+}
+
+.home-section .fa-li {
+  position: absolute;
+  left: -3.14285714rem; /* Negative of `.home-section .fa-ul` margin. */
+  width: 2rem; /* Match `fa-2x` icon size. */
+  top: 0.14285714em; /* Default FA value. */
+  text-align: center;
+}
+
+.home-section li {
+  padding-top: 0.8rem; /* Align text with bottom of `fa-2x` icon. */
+  margin-bottom: 0.3rem;
+}
+
+.home-section li:last-of-type {
+  margin-bottom: 0;
+}
+
+#map {              
+        position:relative; 
+        top:-30px; 
+        bottom:0; 
+        width:100%;
+        width: 650px;
+        height: 450px;}
+
 
