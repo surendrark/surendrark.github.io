@@ -24,11 +24,9 @@
   <link rel="stylesheet" href="assets/ntheme/css/animate.min.css">
   <link rel="stylesheet" href="assets/ntheme/css/style.css"> 
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css">  
-  <link rel="stylesheet" href="assets/gallery/style.css">   
-
-
-
-  
+  <link rel="stylesheet" href="assets/gallery/style.css"> 
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>  
 </head>
 <body>
       <!-- START LOADER -->
@@ -655,70 +653,115 @@ $(document).ready(function () {
     </div>
 </section>
 
-<section class="cid-rzDmkYh5Ah" id="contact">
+<section class="home-section" id="contact">
     <div class="container">
-        <div class="media-container-row content text-white">
-            <div class="col-12 col-md-2">
-                <div class="media-wrap">
-                    
-                        <img src="assets/images/1200px-iit-madras-logo.svg-296x296.png" alt="Mobirise" title="">
-                    
-                </div>
-            </div>
-            <div class="col-12 col-md-3 mbr-fonts-style display-7">
-                <h5 class="pb-3">
-                    Address
-                </h5>
-                <p class="mbr-text">BSB 238,<br>IIT Madras, Chennai-36<br>India</p>
-            </div>
-            <div class="col-12 col-md-4 mbr-fonts-style display-7">
-                <h5 class="pb-3">
-                    Contact info</h5>
-                <p class="mbr-text"><span class="fa fa-envelope"></span>&nbsp; <a class="text-primary" href="mailto:surendrareddy.kancharla@gmail.com">surendrareddy.kancharla@gmail.com</a>&nbsp;<br><span class="fa fa-mobile"></span>&nbsp;&nbsp; <a class="text-primary" href="tel:+917780117732">+91 778 0117 732 </a> &nbsp; &nbsp;&nbsp;<br><span class="mbr-iconfont mbr-iconfont-social socicon-skype socicon"></span>&nbsp; <a class="text-primary" href="skype:kanna.srk@outlook.com?call">Surendra Reddy Kancharla</a>&nbsp;&nbsp;<br></p>
-            </div>
-            <div class="col-12 col-md-3 mbr-fonts-style display-7">
-                <h5 class="pb-3">
-                    Links
-                </h5>
-                            <a class="text-primary" href="https://scholar.google.co.in/citations?user=ZU4KysgAAAAJ&hl=en" target="_blank">
-                                <span class="ai ai-google-scholar-square"  style="font-size: 200%;"></span>
-                            </a>
-                            <a class="text-primary" href="https://www.researchgate.net/profile/Surendra_Kancharla" target="_blank">
-                                <span class="ai ai-researchgate-square"  style="font-size: 200%;"></span>
-                            </a>
-                            <a class="text-primary" href="https://publons.com/researcher/2925405/surendra-reddy-kancharla/" target="_blank">
-                                </i><span class="ai ai-publons-square" style="font-size: 200%;"></span>
-                            </a>           
-                            <a class="text-primary" href="https://www.instagram.com/kanna_srk/" target="_blank">
-                                <span class="icon-instagram-square" style="font-size: 170%;"></span>
-                            </a>                                                 
-                            <a class="text-primary" href="https://www.linkedin.com/in/surendra-reddy-kancharla-16b0b442" target="_blank">
-                                <span class="fab fa-linkedin"  style="font-size: 200%;"></span>
-                            </a>
-                            <a class="text-primary" href="https://www.facebook.com/surendrareddy.kancharla.7" target="_blank">
-                                <span class="fab fa-facebook-square"  style="font-size: 200%;"></span>
-                            </a>                            
-                            <a class="text-primary" href="https://twitter.com/kanna_srk" target="_blank">
-                                <span class="fab fa-twitter-square"  style="font-size: 200%;"></span>
-                            </a>
-            </div>
-        </div>
-        <div class="footer-lower">
-            <div class="media-container-row">
-                <div class="col-sm-12">
-                    <hr>
-                </div>
-            </div>
-            <div class="media-container-row mbr-white">
-                <div class="col-sm-6 copyright">
-                    <p class="mbr-text mbr-fonts-style display-7">
-                        &copy; Copyright 2019 Surendra - All Rights Reserved</p>
-                </div>
 
-            </div>
-        </div>
+	<div class="row">
+  <div class="col-sm-12 col-md-5 section-heading">
+    <h1 style="font-size:400%">Let's do <span class="font-weight-bold">Something Amazing</span></h1>
+  </div>
+  <div class="col-sm-12 col-md-7">
+
+    <ul class="fa-ul" itemscope>
+
+      <li>
+        <i class="fa-li fa fa-envelope fa-2x" aria-hidden="true"></i>
+        <span id="person-email" itemprop="email"><a href="mailto:surendrareddy.kancharla@gmail.com" style="font-size:130%">surendrareddy.kancharla@gmail.com</a></span>
+      </li>
+      <li>
+        <i class="fa-li fa fa-phone fa-2x" aria-hidden="true"></i>
+        <span id="person-telephone" itemprop="telephone"><a href="tel:+917780117732" style="font-size:130%">+91 778 0117 732 </a></span>
+      </li>
+      <li>
+        <i class="fa-li socicon-skype text-custom h2" aria-hidden="true"></i>
+        <span><a href="skype:kanna.srk@outlook.com?call" style="font-size:130%">Surendra Reddy Kancharla</a></span>
+      </li>
+      <li>
+        <i class="fa-li fa fa-map-marker fa-2x" aria-hidden="true"></i>
+        <span id="person-address" itemprop="address" style="font-size:130%">Room 238 - Building Sciences Block - IIT Madras, Chennai-36, India.</span>
+      </li>
+    </ul>
+<div id="map"></div>
+ 
+<script>
+mapboxgl.accessToken = "pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJjazBqaXR4a3MwODAzM2RtcjU5eTN3ZjhoIn0._8TjQXKT6YDBuqbkBmvOnw";
+ 
+/* Map: This represents the map on the page. */
+var map = new mapboxgl.Map({
+container: "map",
+style: "mapbox://styles/mapbox/dark-v10",
+zoom: 16,
+center: [80.2294,12.9896]
+
+});
+ 
+map.on("load", function () {
+/* Image: An image is loaded and added to the map. */
+map.loadImage("https://i.imgur.com/MK4NUzI.png", function(error, image) {
+if (error) throw error;
+map.addImage("custom-marker", image);
+/* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+map.addLayer({
+id: "markers",
+type: "symbol",
+/* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+source: {
+type: "geojson",
+data: {
+type: 'FeatureCollection',
+features: [
+{
+type: 'Feature',
+properties: {},
+geometry: {
+type: "Point",
+coordinates: [80.2294, 12.9899]
+}
+}
+]
+}
+},
+layout: {
+"icon-image": "custom-marker",
+}
+});
+});
+});
+</script>
+
+  </div>
+</div>
+
     </div>
-</section>    
+</section>
+
+        <!-- START FOOTER -->
+        <section class="bg-light">
+            <div class="container">
+                <div class="row pt-4 pb-4">
+                    <div class="col-lg-12">
+                        <div class="float-left float_none mt-2 mb-2">
+                            <p class="copy-rights text-muted mb-0">2019 &copy; Surendra. Design by Surendra.</p>
+                        </div>
+                        <div class="float-right float_none mt-2 mb-2">
+                            <ul class="list-inline fot_social mb-0">
+                                <li class="list-inline-item"><a href="https://www.instagram.com/kanna_srk/" target="_blank" class="social-icon text-muted"><i class="fab fa-instagram"></i></a></li>    
+                                <li class="list-inline-item"><a href="https://twitter.com/kanna_srk" target="_blank" class="social-icon text-muted"><i class="fab fa-twitter"></i></a></li>                                                        	
+                                <li class="list-inline-item"><a href="https://www.facebook.com/surendrareddy.kancharla.7" target="_blank" class="social-icon text-muted"><i class="fab fa-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.linkedin.com/in/surendra-reddy-kancharla-16b0b442" target="_blank" class="social-icon text-muted"><i class="fab fa-linkedin"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END FOOTER --> 
+
+
+  <script async defer src="//maps.googleapis.com/maps/api/js?key=AIzaSyCtaPReZ8UHh7M4Ro3brVff-PZXZNnKrPg"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" integrity="sha256-7vjlAeb8OaTrCXZkCNun9djzuB2owUsaO72kXaFDBJs=" crossorigin="anonymous"></script>
+
   <script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
   <script src="assets/tether/tether.min.js"></script>
@@ -742,20 +785,23 @@ $(document).ready(function () {
 <!--   EASING JS-->
   <script src="assets/ntheme/js/jquery.easing.min.js"></script>
   <script src="assets/ntheme/js/scrollspy.min.js"></script>
-  <!-- TYPED -->
- <script src="assets/ntheme/js/typed.js"></script>  
   <!--CUSTOM JS-->
   <script src="assets/ntheme/js/custom.js"></script>
-<!--   <script>
-    $(".element").each(function() {
-          var $this = $(this);
-          $this.typed({
-              strings: $this.attr('data-elements').split(','),
-              typeSpeed: 50,
-              backDelay: 3000
-          });
-      });
-  </script>   -->
+
+<!--         <script src="/js/jquery.js"></script> -->
+<script src="assets/contact/js/yii.js"></script>
+<script src="assets/contact/js/swiper.js?v=1.5"></script>
+<script src="assets/contact/js/jquery.fullpage.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TweenMax.min.js"></script>
+<script src="assets/contact/js/css3-animate-it.js"></script>
+<script src="assets/contact/js/map.js"></script>
+<script src="assets/contact/js/main.js?v=3.2111"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOqxGoTOsGMLHfIHTHJn-E5LGXWigwauk&amp;callback=initMap"></script>
+<script src="assets/contact/js/yii.validation.js"></script>
+<script src="assets/contact/js/yii.activeForm.js"></script>
+<script src="assets/contact/js/jquery.pjax.js"></script>
+
+
 
  <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
     <input name="animation" type="hidden">
