@@ -630,9 +630,8 @@ button:focus {
 #map {              
         position:relative; 
         top:-30px; 
+        left: 50px;
         bottom:0; 
         width:100%;
-        width: 620px;
+        width: 640px;
         height: 450px;}
-
-
