@@ -2433,19 +2433,19 @@ body {
   transition: all .2s;
 }
 .cid-rzBM2nPFqW button.navbar-toggler .hamburger span:nth-child(2) {
-  top: 3px;
+  top: 8px;
   transition: all .15s;
 }
 .cid-rzBM2nPFqW button.navbar-toggler .hamburger span:nth-child(3) {
-  top: 6px;
+  top: 8px;
   transition: all .15s;
 }
 .cid-rzBM2nPFqW button.navbar-toggler .hamburger span:nth-child(4) {
-  top: 9px;
+  top: 16px;
   transition: all .2s;
 }
 .cid-rzBM2nPFqW nav.opened .hamburger span:nth-child(1) {
-  top: 3px;
+  top: 8px;
   width: 0;
   opacity: 0;
   right: 50%;
@@ -2462,7 +2462,7 @@ body {
   transition: all .25s;
 }
 .cid-rzBM2nPFqW nav.opened .hamburger span:nth-child(4) {
-  top: 3px;
+  top: 8px;
   width: 0;
   opacity: 0;
   right: 50%;
@@ -2494,7 +2494,7 @@ body {
 }
 .cid-rzBM2nPFqW .collapsed .navbar-collapse.collapsing .navbar-nav .nav-item:last-child,
 .cid-rzBM2nPFqW .collapsed .navbar-collapse.show .navbar-nav .nav-item:last-child {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 .cid-rzBM2nPFqW .collapsed .navbar-collapse.collapsing .navbar-buttons,
 .cid-rzBM2nPFqW .collapsed .navbar-collapse.show .navbar-buttons {
@@ -2502,7 +2502,7 @@ body {
 }
 .cid-rzBM2nPFqW .collapsed .navbar-collapse.collapsing .navbar-buttons:last-child,
 .cid-rzBM2nPFqW .collapsed .navbar-collapse.show .navbar-buttons:last-child {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 .cid-rzBM2nPFqW .collapsed button.navbar-toggler {
   display: block;
@@ -2531,7 +2531,7 @@ body {
   position: relative;
   opacity: 1;
   height: auto;
-  padding: 0.4rem 0;
+  padding: 1.4rem 0;
   visibility: visible;
 }
 .cid-rzBM2nPFqW .collapsed .dropdown .dropdown-submenu {
@@ -2594,7 +2594,7 @@ body {
   }
   .cid-rzBM2nPFqW .navbar-collapse.collapsing .navbar-nav .nav-item:last-child,
   .cid-rzBM2nPFqW .navbar-collapse.show .navbar-nav .nav-item:last-child {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
   .cid-rzBM2nPFqW .navbar-collapse.collapsing .navbar-buttons,
   .cid-rzBM2nPFqW .navbar-collapse.show .navbar-buttons {
@@ -2602,7 +2602,7 @@ body {
   }
   .cid-rzBM2nPFqW .navbar-collapse.collapsing .navbar-buttons:last-child,
   .cid-rzBM2nPFqW .navbar-collapse.show .navbar-buttons:last-child {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
   }
   .cid-rzBM2nPFqW .dropdown .dropdown-menu {
     width: 100%;
@@ -2621,7 +2621,7 @@ body {
     position: relative;
     opacity: 1;
     height: auto;
-    padding: 0.4rem 0;
+    padding: 1.4rem 0;
     visibility: visible;
   }
   .cid-rzBM2nPFqW .dropdown .dropdown-submenu {
