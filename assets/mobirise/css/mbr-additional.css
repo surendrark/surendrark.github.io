@@ -3314,7 +3314,7 @@ body {
 .cid-rzDuxd7eUc {
   padding-top: 20px;
   padding-bottom: 70px;
-  background-color: #efefef;
+  background-color: #ffffff;
 }
 .cid-rzDuxd7eUc .mbr-section-subtitle {
   color: #767676;
@@ -3323,7 +3323,7 @@ body {
 }
 .cid-rzDuxd7eUc .timeline-text-content {
   padding: 2rem 2.5rem;
-  background: #cebfaf;
+  background: #7fc7df;
   margin-left: 2rem;
 }
 .cid-rzDuxd7eUc .timeline-text-content p {
@@ -3334,7 +3334,7 @@ body {
 }
 .cid-rzDuxd7eUc .time-line-date-content p {
   padding: 2rem 2.5rem;
-  background: #cebfaf;
+  background: #7fc7df;
   float: right;
 }
 .cid-rzDuxd7eUc .timeline-element {
@@ -3384,7 +3384,7 @@ body {
   border-radius: 50%;
   font-size: 30px;
   display: inline-block;
-  background-color: #cebfaf;
+  background-color: #7fc7df;
   top: 20px;
   margin-left: -10px;
 }
@@ -3394,7 +3394,7 @@ body {
   position: absolute;
   content: "";
   width: 2px;
-  background-color: #cebfaf;
+  background-color: #7fc7df;
   left: calc(50% - 1px);
   height: calc(100% + 4rem);
 }
@@ -3426,7 +3426,7 @@ body {
   flex-direction: column-reverse;
 }
 .cid-rzDuxd7eUc .mbr-section-title {
-  color: #4f4943;
+  color: #0f7699;
 }
 .cid-rzBM2nPFqW .navbar {
   background: #000000;
@@ -4615,4 +4615,122 @@ body {
 }
 .cid-rzDlRVvJUh P {
   text-align: left;
+}
+.cid-rCV88XHD7j {
+  padding-top: 20px;
+  padding-bottom: 0px;
+  background-color: #efefef;
+}
+.cid-rCV88XHD7j .mbr-section-subtitle {
+  color: #767676; 
+  text-align: center;
+  font-weight: 300;
+}
+.cid-rCV88XHD7j .timeline-text-content {
+  padding: 2rem 2.5rem;
+  background: #cebfaf;
+  margin-left: 2rem;
+  margin-bottom: 8rem;
+}
+.cid-rCV88XHD7j .timeline-text-content p {
+  margin-bottom: 0;
+}
+.cid-rCV88XHD7j .time-line-date-content {
+  margin-right: 2rem;
+}
+.cid-rCV88XHD7j .time-line-date-content p {
+  padding: 2rem 2.5rem;
+  background: #cebfaf;
+  float: right;
+}
+.cid-rCV88XHD7j .timeline-element {
+  margin-bottom: 50px;
+  position: relative;
+  word-wrap: break-word;
+  word-break: break-word;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+}
+.cid-rCV88XHD7j .timeline-element:hover .mbr-timeline-date {
+  box-shadow: 0 7px 20px 0px rgba(0, 0, 0, 0.08);
+  transition: all .4s;
+}
+.cid-rCV88XHD7j .timeline-element:hover .timeline-text-content {
+  box-shadow: 0 7px 20px 0px rgba(0, 0, 0, 0.08);
+  transition: all .4s;
+}
+.cid-rCV88XHD7j .mbr-timeline-date,
+.cid-rCV88XHD7j .timeline-text-content {
+  transition: all .4s;
+}
+.cid-rCV88XHD7j .reverse {
+  flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+}
+.cid-rCV88XHD7j .reverse .timeline-text-content {
+  margin-right: 2rem;
+  margin-left: 0;
+}
+.cid-rCV88XHD7j .reverse .time-line-date-content {
+  margin-left: 2rem;
+  margin-right: 0rem;
+}
+.cid-rCV88XHD7j .reverse .time-line-date-content p {
+  float: left;
+}
+.cid-rCV88XHD7j .iconBackground {
+  position: absolute;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 30px;
+  display: inline-block;
+  background-color: #cebfaf;
+  top: 20px;
+  margin-left: -10px;
+}
+.cid-rCV88XHD7j .separline:before {
+  top: 20px;
+  bottom: 0;
+  position: absolute;
+  content: "";
+  width: 2px;
+  background-color: #cebfaf;
+  left: calc(50% - 1px);
+  height: calc(100% + 4rem);
+}
+@media (max-width: 768px) {
+  .cid-rCV88XHD7j .iconBackground {
+    left: 0 !important;
+  }
+  .cid-rCV88XHD7j .separline:before {
+    left: 0!important;
+  }
+  .cid-rCV88XHD7j .timeline-text-content {
+    margin-left: 0 !important;
+  }
+  .cid-rCV88XHD7j .time-line-date-content {
+    margin-right: 0 !important;
+  }
+  .cid-rCV88XHD7j .time-line-date-content p {
+    float: left !important;
+  }
+  .cid-rCV88XHD7j .reverse .time-line-date-content {
+    margin-left: 0 !important;
+  }
+  .cid-rCV88XHD7j .reverse .timeline-text-content {
+    margin-right: 0 !important;
+  }
+}
+.cid-rCV88XHD7j .reverseTimeline {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.cid-rCV88XHD7j .mbr-section-title {
+  color: #4f4943;
+  margin-bottom: 100px; 
 }
