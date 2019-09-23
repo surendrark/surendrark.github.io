@@ -534,11 +534,11 @@ button:focus {
   visibility: hidden;
 }
 #particles-js {
-  top: 1850px;
+  top: 2690px;
   z-index: 1;
   position: absolute;
   width: 100%;
-  height: 90%;  
+  height: 97%;  
 }
 
 /*----DEMO 7/8/9-----*/
