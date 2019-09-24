@@ -4451,7 +4451,6 @@ body {
   opacity: 0;
   -webkit-transition: 0.2s opacity ease-in-out;
   transition: 0.2s opacity ease-in-out;
-  background: linear-gradient(to left, #554346, #45505b) !important;
 }
 .cid-rzBSird3Fz .mbr-gallery-item > div:hover .mbr-gallery-title::before {
   background: transparent !important;
