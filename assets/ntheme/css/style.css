@@ -588,6 +588,7 @@ button:focus {
 }
 
 .fot_social .social-iconi:hover {
+    border-color: #fff; 
     color: #fff;
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
     transform: rotate(360deg);
@@ -595,6 +596,7 @@ button:focus {
 
 
 .fot_social .social-icont:hover {
+    border-color: #fff;
     color: #fff;
     background: #55ACEE !important;
     transform: rotate(360deg);
@@ -602,12 +604,14 @@ button:focus {
 
 
 .fot_social .social-iconf:hover {
+    border-color: #fff;
     color: #fff;
     background: #3B5998 !important;
     transform: rotate(360deg);
 }
 
 .fot_social .social-iconl:hover {
+    border-color: #fff;
     color: #fff;
     background: #007bb5 !important;
     transform: rotate(360deg);
@@ -616,6 +620,7 @@ button:focus {
 .copy-rights {
     line-height: 43px;
 }
+#flink {color: #fff;}
 
 /*************************************************
  *  Contact
