@@ -572,8 +572,10 @@ button:focus {
 /*==========================
         16.FOOTER
 ============================*/
-
-.fot_social .social-icon {
+.fot_social .social-iconi,
+.fot_social .social-icont,
+.fot_social .social-iconf,
+.fot_social .social-iconl {
     border: 2px solid #868e96;
     border-radius: 50%;
     transition: all 0.5s;
@@ -585,9 +587,29 @@ button:focus {
     text-align: center;
 }
 
-.fot_social .social-icon:hover {
-    border-color: #000;
-    color: #000 !important;
+.fot_social .social-iconi:hover {
+    border-color: #fff;
+    color: #125688 !important;
+    transform: rotate(360deg);
+}
+
+
+.fot_social .social-icont:hover {
+    border-color: #fff;
+    color: #55ACEE !important;
+    transform: rotate(360deg);
+}
+
+
+.fot_social .social-iconf:hover {
+    border-color: #fff;
+    color: #3B5998 !important;
+    transform: rotate(360deg);
+}
+
+.fot_social .social-iconl:hover {
+    border-color: #fff;
+    color: #007bb5 !important;
     transform: rotate(360deg);
 }
 
