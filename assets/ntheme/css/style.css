@@ -594,7 +594,7 @@ button:focus {
 .copy-rights {
     line-height: 43px;
 }
-#flink {color: #fff;}
+.flink:hover { color: #000; }
 
 /*************************************************
  *  Contact
