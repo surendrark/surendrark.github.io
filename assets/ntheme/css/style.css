@@ -166,14 +166,6 @@ button:focus {
     color: #777;
 }
 
-.header_section {
-    padding: 200px 0px 120px;
-    background-image: url(../images/header_img.jpg);
-    background-position: center center;
-    background-size: cover;
-    position: relative;
-}
-
 .page_link a {
     color: rgba(255, 255, 255, 0.55);
 }
@@ -572,7 +564,10 @@ button:focus {
 /*==========================
         16.FOOTER
 ============================*/
-.fot_social .social-icon {
+.fot_social .social-iconi,
+.fot_social .social-icont,
+.fot_social .social-iconf,
+.fot_social .social-iconl {
     border: 2px solid #868e96;
     border-radius: 50%;
     transition: all 0.5s;
@@ -584,17 +579,34 @@ button:focus {
     text-align: center;
 }
 
-.fot_social .social-icon:hover {
-    border-color: #000; 
-    color: #000 !important;
+.fot_social .social-iconi:hover {
+    border-color: #515BD4 #8134AF #DD2A7B #FEDA77; 
+    color: #F58529!important;
     transform: rotate(360deg);
 }
-
+.fot_social .social-icont:hover {
+    border-color: #55ACEE; 
+    color: #55ACEE !important;
+    transform: rotate(360deg);
+}
+.fot_social .social-iconf:hover {
+    border-color: #3B5998; 
+    color: #3B5998 !important;
+    transform: rotate(360deg);
+}
+.fot_social .social-iconl:hover {
+    border-color: #007bb5; 
+    color: #007bb5 !important;
+    transform: rotate(360deg);
+}
 
 .copy-rights {
     line-height: 43px;
 }
-#flink:hover { color: #000; }
+#flinki:hover { color: #F58529;}
+#flinkt:hover { color: #55ACEE;}
+#flinkf:hover { color: #3B5998;}
+#flinkl:hover { color: #007bb5;}
 
 /*************************************************
  *  Contact
