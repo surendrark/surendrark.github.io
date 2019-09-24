@@ -589,7 +589,7 @@ button:focus {
 
 .fot_social .social-iconi:hover {
     border-color: #fff;
-    background-image: linear-gradient(to right, #8c37aa, #b2249d, #d10089, #e80072, #f70057, #fc2a49, #ff423b, #ff562c, #ff702f, #ff8637, #ff9a43, #ffad52);
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
     transform: rotate(360deg);
 }
 
