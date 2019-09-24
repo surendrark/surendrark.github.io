@@ -572,7 +572,6 @@ button:focus {
 /*==========================
         16.FOOTER
 ============================*/
-
 .fot_social .social-icon {
     border: 2px solid #868e96;
     border-radius: 50%;
@@ -586,14 +585,16 @@ button:focus {
 }
 
 .fot_social .social-icon:hover {
-    border-color: #000;
+    border-color: #000; 
     color: #000 !important;
     transform: rotate(360deg);
 }
 
+
 .copy-rights {
     line-height: 43px;
 }
+#flink:hover { color: #000; }
 
 /*************************************************
  *  Contact
