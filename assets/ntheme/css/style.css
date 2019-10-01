@@ -580,8 +580,8 @@ button:focus {
 }
 
 .fot_social .social-iconi:hover {
-    border-color: #515BD4 #8134AF #DD2A7B #FEDA77; 
-    color: #F58529!important;
+    border-color: #8134AF #DD2A7B #FEDA77 #F58529; 
+    color: #515BD4!important;
     transform: rotate(360deg);
 }
 .fot_social .social-icont:hover {
@@ -603,7 +603,7 @@ button:focus {
 .copy-rights {
     line-height: 43px;
 }
-#flinki:hover { color: #F58529;}
+#flinki:hover { color: #515BD4;}
 #flinkt:hover { color: #55ACEE;}
 #flinkf:hover { color: #3B5998;}
 #flinkl:hover { color: #007bb5;}
