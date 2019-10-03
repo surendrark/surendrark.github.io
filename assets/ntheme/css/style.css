@@ -580,33 +580,37 @@ button:focus {
 }
 
 .fot_social .social-iconi:hover {
-    border-color: #8134AF #DD2A7B #FEDA77 #F58529; 
-    color: #515BD4!important;
+    border-color: #8134AF#8134AF#F58529#F58529; 
+    color: #DD2A7B!important;
     transform: rotate(360deg);
 }
 .fot_social .social-icont:hover {
-    border-color: #55ACEE; 
-    color: #55ACEE !important;
+    border-color: #1DA2F2; 
+    color: #1DA2F2 !important;
     transform: rotate(360deg);
 }
 .fot_social .social-iconf:hover {
-    border-color: #3B5998; 
-    color: #3B5998 !important;
+    border-color: #1873EB; 
+    color: #1873EB !important;
     transform: rotate(360deg);
 }
 .fot_social .social-iconl:hover {
-    border-color: #007bb5; 
-    color: #007bb5 !important;
+    border-color: #0277B4; 
+    color: #0277B4 !important;
     transform: rotate(360deg);
 }
 
 .copy-rights {
     line-height: 43px;
 }
-#flinki:hover { color: #515BD4;}
-#flinkt:hover { color: #55ACEE;}
-#flinkf:hover { color: #3B5998;}
-#flinkl:hover { color: #007bb5;}
+#flinki:hover { color: #DD2A7B;}
+#flinkt:hover { color: #1DA2F2;}
+#flinkf:hover { color: #1873EB;}
+#flinkl:hover { color: #0277B4;}
+#flinkg:hover { color: #72A2F2;}
+#flinkr:hover { color: #02CCBB;}
+#flinkp:hover { color: #AEBCC9;}
+#flinkid:hover { color: #A6CE39;}
 
 /*************************************************
  *  Contact
