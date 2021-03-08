@@ -29,7 +29,7 @@ type: 'Feature',
 properties: {},
 geometry: {
 type: "Point",
-coordinates: [-86.9150504,40.4301805]
+coordinates: [-86.9150504, 40.4301805]
 }
 }
 ]
