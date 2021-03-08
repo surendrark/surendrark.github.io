@@ -1,4 +1,4 @@
-mapboxgl.accessToken = "pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJjazBqaXR4a3MwODAzM2RtcjU5eTN3ZjhoIn0._8TjQXKT6YDBuqbkBmvOnw";
+mapboxgl.accessToken = "pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJja20xMm5oYTIwNDVuMnZwaTRmenlkMWVhIn0.IEP9jryaKL3Lxk_MQe4Rbg";
  
 /* Map: This represents the map on the page. */
 var map = new mapboxgl.Map({
@@ -29,7 +29,7 @@ type: 'Feature',
 properties: {},
 geometry: {
 type: "Point",
-coordinates: [80.2294, 12.9899]
+coordinates: [-86.9150504,40.4301805]
 }
 }
 ]
