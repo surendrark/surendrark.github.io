@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html >
+<html  lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="assets/images/logo4.png" type="image/x-icon">
-  <meta name="description" content="">
-  <title>Surendra's Trivia</title>
+  <meta name="description" content="Surendra Reddy's Personal website">
+  <meta name="keywords" content="Surendra Reddy Kancharla, Surendra, Kancharla, Vehicle routing problem">
+  <meta name="author" content="Surendra Reddy Kancharla">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">  
+  
+  <title>Surendra's personal website</title>
+
   <link rel="stylesheet" href="assets/tether/tether.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap2.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid2.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot2.min.css">
   <link rel="stylesheet" href="assets/theme/css/style2.css">
-  <link rel="stylesheet" href="assets/ntheme/css/mbr-additional2.css" type="text/css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css"> 
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">  
@@ -29,16 +32,24 @@
 
   <!-- Animate Css -->
   <link rel="stylesheet" href="assets/ntheme/css/animate.min.css">
-  <link rel="stylesheet" href="assets/ntheme/css/style.css"> 
-  <link rel="stylesheet" href="assets/ntheme/css/mbr-additional.css">  
+  <link rel="stylesheet" href="assets/ntheme/css/style2.css"> 
+  <link rel="stylesheet" href="assets/ntheme/css/mbr-additional2.css">  
   <link rel="stylesheet" href="assets/gallery/style.css"> 
   <link rel="stylesheet" href="assets/styles/normalize.css">
-  
+  <link href='http://fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
+
   
 </head>
 <body>
-      <section class="menu cid-rzBM2nPFqW" once="menu" id="menu2-5">
-        <nav class="navbar navbar-expand navbar-dropdown align-items-right navbar-fixed-top navbar-toggleable-sm custom-nav sticky">
+      <!-- START LOADER -->
+ <!--    <div id="preloader">
+        <div id="status">
+            <div class="spinner">Loading...</div>
+        </div>
+    </div> -->
+    <!-- END LOADER -->
+    <section class="menu cid-rzBM2nPFqW" once="menu" id="menu2-5">
+      <nav class="navbar navbar-expand navbar-dropdown align-items-right navbar-fixed-top navbar-toggleable-sm custom-nav sticky">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <div class="hamburger">
                 <span></span>
@@ -48,13 +59,38 @@
             </div>
         </button>
         <div class="navbar-brand logo">
-                <a style="color: #000" class="img-fluid logo-light" href="index.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Surendra's Home Page</a>
-                <a style="color: #000" class="img-fluid logo-dark" href="index.html">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Surendra's Home Page</a>
+                <a style="color: #000" class="img-fluid logo-light" href="./index.html#page-top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Surendra Reddy Kancharla</a>
+                <a style="color: #000" class="img-fluid logo-dark" href="./index.html#page-top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Surendra Reddy Kancharla</a>
             </div>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto" data-app-modern-menu="true"><li class="nav-item dropdown"><a class="nav-link link dropdown-toggle" href="" data-toggle="dropdown-submenu" aria-expanded="false">Bio</a><div class="dropdown-menu"><a class="dropdown-item text-black" href="./index.html#educ">Education</a><div class="dropdown-divider"></div><a class="dropdown-item text-black" href="./index.html#expc">Experience</a><!-- <div class="dropdown-divider"></div><a class="dropdown-item text-black" href="#skill">Skills</a></div> --></li><li class="nav-item"><a class="nav-link link" href="./index.html#researchc">Research</a></li><li class="nav-item"><a class="nav-link link" href="./index.html#pubc" >Publications</a></li><li class="nav-item"><a class="nav-link link" href="./index.html#awardc" >Awards</a></li><li class="nav-item"><a class="nav-link link" href="#travel">Travel</a></li><li class="nav-item"><a class="nav-link link" href="./Trivia.html#trivia">Trivia</a></li><li class="nav-item"><a class="nav-link link" href="./index.html#contactc">Contact</a></li></ul>
+            
+        </div>
     </nav>
 
-</section>           
-  <section class="mbr-section info1 cid-rOBQCF5gRO" id="info1-8">
+</section>  
+<section class="cid-rzBSird3Fz" id="travel">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<div>
+  <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2">Places I have been to</h2>
+</div>
+
+<script>
+$(document).ready(function () {
+    console.log($('#vmap').width());
+    $('#vmap-iframe').attr('height', $(document).height()*0.1815);
+    $(window).resize(function(){
+        $('#vmap-iframe').attr('height', $(document).height()*0.1815);
+    });
+});
+</script>
+
+<div id="vmap" style="width: 100%; height: 100%; text-align: center;">
+    <iframe id="vmap-iframe" style="width: 66%; border:none;line-height: 0;"  src="tmap.html"></iframe>
+</div>
+</section>         
+  <section class="mbr-section info1 cid-rOBQCF5gRO" id="trivia">
     <div class="container">
         <div class="row justify-content-center content-row">
             <div class="media-container-column title col-12 col-lg-10 col-md-6">
@@ -70,11 +106,7 @@
     </div>
 </section>
 
-<section class="engine"><a href="https://mobiri.se">Mobirise</a></section><section class="timeline1 cid-rOBQ5PAI9g" id="timeline1-3">
-
-    
-
-    
+<section class="engine"><a href=""></a></section><section class="timeline1 cid-rOBQ5PAI9g" id="timeline1-3">
 
     <div class="container align-center">
         <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2">Academic Genealogy</h2>
@@ -232,6 +264,28 @@
         </div>
     </div>
 </section>
+        <!-- START FOOTER -->
+        <section class="bg-light">
+            <div class="container">
+                <div class="row pt-1 pb-2">
+                    <div class="col-lg-12">
+                        <div class="float-left float_none mt-2 mb-2">
+                            <p class="copy-rights text-muted mb-0">2019 &copy; Surendra. Design by Surendra.</p>
+                        </div>
+                        <div class="float-right float_none mt-2 mb-2">
+                            <ul class="list-inline fot_social mb-0">
+                                <li class="list-inline-item"><a href="https://www.instagram.com/surendrark_92/" target="_blank" class="social-iconi text-muted"><i id="flinki" class="fab fa-instagram"></i></a></li>    
+                                <li class="list-inline-item"><a href="https://twitter.com/surendrark29" target="_blank" class="social-icont text-muted"><i id="flinkt" class="fab fa-twitter"></i></a></li>                                                         
+                                <li class="list-inline-item"><a href="https://www.facebook.com/surendrareddy.kancharla.7" target="_blank" class="social-iconf text-muted"><i id="flinkf" class="fa4 fa-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.linkedin.com/in/surendra-reddy-kancharla-16b0b442" target="_blank" class="social-iconl text-muted"><i id="flinkl" class="fa4 fa-linkedin"></i></a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END FOOTER --> 
 
 
   <script src="assets/web/assets/jquery/jquery2.min.js"></script>
