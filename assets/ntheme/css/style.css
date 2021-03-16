@@ -616,7 +616,7 @@ button:focus {
  *  Contact
  **************************************************/
 .home-section {
-    padding-top: 40px;
+    padding-top: 30px;
     padding-bottom: 5px;
     position: relative;
     background-color: #efefef;
@@ -642,86 +642,6 @@ button:focus {
 
 .home-section li:last-of-type {
   margin-bottom: 0;
-}
-
-/* Resume */
-.timeline {
-  position: relative;
-}
-
-.timeline .timelin-title {
-  font-size: 20px;
-  text-transform: uppercase;
-  margin-left: 25px;
-}
-
-.timeline li {
-  padding: 0 20px 20px 30px;
-  list-style: none;
-  border-left: 2px solid #f1f1f1;
-}
-
-.timeline li .content-text {
-  background: #f2f2f2;
-  padding: 20px;
-}
-
-.timeline li .line-title {
-  font-size: 16px;
-  line-height: 6px;
-}
-
-.timeline li span {
-  font-size: 12px;
-  padding: 9px 0;
-  display: block;
-}
-
-.timeline li .line-text {
-  color: #888;
-  line-height: 18px;
-}
-
-.timeline li:first-child:before {
-  border: 0;
-  background: none;
-  position: relative;
-}
-
-.timeline li:last-child {
-  padding: 0 20px 0px 30px;
-}
-
-.timeline li:before {
-  content: "";
-  border: solid 2px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50px;
-  -moz-border-radius: 50px;
-  -webkit-border-radius: 50px;
-  font-size: 8px;
-  margin-left: -35px;
-  font-weight: 400;
-  background: #fff;
-  display: block;
-  position: absolute;
-  margin-top: 18px;
-  border-color: #00b4d9 !important;
-}
-
-.timeline li:first-child i {
-  font-size: 20px;
-  float: left;
-  margin-left: -30px;
-  line-height: 50px;
-  border-radius: 30px;
-  margin: -12px -55px;
-  background: #00b4d9;
-  color: #fff;
-  width: 50px;
-  height: 50px;
-  text-align: center;
 }
 
 #map {              
