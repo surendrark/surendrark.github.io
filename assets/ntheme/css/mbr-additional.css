@@ -1899,10 +1899,13 @@ body {
   font-weight: 300;
 }
 .cid-rzBYPk3yBx .media-container-row {
-  word-wrap: break-word;
-  word-break: break-word;
-  align-items: stretch;
-  -webkit-align-items: stretch;
+  align-items: baseline;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /*-webkit-align-items: stretch;*/
 }
 .cid-rzBYPk3yBx .card_cont {
   -o-transition: all .5s;
@@ -1950,7 +1953,16 @@ body {
   transform: rotateY(-180deg);
 }
 .cid-rzBYPk3yBx .card {
-  min-height: 300px;
+  min-width: 500px;
+  padding: 5.75rem;
+  order: 5;
+  margin-bottom: 5rem;
+  border: 5rem;
+  flex-basis: auto;
+  align-self: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-height: 350px;
 }
 .cid-rzBYPk3yBx .card:hover .card-front {
   z-index: 1;
@@ -1973,7 +1985,7 @@ body {
 }
 .cid-rzBYPk3yBx .builderCard .card_cont {
   -o-backface-visibility: hidden;
-  -ms-backface-visibility: hidd;
+  -ms-backface-visibility: hidden;
   -moz-backface-visibility: visible;
   -webkit-backface-visibility: visible;
   backface-visibility: visible;
