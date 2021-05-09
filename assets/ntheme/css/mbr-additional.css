@@ -4869,7 +4869,7 @@ body {
   padding-top: 20px;
   /*padding-bottom: 10px;*/
   background-color: #ffffff;
-  height: 93vh;
+  /*height: 93vh;*/
   width: 100%;
 }
 .cid-rzDuxdsrk .mbr-section-title {
@@ -4883,7 +4883,7 @@ body {
 =============================*/
 
 .cid-rzDuxdsrk .cv_edu_exp {
-    padding: 10px 0;
+    padding-bottom: 40px;
     position: relative;
     /*padding-bottom: 10px;*/
 }
