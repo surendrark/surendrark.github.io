@@ -40,4 +40,6 @@ $(window).on('load', function() {
   });
 
 });
+
+
         $("body").delay(350).css({overflow:"visible"}),$(window).on("scroll",function(){$(window).scrollTop()>=150?$(".sticky").addClass("stickyadd"):$(".sticky").removeClass("stickyadd")});
