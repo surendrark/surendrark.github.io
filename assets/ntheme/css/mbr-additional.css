@@ -3843,11 +3843,11 @@ body {
 .cid-rzDuz7tdMV {
   padding-top: 20px;
   padding-bottom: 40px;
-  background-color: #ffffff;
+  background-color: #efefef;
 }
 .dev-icons{font-size:5rem}
 .dev-icons{color:#737B84}
-.list-inline-item i:hover{color:#188BC1}
+.list-inline-item i:hover{color:#635a51}
 .cid-rzDuz7tdMV .progress {
   width: 100%;
 }
@@ -3859,7 +3859,7 @@ body {
   font-weight: 300;
 }
 .cid-rzDuz7tdMV .mbr-section-subtitle {
-  color: #149dcc;
+  color: #61574d;
   text-align: left;
 }
 .cid-rzDuz7tdMV .progress_value {
@@ -3886,7 +3886,7 @@ body {
   padding-left: 30px;
 }
 .cid-rzDuz7tdMV .mbr-section-title {
-  color: #0f7699;
+  color: #635a51;
 }
 .cid-rzDuzG66JF {
   padding-top: 0px;
@@ -4865,3 +4865,86 @@ body {
 .cid-rOBQCF5gRO .btn {
   margin: 0 0 .5rem 0;
 }
+.cid-rzDuxdsrk {
+  padding-top: 20px;
+  /*padding-bottom: 10px;*/
+  background-color: #ffffff;
+  height: 93vh;
+  width: 100%;
+}
+.cid-rzDuxdsrk .mbr-section-title {
+  color: #0f7699; 
+  text-align: center;
+  font-weight: 300;
+  /*margin-bottom: 25px;*/
+}
+/*===========================
+        8.EDUCATION
+=============================*/
+
+.cid-rzDuxdsrk .cv_edu_exp {
+    padding: 10px 0;
+    position: relative;
+    /*padding-bottom: 10px;*/
+}
+
+.cid-rzDuxdsrk .cv_edu_exp::after {
+    content: "";
+    height: 100%;
+    left: 0;
+    background-color: #e7e7e7;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+}
+
+.cid-rzDuxdsrk .cv_edu_exp .cv_edu_exp_box {
+    border-radius: 7px;
+    border: 1px solid #e7e7e7;
+    background: #7fc7df;
+    margin-left: 20px;
+    padding: 20px;
+    width: 105%;
+}
+
+.cid-rzDuxdsrk .cv_edu_exp .cv_edu_exp_box .cv_edu_exp_year {
+    position: relative;
+    margin: 0 0 10px 15px !important;
+}
+
+.cid-rzDuxdsrk .cv_edu_exp .cv_edu_exp_box .cv_edu_exp_year::after {
+    border: 3px solid #fff;
+    border-radius: 50%;
+    content: "";
+    height: 20px;
+    background-color: #0084b0;
+    position: absolute;
+    left: -65px !important;
+    width: 20px;
+    z-index: 1;
+    /*font-size: 20px;*/
+}
+
+.cid-rzDuxdsrk .cv_edu_exp .cv_edu_exp_box .cb_edu_exp_detail {
+    text-align: left;
+    margin-left: 15px;
+    float: left;
+    border-radius: 0;
+}
+
+.cid-rzDuxdsrk .cv_edu_exp h4,
+.cid-rzDuxdsrk .cb_edu_exp_detail h4 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 0;
+    text-transform: capitalize;
+}
+
+.cid-rzDuxdsrk .cv_desc {
+    line-height: 26px;
+    font-size: 16px;
+    /*color: #666;*/
+}
+
