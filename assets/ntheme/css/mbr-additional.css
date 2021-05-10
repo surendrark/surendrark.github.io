@@ -1901,8 +1901,9 @@ body {
 }
 .cid-rzBYPk3yBx .media-container-row2 {
   /*align-items: baseline;*/
+  width: 250vw;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row;
   justify-content: space-between;
   overflow-x: auto;
   overflow-y: hidden;
@@ -3936,7 +3937,7 @@ body {
 .cid-rzDuAjBDhk {
   padding-top: 50px;
   padding-bottom: 20px;
-  background-color: #ffffff;
+  background-color: #ffffff; 
 }
 .cid-rzDuAjBDhk .mbr-section-subtitle {
   color: #767676;
