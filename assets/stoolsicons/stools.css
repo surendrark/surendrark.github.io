@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?fq2ill');
-  src:  url('fonts/icomoon.eot?fq2ill#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?fq2ill') format('truetype'),
-    url('fonts/icomoon.woff?fq2ill') format('woff'),
-    url('fonts/icomoon.svg?fq2ill#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?janea5');
+  src:  url('fonts/icomoon.eot?janea5#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?janea5') format('truetype'),
+    url('fonts/icomoon.woff?janea5') format('woff'),
+    url('fonts/icomoon.svg?janea5#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -13,7 +13,7 @@
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
-  speak: none;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -25,36 +25,42 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-Aimsun:before {
+.icon-aichip:before {
   content: "\e900";
 }
-.icon-cplex:before {
+.icon-Aimsun:before {
   content: "\e901";
 }
-.icon-flask:before {
+.icon-cplex:before {
   content: "\e902";
 }
-.icon-gams:before {
+.icon-et:before {
   content: "\e903";
 }
-.icon-gurobi:before {
+.icon-flask:before {
   content: "\e904";
 }
-.icon-latex:before {
+.icon-gams:before {
   content: "\e905";
 }
-.icon-macos:before {
+.icon-gurobi:before {
   content: "\e906";
 }
-.icon-msoffice:before {
+.icon-instagram-square:before {
   content: "\e907";
 }
-.icon-vissim:before {
+.icon-latex:before {
   content: "\e908";
 }
-.icon-windows:before {
+.icon-maplocs:before {
   content: "\e909";
 }
-.icon-instagram-square:before {
+.icon-mobilesout:before {
   content: "\e90a";
+}
+.icon-transitbt:before {
+  content: "\e90b";
+}
+.icon-vissim:before {
+  content: "\e90c";
 }
