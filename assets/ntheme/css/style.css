@@ -669,10 +669,10 @@ button:focus {
     padding-top: 30px;
     padding-bottom: 5px;
     position: relative;
-    background-color: #efefef;
+    background-color: #ffffff;
 }
 .home-section h3{
-  color: #635a51;
+  color: #0f7699;
 }
 
 .home-section .fa-ul {
@@ -685,7 +685,7 @@ button:focus {
   width: 2rem; /* Match `fa-2x` icon size. */
   top: 0.14285714em; /* Default FA value. */
   text-align: center;
-  color: #635a51;
+  color: #0f7699;
 }
 
 .home-section li {
