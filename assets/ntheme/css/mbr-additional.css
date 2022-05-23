@@ -3843,47 +3843,63 @@ body {
   -webkit-flex-basis: auto;
 }
 
-
-.cid-rzDuz7tdMV {
-  padding-top: 20px;
-  padding-bottom: 40px;
+.cid-rzDuz7tdMV  {
+  padding-top: 50px;
+  padding-bottom: 20px;
   background-color: #efefef;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
   align-items: center; 
   justify-content: center;
+  height: 100%;
+}
+.cid-rzDuz7tdMV  .mbr-section-subtitle {
+  color: #767676;
+}
+.cid-rzDuz7tdMV  H2 {
+  color:#635a51;
 }
 .dev-icons{font-size:5rem}
 .dev-icons{color:#737B84}
 .list-inline-item i:hover{color:#635a51}
-.cid-rzDuz7tdMV .progress {
+/*#ext-box { display: table; width:100%;}
+#int-box { display: table-cell; vertical-align: middle; }
+*//*.cid-rzDuz7tdMV {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  background-color: #efefef;
+  /*height: 100vh;*/
+  /*display: flex;*/
+  /*flex-direction: row;*/
+ /* align-items: center; 
+  justify-content: center;*/
+/*}
+
+.cid-rzDuz7tdMV .row {
   width: 100%;
-}
-.cid-rzDuz7tdMV progress {
+}*/
+/*.cid-rzDuz7tdMV progress {
   height: 8px;
-}
-.cid-rzDuz7tdMV h3 {
+}*/
+/*.cid-rzDuz7tdMV h3 {
   text-align: center;
   font-weight: 300;
 }
 .cid-rzDuz7tdMV .mbr-section-subtitle {
   color: #61574d;
   text-align: left;
-}
-.cid-rzDuz7tdMV .progress_value {
+}*/
+/*.cid-rzDuz7tdMV .progress_value {
   position: relative;
 }
 .cid-rzDuz7tdMV .progress_elements {
   margin: 0 auto;
-}
-.cid-rzDuz7tdMV .title-wrap {
+}*/
+/*.cid-rzDuz7tdMV .title-wrap {
   display: flex;
   justify-content: space-between;
   -webkit-justify-content: space-between;
 }
-
-.cid-rzDuz7tdMV .progress-primary {
+*/
+/*.cid-rzDuz7tdMV .progress-primary {
   background: rgba(206, 206, 206, 0.4);
   border: none;
   outline: none;
@@ -3893,10 +3909,10 @@ body {
 }
 .cid-rzDuz7tdMV .progress_value span {
   padding-left: 30px;
-}
-.cid-rzDuz7tdMV .mbr-section-title {
+}*/
+/*.cid-rzDuz7tdMV .mbr-section-title {
   color: #635a51;
-}
+}*/
 .cid-rzDuzG66JF {
   padding-top: 0px;
   padding-bottom: 45px;
@@ -4875,10 +4891,10 @@ body {
   margin: 0 0 .5rem 0;
 }
 .cid-rzDuxdsrk {
-  padding-top: 20px;
-  /*padding-bottom: 10px;*/
+  padding-top: 50px;
+  padding-bottom: 20px;
   background-color: #ffffff;
-  height: 100vh;
+  height: 100%;
   /*width: 100%;*/
 }
 .cid-rzDuxdsrk .mbr-section-title {
