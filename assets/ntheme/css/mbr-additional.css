@@ -4908,14 +4908,15 @@ body {
 =============================*/
 
 .cid-rzDuxdsrk .cv_edu_exp {
-    /*padding-bottom: 40px;*/
+    padding-bottom: 40px;
     position: relative;
-    /*padding-bottom: 10px;*/
+    padding-bottom: 10px;
 }
 
 .cid-rzDuxdsrk .cv_edu_exp::after {
     content: "";
     height: 100%;
+    min-height: 100%;
     left: 0;
     background-color: #e7e7e7;
     margin: 0;
@@ -4931,7 +4932,7 @@ body {
     background: #7fc7df;
     margin-left: 20px;
     padding: 20px;
-    width: 105%;
+    width: 95%;
 }
 
 .cid-rzDuxdsrk .cv_edu_exp .cv_edu_exp_box .cv_edu_exp_year {
