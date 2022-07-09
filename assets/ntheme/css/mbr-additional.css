@@ -4974,10 +4974,10 @@ body {
 
 .cid-rzDuxdsrk .cv_edu_exp h4,
 .cid-rzDuxdsrk .cb_edu_exp_detail h4 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     margin-top: 0;
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
 }
 
 .cid-rzDuxdsrk .cv_desc {
