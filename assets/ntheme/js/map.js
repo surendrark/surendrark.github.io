@@ -5,7 +5,7 @@ var map = new mapboxgl.Map({
 container: "map",
 style: "mapbox://styles/mapbox/dark-v10",
 zoom: 16,
-center: [-86.9150504, 40.4301805]
+center: [13.727639, 51.031060]
 
 });
  
@@ -29,7 +29,7 @@ type: 'Feature',
 properties: {},
 geometry: {
 type: "Point",
-coordinates: [-86.9150504, 40.4301805]
+coordinates: [13.727639, 51.031060]
 }
 }
 ]
