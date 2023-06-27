@@ -578,22 +578,6 @@
 		    'emailScramble', 'anerhamlo.drsrl@.mcarcdueadynkgia', [16,5,10,7,19,20,26,29,32,14,11,3,1,9,22,24,30,33,31,27,21,18,12,2,4,8,6,13,17,15,25,28,23]);
         mobileScramble = new scrambledString(document.getElementById('person-mobile'),
                 'mobileScramble', '7530054+913665  ', [7,11,15,16,13,6,2,1,3,5,10,12,14,9,4,8]);
-        // Calculate the actual loading progress (this is just a simulation)
-        function simulateLoading() {
-        var loaderBar = document.getElementById('loader_bar');
-        var interval = setInterval(function() {
-            var width = parseFloat(getComputedStyle(loaderBar).width);
-            if (width >= 500) {
-            clearInterval(interval);
-            }
-            loaderBar.style.width = (width + 10) + 'px';
-        }, 100);
-        }
-
-        window.addEventListener('load', function() {
-        simulateLoading();
-        });
-
     </script>
   <script src="assets/web/assets/jquery/jquery.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
