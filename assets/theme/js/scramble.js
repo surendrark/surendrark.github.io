@@ -30,7 +30,12 @@ function rescramble() {
 }
 
 function initAnimatedBubbleSort() {
-	this.interval = setInterval(this.objName + '.bubbleSortStep()', 20);
+	this.interval = setInterval(this.objName + '.bubbleSortStep()', 0);
+	if (this.tag.id === 'person-email') {
+		document.getElementById('unscramble-email').style.display = 'none';
+	  } else if (this.tag.id === 'person-mobile') {
+		document.getElementById('unscramble-mobile').style.display = 'none';
+	  }
 }
 
 function bubbleSortStep() {
