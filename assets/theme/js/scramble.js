@@ -65,4 +65,10 @@ function bubbleSortStep() {
 	if (!this.changed) {
 		clearInterval(this.interval);
 	}
+	// Add color to the text
+    let coloredText = '';
+    for (let j = 0; j < this.string.length; j++) {
+        coloredText += '<span style="color: #149dcc;">' + this.string[j] + '</span>';
+    }
+    this.tag.innerHTML = coloredText;
 }
