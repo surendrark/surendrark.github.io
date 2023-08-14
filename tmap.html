@@ -115,6 +115,34 @@
 			         + '"/>').css("fontSize", "15px");
 			  }		    		
 		});
+    // Define the latitude and longitude for overlay
+    var overlayLat = 82.427358; // Example latitude
+    var overlayLon = -177.464918; // Example longitude
+
+    // Convert latitude and longitude to pixel coordinates
+    var pixelX = map.latLngToPoint(overlayLat, overlayLon).x;
+    var pixelY = map.latLngToPoint(overlayLat, overlayLon).y;
+
+    // Adding the text "countries visited - 14/193" at the specified pixel coordinates
+    var visitedText = $('<div>')
+        .addClass('visited-count')
+        .text('Countries visited - 14 / 193')
+        .css({
+             position: 'absolute',
+            left: pixelX + 'px',
+            top: pixelY + 'px',
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '15px',
+            fontWeight: 'bold',
+            color: '#FFFFFF',
+            backgroundColor: '#a19385',
+            padding: '5px 10px',
+            borderRadius: '5px',
+            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
+            zIndex: 1000,
+        });
+
+    $('#vmap').append(visitedText);
 	});
 
     </script>
