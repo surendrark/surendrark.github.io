@@ -79,41 +79,19 @@
   <h2 class="mbr-section-title pb-3 align-center mbr-fonts-style display-2"><b>Places I have been to</b></h2>
 </div>
 
-<style>
-    #vmap {
-        width: 100vw;
-        height: 85vh;
-        text-align: center;
-    }
-    
-    #vmap-iframe {
-        width: 90%;
-        border: none;
-        line-height: 0;
-    }
-    </style>
-    
-    <div id="vmap">
-        <iframe id="vmap-iframe" src="tmap.html"></iframe>
-    </div>
-    
-    <script>
-    function adjustIframeHeight() {
-        var windowWidth = $(window).width();
-        var iframeHeight = windowWidth * 0.1815;
-    
-        $('#vmap-iframe').css('height', iframeHeight);
-    }
-    
-    $(document).ready(function () {
-        adjustIframeHeight();
-        
-        $(window).resize(function(){
-            adjustIframeHeight();
-        });
+<script>
+$(document).ready(function () {
+    console.log($('#vmap').width());
+    $('#vmap-iframe').attr('height', $(document).height()*0.1815);
+    $(window).resize(function(){
+        $('#vmap-iframe').attr('height', $(document).height()*0.1815);
     });
-    </script>
-    
+});
+</script>
+
+<div id="vmap" style="width: 100vw; height: 85vh; text-align: center;">
+    <iframe id="vmap-iframe" style="width: 90%; border:none;line-height: 0;"  src="tmap.html"></iframe>
+</div>
 </section>         
   <section class="mbr-section info1 cid-rOBQCF5gRO" id="trivia">
     <div class="container">
