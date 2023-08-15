@@ -5,6 +5,9 @@
     <script type='text/javascript' src='assets/ntheme/js/jquery-3.7.0.min.js'></script>
     <script src='assets/jvmap/jquery-jvectormap-2.0.3.min.js'></script>
     <script src='assets/jvmap/jquery-jvectormap-world-mill.js'></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 
     <script type='text/javascript'>
 	<!-- ADD YOUR VISITED COUNTRIES HERE -->
@@ -124,23 +127,42 @@
     var pixelY = map.latLngToPoint(overlayLat, overlayLon).y;
 
     // Adding the text "countries visited - 14/193" at the specified pixel coordinates
-    var visitedText = $('<div>')
-        .addClass('visited-count')
-        .text('Countries visited - 14 / 193')
-        .css({
-             position: 'absolute',
-            left: pixelX + 'px',
-            top: pixelY + 'px',
-            fontFamily: 'Arial, sans-serif',
-            fontSize: '15px',
-            fontWeight: 'bold',
-            color: '#FFFFFF',
-            backgroundColor: '#a19385',
-            padding: '5px 10px',
-            borderRadius: '5px',
-            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
-            zIndex: 1000,
-        });
+	var countryInfoText = '';
+	var count = 0;
+
+	for (var code in countries) {
+		if (countries.hasOwnProperty(code)) {
+			var flagClass = 'flag-icon-' + code.toLowerCase();
+			var flagElement = '<span class="flag-icon ' + flagClass + '" style="color:' + countries[code] + '"></span>';
+			countryInfoText += flagElement;
+
+			count++;
+			if (count % 5 === 0) {
+				countryInfoText += '<br>'; // Add a line break after 5 flags
+			} else {
+				countryInfoText += '&nbsp;&nbsp;'; // Add spacing between flags in the same column
+			}
+		}
+	}
+
+	var visitedText = $('<div>')
+		.addClass('visited-count')
+		.html('Countries - 14 / 193<br>' + countryInfoText + '<br>Continents - 4 / 7')
+		.css({
+			position: 'absolute',
+			left: pixelX + 'px',
+			top: pixelY + 'px',
+			fontFamily: 'Arial, sans-serif',
+			fontSize: '15px',
+			fontWeight: 'bold',
+			color: '#FFFFFF',
+			backgroundColor: '#a19385',
+			padding: '5px 10px',
+			borderRadius: '5px',
+			boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
+			zIndex: 1000,
+			whiteSpace: 'pre-line'
+		});
 
     $('#vmap').append(visitedText);
 	});
