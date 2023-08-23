@@ -653,14 +653,15 @@ button:focus {
     line-height: 43px;
 }
 #flinki:hover { color: #DD2A7B;}
-#flinks:hover { color: #EE8933;}
+#flinks:hover { color: #ff6c04;}
 #flinkt:hover { color: #1DA2F2;}
 #flinkf:hover { color: #1873EB;}
-#flinkl:hover { color: #0277B4;}
-#flinkg:hover { color: #7CA0EC;}
-#flinkr:hover { color: #02CCBB;}
-#flinkc:hover { color: #b89af8;}
-#flinkid:hover { color: #A6CE39;}
+#flinkl:hover { color: #0077b5;}
+#flinkg:hover { color: #4285F4;}
+#flinkr:hover { color: #2fcbab;}
+#flinkc:hover { color: #16ab02;}
+#flinkid:hover { color: #aad143;}
+#flinkgit:hover { color: #000;}
 
 
 /*************************************************
