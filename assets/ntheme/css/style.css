@@ -634,8 +634,8 @@ button:focus {
     transform: rotate(360deg);
 }
 .fot_social .social-icont:hover {
-    border-color: #1DA2F2; 
-    color: #1DA2F2 !important;
+    border-color: #000000; 
+    color: #000000 !important;
     transform: rotate(360deg);
 }
 .fot_social .social-iconf:hover {
@@ -654,14 +654,13 @@ button:focus {
 }
 #flinki:hover { color: #DD2A7B;}
 #flinks:hover { color: #ff6c04;}
-#flinkt:hover { color: #1DA2F2;}
 #flinkf:hover { color: #1873EB;}
 #flinkl:hover { color: #0077b5;}
 #flinkg:hover { color: #4285F4;}
 #flinkr:hover { color: #2fcbab;}
 #flinkc:hover { color: #16ab02;}
 #flinkid:hover { color: #aad143;}
-#flinkgit:hover { color: #000;}
+#flinkgt:hover { color: #000;}
 
 
 /*************************************************
