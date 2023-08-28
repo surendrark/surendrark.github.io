@@ -558,8 +558,8 @@ button:focus {
     transform: rotate(360deg);
 }
 .fot_social .social-icont:hover {
-    border-color: #1DA2F2; 
-    color: #1DA2F2 !important;
+    border-color: #000000; 
+    color: #000000 !important;
     transform: rotate(360deg);
 }
 .fot_social .social-iconf:hover {
