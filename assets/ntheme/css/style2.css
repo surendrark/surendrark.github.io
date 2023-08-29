@@ -553,7 +553,7 @@ button:focus {
 }
 
 .fot_social .social-iconi:hover {
-    border-color: #8134AF#8134AF#F58529#F58529; 
+    border-color: #FEDA77#F58529#8134AF#515BD4; 
     color: #DD2A7B!important;
     transform: rotate(360deg);
 }
