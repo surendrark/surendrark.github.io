@@ -576,6 +576,15 @@ button:focus {
 .copy-rights {
     line-height: 43px;
 }
+#flinki:hover { color: #DD2A7B;}
+#flinks:hover { color: #ff6c04;}
+#flinkf:hover { color: #1873EB;}
+#flinkl:hover { color: #0077b5;}
+#flinkg:hover { color: #4285F4;}
+#flinkr:hover { color: #2fcbab;}
+#flinkc:hover { color: #16ab02;}
+#flinkid:hover { color: #aad143;}
+#flinkgt:hover { color: #000;}
 /*************************************************
  *  Contact
  **************************************************/
