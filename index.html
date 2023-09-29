@@ -578,53 +578,86 @@
         const helloElement = document.getElementById('hello');
         const greetingElement = document.getElementById('greeting');
         const nameElement = document.getElementById('name');
-
+    
         // Define greetings in different languages
         const hello = {
-            'te': 'నమస్కారం', // Telugu            
+            'te': 'నమస్కారం', // Telugu
             'en': 'Hello', // English
             'ta': 'வணக்கம்', // Tamil
-            'de': 'Hallo' // German
+            'de': 'Hallo', // German
+            'hi': 'नमस्ते' // Hindi
         };
-
+    
         // Define greetings and names in different languages
         const greetings = {
             'te': 'నా పేరు ', // Telugu
-            'en': 'I am', // English            
+            'en': 'I am', // English
             'ta': 'என் பெயர்', // Tamil
-            'de': 'Ich bin' // German
+            'de': 'Ich bin', // German
+            'hi': 'मेरा नाम' // Hindi
         };
-
+    
         const names = {
-            'te': 'సురేంద్ర', // Telugu            
+            'te': 'సురేంద్ర', // Telugu
             'en': 'Surendra', // English
             'ta': 'சுரேந்திரா', // Tamil
-            'de': 'Surendra' // German (assuming the name stays the same in German)
+            'de': 'Surendra', // German
+            'hi': 'सुरेंद्र' // Hindi
         };
-
-
-
-        // Function to set greeting based on language code
-        function setGreeting(languageCode) {
-            // Set the greeting text based on the selected language
-            helloElement.textContent = hello[languageCode];
-            greetingElement.textContent = greetings[languageCode];
-            nameElement.textContent = names[languageCode];
+    
+        // Function to change greeting with typing effect
+        function changeGreetingWithTyping() {
+            const currentLanguageCode = languageCodes[currentIndex];
+            const greetingText = greetings[currentLanguageCode];
+            const nameText = names[currentLanguageCode];
+    
+            // Clear previous text content
+            helloElement.textContent = '';
+            greetingElement.textContent = '';
+            nameElement.textContent = '';
+    
+            let helloIndex = 0;
+            let greetingIndex = 0;
+            let nameIndex = 0;
+    
+            // Function to add characters one by one with a delay
+            function typeText() {
+                if (helloIndex < hello[currentLanguageCode].length) {
+                    helloElement.textContent += hello[currentLanguageCode][helloIndex];
+                    helloIndex++;
+                }
+                if (greetingIndex < greetingText.length) {
+                    greetingElement.textContent += greetingText[greetingIndex];
+                    greetingIndex++;
+                }
+                if (nameIndex < nameText.length) {
+                    nameElement.textContent += nameText[nameIndex];
+                    nameIndex++;
+                }
+    
+                // Check if all characters are typed, then move to the next language
+                if (helloIndex === hello[currentLanguageCode].length &&
+                    greetingIndex === greetingText.length &&
+                    nameIndex === nameText.length) {
+                    currentIndex = (currentIndex + 1) % languageCodes.length;
+                    setTimeout(changeGreetingWithTyping, 5000); // Change greeting every 5 seconds
+                } else {
+                    setTimeout(typeText, 100); // Type next character after 100 milliseconds
+                }
+            }
+    
+            // Start typing text
+            typeText();
         }
-
+    
         // Array of language codes
         const languageCodes = Object.keys(greetings);
         let currentIndex = 0;
-
-        // Function to change greeting every 5 seconds
-        function changeGreeting() {
-            setGreeting(languageCodes[currentIndex]);
-            currentIndex = (currentIndex + 1) % languageCodes.length;
-        }
-        changeGreeting();
-        // Change greeting every 5 seconds
-        setInterval(changeGreeting, 5000);
+    
+        // Call the function to initiate the typing effect
+        changeGreetingWithTyping();
     </script>
+    
     <!-- Preloader Ends -->
 	<script>
 		emailScramble = new scrambledString(document.getElementById('person-email'),
