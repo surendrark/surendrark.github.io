@@ -70,9 +70,9 @@
                                 <div class="container">
                                     <div class="row justify-content-center">
                                         <div class="col-lg-12">
-                                            <div class="text-white text-right">
-                                                <h4>Hello</h4>
-                                                <h1 class="header_title mb-0 mt-3">I Am <span class="font-weight-bold">Surendra</span></h1>
+                                            <div class="text-white text-left">
+                                                <h2 id="hello"></h2>
+                                                <h1 class="header_title mb-0 mt-3 text-right"><span id="greeting"></span> <span class="font-weight-bold text-right" id="name"></span></h1>
 				                                   <ul class="social_home list-unstyled text-right pt-4">
 				                                    <li class="list-inline-item"><a href="https://www.scopus.com/authid/detail.uri?authorId=57201666803" target="_blank"><i id="flinks" class="nai  nai-scopus-square nai-2x" ></i></a></li>    
                                                     <li class="list-inline-item"><a href="https://scholar.google.co.in/citations?user=ZU4KysgAAAAJ&hl=en" target="_blank"><i id="flinkg" class="ai ai-google-scholar-square" style="font-size: 210%;"></i></a></li>
@@ -82,7 +82,7 @@
 				                                        <li class="list-inline-item"><a href="https://www.linkedin.com/in/surendrark92/" target="_blank"><i id="flinkl" class="fab fa-linkedin-square" style="font-size: 195%;"></i></a></li>
                                                         <li class="list-inline-item"><a href="https://github.com/surendrark" target="_blank"><i id="flinkgt" class="fab fa-github-square" style="font-size: 195%;"></i></a></li>
 				                                    </ul>
-				                                    <div class="mbr-section-btn">
+				                                    <div class="mbr-section-btn text-left">
 				                                        <a href="./Publications.html" class="btn btn-outline-custom btn-rounded mt-4" target="_blank">Publications</a>
                                                         <a href="assets/files/Curriculam_Vitae_Surendra.pdf" class="btn btn-outline-custom btn-rounded mt-4" target="_blank">CV</a>
 				                                    </div>
@@ -573,6 +573,58 @@
             <h1 style="text-align:center">Kancharla</h1>
         </div>
     </div>
+    <script>
+        // Get the greeting element
+        const helloElement = document.getElementById('hello');
+        const greetingElement = document.getElementById('greeting');
+        const nameElement = document.getElementById('name');
+
+        // Define greetings in different languages
+        const hello = {
+            'te': 'నమస్కారం', // Telugu            
+            'en': 'Hello', // English
+            'ta': 'வணக்கம்', // Tamil
+            'de': 'Hallo' // German
+        };
+
+        // Define greetings and names in different languages
+        const greetings = {
+            'te': 'నా పేరు ', // Telugu
+            'en': 'I am', // English            
+            'ta': 'என் பெயர்', // Tamil
+            'de': 'Ich bin' // German
+        };
+
+        const names = {
+            'te': 'సురేంద్ర', // Telugu            
+            'en': 'Surendra', // English
+            'ta': 'சுரேந்திரா', // Tamil
+            'de': 'Surendra' // German (assuming the name stays the same in German)
+        };
+
+
+
+        // Function to set greeting based on language code
+        function setGreeting(languageCode) {
+            // Set the greeting text based on the selected language
+            helloElement.textContent = hello[languageCode];
+            greetingElement.textContent = greetings[languageCode];
+            nameElement.textContent = names[languageCode];
+        }
+
+        // Array of language codes
+        const languageCodes = Object.keys(greetings);
+        let currentIndex = 0;
+
+        // Function to change greeting every 5 seconds
+        function changeGreeting() {
+            setGreeting(languageCodes[currentIndex]);
+            currentIndex = (currentIndex + 1) % languageCodes.length;
+        }
+        changeGreeting();
+        // Change greeting every 5 seconds
+        setInterval(changeGreeting, 5000);
+    </script>
     <!-- Preloader Ends -->
 	<script>
 		emailScramble = new scrambledString(document.getElementById('person-email'),
