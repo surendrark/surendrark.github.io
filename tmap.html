@@ -11,7 +11,7 @@
 
     <script type='text/javascript'>
 	<!-- ADD YOUR VISITED COUNTRIES HERE -->
-	var countries = {'IN':'#50483F','AU':'#50483F','US':'#50483F','CN':'#50483F','AE':'#50483F','DE':'#50483F','FR':'#50483F','DK':'#50483F','SE':'#50483F','FI':'#50483F','NL':'#50483F','AT':'#50483F', 'CZ':'#50483F','CH':'#50483F'};
+	var countries = {'IN':'#50483F','AU':'#50483F','US':'#50483F','CN':'#50483F','AE':'#50483F','DE':'#50483F','FR':'#50483F','DK':'#50483F','SE':'#50483F','FI':'#50483F','NL':'#50483F','AT':'#50483F', 'CZ':'#50483F','CH':'#50483F','PL':'#50483F'};
 	<!-- ADD YOUR VISITED CITIES AND THEIR COORDINATES HERE -->
         var markersVar = [
         	<!-- Home -->
@@ -88,7 +88,9 @@
 			{latLng: [46.719379, 8.211946], name: 'Aare Gorge', imgsrc:'aare.jpeg', style: {fill: '#30A704', r:4}},
 			{latLng: [46.547657, 7.985654], name: 'Jungfraujouch', imgsrc:'jungfrau.jpeg', style: {fill: '#30A704', r:4}},
 			{latLng: [49.379573, 10.182822], name: 'Rothenburg ob der Tauber', imgsrc:'rot.jpeg', style: {fill: '#30A704', r:4}},
-			{latLng: [47.558936, 10.749256], name: 'Füssen', imgsrc:'neucas.jpeg', style: {fill: '#30A704', r:4}}
+			{latLng: [47.558936, 10.749256], name: 'Füssen', imgsrc:'neucas.jpeg', style: {fill: '#30A704', r:4}},
+			{latLng: [50.612691, 16.115884], name: 'Adršpach Rock Formation', imgsrc:'rockscz.jpeg', style: {fill: '#30A704', r:4}},
+			{latLng: [51.109417, 17.032764], name: 'Wrocław', imgsrc:'wro.jpeg', style: {fill: '#30A704', r:4}}
 		];
 			
 
@@ -151,7 +153,7 @@
 
 	var visitedText = $('<div>')
 		.addClass('visited-count')
-		.html('Countries - 14 / 193<br>' + countryInfoText + '<br>Continents - 4 / 7')
+		.html('Countries - 15 / 193<br>' + countryInfoText + '<br>Continents - 4 / 7')
 		.css({
 			position: 'absolute',
 			left: pixelX + 'px',
