@@ -11,7 +11,7 @@
 
     <script type='text/javascript'>
 	<!-- ADD YOUR VISITED COUNTRIES HERE -->
-	var countries = {'IN':'#50483F','AU':'#50483F','US':'#50483F','CN':'#50483F','AE':'#50483F','DE':'#50483F','FR':'#50483F','DK':'#50483F','SE':'#50483F','FI':'#50483F','NL':'#50483F','AT':'#50483F', 'CZ':'#50483F','CH':'#50483F','PL':'#50483F','SK':'#50483F'};
+	var countries = {'IN':'#50483F','AU':'#50483F','US':'#50483F','CN':'#50483F','AE':'#50483F','DE':'#50483F','FR':'#50483F','DK':'#50483F','SE':'#50483F','FI':'#50483F','NL':'#50483F','AT':'#50483F', 'CZ':'#50483F','CH':'#50483F','PL':'#50483F','SK':'#50483F','ES':'#50483F'};
 	<!-- ADD YOUR VISITED CITIES AND THEIR COORDINATES HERE -->
         var markersVar = [
         	<!-- Home -->
@@ -92,7 +92,14 @@
 			{latLng: [50.612691, 16.115884], name: 'Adršpach Rock Formation', imgsrc:'rockscz.jpeg', style: {fill: '#30A704', r:4}},
 			{latLng: [51.109417, 17.032764], name: 'Wrocław', imgsrc:'wro.jpeg', style: {fill: '#30A704', r:4}},
 			{latLng: [49.204564, 20.236823], name: 'Vysoké Tatry', imgsrc:'htatra.jpeg', style: {fill: '#30A704', r:4}},
-			{latLng: [48.773874, 19.299355], name: 'Banská Bystrica', imgsrc:'ltatra.jpeg', style: {fill: '#30A704', r:4}}
+			{latLng: [48.773874, 19.299355], name: 'Banská Bystrica', imgsrc:'ltatra.jpeg', style: {fill: '#30A704', r:4}},
+			{latLng: [40.420190, -3.714054], name: 'Madrid', imgsrc:'madrid.jpeg', style: {fill: '#30A704', r:4}},
+			{latLng: [40.657381, -4.687657], name: 'Ávila', imgsrc:'avila.jpeg', style: {fill: '#30A704', r:4}},
+			{latLng: [40.948012, -4.118085], name: 'Segovia', imgsrc:'segovia.jpeg', style: {fill: '#30A704', r:4}},
+			{latLng: [43.269134, -2.934759], name: 'Bilbao', imgsrc:'bilbao.jpeg', style: {fill: '#30A704', r:4}},
+			{latLng: [43.445183, -2.784148], name: 'Gaztelugatxe', imgsrc:'dstone.jpeg', style: {fill: '#30A704', r:4}},
+			{latLng: [43.321861, -2.007649], name: 'San Sebastian', imgsrc:'sanseb.jpeg', style: {fill: '#30A704', r:4}},
+			{latLng: [43.483253, -1.567219], name: 'Biarritz', imgsrc:'biarritz.jpeg', style: {fill: '#30A704', r:4}}
 		];
 			
 
@@ -155,7 +162,7 @@
 
 	var visitedText = $('<div>')
 		.addClass('visited-count')
-		.html('Countries - 16 / 193<br>' + countryInfoText + '<br>Continents - 4 / 7')
+		.html('Countries - 17 / 193<br>' + countryInfoText + '<br>Continents - 4 / 7')
 		.css({
 			position: 'absolute',
 			left: pixelX + 'px',
