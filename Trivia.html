@@ -83,14 +83,14 @@
 <script>
 $(document).ready(function () {
     console.log($('#vmap').width());
-    $('#vmap-iframe').attr('height', $(document).height()*0.1815);
+    $('#vmap-iframe').attr('height', $(document).height()*0.25);
     $(window).resize(function(){
-        $('#vmap-iframe').attr('height', $(document).height()*0.1815);
+        $('#vmap-iframe').attr('height', $(document).height()*0.25);
     });
 });
 </script>
 
-<div id="vmap" style="width: 100vw; height: 85vh; text-align: center;">
+<div id="vmap" style="width: 98vw; height: 90vh; text-align: center;">
     <iframe id="vmap-iframe" style="width: 90%; border:none;line-height: 0;"  src="tmap.html"></iframe>
 </div>
 </section>         
