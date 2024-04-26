@@ -134,8 +134,8 @@
 			  }		    		
 		});
     // Define the latitude and longitude for overlay
-    var overlayLat = 82.427358; // Example latitude
-    var overlayLon = -177.464918; // Example longitude
+    var overlayLat = -50;
+    var overlayLon = -50;
 
     // Convert latitude and longitude to pixel coordinates
     var pixelX = map.latLngToPoint(overlayLat, overlayLon).x;
@@ -152,7 +152,7 @@
 			countryInfoText += flagElement;
 
 			count++;
-			if (count % 5 === 0) {
+			if (count % 25 === 0) {
 				countryInfoText += '<br>'; // Add a line break after 5 flags
 			} else {
 				countryInfoText += '&nbsp;&nbsp;'; // Add spacing between flags in the same column
@@ -162,13 +162,13 @@
 
 	var visitedText = $('<div>')
 		.addClass('visited-count')
-		.html('Countries - 17 / 193<br>' + countryInfoText + '<br>Continents - 4 / 7')
+		.html('<div style="display: flex; justify-content: space-between;"><span>Continents - 4 / 7</span><span>Countries - 17 / 193</span></div>' + countryInfoText)
 		.css({
 			position: 'absolute',
 			left: pixelX + 'px',
 			top: pixelY + 'px',
 			fontFamily: 'Arial, sans-serif',
-			fontSize: '15px',
+			fontSize: '12px',
 			fontWeight: 'bold',
 			color: '#FFFFFF',
 			backgroundColor: '#a19385',
