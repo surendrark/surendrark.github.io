@@ -30,6 +30,9 @@
   <link rel="stylesheet" href="assets/devicon-master/devicon.min.css">
   <link rel="stylesheet" href="assets/stoolsicons/stools.css">  
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link href='assets/jvmap/jquery-jvectormap-2.0.3.css' media='screen' rel='stylesheet' type='text/css'/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css">
+  <link rel="stylesheet" href="assets/theme/css/bootstrap.min.css">
 
   <!-- Animate Css -->
   <link rel="stylesheet" href="assets/ntheme/css/animate.min.css">
@@ -37,9 +40,8 @@
   <link rel="stylesheet" href="assets/ntheme/css/mbr-additional2.css">  
   <link rel="stylesheet" href="assets/gallery/style.css"> 
   <link rel="stylesheet" href="assets/styles/normalize.css">
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+  <link href='assets/theme/css/mapbox-gl.css' rel='stylesheet' />
   <link href='http://fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>  
 
   
 </head>
@@ -90,8 +92,7 @@ $(document).ready(function () {
 });
 </script>
 
-<div id="vmap" style="width: 98vw; height: 90vh; text-align: center;">
-    <iframe id="vmap-iframe" style="width: 90%; border:none;line-height: 0;"  src="tmap.html"></iframe>
+<div id="vmap" style="width: 95vw; height: 85vh; text-align: center;">
 </div>
 </section>         
   <section class="mbr-section info1 cid-rOBQCF5gRO" id="trivia">
@@ -338,12 +339,189 @@ $(document).ready(function () {
   <script src="assets/ntheme/js/custom.js"></script>
   <script src="assets/ntheme/js/map.js"></script>
 
+  <script type='text/javascript' src='assets/ntheme/js/jquery-3.7.0.min.js'></script>
+  <script src='assets/jvmap/jquery-jvectormap-2.0.3.min.js'></script>
+  <script src='assets/jvmap/jquery-jvectormap-world-mill.js'></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>  
  <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
     <input name="animation" type="hidden"> 
   
-<!-- Hitsteps TRACKING CODE - Manual 2021-12-16 - DO NOT CHANGE -->
-<script type="text/javascript">(function(){var hstc=document.createElement('script'); hstc.src='https://log.hitsteps.net/track.php?code=c809ba064b456ab735ce2f762af26a52';hstc.async=true;var htssc = document.getElementsByTagName('script')[0];htssc.parentNode.insertBefore(hstc, htssc);})();
-</script><noscript><a href="http://www.hitsteps.com/"><img src="//log.hitsteps.net/track.php?mode=img&amp;code=c809ba064b456ab735ce2f762af26a52" alt="web stats" width="1" height="1" />Realtime Web Statistics</a></noscript>
-<!-- Hitsteps TRACKING CODE - DO NOT CHANGE -->
+    <script type='text/javascript'>
+        <!-- ADD YOUR VISITED COUNTRIES HERE -->
+        var countries = {'IN':'#50483F','AU':'#50483F','US':'#50483F','CN':'#50483F','AE':'#50483F','DE':'#50483F','FR':'#50483F','DK':'#50483F','SE':'#50483F','FI':'#50483F','NL':'#50483F','AT':'#50483F', 'CZ':'#50483F','CH':'#50483F','PL':'#50483F','SK':'#50483F','ES':'#50483F','HR':'#50483F'};
+        <!-- ADD YOUR VISITED CITIES AND THEIR COORDINATES HERE -->
+            var markersVar = [
+                <!-- Home -->
+                {latLng: [14.459827, 78.827844], name: 'Kadapa-Home', imgsrc:'kdp.jpg', style: {fill: '#5EB8FF', r:4}},
+                <!-- CONFERENCE RELATED VISITS -->
+                {latLng: [33.449060, -112.069691], name: 'Phoenix - 2018 INFORMS Conference', imgsrc:'phx.jpg', style: {fill: '#ff9933', r:4}},
+                {latLng: [19.162108, 73.050098], name: 'Mumbai - 2018 WCTR Conference', imgsrc: 'bombay.jpg', style: {fill: '#ff9933', r:4}},
+                {latLng: [13.016774, 77.567120], name: 'Banglore - 2019 SPARC Workshop', imgsrc:'blr.jpg', style: {fill: '#ff9933', r:4}},
+                {latLng: [30.340496, 78.045155], name: 'Dehradun - 2015 FOSS4G Conference', imgsrc:'deh.jpg', style: {fill: '#ff9933', r:4}},
+                {latLng: [36.157536, -86.776858], name: 'Nashville - 2016 INFORMS Conference', imgsrc:'nashville.jpg', style: {fill: '#ff9933', r:4}},
+                {latLng: [22.992778, 114.146211], name: 'HongKong - 2017 INFORMS TSL Workshop', imgsrc:'hk.jpg', style: {fill: '#ff9933', r:4}},
+                {latLng: [39.110468, -77.030117], name: 'Washington D.C. - 2016 TRB Conference', imgsrc:'wdc.jpg', style: {fill: '#ff9933', r:4}},
+    
+                <!-- OTHER VISITS -->
+                {latLng: [-37.799191, 144.960936], name: 'Melbourne', imgsrc:'mel.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [-33.874738, 151.025518], name: 'Sydney', imgsrc:'syd.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [-16.993495, 145.537009], name: 'Cairns', imgsrc:'cairns.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [17.393410, 78.474330], name: 'Hyderabad', style: {fill: '#30A704', r:4}},
+                {latLng: [18.036705, 82.699123], name: 'Visakhapatnam', style: {fill: '#30A704', r:4}},
+                {latLng: [28.612827, 77.229324], name: 'New Delhi', imgsrc:'del.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [13.046066, 79.909769], name: 'Chennai', imgsrc:'maa.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [10.327077, 76.955094], name: 'Valparai', imgsrc:'valparai.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [10.290036, 76.513915], name: 'Athirapally', imgsrc:'athirapally.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [22.737238, 75.849435], name: 'Indore', imgsrc:'indore.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [10.238071, 77.489114], name: 'Kodaikanal', imgsrc:'kodaikanal.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [32.253553, 77.189012], name: 'Manali', imgsrc:'manali.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [34.079408, 74.814320], name: 'Srinagar', imgsrc:'sri.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [34.149138, 77.567614], name: 'Leh', imgsrc:'leh.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [25.095398, 55.396462], name: 'Dubai', imgsrc: 'dxb.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [40.737356, -74.286810], name: 'Jersey City', imgsrc:'jersey.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [40.894861, -74.177315], name: 'New York City', imgsrc:'nyc.jpg', style: {fill: '#30A704', r:4}},			
+                {latLng: [41.782486, -87.876850], name: 'Chicago', imgsrc:'chicago.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [37.684909, -121.931050], name: 'San Francisco', imgsrc:'sfo.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [34.118958, -118.300495], name: 'Los Angeles', imgsrc:'lax.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [32.897513, -117.001486], name: 'San Diago', imgsrc:'sdg.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [37.330087, -121.426526], name: 'San Jose', imgsrc:'sj.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [42.023792, -93.644663], name: 'Ames', imgsrc:'ames.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [40.425116, -86.904523], name: 'West Lafayette', imgsrc:'purdue.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [44.856534, -93.240666], name: 'Minneapolis', imgsrc:'mnp.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [32.724319, -97.123549], name: 'Dallas', imgsrc:'dfw.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [30.269784, -97.748651], name: 'Austin', imgsrc:'austin.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [29.424506, -98.488539], name: 'San Antonio', imgsrc:'sana.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [43.104211, -78.989145], name: 'Niagara Falls', imgsrc:'niagara.webp', style: {fill: '#30A704', r:4}},
+                {latLng: [36.111805, -115.172816], name: 'Las Vegas', imgsrc:'vegas.webp', style: {fill: '#30A704', r:4}},
+                {latLng: [37.287133, -112.948858], name: 'Zion National Park', imgsrc:'zion.webp', style: {fill: '#30A704', r:4}},
+                {latLng: [30.434250, -84.276037], name: 'Tallahassee', imgsrc:'tallh.webp', style: {fill: '#30A704', r:4}},
+                {latLng: [30.218110, -85.872847], name: 'Panama City Beach', imgsrc:'panama.webp', style: {fill: '#30A704', r:4}},
+                {latLng: [60.947854, -149.124249], name: 'Anchorage', imgsrc:'anchorage.webp', style: {fill: '#30A704', r:4}},
+                {latLng: [63.738347, -149.260662], name: 'Denali Natioanl park', imgsrc:'denali.webp', style: {fill: '#30A704', r:4}},
+                {latLng: [61.700082, -147.598590], name: 'Matanuska Glacier', imgsrc:'mata.webp', style: {fill: '#30A704', r:4}},
+                {latLng: [46.787731, -121.735861], name: 'Mount Rainier National Park', imgsrc:'mtr.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [47.861345, -123.934130], name: 'Olympic National Park ', imgsrc:'hoh.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [47.620335, -122.349562], name: 'Seattle', imgsrc:'sea.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [51.037599, 13.763493], name: 'Dresden', imgsrc:'dresden.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [48.857897, 2.295028], name: 'Paris', imgsrc:'paris.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [50.115282, 8.671814], name: 'Frankfurt', imgsrc:'frankfurt.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [50.725940, 13.413379], name: 'Seiffen', imgsrc:'seiffen.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [51.339057, 12.380005], name: 'Leipzig', imgsrc:'leipzig.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [59.318806, 18.077010], name: 'Stockholm', imgsrc:'stockholm.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [60.182090, 24.913434], name: 'Helsinki', imgsrc:'helsinki.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [66.502807, 25.737456], name: 'Rovaniemi', imgsrc:'rovaniemi.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [66.543620, 25.847070], name: 'Santa Claus Village', imgsrc:'scv.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [60.452107, 22.266277], name: 'Turku', imgsrc:'turku.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [55.679603, 12.591282], name: 'Copenhagen', imgsrc:'copenhagen.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [52.518738, 13.374640], name: 'Berlin', imgsrc:'berlin.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [48.606486, 7.565800], name: 'Strasbourg', imgsrc:'strasbourg.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [52.263976, 4.547385], name: 'Amsterdam', imgsrc:'amsterdam.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [47.564555, 13.649816], name: 'Hallstatt', imgsrc:'hallstatt.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [48.252872, 7.890542], name: 'Europa Park', imgsrc:'europa_park.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [50.075995, 14.414079], name: 'Prague', imgsrc:'prague.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [49.946148, 15.264210], name: 'Kutna Hora', imgsrc:'kutnahora.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [47.552329, 8.682853], name: 'Rhein Falls', imgsrc:'rheinfalls.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [46.690346, 7.865082], name: 'Interlaken', imgsrc:'interlaken.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [46.719379, 8.211946], name: 'Aare Gorge', imgsrc:'aare.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [46.547657, 7.985654], name: 'Jungfraujouch', imgsrc:'jungfrau.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [49.379573, 10.182822], name: 'Rothenburg ob der Tauber', imgsrc:'rot.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [47.558936, 10.749256], name: 'Füssen', imgsrc:'neucas.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [50.612691, 16.115884], name: 'Adršpach Rock Formation', imgsrc:'rockscz.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [51.109417, 17.032764], name: 'Wrocław', imgsrc:'wro.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [49.204564, 20.236823], name: 'Vysoké Tatry', imgsrc:'htatra.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [48.773874, 19.299355], name: 'Banská Bystrica', imgsrc:'ltatra.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [40.420190, -3.714054], name: 'Madrid', imgsrc:'madrid.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [40.657381, -4.687657], name: 'Ávila', imgsrc:'avila.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [40.948012, -4.118085], name: 'Segovia', imgsrc:'segovia.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [43.269134, -2.934759], name: 'Bilbao', imgsrc:'bilbao.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [43.445183, -2.784148], name: 'Gaztelugatxe', imgsrc:'dstone.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [43.321861, -2.007649], name: 'San Sebastian', imgsrc:'sanseb.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [44.1158555, 15.2238948], name: 'Zadar', imgsrc:'zad.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [44.9017767, 15.6082909], name: 'Plitvice National Park', imgsrc:'plitvice.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [43.5052602, 16.4289698], name: 'Split', imgsrc:'split.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [42.6430788, 18.1066965], name: 'Dubrovnik', imgsrc:'dub.jpeg', style: {fill: '#30A704', r:4}}
+            ];
+                
+    
+            $(function(e){
+            var map = new jvm.Map({
+                container: $('#vmap'),
+                map: 'world_mill',
+                backgroundColor: '#ffffff',
+                regionsSelectable: false,
+                zoomButtons : true,
+                regionStyle: {
+                    initial: {
+                        fill: '#a19385'
+                    },
+                    hover: {
+                        fill: '#C3B29E',
+                        'fill-opacity': 0.6
+                    },
+                },
+                series: {
+                    regions: [{
+                        values: countries,
+                        attribute: 'fill'
+                    }]
+                },
+                markers: markersVar,
+                onMarkerTipShow: function (e, el, code) {
+                      var markers = $('#vmap').vectorMap('get', 'mapObject').markers;  
+                      el.html(el.html() + '<br /><img src="assets/images/' 
+                         + markers[code].config.imgsrc 
+                         + '"/>').css("fontSize", "15px");
+                  }		    		
+            });
+        // Define the latitude and longitude for overlay
+        var overlayLat = -58;
+        var overlayLon = -48;
+    
+        // Convert latitude and longitude to pixel coordinates
+        var pixelX = map.latLngToPoint(overlayLat, overlayLon).x;
+        var pixelY = map.latLngToPoint(overlayLat, overlayLon).y;
+    
+        // Adding the text "countries visited - 14/193" at the specified pixel coordinates
+        var countryInfoText = '';
+        var count = 0;
+    
+        for (var code in countries) {
+            if (countries.hasOwnProperty(code)) {
+                var flagClass = 'flag-icon-' + code.toLowerCase();
+                var flagElement = '<span class="flag-icon ' + flagClass + '" style="color:' + countries[code] + '"></span>';
+                countryInfoText += flagElement;
+    
+                count++;
+                if (count % 10 === 0) {
+                    countryInfoText += '<br>'; // Add a line break after 5 flags
+                } else {
+                    countryInfoText += '&nbsp;&nbsp;'; // Add spacing between flags in the same column
+                }
+            }
+        }
+    
+        var visitedText = $('<div>')
+            .addClass('visited-count')
+            .html('<div>Countries - 18 / 193</div>' + countryInfoText)
+            .css({
+                position: 'absolute',
+                left: pixelX + 'px',
+                top: pixelY + 'px',
+                fontFamily: 'Arial, sans-serif',
+                fontSize: '12px',
+                fontWeight: 'bold',
+                color: '#FFFFFF',
+                backgroundColor: '#a19385',
+                padding: '5px 10px',
+                borderRadius: '5px',
+                boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
+                zIndex: 1000,
+                whiteSpace: 'pre-line'
+            });
+    
+        $('#vmap').append(visitedText);
+        });
+    
+        </script>
   </body>
 </html>
