@@ -349,7 +349,7 @@ $(document).ready(function () {
   
     <script type='text/javascript'>
         <!-- ADD YOUR VISITED COUNTRIES HERE -->
-        var countries = {'IN':'#50483F','AU':'#50483F','US':'#50483F','CN':'#50483F','AE':'#50483F','DE':'#50483F','FR':'#50483F','DK':'#50483F','SE':'#50483F','FI':'#50483F','NL':'#50483F','AT':'#50483F', 'CZ':'#50483F','CH':'#50483F','PL':'#50483F','SK':'#50483F','ES':'#50483F','HR':'#50483F'};
+        var countries = {'IN':'#50483F','AU':'#50483F','US':'#50483F','CN':'#50483F','AE':'#50483F','DE':'#50483F','FR':'#50483F','DK':'#50483F','SE':'#50483F','FI':'#50483F','NL':'#50483F','AT':'#50483F', 'CZ':'#50483F','CH':'#50483F','PL':'#50483F','SK':'#50483F','ES':'#50483F','HR':'#50483F','NO':'#50483F'};
         <!-- ADD YOUR VISITED CITIES AND THEIR COORDINATES HERE -->
             var markersVar = [
                 <!-- Home -->
@@ -440,7 +440,9 @@ $(document).ready(function () {
                 {latLng: [44.1158555, 15.2238948], name: 'Zadar', imgsrc:'zad.jpeg', style: {fill: '#30A704', r:4}},
                 {latLng: [44.9017767, 15.6082909], name: 'Plitvice National Park', imgsrc:'plitvice.jpeg', style: {fill: '#30A704', r:4}},
                 {latLng: [43.5052602, 16.4289698], name: 'Split', imgsrc:'split.jpeg', style: {fill: '#30A704', r:4}},
-                {latLng: [42.6430788, 18.1066965], name: 'Dubrovnik', imgsrc:'dub.jpeg', style: {fill: '#30A704', r:4}}
+                {latLng: [42.6430788, 18.1066965], name: 'Dubrovnik', imgsrc:'dub.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [69.666069, 18.508462], name: 'Sommarøy', imgsrc:'sommar.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [69.616949, 19.397707], name: 'Tromsø', imgsrc:'trom.jpeg', style: {fill: '#30A704', r:4}}
             ];
                 
     
@@ -503,7 +505,7 @@ $(document).ready(function () {
     
         var visitedText = $('<div>')
             .addClass('visited-count')
-            .html('<div>Countries - 18 / 193</div>' + countryInfoText)
+            .html('<div>Countries - '+count+' / 193</div>' + countryInfoText)
             .css({
                 position: 'absolute',
                 left: pixelX + 'px',
