@@ -5,7 +5,7 @@ const earthToMoonDistance = 384400;  // Average Earth-Moon distance in kilometer
 function initMap() {
     return new Promise((resolve) => {
         map2 = new mapboxgl.Map({
-            accessToken: 'pk.eyJ1Ijoic3VyZW5kcmEyOSIsImEiOiJjbHNscmRxZmYwNTcxMmxwanVuYzNteng1In0.g9dXqJHcxAwf2eKk0uyCTg',
+            accessToken: 'pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJja20xMm5oYTIwNDVuMnZwaTRmenlkMWVhIn0.IEP9jryaKL3Lxk_MQe4Rbg',
             container: 'map2',
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [0, 40],
