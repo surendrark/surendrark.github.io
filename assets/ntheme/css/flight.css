@@ -1,0 +1,242 @@
+        :root {
+            --primary-color: #149dcc;
+            --secondary-color: #767676;
+            --background-color: #f0f4f8;
+            --text-color: #2c3e50;
+            --card-background: #ffffff;
+            --input-background: #e8f0fe;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        #map2 {
+            width: 100%;
+            height: 80vh; /* This sets the height to 80% of the viewport height */
+            border-radius: 15px;
+            box-shadow: 0 10px 20px var(--shadow-color);
+            margin-bottom: 20px;
+        }
+        #filterControls {
+            display: flex;
+            justify-content: center;
+        }
+
+        #filterControls select {
+            padding: 12px 20px;
+            margin: 0 10px;
+            border-radius: 25px;
+            border: none;
+            background-color: var(--input-background);
+            color: var(--text-color);
+            font-size: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        #filterControls select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: var(--card-background);
+            margin: 10% auto;
+            padding: 30px;
+            border: 1px solid var(--primary-color);
+            width: 60%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px var(--shadow-color);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #themeToggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        #themeToggle:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            #map {
+                height: 300px;
+            }
+
+            .modal-content {
+                width: 90%;
+            }
+
+            #filterControls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #filterControls select {
+                width: 80%;
+                margin: 10px 0;
+            }
+        }
+
+#statsBox {
+    background-color: var(--item-background);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+#statsContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px; /* Space between items */
+}
+
+.stat-row {
+    flex: 1 1 15%; /* Adjusts based on screen width */
+    text-align: center;
+    cursor: pointer;
+    padding: 15px;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid var(--separator-color);
+}
+
+.stat-row:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.stat-icon {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.stat-number {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.stat-details {
+    display: none;
+    padding: 10px 15px;
+    background-color: var(--item-background);
+    width: 100%;
+    border-top: 1px solid var(--separator-color);
+}
+
+.stat-details.show {
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+}
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--separator-color);
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.left {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #787878
+}
+
+.distance-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.total-number {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.distance-comparisons {
+    font-size: 18px;
+    color: #787878;
+}
+
+.right .distance-comparisons {
+    margin-left: 15px;
+}
