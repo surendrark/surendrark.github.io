@@ -384,37 +384,9 @@ function updateYearFilter() {
     });
 }
 
-// Theme toggle functionality
-// const themeToggle = document.getElementById('themeToggle');
-// themeToggle.addEventListener('click', () => {
-//     const isDark = document.body.dataset.theme === 'dark';
-//     document.body.dataset.theme = isDark ? 'light' : 'dark';
-//     themeToggle.textContent = isDark ? '🌙' : '☀️';
-//     updateMapStyle().then(() => {
-//         updateMap();
-//     });
-// });
-
-// function updateMapStyle() {
-//     return new Promise((resolve) => {
-//         const isDark = document.body.dataset.theme === 'dark';
-//         map.once('style.load', () => {
-//             resolve();
-//         });
-//         map.setStyle(isDark ? 'mapbox://styles/mapbox/navigation-night-v1' : 'mapbox://styles/mapbox/navigation-day-v1');
-//     });
-// }
-
 // Initialize the page
 window.onload = () => {
     initMap().then(() => {
         loadFlights();
-        // Check user's preferred color scheme
-        // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        //     document.body.dataset.theme = 'dark';
-        //     themeToggle.textContent = '☀️';
-        //     updateMapStyle();
-        // }
-
     });
 };
