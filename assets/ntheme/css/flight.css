@@ -1,6 +1,6 @@
         :root {
             --primary-color: #149dcc;
-            --secondary-color: #767676;
+            --secondary-color: #0099e0;
             --background-color: #f0f4f8;
             --text-color: #2c3e50;
             --card-background: #ffffff;
@@ -18,7 +18,7 @@
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -27,8 +27,6 @@
             text-align: center;
             color: var(--primary-color);
             font-size: 3em;
-            margin-bottom: 30px;
-            text-transform: uppercase;
             letter-spacing: 2px;
         }
 
@@ -42,7 +40,7 @@
 
         #map2 {
             width: 100%;
-            height: 80vh; /* This sets the height to 80% of the viewport height */
+            height: 800px; /* This sets the height to 80% of the viewport height */
             border-radius: 15px;
             box-shadow: 0 10px 20px var(--shadow-color);
             margin-bottom: 20px;
@@ -164,7 +162,7 @@
 }
 
 .stat-icon {
-    font-size: 24px;
+    font-size: 48px;
     display: block;
     margin-bottom: 5px;
 }
@@ -219,7 +217,7 @@
     display: flex;
     align-items: center;
     font-size: 18px;
-    color: #787878
+    color: #0099e0;
 }
 
 .distance-icon {
@@ -234,7 +232,7 @@
 
 .distance-comparisons {
     font-size: 18px;
-    color: #787878;
+    color: #0099e0;
 }
 
 .right .distance-comparisons {

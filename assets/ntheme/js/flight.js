@@ -7,10 +7,9 @@ function initMap() {
         map2 = new mapboxgl.Map({
             accessToken: 'pk.eyJ1Ijoic3VyZW5kcmEyOSIsImEiOiJjbHNscmRxZmYwNTcxMmxwanVuYzNteng1In0.g9dXqJHcxAwf2eKk0uyCTg',
             container: 'map2',
-            style: 'mapbox://styles/mapbox/navigation-day-v1',
-            center: [0, 0],
-            zoom: 1.1,
-            projection:'equirectangular'
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [0, 40],
+            zoom: 1,
         });
 
         map2.on('load', () => {
@@ -21,7 +20,7 @@ function initMap() {
 }
 
 function loadFlights() {
-    fetch('../../files/flights.csv')
+    fetch('assets/files/flights.csv')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -205,8 +204,8 @@ function updateMap() {
             'line-cap': 'round'
         },
         paint: {
-            // torquoise color
-            'line-color': '#1abc9c',
+            // dark brown
+            'line-color': '#8B4513',
             'line-width': 2
         }
     });
@@ -221,7 +220,7 @@ function updateMap() {
     document.getElementById('totalDistance').innerText = `${formattedDistance} km`;
     document.getElementById('distanceToMoon').innerText = timesToMoon;
     document.getElementById('totalTime').innerText = `${timeinair} hours`;
-    document.getElementById('weeksinair').innerText = (timeinair / 168).toFixed(0);
+    document.getElementById('weeksinair').innerText = (timeinair / 168).toFixed(1);
 }
 
 
