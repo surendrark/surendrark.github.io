@@ -532,34 +532,37 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
     populateDetails('flightsDetails', Object.entries(flightdetails));
 
     function populateGroupedDetails(sectionId, groupedData) {
-    const section = document.getElementById(sectionId);
-    section.innerHTML = '';
-
-    Object.entries(groupedData).forEach(([group, items]) => {
-        const groupHeader = document.createElement('h3');
-        groupHeader.innerText = group;
-        section.appendChild(groupHeader);
-
-        const bar = document.createElement('div');
-        bar.classList.add('group-bar');
-        section.appendChild(bar);
-
-        Object.entries(items)
-            .sort((a, b) => b[1] - a[1])
-            .forEach(([item, count]) => {
+        const section = document.getElementById(sectionId);
+        section.innerHTML = '';
+      
+        Object.entries(groupedData)
+          .sort(([a], [b]) => a.localeCompare(b))
+          .forEach(([group, items]) => {
+            const groupHeader = document.createElement('h3');
+            groupHeader.innerText = group;
+            section.appendChild(groupHeader);
+      
+            const bar = document.createElement('div');
+            bar.classList.add('group-bar');
+            section.appendChild(bar);
+      
+            Object.entries(items)
+              .sort((a, b) => b[1] - a[1])
+              .forEach(([item, count]) => {
                 const detailItem = document.createElement('div');
                 detailItem.className = 'detail-item';
                 detailItem.innerHTML = `
-                    <span>${item}</span>
-                    <span>${count}</span>
+                  <span>${item}</span>
+                  <span>${count}</span>
                 `;
                 section.appendChild(detailItem);
-            });
-        section.appendChild(document.createElement('hr'));
-    });
-}
+              });
+      
+            section.appendChild(document.createElement('hr'));
+          });
+      }
 
-function populateDetailscon(sectionId, details) {
+    function populateDetailscon(sectionId, details) {
         const section = document.getElementById(sectionId);
         section.innerHTML = ''; // Clear existing content
 
@@ -588,19 +591,19 @@ function populateDetailscon(sectionId, details) {
         });
     }
 
-function populateDetails(elementId, data) {
-    const detailsElement = document.getElementById(elementId);
-    detailsElement.innerHTML = '';
-    data.sort((a, b) => b[1] - a[1]).forEach(item => {
-        const detailItem = document.createElement('div');
-        detailItem.className = 'detail-item';
-        detailItem.innerHTML = `
-            <span>${Array.isArray(item) ? item[0] : item}</span>
-            <span>${Array.isArray(item) ? item[1] : ''}</span>
-        `;
-        detailsElement.appendChild(detailItem);
-    });
-}
+    function populateDetails(elementId, data) {
+        const detailsElement = document.getElementById(elementId);
+        detailsElement.innerHTML = '';
+        data.sort((a, b) => b[1] - a[1]).forEach(item => {
+            const detailItem = document.createElement('div');
+            detailItem.className = 'detail-item';
+            detailItem.innerHTML = `
+                <span>${Array.isArray(item) ? item[0] : item}</span>
+                <span>${Array.isArray(item) ? item[1] : ''}</span>
+            `;
+            detailsElement.appendChild(detailItem);
+        });
+    }
 }
 
 
