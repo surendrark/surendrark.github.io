@@ -17,7 +17,7 @@ function initMap() {
         });
     });
 }
-
+let yearlist = [];
 function loadFlights() {
     fetch('assets/files/flights.csv')
         .then(response => {
@@ -47,6 +47,7 @@ function loadFlights() {
             };
             });
             updateMap();
+            yearlist = [...new Set(flights.map(f => f.year))].sort();
             updateStats(flights, 'all');
             updateYearFilter();
         })
@@ -349,19 +350,17 @@ function updateStats(selectedFlights, monthFilter) {
     const years = Object.keys(yearmonth).map(year => parseInt(year));
 
     if (years.length > 1) {
-        drawChartForYears(yearmonth);
+        drawChartForYears(yearmonth, yearlist);
     } else {
         drawChartForMonths(yearmonth[years[0]], monthFilter);
     }
 
-function drawChartForYears(yearmonthData) {
-    const years = Object.keys(yearmonthData).map(year => parseInt(year));
-    const flightCounts = years.map(year => {
-        return Object.values(yearmonthData[year]).reduce((sum, count) => sum + count, 0);
+function drawChartForYears(yearmonthData, yearlist) {
+    flightCounts = yearlist.map(year => {
+        return yearmonthData[year] ? Object.values(yearmonthData[year]).reduce((sum, count) => sum + count, 0) : 0;
     });
-
     renderBarChart({
-        labels: years,
+        labels: yearlist,
         data: flightCounts,
         label: 'Flights per Year',
         xLabel: 'Years',
@@ -373,14 +372,18 @@ function drawChartForMonths(monthData, monthFilter) {
     const allMonths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     
-    // if monthData is undefined, set monthFilter to 0
     if (!monthData) {
-            monthData = {0: 0};
+        monthData = {};
+        monthData[monthFilter] = 0;
     }
-    const flightCounts = allMonths.map(month => monthData[month] || 0);
+
+    const filteredMonths = Object.keys(monthData).map(Number);
+    const monthNamesFiltered = filteredMonths.map(month => monthNames[month - 1]);
+    
+    const flightCounts = filteredMonths.map(month => monthData[month] || 0);
     
     renderBarChart({
-        labels: monthNames,
+        labels: monthNamesFiltered,
         data: flightCounts,
         label: 'Flights per Month',
         xLabel: 'Months',
@@ -457,7 +460,7 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
                 },
             },
             animation: {
-                onComplete: function(animation) {
+                onProgress: function(animation) {
                     if (hasData) {
                         const chartInstance = animation.chart;
                         const ctx = chartInstance.ctx;
