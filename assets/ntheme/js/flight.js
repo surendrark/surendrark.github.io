@@ -1,6 +1,5 @@
 let map2;
 let flights = [];
-const earthToMoonDistance = 384400;  // Average Earth-Moon distance in kilometers
 
 function initMap() {
     return new Promise((resolve) => {
@@ -48,7 +47,7 @@ function loadFlights() {
             };
             });
             updateMap();
-            updateStats();
+            updateStats(flights, 'all');
             updateYearFilter();
         })
         .catch(error => {
@@ -86,6 +85,7 @@ function updateMap() {
         return (yearFilter === 'all' || flight.year === yearFilter) &&
             (monthFilter === 'all' || flight.month === monthFilter);
     });
+    updateStats(filteredFlights, monthFilter);
 
     // Example airport coordinates. Replace these with your actual airport data.
     const airportCoordinates = {
@@ -213,23 +213,108 @@ function updateMap() {
     const formattedDistance = new Intl.NumberFormat('en-US').format(totalDistance.toFixed(0));
     document.getElementById('totalDistance').innerText = `${formattedDistance} km`;
 
-    // After calculating the totalDistance, add these:
-    const timesToMoon = (totalDistance / earthToMoonDistance).toFixed(2);
-
     // Update the HTML
     document.getElementById('totalDistance').innerText = `${formattedDistance} km`;
-    document.getElementById('distanceToMoon').innerText = timesToMoon;
     document.getElementById('totalTime').innerText = `${timeinair} hours`;
-    document.getElementById('weeksinair').innerText = (timeinair / 168).toFixed(1);
 }
 
+const countryFlags = {
+    'Afghanistan': '🇦🇫', 'Albania': '🇦🇱', 'Algeria': '🇩🇿', 'Andorra': '🇦🇩', 'Angola': '🇦🇴',
+    'Antigua and Barbuda': '🇦🇬', 'Argentina': '🇦🇷', 'Armenia': '🇦🇲', 'Australia': '🇦🇺', 'Austria': '🇦🇹',
+    'Azerbaijan': '🇦🇿', 'Bahamas': '🇧🇸', 'Bahrain': '🇧🇭', 'Bangladesh': '🇧🇩', 'Barbados': '🇧🇧',
+    'Belarus': '🇧🇾', 'Belgium': '🇧🇪', 'Belize': '🇧🇿', 'Benin': '🇧🇯', 'Bhutan': '🇧🇹',
+    'Bolivia': '🇧🇴', 'Bosnia and Herzegovina': '🇧🇦', 'Botswana': '🇧🇼', 'Brazil': '🇧🇷', 'Brunei': '🇧🇳',
+    'Bulgaria': '🇧🇬', 'Burkina Faso': '🇧🇫', 'Burundi': '🇧🇮', 'Cabo Verde': '🇨🇻', 'Cambodia': '🇰🇭',
+    'Cameroon': '🇨🇲', 'Canada': '🇨🇦', 'Central African Republic': '🇨🇫', 'Chad': '🇹🇩', 'Chile': '🇨🇱',
+    'China': '🇨🇳', 'Colombia': '🇨🇴', 'Comoros': '🇰🇲', 'Congo (Congo-Brazzaville)': '🇨🇬', 'Congo (Democratic Republic)': '🇨🇩',
+    'Costa Rica': '🇨🇷', 'Croatia': '🇭🇷', 'Cuba': '🇨🇺', 'Cyprus': '🇨🇾', 'Czechia': '🇨🇿',
+    'Denmark': '🇩🇰', 'Djibouti': '🇩🇯', 'Dominica': '🇩🇲', 'Dominican Republic': '🇩🇴', 'Ecuador': '🇪🇨',
+    'Egypt': '🇪🇬', 'El Salvador': '🇸🇻', 'Equatorial Guinea': '🇬🇶', 'Eritrea': '🇪🇷', 'Estonia': '🇪🇪',
+    'Eswatini': '🇸🇿', 'Ethiopia': '🇪🇹', 'Fiji': '🇫🇯', 'Finland': '🇫🇮', 'France': '🇫🇷',
+    'Gabon': '🇬🇦', 'Gambia': '🇬🇲', 'Georgia': '🇬🇪', 'Germany': '🇩🇪', 'Ghana': '🇬🇭',
+    'Greece': '🇬🇷', 'Grenada': '🇬🇩', 'Guatemala': '🇬🇹', 'Guinea': '🇬🇳', 'Guinea-Bissau': '🇬🇼',
+    'Guyana': '🇬🇾', 'Haiti': '🇭🇹', 'Honduras': '🇭🇳', 'Hungary': '🇭🇺', 'Iceland': '🇮🇸',
+    'India': '🇮🇳', 'Indonesia': '🇮🇩', 'Iran': '🇮🇷', 'Iraq': '🇮🇶', 'Ireland': '🇮🇪',
+    'Israel': '🇮🇱', 'Italy': '🇮🇹', 'Jamaica': '🇯🇲', 'Japan': '🇯🇵', 'Jordan': '🇯🇴',
+    'Kazakhstan': '🇰🇿', 'Kenya': '🇰🇪', 'Kiribati': '🇰🇮', 'Korea (North)': '🇰🇵', 'Korea (South)': '🇰🇷',
+    'Kuwait': '🇰🇼', 'Kyrgyzstan': '🇰🇬', 'Laos': '🇱🇦', 'Latvia': '🇱🇻', 'Lebanon': '🇱🇧',
+    'Lesotho': '🇱🇸', 'Liberia': '🇱🇷', 'Libya': '🇱🇾', 'Liechtenstein': '🇱🇮', 'Lithuania': '🇱🇹',
+    'Luxembourg': '🇱🇺', 'Madagascar': '🇲🇬', 'Malawi': '🇲🇼', 'Malaysia': '🇲🇾', 'Maldives': '🇲🇻',
+    'Mali': '🇲🇱', 'Malta': '🇲🇹', 'Marshall Islands': '🇲🇭', 'Mauritania': '🇲🇷', 'Mauritius': '🇲🇺',
+    'Mexico': '🇲🇽', 'Micronesia': '🇫🇲', 'Moldova': '🇲🇩', 'Monaco': '🇲🇨', 'Mongolia': '🇲🇳',
+    'Montenegro': '🇲🇪', 'Morocco': '🇲🇦', 'Mozambique': '🇲🇿', 'Myanmar': '🇲🇲', 'Namibia': '🇳🇦',
+    'Nauru': '🇳🇷', 'Nepal': '🇳🇵', 'Netherlands': '🇳🇱', 'New Zealand': '🇳🇿', 'Nicaragua': '🇳🇮',
+    'Niger': '🇳🇪', 'Nigeria': '🇳🇬', 'North Macedonia': '🇲🇰', 'Norway': '🇳🇴', 'Oman': '🇴🇲',
+    'Pakistan': '🇵🇰', 'Palau': '🇵🇼', 'Panama': '🇵🇦', 'Papua New Guinea': '🇵🇬', 'Paraguay': '🇵🇾',
+    'Peru': '🇵🇪', 'Philippines': '🇵🇭', 'Poland': '🇵🇱', 'Portugal': '🇵🇹', 'Qatar': '🇶🇦',
+    'Romania': '🇷🇴', 'Russia': '🇷🇺', 'Rwanda': '🇷🇼', 'Saint Kitts and Nevis': '🇰🇳', 'Saint Lucia': '🇱🇨',
+    'Saint Vincent and the Grenadines': '🇻🇨', 'Samoa': '🇼🇸', 'San Marino': '🇸🇲', 'Sao Tome and Principe': '🇸🇹', 'Saudi Arabia': '🇸🇦',
+    'Senegal': '🇸🇳', 'Serbia': '🇷🇸', 'Seychelles': '🇸🇨', 'Sierra Leone': '🇸🇱', 'Singapore': '🇸🇬',
+    'Slovakia': '🇸🇰', 'Slovenia': '🇸🇮', 'Solomon Islands': '🇸🇧', 'Somalia': '🇸🇴', 'South Africa': '🇿🇦',
+    'South Sudan': '🇸🇸', 'Spain': '🇪🇸', 'Sri Lanka': '🇱🇰', 'Sudan': '🇸🇩', 'Suriname': '🇸🇷',
+    'Sweden': '🇸🇪', 'Switzerland': '🇨🇭', 'Syria': '🇸🇾', 'Taiwan': '🇹🇼', 'Tajikistan': '🇹🇯',
+    'Tanzania': '🇹🇿', 'Thailand': '🇹🇭', 'Timor-Leste': '🇹🇱', 'Togo': '🇹🇬', 'Tonga': '🇹🇴',
+    'Trinidad and Tobago': '🇹🇹', 'Tunisia': '🇹🇳', 'Turkey': '🇹🇷', 'Turkmenistan': '🇹🇲', 'Tuvalu': '🇹🇻',
+    'Uganda': '🇺🇬', 'Ukraine': '🇺🇦', 'United Arab Emirates': '🇦🇪', 'United Kingdom': '🇬🇧', 'United States': '🇺🇸',
+    'Uruguay': '🇺🇾', 'Uzbekistan': '🇺🇿', 'Vanuatu': '🇻🇺', 'Vatican City': '🇻🇦', 'Venezuela': '🇻🇪',
+    'Vietnam': '🇻🇳', 'Yemen': '🇾🇪', 'Zambia': '🇿🇲', 'Zimbabwe': '🇿🇼','Hong Kong': '🇭🇰', 'Macau': '🇲🇴', 'Taiwan': '🇹🇼', 'Kosovo': '🇽🇰',
+    'Northern Cyprus': '🇹🇷', 'Western Sahara': '🇪🇭', 'Somaliland': '🇸🇴', 'Transnistria': '🇹🇩', 'Nagorno-Karabakh': '🇦🇲', 'Cook Islands': '🇨🇰', 
+    'Niue': '🇳🇺', 'Tokelau': '🇹🇰', 'Sahrawi Arab Democratic Republic': '🇪🇭'
+    };
+    
 
-function updateStats() {
-    const totalFlights = flights.length;
-    const totalAirports = [...new Set(flights.flatMap(f => [f.dep_airport_name, f.arr_airport_name]))].length;
-    const totalAirlines = [...new Set(flights.map(f => f.airline))].length;
-    const totalAircraft = [...new Set(flights.map(f => f.aircraft_type))].length;
-    const totalCountries = [...new Set(flights.flatMap(f => [f.dep_country, f.arr_country.trim()]))].length;
+
+const continents = {
+    'Afghanistan': 'Asia', 'Albania': 'Europe', 'Algeria': 'Africa', 'Andorra': 'Europe', 'Angola': 'Africa',
+    'Antigua and Barbuda': 'North America', 'Argentina': 'South America', 'Armenia': 'Asia', 'Australia': 'Australia', 'Austria': 'Europe',
+    'Azerbaijan': 'Asia', 'Bahamas': 'North America', 'Bahrain': 'Asia', 'Bangladesh': 'Asia', 'Barbados': 'North America',
+    'Belarus': 'Europe', 'Belgium': 'Europe', 'Belize': 'North America', 'Benin': 'Africa', 'Bhutan': 'Asia',
+    'Bolivia': 'South America', 'Bosnia and Herzegovina': 'Europe', 'Botswana': 'Africa', 'Brazil': 'South America', 'Brunei': 'Asia',
+    'Bulgaria': 'Europe', 'Burkina Faso': 'Africa', 'Burundi': 'Africa', 'Cabo Verde': 'Africa', 'Cambodia': 'Asia',
+    'Cameroon': 'Africa', 'Canada': 'North America', 'Central African Republic': 'Africa', 'Chad': 'Africa', 'Chile': 'South America',
+    'China': 'Asia', 'Colombia': 'South America', 'Comoros': 'Africa', 'Congo (Congo-Brazzaville)': 'Africa', 'Congo (Democratic Republic)': 'Africa',
+    'Costa Rica': 'North America', 'Croatia': 'Europe', 'Cuba': 'North America', 'Cyprus': 'Asia', 'Czechia': 'Europe',
+    'Denmark': 'Europe', 'Djibouti': 'Africa', 'Dominica': 'North America', 'Dominican Republic': 'North America', 'Ecuador': 'South America',
+    'Egypt': 'Africa', 'El Salvador': 'North America', 'Equatorial Guinea': 'Africa', 'Eritrea': 'Africa', 'Estonia': 'Europe',
+    'Eswatini': 'Africa', 'Ethiopia': 'Africa', 'Fiji': 'Oceania', 'Finland': 'Europe', 'France': 'Europe',
+    'Gabon': 'Africa', 'Gambia': 'Africa', 'Georgia': 'Asia', 'Germany': 'Europe', 'Ghana': 'Africa',
+    'Greece': 'Europe', 'Grenada': 'North America', 'Guatemala': 'North America', 'Guinea': 'Africa', 'Guinea-Bissau': 'Africa',
+    'Guyana': 'South America', 'Haiti': 'North America', 'Honduras': 'North America', 'Hungary': 'Europe', 'Iceland': 'Europe',
+    'India': 'Asia', 'Indonesia': 'Asia', 'Iran': 'Asia', 'Iraq': 'Asia', 'Ireland': 'Europe',
+    'Israel': 'Asia', 'Italy': 'Europe', 'Jamaica': 'North America', 'Japan': 'Asia', 'Jordan': 'Asia',
+    'Kazakhstan': 'Asia', 'Kenya': 'Africa', 'Kiribati': 'Oceania', 'Korea (North)': 'Asia', 'Korea (South)': 'Asia',
+    'Kuwait': 'Asia', 'Kyrgyzstan': 'Asia', 'Laos': 'Asia', 'Latvia': 'Europe', 'Lebanon': 'Asia',
+    'Lesotho': 'Africa', 'Liberia': 'Africa', 'Libya': 'Africa', 'Liechtenstein': 'Europe', 'Lithuania': 'Europe',
+    'Luxembourg': 'Europe', 'Madagascar': 'Africa', 'Malawi': 'Africa', 'Malaysia': 'Asia', 'Maldives': 'Asia',
+    'Mali': 'Africa', 'Malta': 'Europe', 'Marshall Islands': 'Oceania', 'Mauritania': 'Africa', 'Mauritius': 'Africa',
+    'Mexico': 'North America', 'Micronesia': 'Oceania', 'Moldova': 'Europe', 'Monaco': 'Europe', 'Mongolia': 'Asia',
+    'Montenegro': 'Europe', 'Morocco': 'Africa', 'Mozambique': 'Africa', 'Myanmar': 'Asia', 'Namibia': 'Africa',
+    'Nauru': 'Oceania', 'Nepal': 'Asia', 'Netherlands': 'Europe', 'New Zealand': 'Oceania', 'Nicaragua': 'North America',
+    'Niger': 'Africa', 'Nigeria': 'Africa', 'North Macedonia': 'Europe', 'Norway': 'Europe', 'Oman': 'Asia',
+    'Pakistan': 'Asia', 'Palau': 'Oceania', 'Panama': 'North America', 'Papua New Guinea': 'Oceania', 'Paraguay': 'South America',
+    'Peru': 'South America', 'Philippines': 'Asia', 'Poland': 'Europe', 'Portugal': 'Europe', 'Qatar': 'Asia',
+    'Romania': 'Europe', 'Russia': 'Europe', 'Rwanda': 'Africa', 'Saint Kitts and Nevis': 'North America', 'Saint Lucia': 'North America',
+    'Saint Vincent and the Grenadines': 'North America', 'Samoa': 'Oceania', 'San Marino': 'Europe', 'Sao Tome and Principe': 'Africa', 'Saudi Arabia': 'Asia',
+    'Senegal': 'Africa', 'Serbia': 'Europe', 'Seychelles': 'Africa', 'Sierra Leone': 'Africa', 'Singapore': 'Asia',
+    'Slovakia': 'Europe', 'Slovenia': 'Europe', 'Solomon Islands': 'Oceania', 'Somalia': 'Africa', 'South Africa': 'Africa',
+    'South Sudan': 'Africa', 'Spain': 'Europe', 'Sri Lanka': 'Asia', 'Sudan': 'Africa', 'Suriname': 'South America',
+    'Sweden': 'Europe', 'Switzerland': 'Europe', 'Syria': 'Asia', 'Taiwan': 'Asia', 'Tajikistan': 'Asia',
+    'Tanzania': 'Africa', 'Thailand': 'Asia', 'Timor-Leste': 'Asia', 'Togo': 'Africa', 'Tonga': 'Oceania',
+    'Trinidad and Tobago': 'North America', 'Tunisia': 'Africa', 'Turkey': 'Asia', 'Turkmenistan': 'Asia', 'Tuvalu': 'Oceania',
+    'Uganda': 'Africa', 'Ukraine': 'Europe', 'United Arab Emirates': 'Asia', 'United Kingdom': 'Europe', 'United States': 'North America',
+    'Uruguay': 'South America', 'Uzbekistan': 'Asia', 'Vanuatu': 'Oceania', 'Vatican City': 'Europe', 'Venezuela': 'South America',
+    'Vietnam': 'Asia', 'Yemen': 'Asia', 'Zambia': 'Africa', 'Zimbabwe': 'Africa', 'Hong Kong': 'Asia', 'Macau': 'Asia', 'Taiwan': 'Asia', 'Kosovo': 'Europe',
+    'Northern Cyprus': 'Europe', 'Western Sahara': 'Africa', 'Somaliland': 'Africa', 'Transnistria': 'Europe',
+    'Nagorno-Karabakh': 'Europe', 'Cook Islands': 'Oceania', 'Niue': 'Oceania', 'Tokelau': 'Oceania', 'Sahrawi Arab Democratic Republic': 'Africa'
+};
+
+
+function updateStats(selectedFlights, monthFilter) {
+    const totalFlights = selectedFlights.length;
+    const totalAirports = [...new Set(selectedFlights.flatMap(f => [f.dep_airport_name, f.arr_airport_name]))].length;
+    const totalAirlines = [...new Set(selectedFlights.map(f => f.airline))].length;
+    const totalAircraft = [...new Set(selectedFlights.map(f => f.aircraft_type))].length;
+    const totalCountries = [...new Set(selectedFlights.flatMap(f => [f.dep_country, f.arr_country.trim()]))].length;
 
     document.getElementById('flightsCount').textContent = totalFlights;
     document.getElementById('airportsCount').textContent = totalAirports;
@@ -241,30 +326,177 @@ function updateStats() {
     const airlineCounts = {};
     const aircraftCounts = {};
     const cc = {};
-    flights.forEach(flight => {
+    const yearmonth = {};
+    const continentpresent = new Set();
+    selectedFlights.forEach(flight => {
         airportCounts[flight.dep_airport_name] = (airportCounts[flight.dep_airport_name] || 0) + 1;
         airportCounts[flight.arr_airport_name] = (airportCounts[flight.arr_airport_name] || 0) + 1;
         airlineCounts[flight.airline] = (airlineCounts[flight.airline] || 0) + 1;
         aircraftCounts[flight.aircraft_type] = (aircraftCounts[flight.aircraft_type] || 0) + 1;
         cc[flight.dep_country] = (cc[flight.dep_country] || 0) + 1;
         cc[flight.arr_country.trim()] = (cc[flight.arr_country.trim()] || 0) + 1;
+        continentpresent.add(continents[flight.dep_country]);
+        continentpresent.add(continents[flight.arr_country.trim()]);
+        if (!yearmonth[flight.year]) {
+            yearmonth[flight.year] = {};
+        }
+        if (!yearmonth[flight.year][flight.month]) {
+            yearmonth[flight.year][flight.month] = 0;
+        }
+        yearmonth[flight.year][flight.month] += 1;
     });
 
-    const countryFlags = {
-        'India': '🇮🇳', 'UAE': '🇦🇪', 'Spain': '🇪🇸', 'USA': '🇺🇸', 'France': '🇫🇷',
-        'Germany': '🇩🇪', 'Sri Lanka': '🇱🇰', 'Malaysia': '🇲🇾', 'Qatar': '🇶🇦',
-        'Norway': '🇳🇴', 'Australia': '🇦🇺', 'Hong Kong': '🇭🇰', 'Croatia': '🇭🇷',
-        'Czechia': '🇨🇿'
-    };
-    const continents = {
-        'India': 'Asia', 'UAE': 'Asia', 'Spain': 'Europe', 'USA': 'North America',
-        'France': 'Europe', 'Germany': 'Europe', 'Sri Lanka': 'Asia', 'Malaysia': 'Asia',
-        'Qatar': 'Asia', 'Norway': 'Europe', 'Australia': 'Australia', 'Hong Kong': 'Asia',
-        'Croatia': 'Europe', 'Czechia': 'Europe'
+    const years = Object.keys(yearmonth).map(year => parseInt(year));
+
+    if (years.length > 1) {
+        drawChartForYears(yearmonth);
+    } else {
+        drawChartForMonths(yearmonth[years[0]], monthFilter);
+    }
+
+function drawChartForYears(yearmonthData) {
+    const years = Object.keys(yearmonthData).map(year => parseInt(year));
+    const flightCounts = years.map(year => {
+        return Object.values(yearmonthData[year]).reduce((sum, count) => sum + count, 0);
+    });
+
+    renderBarChart({
+        labels: years,
+        data: flightCounts,
+        label: 'Flights per Year',
+        xLabel: 'Years',
+        yLabel: 'Flights'
+    });
+}
+
+function drawChartForMonths(monthData, monthFilter) {
+    const allMonths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    
+    // if monthData is undefined, set monthFilter to 0
+    if (!monthData) {
+            monthData = {0: 0};
+    }
+    const flightCounts = allMonths.map(month => monthData[month] || 0);
+    
+    renderBarChart({
+        labels: monthNames,
+        data: flightCounts,
+        label: 'Flights per Month',
+        xLabel: 'Months',
+        yLabel: 'Flights'
+    });
+}
+
+function renderBarChart({ labels, data, label, xLabel, yLabel }) {
+    const canvas = document.getElementById('chartCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Destroy any existing chart
+    let existingChart = Chart.getChart(canvas);
+    if (existingChart) {
+        existingChart.destroy();
+    }
+
+    const hasData = data && data.length > 0;
+
+    const chartConfig = {
+        type: 'bar',
+        data: {
+            labels: hasData ? labels : [],
+            datasets: [{
+                label: label,
+                data: hasData ? data : [],
+                backgroundColor: '#7b4d2e',
+                borderColor: '#7b4d2e',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    top: 20
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: hasData,
+                        text: xLabel,
+                        font: {
+                            size: 16
+                        }
+                    },
+                    ticks: {
+                        display: hasData
+                    }
+                },
+                y: {
+                    title: {
+                        display: hasData,
+                        text: yLabel,
+                        font: {
+                            size: 16
+                        }
+                    },
+                    beginAtZero: true,
+                    ticks: {
+                        display: hasData,
+                        padding: 5
+                    }
+                }
+            },
+            plugins: {
+                tooltip: {
+                    enabled: hasData
+                },
+                legend: {
+                    display: false
+                },
+            },
+            animation: {
+                onComplete: function(animation) {
+                    if (hasData) {
+                        const chartInstance = animation.chart;
+                        const ctx = chartInstance.ctx;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'bottom';
+                        ctx.font = '12px Arial';
+                        ctx.fillStyle = 'black';
+                        chartInstance.data.datasets.forEach(function(dataset, i) {
+                            const meta = chartInstance.getDatasetMeta(i);
+                            meta.data.forEach(function(bar, index) {
+                                const data = dataset.data[index];
+                                ctx.fillText(data, bar.x, bar.y - 5);
+                            });
+                        });
+                    }
+                }
+            }
+        }
     };
 
-    const countryCounts = {};
-    ['Asia', 'Australia', 'Europe', 'North America'].forEach(cont => {
+    const newChart = new Chart(ctx, chartConfig);
+
+    if (!hasData) {
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const noDataText = 'No data available';
+        const textX = canvas.width / 2;
+        const textY = canvas.height / 2;
+        ctx.font = '20px Arial';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(noDataText, textX, textY);
+    }
+
+    return newChart;
+}
+   const countryCounts = {};
+    continentpresent.forEach(cont => {
         const countries = Object.entries(cc)
             .filter(([country, count]) => continents[country] === cont)
             .sort((a, b) => b[1] - a[1]);
@@ -272,14 +504,14 @@ function updateStats() {
     });
 
     const flightdetails = {};
-    for (const flight in flights) {
-        flightdetails[`${flights[flight].airline} - ${flights[flight].flight_number}`] = `${flights[flight].dep_airport} ➠ ${flights[flight].arr_airport}`;
+    for (const flight in selectedFlights) {
+        flightdetails[`${selectedFlights[flight].airline} - ${selectedFlights[flight].flight_number}`] = `${selectedFlights[flight].dep_airport} ➠ ${selectedFlights[flight].arr_airport}`;
     }
 
     const aircraftFamilies = {};
     const airlineFamilies = {};
     const airportCountries = {};
-    flights.forEach(flight => {
+    selectedFlights.forEach(flight => {
         arf = flight.airline_family.trim();
         if (!aircraftFamilies[flight.aircraft_family]) aircraftFamilies[flight.aircraft_family] = {};
         aircraftFamilies[flight.aircraft_family][flight.aircraft_type] = (aircraftFamilies[flight.aircraft_family][flight.aircraft_type] || 0) + 1;

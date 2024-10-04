@@ -160,33 +160,51 @@
     width: 100%;
 }
 
-.left {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.right {
+.innercontainer {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 10px;
+    max-height: 130px;
+  }
+  
+  .innercontainer .left {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 10px;
     align-items: center;
-    font-size: 18px;
-    color: #0099e0;
-}
-
-.distance-icon {
-    font-size: 24px;
-    margin-right: 10px;
-}
-
-.total-number {
+  }
+  
+  .innercontainer .right {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: 400px;
+  }
+  
+  #chartContainer {
+    width: 100%;
+    height: 60px; /* Adjust this value as needed */
+  }
+  
+  #chartCanvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  #totalkm {
+    margin-top: 10px;
     font-weight: bold;
-    margin-right: 10px;
-}
-
-.distance-comparisons {
-    font-size: 18px;
-    color: #0099e0;
-}
-
-.right .distance-comparisons {
-    margin-left: 15px;
-}
+    font-size: 20px;
+    color: #7b4d2e;
+    text-align: right;
+  }
+  
+  select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }

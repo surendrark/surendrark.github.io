@@ -85,6 +85,7 @@ $(document).ready(function () {
     <div class="container">
         <h1>My Flight Tracker</h1>
         <div id="map2" style="width: 100%; height: 600px;"></div>
+        <div class="innercontainer">
         <div class="left" id="filterControls">
             <select id="yearFilter" onchange="updateMap()">
                 <option value="all">All Years</option>
@@ -105,45 +106,47 @@ $(document).ready(function () {
                 <option value="12">December</option>
             </select>
         </div>
+        <div class="right">
+            <canvas id="chartCanvas"></canvas>
+        </div>
+        <div id="totalkm" class="center">
+            <span class="total-label">Distance -&nbsp;</span>
+            <span class="total-number" id="totalDistance">0 km</span>
+            <span class="total-label"><br>Flight Time -&nbsp;</span>
+            <span class="total-time" id="totalTime"> 0 hours</span>
+        </div>
+        </div>
         <div id="statsBox">
-            <h2 class="stats-header">
-                <span class="left">Flight Stats</span>
-                <div id="totalkm" class="distance-container right">
-                    <span class="total-number" id="totalDistance">0 km</span>
-                        or <span class="distance-comparisons" id="distanceToMoon"></span>&nbsp;to the Moon | &nbsp;
-                    <span class="total-time" id="totalTime"> 0 hours</span>
-                        &nbsp; or <span class="distance-comparisons" id="weeksinair"></span>&nbsp;weeks in air
-                </div>
-            </h2>
+            <h2> Flight Stats </h2>
 
             <div class="statsContent" id="statsContent">
                 <div class="stat-row" onclick="toggleDetails('flights')">
-                    <span class="stat-label">Flights</span>
-                    <span class="stat-number" id="flightsCount"></span>
+                    <span class="stat-label" style="font-size: 20px;">Flights</span>
+                    <span class="stat-number" id="flightsCount" style="color: #0099e0;"></span>
                     <span class="stat-icon">✈️</span>
                 </div>
 
                 <div class="stat-row" onclick="toggleDetails('country')">
-                    <span class="stat-label">Countries</span>
-                    <span class="stat-number" id="countryCount"></span>
+                    <span class="stat-label" style="font-size: 20px;">Countries</span>
+                    <span class="stat-number" id="countryCount" style="color: #0099e0;"></span>
                     <span class="stat-icon">🌍</span>
                 </div>
 
                 <div class="stat-row" onclick="toggleDetails('airports')">
-                    <span class="stat-label">Airports</span>
-                    <span class="stat-number" id="airportsCount"></span>
+                    <span class="stat-label" style="font-size: 20px;">Airports</span>
+                    <span class="stat-number" id="airportsCount" style="color: #0099e0;"></span>
                     <span class="stat-icon">🏢</span>
                 </div>
 
                 <div class="stat-row" onclick="toggleDetails('airlines')">
-                    <span class="stat-label">Airlines</span>
-                    <span class="stat-number" id="airlinesCount"></span>
+                    <span class="stat-label" style="font-size: 20px;">Airlines</span>
+                    <span class="stat-number" id="airlinesCount" style="color: #0099e0;"></span>
                     <span class="stat-icon">🛫</span>
                 </div>
 
                 <div class="stat-row" onclick="toggleDetails('aircraft')">
-                    <span class="stat-label">Aircraft</span>
-                    <span class="stat-number" id="aircraftCount"></span>
+                    <span class="stat-label" style="font-size: 20px;">Aircraft</span>
+                    <span class="stat-number" id="aircraftCount" style="color: #0099e0;"></span>
                     <span class="stat-icon">🛩️</span>
                 </div>
                 <div class="stat-details" id="flightsDetails"></div>
@@ -178,6 +181,7 @@ $(document).ready(function () {
             </div>
         </section>
         <!-- END FOOTER -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src='https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js'></script>
 <script src="assets/web/assets/jquery/jquery2.min.js"></script>
 <script src="assets/popper/popper.min.js"></script>
