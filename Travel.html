@@ -119,36 +119,38 @@ $(document).ready(function () {
             <h2> Flight Stats </h2>
 
             <div class="statsContent" id="statsContent">
-                <div class="stat-row" onclick="toggleDetails('flights')">
+                <div class="stat-row stat-row-flights" onclick="toggleDetails('flights')">
                     <span class="stat-label" style="font-size: 20px;">✈️&nbsp;Flights</span>
-                    <span class="stat-number" id="flightsCount" style="color: #0099e0;"></span>
+                    <span class="stat-number" id="flightsCount"></span>
                 </div>
-
-                <div class="stat-row" onclick="toggleDetails('country')">
+            
+                <div class="stat-row stat-row-country" onclick="toggleDetails('country')">
                     <span class="stat-label" style="font-size: 20px;">🌍&nbsp;Countries</span>
-                    <span class="stat-number" id="countryCount" style="color: #0099e0;"></span>
+                    <span class="stat-number" id="countryCount"></span>
                 </div>
-
-                <div class="stat-row" onclick="toggleDetails('airports')">
+            
+                <div class="stat-row stat-row-airports" onclick="toggleDetails('airports')">
                     <span class="stat-label" style="font-size: 20px;">🏢&nbsp;Airports</span>
-                    <span class="stat-number" id="airportsCount" style="color: #0099e0;"></span>
+                    <span class="stat-number" id="airportsCount"></span>
                 </div>
-
-                <div class="stat-row" onclick="toggleDetails('airlines')">
+            
+                <div class="stat-row stat-row-airlines" onclick="toggleDetails('airlines')">
                     <span class="stat-label" style="font-size: 20px;">🛫&nbsp;Airlines</span>
-                    <span class="stat-number" id="airlinesCount" style="color: #0099e0;"></span>
+                    <span class="stat-number" id="airlinesCount"></span>
                 </div>
-
-                <div class="stat-row" onclick="toggleDetails('aircraft')">
+            
+                <div class="stat-row stat-row-aircraft" onclick="toggleDetails('aircraft')">
                     <span class="stat-label" style="font-size: 20px;">🛩️&nbsp;Aircraft</span>
-                    <span class="stat-number" id="aircraftCount" style="color: #0099e0;"></span>
+                    <span class="stat-number" id="aircraftCount"></span>
                 </div>
+            
                 <div class="stat-details" id="flightsDetails"></div>
                 <div class="stat-details" id="countryDetails"></div>
                 <div class="stat-details" id="airportsDetails"></div>
                 <div class="stat-details" id="airlinesDetails"></div>
                 <div class="stat-details" id="aircraftDetails"></div>
             </div>
+            
         </div>
     </div>
 

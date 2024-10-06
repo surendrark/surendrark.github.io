@@ -206,7 +206,7 @@ function updateMap() {
         },
         paint: {
             // dark brown
-            'line-color': '#635a51',
+            'line-color': '#3498db',
             'line-width': 2
         }
     });
@@ -415,8 +415,8 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
             datasets: [{
                 label: label,
                 data: hasData ? data : [],
-                backgroundColor: '#635a51',
-                borderColor: '#635a51',
+                backgroundColor: '#1abc9c',
+                borderColor: '#1abc9c',
                 borderWidth: 1
             }]
         },

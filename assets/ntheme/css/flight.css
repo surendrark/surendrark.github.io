@@ -6,6 +6,12 @@
             --card-background: #ffffff;
             --input-background: #e8f0fe;
             --shadow-color: rgba(0, 0, 0, 0.1);
+
+            --flights-color: #1abc9c; /* Color for Flights */
+            --country-color: #3498db; /* Color for Countries */
+            --airports-color: #e67e22; /* Color for Airports */
+            --airlines-color: #9b59b6; /* Color for Airlines */
+            --aircraft-color: #e74c3c; /* Color for Aircraft */            
         }
         body{
             padding-top: 70px; 
@@ -111,17 +117,10 @@
     background-color: var(--card-background); /* White background to stand out */
 }
 
-.stat-row:hover {
-    background-color: var(--secondary-color); /* Highlight on hover */
-    color: white; /* Change text color on hover */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* Subtle shadow effect on hover */
-}
-
 .stat-details.show {
     display: block;
     margin-top: 10px;
     padding: 15px;
-    border-left: 4px solid var(--primary-color); /* Left border instead of all around */
     border-radius: 0; /* Remove border radius */
     background-color: var(--card-background);
 }
@@ -207,7 +206,7 @@
     margin-top: 10px;
     font-weight: bold;
     font-size: 20px;
-    color: #635a51;
+    color: #e67e22;
     text-align: right;
   }
   
@@ -217,3 +216,97 @@
     border: 1px solid #ccc;
     border-radius: 5px;
   }
+
+/* Add border colors for each item */
+.stat-row-flights {
+    border-left: 4px solid var(--flights-color);
+}
+
+.stat-row-flights:hover {
+    background-color: var(--flights-color); /* Change background color on hover */
+    color: white; /* Change text color on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* Subtle shadow effect on hover */
+}
+
+.stat-row-country {
+    border-left: 4px solid var(--country-color);
+}
+
+.stat-row-country:hover {
+    background-color: var(--country-color);
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.stat-row-airports {
+    border-left: 4px solid var(--airports-color);
+}
+
+.stat-row-airports:hover {
+    background-color: var(--airports-color);
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.stat-row-airlines {
+    border-left: 4px solid var(--airlines-color);
+}
+
+.stat-row-airlines:hover {
+    background-color: var(--airlines-color);
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.stat-row-aircraft {
+    border-left: 4px solid var(--aircraft-color);
+}
+
+.stat-row-aircraft:hover {
+    background-color: var(--aircraft-color);
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Make the numbers match the border color */
+.stat-row-flights .stat-number {
+    color: var(--flights-color);
+}
+
+.stat-row-country .stat-number {
+    color: var(--country-color);
+}
+
+.stat-row-airports .stat-number {
+    color: var(--airports-color);
+}
+
+.stat-row-airlines .stat-number {
+    color: var(--airlines-color);
+}
+
+.stat-row-aircraft .stat-number {
+    color: var(--aircraft-color);
+}
+
+/* Also make the details use the same color */
+#flightsDetails.show {
+    border-left: 4px solid var(--flights-color);
+}
+
+#countryDetails.show {
+    border-left: 4px solid var(--country-color);
+}
+
+#airportsDetails.show {
+    border-left: 4px solid var(--airports-color);
+}
+
+#airlinesDetails.show {
+    border-left: 4px solid var(--airlines-color);
+}
+
+#aircraftDetails.show {
+    border-left: 4px solid var(--aircraft-color);
+}
+
