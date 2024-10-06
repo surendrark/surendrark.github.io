@@ -46,6 +46,9 @@ function loadFlights() {
                 dep_country, arr_country, aircraft_family, aircraft_mfg, airline_family
             };
             });
+            flights.forEach(flight => {
+                airlinecode[flight.airline] = flight.airline_code;
+            });
             updateMap();
             yearlist = [...new Set(flights.map(f => f.year))].sort();
             updateStats(flights, 'all');
@@ -87,10 +90,6 @@ function updateMap() {
             (monthFilter === 'all' || flight.month === monthFilter);
     });
     updateStats(filteredFlights, monthFilter);
-    airlinecode = {};
-    filteredFlights.forEach(flight => {
-        airlinecode[flight.airline] = flight.airline_code;
-    });
 
     // Example airport coordinates. Replace these with your actual airport data.
     const airportCoordinates = {
