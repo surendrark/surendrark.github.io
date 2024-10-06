@@ -601,35 +601,50 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
     
     function populateGroupedDetails(sectionId, groupedData) {
         const section = document.getElementById(sectionId);
-        section.innerHTML = '';
-      
+        section.innerHTML = ''; // Clear existing content
+
+    
         Object.entries(groupedData)
-          .sort(([a], [b]) => a.localeCompare(b))
-          .forEach(([group, items]) => {
-            const groupHeader = document.createElement('h3');
-            // add map if country use flag else just group
-            groupHeader.innerText = group + (countryFlags[group] ? ` ${countryFlags[group]}` : '');
-            section.appendChild(groupHeader);
-      
-            const bar = document.createElement('div');
-            bar.classList.add('group-bar');
-            section.appendChild(bar);
-      
-            Object.entries(items)
-              .sort((a, b) => b[1] - a[1])
-              .forEach(([item, count]) => {
-                const detailItem = document.createElement('div');
-                detailItem.className = 'detail-item';
-                detailItem.innerHTML = `
-                  <span>${item}</span>
-                  <span>${count}</span>
-                `;
-                section.appendChild(detailItem);
-              });
-      
-            section.appendChild(document.createElement('hr'));
-          });
-      }
+            .sort(([a], [b]) => a.localeCompare(b))
+            .forEach(([group, items]) => {
+                // Create group header
+                const groupHeader = document.createElement('h3');
+                groupHeader.innerText = group + (countryFlags[group] ? ` ${countryFlags[group]}` : '');
+                section.appendChild(groupHeader);
+    
+                const bar = document.createElement('div');
+                bar.classList.add('group-bar');
+                section.appendChild(bar);
+    
+                // Container to hold detail items for two per row
+                const groupContainer = document.createElement('div');
+                groupContainer.style.display = 'flex';
+                groupContainer.style.flexWrap = 'wrap';
+                groupContainer.style.justifyContent = 'space-between'; // Space items across the row
+                groupContainer.style.width = '100%'; // Full width for the group container
+    
+                Object.entries(items)
+                    .sort((a, b) => b[1] - a[1])
+                    .forEach(([item, count]) => {
+                        const detailItem = document.createElement('div');
+                        detailItem.className = 'detail-item';
+    
+                        // Flex to take 50% width, ensuring two items per row
+                        detailItem.style.flex = '0 1 48%'; // Adjust as needed for spacing
+                        detailItem.style.marginBottom = '10px'; // Add spacing between rows
+    
+                        detailItem.innerHTML = `
+                          <span>${item}</span>
+                          <span>${count}</span>
+                        `;
+                        groupContainer.appendChild(detailItem);
+                    });
+    
+                section.appendChild(groupContainer);
+                section.appendChild(document.createElement('hr')); // Separator after each group
+            });
+    }
+    
 
       function populateAirlineDetails(sectionId, groupedData) {
         const section = document.getElementById(sectionId);
