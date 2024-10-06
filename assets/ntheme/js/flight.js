@@ -1,6 +1,7 @@
 let map2;
 let flights = [];
 let airlinecode = {};
+let aircraftcode = {};
 function initMap() {
     return new Promise((resolve) => {
         map2 = new mapboxgl.Map({
@@ -48,6 +49,7 @@ function loadFlights() {
             });
             flights.forEach(flight => {
                 airlinecode[flight.airline] = flight.airline_code;
+                aircraftcode[flight.aircraft_type] = flight.aircraft_family;
             });
             updateMap();
             yearlist = [...new Set(flights.map(f => f.year))].sort();
@@ -349,7 +351,22 @@ function updateStats(selectedFlights, monthFilter) {
         }
         yearmonth[flight.year][flight.month] += 1;
     });
+    // Find the most flown aircraft and airline
+    const mostFlownAircraft = Object.keys(aircraftCounts).reduce((a, b) => aircraftCounts[a] > aircraftCounts[b] ? a : b);
+    const mostFlownAirline = Object.keys(airlineCounts).reduce((a, b) => airlineCounts[a] > airlineCounts[b] ? a : b);
 
+
+    // Set the image src attributes for the most flown aircraft and airline
+    const mostAircraftImg = document.getElementById('mostaircraft');
+    const mostAirlineImg = document.getElementById('mostairline');
+    const mostAircraftName = document.getElementById('mostAircraftName'); // New element to hold aircraft type name
+    const mostAirlineName = document.getElementById('mostAirlineName'); // New element to hold airline name
+
+    mostAircraftImg.src = `assets/aircraft/${aircraftcode[mostFlownAircraft]}.webp`;
+    mostAircraftName.textContent = mostFlownAircraft;
+    mostAirlineImg.src = `assets/airlinelogo/${airlinecode[mostFlownAirline]}.webp`;
+    mostAirlineName.textContent = mostFlownAirline;
+    
     const years = Object.keys(yearmonth).map(year => parseInt(year));
 
     if (years.length > 1) {
@@ -366,7 +383,6 @@ function drawChartForYears(yearmonthData, yearlist) {
         labels: yearlist,
         data: flightCounts,
         label: 'Flights per Year',
-        xLabel: 'Years',
         yLabel: 'Flights'
     });
 }
@@ -389,7 +405,6 @@ function drawChartForMonths(monthData, monthFilter) {
         labels: monthNamesFiltered,
         data: flightCounts,
         label: 'Flights per Month',
-        xLabel: 'Months',
         yLabel: 'Flights'
     });
 }
@@ -437,7 +452,11 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
                     },
                     ticks: {
                         display: hasData
+                    },
+                    grid: {
+                        display: false
                     }
+
                 },
                 y: {
                     title: {
@@ -451,6 +470,9 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
                     ticks: {
                         display: hasData,
                         padding: 5
+                    },
+                    grid: {
+                        display: false
                     }
                 }
             },

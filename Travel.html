@@ -105,17 +105,31 @@ $(document).ready(function () {
                 <option value="12">December</option>
             </select>
         </div>
-        <div class="right">
-            <canvas id="chartCanvas"></canvas>
-        </div>
+
         <div id="totalkm" class="center">
             <span class="total-label">Flights -&nbsp;</span>
             <span class="total-number" id="totalFlights">0</span>
-            <span class="total-label"><br>Distance -&nbsp;</span>
+            <span class="total-label">Distance -&nbsp;</span>
             <span class="total-number" id="totalDistance">0 km</span>
-            <span class="total-label"><br>Flight Time -&nbsp;</span>
+            <span class="total-label">Flight Time -&nbsp;</span>
             <span class="total-time" id="totalTime"> 0 hours</span>
         </div>
+        </div>
+        <div id="mostflown" class="mostflown">
+            <div class="right">
+                <canvas id="chartCanvas"></canvas>
+            </div>
+            <div class="item-container">
+                <span class="total-label">Most Flown Aircraft</span>
+                <img class="mfimg" id="mostaircraft" alt="aircraft" style="width: 300px;">
+                <span id="mostAircraftName" class="item-name"></span> <!-- Aircraft name below the image -->
+            </div>
+        
+            <div class="item-container">
+                <span class="total-label">Most Flown Airline</span>
+                <img class="mfimg" id="mostairline" alt="airline" style="width: 80px;">
+                <span id="mostAirlineName" class="item-name"></span> <!-- Airline name below the image -->
+            </div>
         </div>
         <div id="statsBox">
             <h2> Flight Stats </h2>

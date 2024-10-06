@@ -43,27 +43,6 @@
             box-shadow: 0 10px 20px var(--shadow-color);
             margin-bottom: 20px;
         }
-        #filterControls {
-            display: flex;
-            justify-content: center;
-        }
-
-        #filterControls select {
-            padding: 12px 20px;
-            margin: 0 10px;
-            border-radius: 25px;
-            border: none;
-            background-color: var(--input-background);
-            color: var(--text-color);
-            font-size: 20px;
-            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 5px var(--shadow-color);
-        }
-
-        #filterControls select:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px var(--primary-color);
-        }
 
         @media (max-width: 768px) {
             .container {
@@ -168,54 +147,6 @@
     width: 100%;
 }
 
-.innercontainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 100%;
-    margin-top: 10px;
-    max-height: 130px;
-  }
-  
-  .innercontainer .left {
-    flex: 0 0 auto;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-  
-  .innercontainer .right {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    max-width: 400px;
-  }
-  
-  #chartContainer {
-    width: 100%;
-    height: 60px; /* Adjust this value as needed */
-  }
-  
-  #chartCanvas {
-    width: 100% !important;
-    height: 100% !important;
-  }
-  
-  #totalkm {
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 20px;
-    color: #e67e22;
-    text-align: right;
-  }
-  
-  select {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
 
 /* Add border colors for each item */
 .stat-row-flights {
@@ -310,3 +241,115 @@
     border-left: 4px solid var(--aircraft-color);
 }
 
+.mostflown {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--airlines-color);
+    border-bottom: 1px solid var(--separator-color);
+    background-color: var(--background-light);
+    border-radius: 10px;
+}
+
+.item-container {
+    text-align: center; /* Center-align the text and image */
+    margin: 0 20px; /* Add some margin around each container */
+}
+
+.mfimg {
+    display: block;
+    margin: 10px auto; /* Center the image */
+}
+
+.item-name {
+    display: block;
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: normal;
+    color: var(--text-color); /* Adjust the color if needed */
+}
+
+.innercontainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 20px; /* Increase spacing between sections */
+    max-height: 130px;
+}
+
+.innercontainer .left {
+    display: inline-block;
+    margin-left: 100px; /* Add some margin to the left */
+    gap: 15px; /* Slightly more gap between items */
+    align-items: center;
+}
+
+.mostflown .right {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: 400px; /* Increase max-width for better chart space */
+    max-height: 150px;
+}
+
+#chartContainer {
+    width: 100%;
+    height: 200px; /* Adjusted height for better chart visibility */
+}
+
+#chartCanvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#totalkm {
+    margin-right: 50px;
+    font-weight: bold;
+    font-size: 20px;
+    color: var(--airports-color);
+    text-align: right;
+}
+
+select {
+    padding: 12px; /* Increased padding for better click area */
+    font-size: 18px; /* Slightly larger font for readability */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#filterControls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; /* Add bottom margin for spacing */
+}
+
+#filterControls select {
+    padding: 12px 20px;
+    margin: 0 15px; /* Increase gap between dropdowns */
+    border-radius: 25px;
+    border: none;
+    background-color: var(--input-background);
+    color: var(--text-color);
+    font-size: 18px; /* Reduced font size for balance */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px var(--shadow-color); /* Increased shadow for depth */
+}
+
+#filterControls select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+/* Additional enhancements for images */
+.mfimg {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add hover effect */
+}
+
+.mfimg:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
