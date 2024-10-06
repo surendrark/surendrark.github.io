@@ -42,9 +42,9 @@ Economy,None,WN,Southwest Airlines,620,73W,Boeing 737-700 ,BNA,Nashville Interna
 Economy,26,WN,Southwest Airlines,4376,73W,Boeing 737-700 ,ORD,O'Hare International Airport  Chicago,BNA,Nashville International Airport,5,2021,1:45:00,United States,United States,B737,Boeing,Other
 Economy,22L,UA,United Airlines,899,789,Boeing 787-9 Dreamliner,DEL,Indira Gandhi International Airport  Delhi,ORD,O'Hare International Airport  Chicago,3,2021,15:25:00,India,United States,B787,Boeing,Star Alliance
 Economy,26A,AI,Air India,539,321,Airbus A321,MAA,Chennai International Airport,DEL,Indira Gandhi International Airport  Delhi,3,2021,2:50:00,India,India,A321,Airbus,Star Alliance
-Economy,None,I5,AirAsia India,934,320,Airbus A320,BLR,Kempegowda International Airport  Bengaluru,MAA,Chennai International Airport,2,2021,1:00:00,India,India,A320,Airbus,Star Alliance
-Economy,None,I5,AirAsia India,1543,320,Airbus A320,HYD,Rajiv Gandhi International Airport  Hyderabad,BLR,Kempegowda International Airport  Bengaluru,2,2021,1:20:00,India,India,A320,Airbus,Star Alliance
-Economy,14A,UK,Vistara,877,73H,Boeing 737-800 (winglets),BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,HYD,Rajiv Gandhi International Airport  Hyderabad,2,2021,1:25:00,India,India,B737,Boeing,Star Alliance
+Economy,None,I5,AirAsia India,934,320,Airbus A320,BLR,Kempegowda International Airport  Bengaluru,MAA,Chennai International Airport,2,2021,1:00:00,India,India,A320,Airbus,Other
+Economy,None,I5,AirAsia India,1543,320,Airbus A320,HYD,Rajiv Gandhi International Airport  Hyderabad,BLR,Kempegowda International Airport  Bengaluru,2,2021,1:20:00,India,India,A320,Airbus,Other
+Economy,14A,UK,Vistara,877,73H,Boeing 737-800 (winglets),BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,HYD,Rajiv Gandhi International Airport  Hyderabad,2,2021,1:25:00,India,India,B737,Boeing,Other
 Economy,14E,6E,IndiGo,969,32A,Airbus A320 (Sharklets),HYD,Rajiv Gandhi International Airport  Hyderabad,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,2,2021,1:35:00,India,India,A320,Airbus,Other
 Economy,14A,2T,Trujet,536,AT76,ATR 72-600,CDP,Cuddapah Airport,MAA,Chennai International Airport,3,2020,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
 Economy,14A,2T,Trujet,535,AT76,ATR 72-600,MAA,Chennai International Airport,CDP,Cuddapah Airport,2,2020,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
