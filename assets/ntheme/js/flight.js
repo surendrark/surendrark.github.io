@@ -1,6 +1,6 @@
 let map2;
 let flights = [];
-
+let airlinecode = {};
 function initMap() {
     return new Promise((resolve) => {
         map2 = new mapboxgl.Map({
@@ -37,13 +37,13 @@ function loadFlights() {
                 cabin_class, seat, airline_code, airline, flight_number,
                 aircraft, aircraft_type, dep_airport, dep_airport_name,
                 arr_airport, arr_airport_name, month, year, time_in_air,
-                dep_country, arr_country, aircraft_family, airline_family
+                dep_country, arr_country, aircraft_family, aircraft_mfg, airline_family
             ] = row.split(',');
             return {
                 cabin_class, seat, airline_code, airline, flight_number,
                 aircraft, aircraft_type, dep_airport, dep_airport_name,
                 arr_airport, arr_airport_name, month, year, time_in_air,
-                dep_country, arr_country, aircraft_family, airline_family
+                dep_country, arr_country, aircraft_family, aircraft_mfg, airline_family
             };
             });
             updateMap();
@@ -87,6 +87,10 @@ function updateMap() {
             (monthFilter === 'all' || flight.month === monthFilter);
     });
     updateStats(filteredFlights, monthFilter);
+    airlinecode = {};
+    filteredFlights.forEach(flight => {
+        airlinecode[flight.airline] = flight.airline_code;
+    });
 
     // Example airport coordinates. Replace these with your actual airport data.
     const airportCoordinates = {
@@ -150,7 +154,6 @@ function updateMap() {
     };
     // Initialize total distance
     let totalDistance = 0;
-
     if (map2.getSource('routes')) {
         map2.removeLayer('routes');
         map2.removeSource('routes');
@@ -206,7 +209,7 @@ function updateMap() {
         },
         paint: {
             // dark brown
-            'line-color': '#e67e22',
+            'line-color': '#e74c3c',
             'line-width': 2
         }
     });
@@ -308,12 +311,7 @@ const continents = {
     'Northern Cyprus': 'Europe', 'Western Sahara': 'Africa', 'Somaliland': 'Africa', 'Transnistria': 'Europe',
     'Nagorno-Karabakh': 'Europe', 'Cook Islands': 'Oceania', 'Niue': 'Oceania', 'Tokelau': 'Oceania', 'Sahrawi Arab Democratic Republic': 'Africa'
 };
-airlinefamily_flag = {
-    'OneWorld': 'oneworld.png', 'SkyTeam': 'skyteam.png', 'StarAlliance': 'staralliance.png'
-};
-aircraftfamily_flag = {
-    'Airbus': 'airbus.png', 'Boeing': 'boeing.png', 'Embraer': 'embraer.png', 'Bombardier': 'bombardier.png', 'ATR': 'atr.png'
-};
+
 
 function updateStats(selectedFlights, monthFilter) {
     const totalFlights = selectedFlights.length;
@@ -322,7 +320,8 @@ function updateStats(selectedFlights, monthFilter) {
     const totalAircraft = [...new Set(selectedFlights.map(f => f.aircraft_type))].length;
     const totalCountries = [...new Set(selectedFlights.flatMap(f => [f.dep_country, f.arr_country.trim()]))].length;
 
-    document.getElementById('flightsCount').textContent = totalFlights;
+    // document.getElementById('flightsCount').textContent = totalFlights;
+    document.getElementById('totalFlights').innerText = totalFlights;
     document.getElementById('airportsCount').textContent = totalAirports;
     document.getElementById('airlinesCount').textContent = totalAirlines;
     document.getElementById('aircraftCount').textContent = totalAircraft;
@@ -521,8 +520,9 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
     const airportCountries = {};
     selectedFlights.forEach(flight => {
         arf = flight.airline_family.trim();
-        if (!aircraftFamilies[flight.aircraft_family]) aircraftFamilies[flight.aircraft_family] = {};
-        aircraftFamilies[flight.aircraft_family][flight.aircraft_type] = (aircraftFamilies[flight.aircraft_family][flight.aircraft_type] || 0) + 1;
+        if (!aircraftFamilies[flight.aircraft_mfg]) aircraftFamilies[flight.aircraft_mfg] = {};
+        if (!aircraftFamilies[flight.aircraft_mfg][flight.aircraft_family]) aircraftFamilies[flight.aircraft_mfg][flight.aircraft_family] = {};
+        aircraftFamilies[flight.aircraft_mfg][flight.aircraft_family][flight.aircraft_type] = (aircraftFamilies[flight.aircraft_mfg][flight.aircraft_family][flight.aircraft_type] || 0) + 1;
 
         if (!airlineFamilies[arf]) airlineFamilies[arf] = {};
         airlineFamilies[arf][flight.airline] = (airlineFamilies[arf][flight.airline] || 0) + 1;
@@ -533,12 +533,73 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
         airportCountries[flight.arr_country.trim()][flight.arr_airport_name] = (airportCountries[flight.arr_country.trim()][flight.arr_airport_name] || 0) + 1;
     });
 
-    populateGroupedDetails('aircraftDetails', aircraftFamilies);
-    populateGroupedDetails('airlinesDetails', airlineFamilies);
+
+    populateAircraftDetails('aircraftDetails', aircraftFamilies);
+    populateAirlineDetails('airlinesDetails', airlineFamilies);
     populateGroupedDetails('airportsDetails', airportCountries);
     populateDetailscon('countryDetails', Object.entries(countryCounts));
-    populateDetails('flightsDetails', Object.entries(flightdetails));
+    // populateDetails('flightsDetails', Object.entries(flightdetails));
 
+    function populateAircraftDetails(sectionId, aircraftFamilies) {
+        const section = document.getElementById(sectionId);
+        section.innerHTML = ''; // Clear existing content
+    
+        // Iterate over the first layer - aircraft_mfg (manufacturers)
+        Object.entries(aircraftFamilies)
+            .sort(([a], [b]) => a.localeCompare(b))
+            .forEach(([manufacturer, families]) => {
+                // Create manufacturer header
+                const manufacturerHeader = document.createElement('h3');
+                manufacturerHeader.innerText = manufacturer;
+                section.appendChild(manufacturerHeader);
+    
+                const bar = document.createElement('div');
+                bar.classList.add('group-bar');
+                section.appendChild(bar);
+    
+                // Iterate over the second layer - aircraft_family
+                Object.entries(families)
+                    .sort(([a], [b]) => a.localeCompare(b))
+                    .forEach(([family, aircraftTypes]) => {
+                        const familyItem = document.createElement('div');
+                        familyItem.className = 'family-item';
+                        familyItem.style.display = 'inline-block'; // Arrange family items in rows
+                        familyItem.style.textAlign = 'center'; // Align text to the left
+                        familyItem.style.width = '50%'; // Ensure 10 items per row
+    
+                        // Add family image (aircraft family image)
+                        const familyImage = document.createElement('img');
+                        familyImage.src = `assets/aircraft/${family}.webp`; // Adjust the path as needed
+                        familyImage.alt = `${family} family`;
+                        familyImage.style.width = '450px'; // Adjust the image size
+    
+                        // Create a div to hold the aircraft names and counts below the family image
+                        const aircraftDetailsDiv = document.createElement('div');
+                        aircraftDetailsDiv.style.display = 'block'; // Ensure the details are below the image
+    
+                        // Iterate over the third layer - individual aircraft (aircraft_type) and counts
+                        Object.entries(aircraftTypes)
+                            .forEach(([aircraftType, count]) => {
+                                const aircraftDetail = document.createElement('div');
+                                aircraftDetail.innerHTML = `
+                                    <span>${aircraftType} - </span>
+                                    <span style="font-weight: bold;"> ${count}</span>
+                                `;
+                                aircraftDetailsDiv.appendChild(aircraftDetail);
+                            });
+    
+                        // Append the image and aircraft details to the family item
+                        familyItem.appendChild(familyImage);
+                        familyItem.appendChild(aircraftDetailsDiv);
+    
+                        // Append family item to the section
+                        section.appendChild(familyItem);
+                    });
+    
+                section.appendChild(document.createElement('hr')); // Add separator after each manufacturer
+            });
+    }
+    
     function populateGroupedDetails(sectionId, groupedData) {
         const section = document.getElementById(sectionId);
         section.innerHTML = '';
@@ -571,48 +632,120 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
           });
       }
 
+      function populateAirlineDetails(sectionId, groupedData) {
+        const section = document.getElementById(sectionId);
+        section.innerHTML = '';
+        Object.entries(groupedData)
+            .sort(([a], [b]) => a.localeCompare(b))
+            .forEach(([group, items]) => {
+                const groupHeader = document.createElement('h3');
+                // Remove country flag and add group header without flag
+                groupHeader.innerText = group;
+                section.appendChild(groupHeader);
+    
+                const bar = document.createElement('div');
+                bar.classList.add('group-bar');
+                section.appendChild(bar);
+    
+                Object.entries(items)
+                .sort((a, b) => b[1] - a[1])
+                .forEach(([item, count]) => {
+                    const detailItem = document.createElement('div');
+                    detailItem.className = 'detail-item';
+            
+                    // Apply styles to display items in a row and limit 10 per row
+                    detailItem.style.display = 'inline-block';
+                    detailItem.style.textAlign = 'center';
+                    detailItem.style.width = '20%'; // This will ensure 10 items per row
+            
+                    // Create logo element based on airline_code
+                    const logo = document.createElement('img');
+                    logo.src = `assets/airlinelogo/${airlinecode[item]}.webp`; // Adjust path as needed
+                    logo.alt = `${airlinecode[item]} logo`;
+                    logo.style.width = '100px'; // Adjust the size of the logo as needed
+            
+                    // Create a div to hold the name and count below the logo
+                    const nameAndCountDiv = document.createElement('div');
+                    nameAndCountDiv.innerHTML = `
+                        <span>${item} - </span>
+                        <span style="font-weight: bold;"> ${count}</span>
+                    `;
+                    nameAndCountDiv.style.display = 'block'; // Ensure it is below the logo
+
+                    // Append the logo and nameAndCount div to the detail item
+                    detailItem.appendChild(logo);
+                    detailItem.appendChild(nameAndCountDiv);
+
+                    section.appendChild(detailItem);
+                });
+            
+                section.appendChild(document.createElement('hr'));
+            });
+    }
+    
+
     function populateDetailscon(sectionId, details) {
         const section = document.getElementById(sectionId);
         section.innerHTML = ''; // Clear existing content
-
+    
         Object.entries(countryCounts).forEach(([continent, countries]) => {
             // Create continent header
             const continentHeader = document.createElement('h3');
             continentHeader.innerText = `${continent}`;
             section.appendChild(continentHeader);
-
+    
             // Create a bar below the continent name
             const bar = document.createElement('div');
             bar.classList.add('continent-bar');  // Styling for the bar will be done via CSS
             section.appendChild(bar);
-
+    
             // List countries under the continent
             countries.forEach(([country, count]) => {
                 const detailItem = document.createElement('div');
                 detailItem.className = 'detail-item';
-                detailItem.innerHTML = `
-                    <span>${countryFlags[country]} ${country}</span>
-                    <span>${count}</span>
+    
+                // Apply styles to display items in a row with 10 items per row
+                detailItem.style.display = 'inline-block';
+                detailItem.style.textAlign = 'center';
+                detailItem.style.width = '15%';
+    
+                // Create a span to hold the flag (since it's an emoji, not an image)
+                const flagSpan = document.createElement('span');
+                flagSpan.innerText = countryFlags[country]; // Use the flag emoji
+                flagSpan.style.fontSize = '4em'; // Adjust the size of the flag as needed
+    
+                // Create a div to hold the country name and count below the flag
+                const nameAndCountDiv = document.createElement('div');
+                nameAndCountDiv.innerHTML = `
+                    <span>${country} - </span>
+                    <span style="font-weight: bold;"> ${(count/2).toFixed(0)}</span>
                 `;
+                nameAndCountDiv.style.display = 'block'; // Display name and count below the flag
+    
+                // Append the flag and nameAndCount div to the detail item
+                detailItem.appendChild(flagSpan);
+                detailItem.appendChild(nameAndCountDiv);
+    
                 section.appendChild(detailItem);
             });
-            section.appendChild(document.createElement('hr'));
+    
+            section.appendChild(document.createElement('hr')); // Add separator after each continent
         });
     }
 
-    function populateDetails(elementId, data) {
-        const detailsElement = document.getElementById(elementId);
-        detailsElement.innerHTML = '';
-        data.sort((a, b) => b[1] - a[1]).forEach(item => {
-            const detailItem = document.createElement('div');
-            detailItem.className = 'detail-item';
-            detailItem.innerHTML = `
-                <span>${Array.isArray(item) ? item[0] : item}</span>
-                <span>${Array.isArray(item) ? item[1] : ''}</span>
-            `;
-            detailsElement.appendChild(detailItem);
-        });
-    }
+    // function populateDetails(elementId, data) {
+    //     const detailsElement = document.getElementById(elementId);
+    //     detailsElement.innerHTML = '';
+    //     data.sort((a, b) => b[1] - a[1]).forEach(item => {
+    //         const detailItem = document.createElement('div');
+    //         detailItem.className = 'detail-item';
+    //         detailItem.innerHTML = `
+    //             <span>${Array.isArray(item) ? item[0] : item}</span>
+    //             <span>${Array.isArray(item) ? item[1] : ''}</span>
+    //         `;
+    //         detailsElement.appendChild(detailItem);
+    //     });
+    // }
 }
 
 

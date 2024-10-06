@@ -109,7 +109,9 @@ $(document).ready(function () {
             <canvas id="chartCanvas"></canvas>
         </div>
         <div id="totalkm" class="center">
-            <span class="total-label">Distance -&nbsp;</span>
+            <span class="total-label">Flights -&nbsp;</span>
+            <span class="total-number" id="totalFlights">0</span>
+            <span class="total-label"><br>Distance -&nbsp;</span>
             <span class="total-number" id="totalDistance">0 km</span>
             <span class="total-label"><br>Flight Time -&nbsp;</span>
             <span class="total-time" id="totalTime"> 0 hours</span>
@@ -119,10 +121,10 @@ $(document).ready(function () {
             <h2> Flight Stats </h2>
 
             <div class="statsContent" id="statsContent">
-                <div class="stat-row stat-row-flights" onclick="toggleDetails('flights')">
+                <!-- <div class="stat-row stat-row-flights" onclick="toggleDetails('flights')">
                     <span class="stat-label" style="font-size: 20px;">✈️&nbsp;Flights</span>
                     <span class="stat-number" id="flightsCount"></span>
-                </div>
+                </div> -->
             
                 <div class="stat-row stat-row-country" onclick="toggleDetails('country')">
                     <span class="stat-label" style="font-size: 20px;">🌍&nbsp;Countries</span>
