@@ -308,7 +308,12 @@ const continents = {
     'Northern Cyprus': 'Europe', 'Western Sahara': 'Africa', 'Somaliland': 'Africa', 'Transnistria': 'Europe',
     'Nagorno-Karabakh': 'Europe', 'Cook Islands': 'Oceania', 'Niue': 'Oceania', 'Tokelau': 'Oceania', 'Sahrawi Arab Democratic Republic': 'Africa'
 };
-
+airlinefamily_flag = {
+    'OneWorld': 'oneworld.png', 'SkyTeam': 'skyteam.png', 'StarAlliance': 'staralliance.png'
+};
+aircraftfamily_flag = {
+    'Airbus': 'airbus.png', 'Boeing': 'boeing.png', 'Embraer': 'embraer.png', 'Bombardier': 'bombardier.png', 'ATR': 'atr.png'
+};
 
 function updateStats(selectedFlights, monthFilter) {
     const totalFlights = selectedFlights.length;
@@ -542,7 +547,8 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
           .sort(([a], [b]) => a.localeCompare(b))
           .forEach(([group, items]) => {
             const groupHeader = document.createElement('h3');
-            groupHeader.innerText = group;
+            // add map if country use flag else just group
+            groupHeader.innerText = group + (countryFlags[group] ? ` ${countryFlags[group]}` : '');
             section.appendChild(groupHeader);
       
             const bar = document.createElement('div');

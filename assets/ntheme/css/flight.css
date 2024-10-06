@@ -98,19 +98,35 @@
     gap: 20px; /* Space between items */
 }
 
+/* Add a box and hover effect to the clickable aircraft list */
 .stat-row {
     flex: 1 1 15%; /* Adjusts based on screen width */
     text-align: center;
     cursor: pointer;
     padding: 15px;
-    transition: background-color 0.3s ease;
-    border-bottom: 1px solid var(--separator-color);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-left: 4px solid var(--primary-color); /* Left border instead of all around */
+    border-radius: 0; /* Remove border radius */
+    margin-bottom: 10px; /* Space between the boxes */
+    background-color: var(--card-background); /* White background to stand out */
 }
 
 .stat-row:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--secondary-color); /* Highlight on hover */
+    color: white; /* Change text color on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* Subtle shadow effect on hover */
 }
 
+.stat-details.show {
+    display: block;
+    margin-top: 10px;
+    padding: 15px;
+    border-left: 4px solid var(--primary-color); /* Left border instead of all around */
+    border-radius: 0; /* Remove border radius */
+    background-color: var(--card-background);
+}
+
+/* Rest of the CSS remains unchanged */
 .stat-icon {
     font-size: 48px;
     display: block;
@@ -132,14 +148,9 @@
     padding: 10px 15px;
     background-color: var(--item-background);
     width: 100%;
-    border-top: 1px solid var(--separator-color);
+    border-top: none; /* Remove top border */
 }
 
-.stat-details.show {
-    display: block;
-    margin-top: 10px;
-    text-align: left;
-}
 .detail-item {
     display: flex;
     justify-content: space-between;
