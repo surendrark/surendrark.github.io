@@ -206,7 +206,7 @@ function updateMap() {
         },
         paint: {
             // dark brown
-            'line-color': '#3498db',
+            'line-color': '#e67e22',
             'line-width': 2
         }
     });
