@@ -250,8 +250,10 @@
     font-weight: bold;
     color: var(--airlines-color);
     border-bottom: 1px solid var(--separator-color);
-    background-color: var(--background-light);
+    background-color: white;
     border-radius: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 .item-container {
@@ -277,14 +279,18 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    margin-top: 20px; /* Increase spacing between sections */
+    padding-top: 20px;
     max-height: 130px;
+    background-color: white;
+    border-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
 .innercontainer .left {
     display: inline-block;
-    margin-left: 100px; /* Add some margin to the left */
-    gap: 15px; /* Slightly more gap between items */
+    margin-left: 50px; /* Add some margin to the left */
+    gap: 10px; /* Slightly more gap between items */
     align-items: center;
 }
 
