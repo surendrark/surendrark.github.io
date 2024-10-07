@@ -3,46 +3,21 @@ let flights = [];
 let airlinecode = {};
 let aircraftcode = {};
 function initMap() {
-  return new Promise((resolve) => {
-    map2 = new mapboxgl.Map({
-      accessToken:
-        "pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJja20xMm5oYTIwNDVuMnZwaTRmenlkMWVhIn0.IEP9jryaKL3Lxk_MQe4Rbg",
-      container: "map2",
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: [0, 40],
-      zoom: 1,
-      projection: "mercator", // Start with 2D (default Mercator projection)
-    });
+    return new Promise((resolve) => {
+        map2 = new mapboxgl.Map({
+            accessToken: 'pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJja20xMm5oYTIwNDVuMnZwaTRmenlkMWVhIn0.IEP9jryaKL3Lxk_MQe4Rbg',
+            container: 'map2',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [0, 40],
+            zoom: 1,
+        });
 
-    map2.on("load", () => {
-      map2.resize();
-      resolve();
+        map2.on('load', () => {
+            map2.resize();
+            resolve();
+        });
     });
-
-    // Event listener for switching to 3D (Globe view)
-    document.getElementById("globeView").addEventListener("click", () => {
-      map2.setProjection("globe");
-      toggleIcons("globe"); // Show map icon, hide globe icon
-    });
-
-    // Event listener for switching to 2D (Flat map view)
-    document.getElementById("mapView").addEventListener("click", () => {
-      map2.setProjection("mercator");
-      toggleIcons("map"); // Show globe icon, hide map icon
-    });
-  });
 }
-
-function toggleIcons(activeView) {
-  if (activeView === "globe") {
-    document.getElementById("globeView").style.display = "none";
-    document.getElementById("mapView").style.display = "block";
-  } else {
-    document.getElementById("globeView").style.display = "block";
-    document.getElementById("mapView").style.display = "none";
-  }
-}
-
 let yearlist = [];
 function loadFlights() {
     fetch('assets/files/flights.csv')
