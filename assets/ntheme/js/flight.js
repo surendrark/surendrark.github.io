@@ -21,13 +21,13 @@ function initMap() {
 
     // Event listener for switching to 3D (Globe view)
     document.getElementById("globeView").addEventListener("click", () => {
-      map2.setProjection("globe");
+      map2.projection = "globe"; // Change projection to globe
       toggleIcons("globe"); // Show map icon, hide globe icon
     });
 
     // Event listener for switching to 2D (Flat map view)
     document.getElementById("mapView").addEventListener("click", () => {
-      map2.setProjection("mercator");
+      map2.projection = "mercator"; // Change projection to Mercator
       toggleIcons("map"); // Show globe icon, hide map icon
     });
   });
