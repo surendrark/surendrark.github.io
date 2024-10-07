@@ -18,30 +18,10 @@ function initMap() {
       map2.resize();
       resolve();
     });
-
-    // Event listener for switching to 3D (Globe view)
-    document.getElementById("globeView").addEventListener("click", () => {
-      map2.projection = "globe"; // Change projection to globe
-      toggleIcons("globe"); // Show map icon, hide globe icon
-    });
-
-    // Event listener for switching to 2D (Flat map view)
-    document.getElementById("mapView").addEventListener("click", () => {
-      map2.projection = "mercator"; // Change projection to Mercator
-      toggleIcons("map"); // Show globe icon, hide map icon
-    });
   });
 }
 
-function toggleIcons(activeView) {
-  if (activeView === "globe") {
-    document.getElementById("globeView").style.display = "none";
-    document.getElementById("mapView").style.display = "block";
-  } else {
-    document.getElementById("globeView").style.display = "block";
-    document.getElementById("mapView").style.display = "none";
-  }
-}
+
 
 let yearlist = [];
 function loadFlights() {
