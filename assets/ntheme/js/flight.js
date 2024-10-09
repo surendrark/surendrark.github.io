@@ -3,21 +3,26 @@ let flights = [];
 let airlinecode = {};
 let aircraftcode = {};
 function initMap() {
-    return new Promise((resolve) => {
-        map2 = new mapboxgl.Map({
-            accessToken: 'pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJja20xMm5oYTIwNDVuMnZwaTRmenlkMWVhIn0.IEP9jryaKL3Lxk_MQe4Rbg',
-            container: 'map2',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [0, 40],
-            zoom: 1,
-        });
-
-        map2.on('load', () => {
-            map2.resize();
-            resolve();
-        });
+  return new Promise((resolve) => {
+    map2 = new mapboxgl.Map({
+      accessToken:
+        "pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJja20xMm5oYTIwNDVuMnZwaTRmenlkMWVhIn0.IEP9jryaKL3Lxk_MQe4Rbg",
+      container: "map2",
+      style: "mapbox://styles/mapbox/streets-v11",
+      center: [0, 40],
+      zoom: 1,
+      projection: "mercator", // Start with 2D (default Mercator projection)
     });
+
+    map2.on("load", () => {
+      map2.resize();
+      resolve();
+    });
+  });
 }
+
+
+
 let yearlist = [];
 function loadFlights() {
     fetch('assets/files/flights.csv')
@@ -313,6 +318,10 @@ const continents = {
     'Nagorno-Karabakh': 'Europe', 'Cook Islands': 'Oceania', 'Niue': 'Oceania', 'Tokelau': 'Oceania', 'Sahrawi Arab Democratic Republic': 'Africa'
 };
 
+const countiresincontinent = {
+    'Asia': 48, 'Europe': 44, 'Africa': 54, 'North America': 23, 'South America': 12, 'Australia': 1, 'Oceania': 14};
+
+
 
 function updateStats(selectedFlights, monthFilter) {
     const totalFlights = selectedFlights.length;
@@ -352,8 +361,8 @@ function updateStats(selectedFlights, monthFilter) {
         yearmonth[flight.year][flight.month] += 1;
     });
     // Find the most flown aircraft and airline
-    const mostFlownAircraft = Object.keys(aircraftCounts).reduce((a, b) => aircraftCounts[a] > aircraftCounts[b] ? a : b);
-    const mostFlownAirline = Object.keys(airlineCounts).reduce((a, b) => airlineCounts[a] > airlineCounts[b] ? a : b);
+    const mostFlownAircraft = Object.keys(aircraftCounts).reduce((a, b) => aircraftCounts[a] > aircraftCounts[b] ? a : b, 0);
+    const mostFlownAirline = Object.keys(airlineCounts).reduce((a, b) => airlineCounts[a] > airlineCounts[b] ? a : b, 0);
 
 
     // Set the image src attributes for the most flown aircraft and airline
@@ -388,7 +397,6 @@ function drawChartForYears(yearmonthData, yearlist) {
 }
 
 function drawChartForMonths(monthData, monthFilter) {
-    const allMonths = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     
     if (!monthData) {
@@ -720,54 +728,93 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
     }
     
 
-    function populateDetailscon(sectionId, details) {
-        const section = document.getElementById(sectionId);
-        section.innerHTML = ''; // Clear existing content
-    
-        Object.entries(countryCounts).forEach(([continent, countries]) => {
-            // Create continent header
-            const continentHeader = document.createElement('h3');
-            continentHeader.innerText = `${continent}`;
-            section.appendChild(continentHeader);
-    
-            // Create a bar below the continent name
-            const bar = document.createElement('div');
-            bar.classList.add('continent-bar');  // Styling for the bar will be done via CSS
-            section.appendChild(bar);
-    
-            // List countries under the continent
-            countries.forEach(([country, count]) => {
-                const detailItem = document.createElement('div');
-                detailItem.className = 'detail-item';
-    
-                // Apply styles to display items in a row with 10 items per row
-                detailItem.style.display = 'inline-block';
-                detailItem.style.textAlign = 'center';
-                detailItem.style.width = '15%';
-    
-                // Create a span to hold the flag (since it's an emoji, not an image)
-                const flagSpan = document.createElement('span');
-                flagSpan.innerText = countryFlags[country]; // Use the flag emoji
-                flagSpan.style.fontSize = '4em'; // Adjust the size of the flag as needed
-    
-                // Create a div to hold the country name and count below the flag
-                const nameAndCountDiv = document.createElement('div');
-                nameAndCountDiv.innerHTML = `
-                    <span>${country} - </span>
-                    <span style="font-weight: bold;"> ${(count/2).toFixed(0)}</span>
-                `;
-                nameAndCountDiv.style.display = 'block'; // Display name and count below the flag
-    
-                // Append the flag and nameAndCount div to the detail item
-                detailItem.appendChild(flagSpan);
-                detailItem.appendChild(nameAndCountDiv);
-    
-                section.appendChild(detailItem);
-            });
-    
-            section.appendChild(document.createElement('hr')); // Add separator after each continent
-        });
-    }
+function populateDetailscon(sectionId, details) {
+  const section = document.getElementById(sectionId);
+  section.innerHTML = ""; // Clear existing content
+
+  Object.entries(countryCounts).forEach(([continent, countries]) => {
+    // Create a container for the continent header and pie chart
+    const headerContainer = document.createElement("div");
+    headerContainer.classList.add("header-container");
+
+    // Create continent header
+    const continentHeader = document.createElement("h3");
+    continentHeader.classList.add("continent-header");
+    continentHeader.innerText = `${continent}`;
+
+    // Create a small canvas for the pie chart and append it to the header container
+    const canvas = document.createElement("canvas");
+    canvas.id = `chart-${continent}`;
+    canvas.classList.add("small-coverage-chart");
+    headerContainer.appendChild(continentHeader);
+    headerContainer.appendChild(canvas);
+
+    // Add the header container (with chart) to the section
+    section.appendChild(headerContainer);
+
+    // Calculate the percentage of coverage
+    const coveragePercentage = (
+      (countries.length / countiresincontinent[continent]) *
+      100
+    ).toFixed(0);
+
+    // Create the small chart for the current continent
+    const ctx = canvas.getContext("2d");
+    new Chart(ctx, {
+      type: "pie",
+      data: {
+        datasets: [
+          {
+            data: [coveragePercentage, 100 - coveragePercentage],
+            backgroundColor: ["#4CAF50", "#f44336"], // Green for covered, red for remaining
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+      },
+    });
+
+    // List countries under the continent
+    countries.forEach(([country, count]) => {
+      const detailItem = document.createElement("div");
+      detailItem.className = "detail-item";
+
+      // Apply styles to display items in a row with 10 items per row
+      detailItem.style.display = "inline-block";
+      detailItem.style.textAlign = "center";
+      detailItem.style.width = "20%";
+
+      // Create a span to hold the flag (since it's an emoji, not an image)
+      const flagSpan = document.createElement("span");
+      flagSpan.innerText = countryFlags[country]; // Use the flag emoji
+      flagSpan.style.fontSize = "4em"; // Adjust the size of the flag as needed
+
+      // Create a div to hold the country name and count below the flag
+      const nameAndCountDiv = document.createElement("div");
+      nameAndCountDiv.innerHTML = `
+                <span>${country} - </span>
+                <span style="font-weight: bold;"> ${(count / 2).toFixed(
+                  0
+                )}</span>
+            `;
+      nameAndCountDiv.style.display = "block"; // Display name and count below the flag
+
+      // Append the flag and nameAndCount div to the detail item
+      detailItem.appendChild(flagSpan);
+      detailItem.appendChild(nameAndCountDiv);
+
+      section.appendChild(detailItem);
+    });
+
+    section.appendChild(document.createElement("hr")); // Add separator after each continent
+  });
+}
+
 
     // function populateDetails(elementId, data) {
     //     const detailsElement = document.getElementById(elementId);

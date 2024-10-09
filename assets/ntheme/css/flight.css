@@ -3,7 +3,7 @@
             --secondary-color: #0099e0;
             --background-color: #f0f4f8;
             --text-color: #2c3e50;
-            --card-background: #efeded;
+            --card-background: #ffffff;
             --input-background: #e8f0fe;
             --shadow-color: rgba(0, 0, 0, 0.1);
 
@@ -32,10 +32,14 @@
 
         .container h2 {
             color: var(--secondary-color);
-            font-size: 1.8em;
+            font-size: 2em;
             border-bottom: 2px solid var(--secondary-color);
         }
-
+        h3{
+            color: var(--text-color);
+            font-size: 1.5em;
+            min-height: 50px;
+        }
         #map2 {
             width: 100%;
             height: 800px; /* This sets the height to 80% of the viewport height */
@@ -250,8 +254,10 @@
     font-weight: bold;
     color: var(--airlines-color);
     border-bottom: 1px solid var(--separator-color);
-    background-color: var(--background-light);
+    background-color: white;
     border-radius: 10px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 .item-container {
@@ -277,14 +283,18 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    margin-top: 20px; /* Increase spacing between sections */
+    padding-top: 20px;
     max-height: 130px;
+    background-color: white;
+    border-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
 .innercontainer .left {
     display: inline-block;
-    margin-left: 100px; /* Add some margin to the left */
-    gap: 15px; /* Slightly more gap between items */
+    margin-left: 50px; /* Add some margin to the left */
+    gap: 10px; /* Slightly more gap between items */
     align-items: center;
 }
 
@@ -352,4 +362,20 @@ select {
 
 .mfimg:hover {
     transform: scale(1.05); /* Slightly enlarge on hover */
+}
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.continent-header {
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.small-coverage-chart {
+    max-width: 50px!important;
+    max-height: 50px!important;
 }
