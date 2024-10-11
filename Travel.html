@@ -360,53 +360,53 @@
                         + '"/>').css("fontSize", "15px");
                 }
             });
-        // Define the latitude and longitude for overlay
-        var overlayLat = -58;
-        var overlayLon = 75;
+        // // Define the latitude and longitude for overlay
+        // var overlayLat = -58;
+        // var overlayLon = 75;
     
-        // Convert latitude and longitude to pixel coordinates
-        var pixelX = map.latLngToPoint(overlayLat, overlayLon).x;
-        var pixelY = map.latLngToPoint(overlayLat, overlayLon).y;
+        // // Convert latitude and longitude to pixel coordinates
+        // var pixelX = map.latLngToPoint(overlayLat, overlayLon).x;
+        // var pixelY = map.latLngToPoint(overlayLat, overlayLon).y;
     
-        // Adding the text "countries visited - 14/193" at the specified pixel coordinates
-        var countryInfoText = '';
-        var count = 0;
+        // // Adding the text "countries visited - 14/193" at the specified pixel coordinates
+        // var countryInfoText = '';
+        // var count = 0;
     
-        for (var code in countries) {
-            if (countries.hasOwnProperty(code)) {
-                var flagClass = 'flag-icon-' + code.toLowerCase();
-                var flagElement = '<span class="flag-icon ' + flagClass + '" style="color:' + countries[code] + '"></span>';
-                countryInfoText += flagElement;
+        // for (var code in countries) {
+        //     if (countries.hasOwnProperty(code)) {
+        //         var flagClass = 'flag-icon-' + code.toLowerCase();
+        //         var flagElement = '<span class="flag-icon ' + flagClass + '" style="color:' + countries[code] + '"></span>';
+        //         countryInfoText += flagElement;
     
-                count++;
-                if (count % 10 === 0) {
-                    countryInfoText += '<br>'; // Add a line break after 5 flags
-                } else {
-                    countryInfoText += '&nbsp;&nbsp;'; // Add spacing between flags in the same column
-                }
-            }
-        }
+        //         count++;
+        //         if (count % 10 === 0) {
+        //             countryInfoText += '<br>'; // Add a line break after 5 flags
+        //         } else {
+        //             countryInfoText += '&nbsp;&nbsp;'; // Add spacing between flags in the same column
+        //         }
+        //     }
+        // }
     
-        var visitedText = $('<div>')
-            .addClass('visited-count')
-            .html('<div>Countries - '+count+' / 193</div>' + countryInfoText)
-            .css({
-                position: 'absolute',
-                left: pixelX + 'px',
-                top: pixelY + 'px',
-                fontFamily: 'Arial, sans-serif',
-                fontSize: '12px',
-                fontWeight: 'bold',
-                color: '#FFFFFF',
-                backgroundColor: '#a19385',
-                padding: '5px 10px',
-                borderRadius: '5px',
-                boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
-                zIndex: 1000,
-                whiteSpace: 'pre-line'
-            });
+        // var visitedText = $('<div>')
+        //     .addClass('visited-count')
+        //     .html('<div>Countries - '+count+' / 193</div>' + countryInfoText)
+        //     .css({
+        //         position: 'absolute',
+        //         left: pixelX + 'px',
+        //         top: pixelY + 'px',
+        //         fontFamily: 'Arial, sans-serif',
+        //         fontSize: '12px',
+        //         fontWeight: 'bold',
+        //         color: '#FFFFFF',
+        //         backgroundColor: '#a19385',
+        //         padding: '5px 10px',
+        //         borderRadius: '5px',
+        //         boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
+        //         zIndex: 1000,
+        //         whiteSpace: 'pre-line'
+        //     });
     
-        $('#vmap').append(visitedText);
+        // $('#vmap').append(visitedText);
         });
     
         </script>
