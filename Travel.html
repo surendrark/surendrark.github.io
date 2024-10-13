@@ -102,8 +102,7 @@
             <span class="total-number" id="totalDistance">0 km</span>
         </div>
         </div>
-            <!-- <h2> Flight Stats </h2> -->
-
+            <!-- <div class="separator horizontal"></div> -->
             <div class="statsContent" id="statsContent">
                 <div class="stat-row stat-row-stats" onclick="toggleDetails('stats')">
                     <span class="stat-label" style="font-size: 20px;"><img src="assets/aircraft/stats.png" style="width: 35px;">&nbsp;Stats</span>
@@ -128,24 +127,27 @@
                     <span class="stat-label" style="font-size: 20px;"><img src="assets/aircraft/aircraft.png" style="width: 35px;">&nbsp;Aircraft</span>
                     <span class="stat-number" id="aircraftCount"></span>
                 </div>
-            
+                
                 <div class="stat-details" id="statsDetails">
                     <div id="mostflown" class="mostflown">
                         <div class="item-container">
-                            <span class="total-label">Cabin class</span><br>
+                            <h3>Cabin</h3><br>
                             <div class="item-container2" id="cabinclass">
                             </div>
                         </div>
+                        <div class="separator vertical"></div>
                         <div class="item-container">
-                            <span class="total-label">Most Flown Aircraft</span>
-                            <img class="mfimg" id="mostaircraft" alt="aircraft" style="max-width: 400px;">
+                            <h3> Most Flown Aircraft</h3>
+                            <img class="mfimg" id="mostaircraft" alt="aircraft" style="max-width: 300px;">
                             <span id="mostAircraftName" class="item-name"></span>
-                            <span class="total-label">Most Flown Airline</span>
+                            <div class="separator horizontal"></div>
+                            <h3>Most Flown Airline</h3>
                             <img class="mfimg" id="mostairline" alt="airline" style="max-width: 100px;">
                             <span id="mostAirlineName" class="item-name"></span>
                         </div>
+                        <div class="separator vertical"></div>
                         <div class="item-container">
-                            <span class="total-label">Seat</span>
+                            <h3>Seat</h3>
                             <div class="item-container2" id="seattyp">
                             </div>
                         </div>

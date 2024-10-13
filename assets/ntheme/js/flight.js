@@ -419,16 +419,17 @@ function updateStats(selectedFlights, monthFilter) {
     // Find the most flown aircraft family and airline
     const mostFlownAircraft = Object.keys(aircraftCounts).reduce((a, b) => aircraftCounts[a] > aircraftCounts[b] ? a : b, 0);
     const mostFlownAirline = Object.keys(airlineCounts).reduce((a, b) => airlineCounts[a] > airlineCounts[b] ? a : b, 0);
-
+    const mostaircraftcount = aircraftCounts[mostFlownAircraft];
+    const mostairlinecount = airlineCounts[mostFlownAirline];
     const mostAircraftImg = document.getElementById('mostaircraft');
     const mostAirlineImg = document.getElementById('mostairline');
     // repace AXXX with AirBus XXX, BXXX with Boeing XXX, ATRXX with ATR XX, CRJXXX with Bombardier CRJ-XXX, EXXX with Embraer EJ-XXX
     const aircraftcode = {'A': 'Airbus-', 'B': 'Boeing-', 'ATR': 'ATR-', 'CRJ': 'Bombardier CRJ-', 'E': 'Embraer E-'};
     mostAircraftImg.src = `assets/aircraft/${mostFlownAircraft}.webp`;
-    mostAircraftName.textContent = mostFlownAircraft.replace(/ATR|A|B|CRJ|E/g, m => aircraftcode[m]);
+    mostAircraftName.textContent = `${mostFlownAircraft.replace(/ATR|A|B|CRJ|E/g, m => aircraftcode[m])} ✈︎ ${mostaircraftcount}`;
 
     mostAirlineImg.src = `assets/airlinelogo/${airlinecode[mostFlownAirline]}.webp`;
-    mostAirlineName.textContent = mostFlownAirline;
+    mostAirlineName.textContent = `${mostFlownAirline} ✈ ${mostairlinecount}`;
 
     
     const years = Object.keys(yearmonth).map(year => parseInt(year));
@@ -617,7 +618,7 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
     populateAircraftDetails('aircraftDetails', aircraftFamilies);
     populateAirlineDetails('airlinesDetails', airlineFamilies);
     populateGroupedDetails('airportsDetails', airportCountries);
-    populateDetailscon('countryDetails', Object.entries(countryCounts));
+    populateDetailscon('countryDetails');
 
     function populateAircraftDetails(sectionId, aircraftFamilies) {
         const section = document.getElementById(sectionId);
@@ -778,7 +779,7 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
     }
     
 
-function populateDetailscon(sectionId, details) {
+function populateDetailscon(sectionId) {
   const section = document.getElementById(sectionId);
   section.innerHTML = ""; // Clear existing content
 
@@ -811,23 +812,37 @@ function populateDetailscon(sectionId, details) {
     // Create the small chart for the current continent
     const ctx = canvas.getContext("2d");
     new Chart(ctx, {
-      type: "pie",
-      data: {
-        datasets: [
-          {
-            data: [coveragePercentage, 100 - coveragePercentage],
-            backgroundColor: ["#4CAF50", "#f44336"], // Green for covered, red for remaining
-          },
-        ],
-      },
-      options: {
-        plugins: {
-          legend: {
-            display: false,
+        type: "pie",
+        data: {
+          datasets: [
+            {
+              data: [coveragePercentage, 100 - coveragePercentage],
+              backgroundColor: ["#4CAF50", "#f44336"], // Green for covered, red for remaining
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  let label = context.label || '';
+                  if (label) {
+                    label += ': ';
+                  }
+                  if (context.parsed !== null) {
+                    label += context.parsed + '%';
+                  }
+                  return label;
+                }
+              }
+            }
           },
         },
-      },
-    });
+      });
 
     // List countries under the continent
     countries.forEach(([country, count]) => {
@@ -864,21 +879,6 @@ function populateDetailscon(sectionId, details) {
     section.appendChild(document.createElement("hr")); // Add separator after each continent
   });
 }
-
-
-    // function populateDetails(elementId, data) {
-    //     const detailsElement = document.getElementById(elementId);
-    //     detailsElement.innerHTML = '';
-    //     data.sort((a, b) => b[1] - a[1]).forEach(item => {
-    //         const detailItem = document.createElement('div');
-    //         detailItem.className = 'detail-item';
-    //         detailItem.innerHTML = `
-    //             <span>${Array.isArray(item) ? item[0] : item}</span>
-    //             <span>${Array.isArray(item) ? item[1] : ''}</span>
-    //         `;
-    //         detailsElement.appendChild(detailItem);
-    //     });
-    // }
 }
 
 
