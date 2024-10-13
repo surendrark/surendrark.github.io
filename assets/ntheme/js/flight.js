@@ -40,13 +40,13 @@ function loadFlights() {
 
             flights = rows.map(row => {
                 const [
-                cabin_class, seat, airline_code, airline, flight_number,
+                cabin_class, seat, seat_typ, airline_code, airline, flight_number,
                 aircraft, aircraft_type, dep_airport, dep_airport_name,
                 arr_airport, arr_airport_name, month, year, time_in_air,
                 dep_country, arr_country, aircraft_family, aircraft_mfg, airline_family
             ] = row.split(',');
             return {
-                cabin_class, seat, airline_code, airline, flight_number,
+                cabin_class, seat, seat_typ, airline_code, airline, flight_number,
                 aircraft, aircraft_type, dep_airport, dep_airport_name,
                 arr_airport, arr_airport_name, month, year, time_in_air,
                 dep_country, arr_country, aircraft_family, aircraft_mfg, airline_family
@@ -67,6 +67,7 @@ function loadFlights() {
         });
 }
 
+toggleDetails('stats');
 function toggleDetails(selected) {
     const details = document.querySelectorAll('.stat-details');
     
@@ -325,6 +326,12 @@ const countiresincontinent = {
 
 function updateStats(selectedFlights, monthFilter) {
     const totalFlights = selectedFlights.length;
+    const bussinessClass = selectedFlights.filter(f => f.cabin_class === 'Business').length;
+    const economyClass = selectedFlights.filter(f => f.cabin_class === 'Economy').length;
+    const premiumClass = selectedFlights.filter(f => f.cabin_class === 'Premium Economy').length;
+    const winseat = selectedFlights.filter(f => f.seat_typ === 'win').length;
+    const aislseat = selectedFlights.filter(f => f.seat_typ === 'aisle').length;
+    const middseat = selectedFlights.filter(f => f.seat_typ === 'mid').length;
     const totalAirports = [...new Set(selectedFlights.flatMap(f => [f.dep_airport_name, f.arr_airport_name]))].length;
     const totalAirlines = [...new Set(selectedFlights.map(f => f.airline))].length;
     const totalAircraft = [...new Set(selectedFlights.map(f => f.aircraft_type))].length;
@@ -336,6 +343,13 @@ function updateStats(selectedFlights, monthFilter) {
     document.getElementById('airlinesCount').textContent = totalAirlines;
     document.getElementById('aircraftCount').textContent = totalAircraft;
     document.getElementById('countryCount').textContent = totalCountries;
+
+    document.getElementById('bclass').textContent = `Business: ${bussinessClass}`;
+    document.getElementById('eclass').textContent = `Economy: ${economyClass}`;
+    document.getElementById('pclass').textContent = `Premium: ${premiumClass}`;
+    document.getElementById('window').textContent = `Window: ${winseat}`;
+    document.getElementById('aisle').textContent = `Aisle: ${aislseat}`;
+    document.getElementById('middle').textContent = `Middle: ${middseat}`;
 
     const airportCounts = {};
     const airlineCounts = {};

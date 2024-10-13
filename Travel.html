@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="assets/devicon-master/devicon.min.css">
   <link rel="stylesheet" href="assets/stoolsicons/stools.css">  
   <link href='assets/jvmap/jquery-jvectormap-2.0.3.css' media='screen' rel='stylesheet' type='text/css'/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css"> -->
   <link href='https://api.mapbox.com/mapbox-gl-js/v3.0.0/mapbox-gl.css' rel='stylesheet' />
 
   <!-- Animate Css -->
@@ -68,6 +68,7 @@
         <h1>My AirTravel Log</h1>
         <div id="map2" style="width: 100%; height: 600px; position: relative;">
         </div>
+                <div id="statsBox">
         <div class="innercontainer">
         <div class="left" id="filterControls">
             <select id="yearFilter" onchange="updateMap()">
@@ -89,62 +90,81 @@
                 <option value="12">December</option>
             </select>
         </div>
-
+        <div class="right">
+            <canvas id="chartCanvas"></canvas>
+        </div>
         <div id="totalkm" class="center">
-            <span class="total-label">Flights -&nbsp;</span>
+            <img src="assets/aircraft/flights.png" style="width: 50px;">
             <span class="total-number" id="totalFlights">0</span>
-            <span class="total-label">✈︎ Distance -&nbsp;</span>
+            <img src="assets/aircraft/time.png" style="width: 50px;">
+            <span class="total-time" id="totalTime"> 0 hours</span><br>
+            <img src="assets/aircraft/dist.png" style="width: 50px;">
             <span class="total-number" id="totalDistance">0 km</span>
-            <span class="total-label">✈︎ Flight Time -&nbsp;</span>
-            <span class="total-time" id="totalTime"> 0 hours</span>
         </div>
         </div>
-        <div id="mostflown" class="mostflown">
-            <div class="right">
-                <canvas id="chartCanvas"></canvas>
-            </div>
-            <div class="item-container">
-                <span class="total-label">Most Flown Aircraft</span>
-                <img class="mfimg" id="mostaircraft" alt="aircraft" style="width: 300px;">
-                <span id="mostAircraftName" class="item-name"></span> <!-- Aircraft name below the image -->
-            </div>
-        
-            <div class="item-container">
-                <span class="total-label">Most Flown Airline</span>
-                <img class="mfimg" id="mostairline" alt="airline" style="width: 80px;">
-                <span id="mostAirlineName" class="item-name"></span> <!-- Airline name below the image -->
-            </div>
-        </div>
-        <div id="statsBox">
-            <h2> Flight Stats </h2>
+            <!-- <h2> Flight Stats </h2> -->
 
             <div class="statsContent" id="statsContent">
-                <!-- <div class="stat-row stat-row-flights" onclick="toggleDetails('flights')">
-                    <span class="stat-label" style="font-size: 20px;">✈️&nbsp;Flights</span>
-                    <span class="stat-number" id="flightsCount"></span>
-                </div> -->
+                <div class="stat-row stat-row-stats" onclick="toggleDetails('stats')">
+                    <span class="stat-label" style="font-size: 20px;"><img src="assets/aircraft/stats.png" style="width: 35px;">&nbsp;Stats</span>
+                </div>
             
                 <div class="stat-row stat-row-country" onclick="toggleDetails('country')">
-                    <span class="stat-label" style="font-size: 20px;">🌍&nbsp;Countries</span>
+                    <span class="stat-label" style="font-size: 20px;"><img src="assets/aircraft/country.png" style="width: 35px;">&nbsp;Countries</span>
                     <span class="stat-number" id="countryCount"></span>
                 </div>
             
                 <div class="stat-row stat-row-airports" onclick="toggleDetails('airports')">
-                    <span class="stat-label" style="font-size: 20px;">🏢&nbsp;Airports</span>
+                    <span class="stat-label" style="font-size: 20px;"><img src="assets/aircraft/airport.png" style="width: 35px;">&nbsp;Airports</span>
                     <span class="stat-number" id="airportsCount"></span>
                 </div>
             
                 <div class="stat-row stat-row-airlines" onclick="toggleDetails('airlines')">
-                    <span class="stat-label" style="font-size: 20px;">🛫&nbsp;Airlines</span>
+                    <span class="stat-label" style="font-size: 20px;"><img src="assets/aircraft/airlines.png" style="width: 35px;">&nbsp;Airlines</span>
                     <span class="stat-number" id="airlinesCount"></span>
                 </div>
             
                 <div class="stat-row stat-row-aircraft" onclick="toggleDetails('aircraft')">
-                    <span class="stat-label" style="font-size: 20px;">🛩️&nbsp;Aircraft</span>
+                    <span class="stat-label" style="font-size: 20px;"><img src="assets/aircraft/aircraft.png" style="width: 35px;">&nbsp;Aircraft</span>
                     <span class="stat-number" id="aircraftCount"></span>
                 </div>
             
-                <div class="stat-details" id="flightsDetails"></div>
+                <div class="stat-details" id="statsDetails">
+                    <div id="mostflown" class="mostflown">
+                        <div class="item-container">
+                            <span class="total-label">Cabin class</span><br>
+                            <div class="item-container2">
+                            <img src="assets/aircraft/buss.png" style="max-width: 80px;"  alt="business">
+                            <span class="item-name" id="bclass">0</span> &nbsp;
+                            <img src="assets/aircraft/prem.png" style="max-width: 80px;" alt="premium economy">
+                            <span class="item-name" id="pclass">0</span> &nbsp;
+                            <img src="assets/aircraft/econ.png" style="max-width: 80px;" alt="economy">
+                            <span class="item-name" id="eclass">0</span>
+                            </div>
+                        </div>
+                        <div class="item-container">
+                            <span class="total-label">Most Flown Aircraft</span>
+                            <img class="mfimg" id="mostaircraft" alt="aircraft" style="max-width: 300px;">
+                            <span id="mostAircraftName" class="item-name"></span>
+                        </div>
+                        <div class="item-container">
+                            <span class="total-label">Most Flown Airline</span>
+                            <img class="mfimg" id="mostairline" alt="airline" style="max-width: 80px;">
+                            <span id="mostAirlineName" class="item-name"></span>
+                        </div>
+                        <div class="item-container">
+                            <span class="total-label">Seat</span>
+                            <div class="item-container2">
+                            <img src="assets/aircraft/win.png" style="max-width: 80px;" alt="window">
+                            <span class="item-name" id="window">0</span> &nbsp;
+                            <img src="assets/aircraft/mid.png" style="max-width: 80px;" alt="middle">
+                            <span class="item-name" id="middle">0</span>
+                            <img src="assets/aircraft/aisle.png" style="max-width: 80px;" alt="aisle">
+                            <span class="item-name" id="aisle">0</span> &nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="stat-details" id="countryDetails"></div>
                 <div class="stat-details" id="airportsDetails"></div>
                 <div class="stat-details" id="airlinesDetails"></div>

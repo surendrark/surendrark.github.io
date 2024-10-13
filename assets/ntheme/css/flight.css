@@ -20,21 +20,22 @@
             max-width: 1100px;
             margin: 0 auto;
             padding:5px;
+            background-color: white;
         }
 
         h1 {
             text-align: center;
             color: var(--primary-color);
-            font-size: 3em;
+            font-size: 2em;
             letter-spacing: 2px;
             padding-top: 40px;
         }
 
-        .container h2 {
+        /* .container h2 {
             color: var(--secondary-color);
             font-size: 2em;
             border-bottom: 2px solid var(--secondary-color);
-        }
+        } */
         h3{
             color: var(--text-color);
             font-size: 1.5em;
@@ -153,11 +154,11 @@
 
 
 /* Add border colors for each item */
-.stat-row-flights {
+.stat-row-stats {
     border-left: 4px solid var(--flights-color);
 }
 
-.stat-row-flights:hover {
+.stat-row-stats:hover {
     background-color: var(--flights-color); /* Change background color on hover */
     color: white; /* Change text color on hover */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); /* Subtle shadow effect on hover */
@@ -225,7 +226,7 @@
 }
 
 /* Also make the details use the same color */
-#flightsDetails.show {
+#statsDetails.show {
     border-left: 4px solid var(--flights-color);
 }
 
@@ -252,15 +253,16 @@
     padding: 20px;
     font-size: 20px;
     font-weight: bold;
-    color: var(--airlines-color);
-    border-bottom: 1px solid var(--separator-color);
-    background-color: white;
-    border-radius: 10px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+    /* color: var(--flights-color); */
 }
 
 .item-container {
+    text-align: center; /* Center-align the text and image */
+    margin: 0 20px; /* Add some margin around each container */
+}
+
+.item-container2 {
+    display: flexbox;
     text-align: center; /* Center-align the text and image */
     margin: 0 20px; /* Add some margin around each container */
 }
@@ -285,25 +287,21 @@
     width: 100%;
     padding-top: 20px;
     max-height: 130px;
-    background-color: white;
-    border-radius: 10px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
 }
 
 .innercontainer .left {
     display: inline-block;
-    margin-left: 50px; /* Add some margin to the left */
     gap: 10px; /* Slightly more gap between items */
     align-items: center;
 }
 
-.mostflown .right {
+.right {
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    max-width: 400px; /* Increase max-width for better chart space */
+    width: 50%;
+    max-width: 450px; /* Increase max-width for better chart space */
     max-height: 150px;
 }
 
@@ -340,12 +338,12 @@ select {
 
 #filterControls select {
     padding: 12px 20px;
-    margin: 0 15px; /* Increase gap between dropdowns */
-    border-radius: 25px;
+    /* margin: 0 5px; Increase gap between dropdowns */
+    border-radius: 15px;
     border: none;
     background-color: var(--input-background);
     color: var(--text-color);
-    font-size: 18px; /* Reduced font size for balance */
+    font-size: 20px; /* Reduced font size for balance */
     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 8px var(--shadow-color); /* Increased shadow for depth */
 }
@@ -361,7 +359,7 @@ select {
 }
 
 .mfimg:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
 }
 .header-container {
     display: flex;
