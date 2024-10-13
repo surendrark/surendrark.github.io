@@ -1,7 +1,6 @@
 let map2;
 let flights = [];
 let airlinecode = {};
-let aircraftcode = {};
 function initMap() {
   return new Promise((resolve) => {
     map2 = new mapboxgl.Map({
@@ -41,20 +40,19 @@ function loadFlights() {
             flights = rows.map(row => {
                 const [
                 cabin_class, seat, seat_typ, airline_code, airline, flight_number,
-                aircraft, aircraft_type, dep_airport, dep_airport_name,
+                aircraft_type, dep_airport, dep_airport_name,
                 arr_airport, arr_airport_name, month, year, time_in_air,
                 dep_country, arr_country, aircraft_family, aircraft_mfg, airline_family
             ] = row.split(',');
             return {
                 cabin_class, seat, seat_typ, airline_code, airline, flight_number,
-                aircraft, aircraft_type, dep_airport, dep_airport_name,
+                aircraft_type, dep_airport, dep_airport_name,
                 arr_airport, arr_airport_name, month, year, time_in_air,
                 dep_country, arr_country, aircraft_family, aircraft_mfg, airline_family
             };
             });
             flights.forEach(flight => {
                 airlinecode[flight.airline] = flight.airline_code;
-                aircraftcode[flight.aircraft_type] = flight.aircraft_family;
             });
             updateMap();
             yearlist = [...new Set(flights.map(f => f.year))].sort();
@@ -405,7 +403,7 @@ function updateStats(selectedFlights, monthFilter) {
         airportCounts[flight.dep_airport_name] = (airportCounts[flight.dep_airport_name] || 0) + 1;
         airportCounts[flight.arr_airport_name] = (airportCounts[flight.arr_airport_name] || 0) + 1;
         airlineCounts[flight.airline] = (airlineCounts[flight.airline] || 0) + 1;
-        aircraftCounts[flight.aircraft_type] = (aircraftCounts[flight.aircraft_type] || 0) + 1;
+        aircraftCounts[flight.aircraft_family] = (aircraftCounts[flight.aircraft_family] || 0) + 1;
         cc[flight.dep_country] = (cc[flight.dep_country] || 0) + 1;
         cc[flight.arr_country.trim()] = (cc[flight.arr_country.trim()] || 0) + 1;
         continentpresent.add(continents[flight.dep_country]);
@@ -418,26 +416,20 @@ function updateStats(selectedFlights, monthFilter) {
         }
         yearmonth[flight.year][flight.month] += 1;
     });
-    // Find the most flown aircraft and airline
+    // Find the most flown aircraft family and airline
     const mostFlownAircraft = Object.keys(aircraftCounts).reduce((a, b) => aircraftCounts[a] > aircraftCounts[b] ? a : b, 0);
     const mostFlownAirline = Object.keys(airlineCounts).reduce((a, b) => airlineCounts[a] > airlineCounts[b] ? a : b, 0);
 
-    const mostAircraft = document.getElementById('mostAircraftName');
-    const mostAirline = document.getElementById('mostAirlineName');
-
     const mostAircraftImg = document.getElementById('mostaircraft');
     const mostAirlineImg = document.getElementById('mostairline');
-
-    mostAircraftImg.src = `assets/aircraft/${aircraftcode[mostFlownAircraft]}.webp`;
-    mostAircraftName.textContent = mostFlownAircraft;
+    // repace AXXX with AirBus XXX, BXXX with Boeing XXX, ATRXX with ATR XX, CRJXXX with Bombardier CRJ-XXX, EXXX with Embraer EJ-XXX
+    const aircraftcode = {'A': 'Airbus-', 'B': 'Boeing-', 'ATR': 'ATR-', 'CRJ': 'Bombardier CRJ-', 'E': 'Embraer E-'};
+    mostAircraftImg.src = `assets/aircraft/${mostFlownAircraft}.webp`;
+    mostAircraftName.textContent = mostFlownAircraft.replace(/ATR|A|B|CRJ|E/g, m => aircraftcode[m]);
 
     mostAirlineImg.src = `assets/airlinelogo/${airlinecode[mostFlownAirline]}.webp`;
     mostAirlineName.textContent = mostFlownAirline;
 
-    mostAircraftImg.src = `assets/aircraft/${aircraftcode[mostFlownAircraft]}.webp`;
-    mostAircraftName.textContent = mostFlownAircraft;
-    mostAirlineImg.src = `assets/airlinelogo/${airlinecode[mostFlownAirline]}.webp`;
-    mostAirlineName.textContent = mostFlownAirline;
     
     const years = Object.keys(yearmonth).map(year => parseInt(year));
 
@@ -602,10 +594,6 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
         countryCounts[cont] = countries;
     });
 
-    const flightdetails = {};
-    for (const flight in selectedFlights) {
-        flightdetails[`${selectedFlights[flight].airline} - ${selectedFlights[flight].flight_number}`] = `${selectedFlights[flight].dep_airport} ➠ ${selectedFlights[flight].arr_airport}`;
-    }
 
     const aircraftFamilies = {};
     const airlineFamilies = {};
@@ -630,7 +618,6 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
     populateAirlineDetails('airlinesDetails', airlineFamilies);
     populateGroupedDetails('airportsDetails', airportCountries);
     populateDetailscon('countryDetails', Object.entries(countryCounts));
-    // populateDetails('flightsDetails', Object.entries(flightdetails));
 
     function populateAircraftDetails(sectionId, aircraftFamilies) {
         const section = document.getElementById(sectionId);
