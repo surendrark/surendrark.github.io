@@ -344,12 +344,56 @@ function updateStats(selectedFlights, monthFilter) {
     document.getElementById('aircraftCount').textContent = totalAircraft;
     document.getElementById('countryCount').textContent = totalCountries;
 
-    document.getElementById('bclass').textContent = `Business: ${bussinessClass}`;
-    document.getElementById('eclass').textContent = `Economy: ${economyClass}`;
-    document.getElementById('pclass').textContent = `Premium: ${premiumClass}`;
-    document.getElementById('window').textContent = `Window: ${winseat}`;
-    document.getElementById('aisle').textContent = `Aisle: ${aislseat}`;
-    document.getElementById('middle').textContent = `Middle: ${middseat}`;
+    // document.getElementById('window').textContent = `Window: ${winseat}`;
+    // document.getElementById('aisle').textContent = `Aisle: ${aislseat}`;
+    // document.getElementById('middle').textContent = `Middle: ${middseat}`;
+
+    const cabinClassDiv = document.getElementById('cabinclass');
+    cabinClassDiv.innerHTML = ''; // Clear existing content
+
+    if (bussinessClass > 0) {
+        cabinClassDiv.innerHTML += `
+            <img src="assets/aircraft/buss.png" style="max-width: 80px;" alt="business">
+            <span class="item-name" id="bclass">Business: ${bussinessClass}</span> &nbsp;
+        `;
+    }
+
+    if (premiumClass > 0) {
+        cabinClassDiv.innerHTML += `
+            <img src="assets/aircraft/prem.png" style="max-width: 80px;" alt="premium economy">
+            <span class="item-name" id="pclass">Premium Economy: ${premiumClass}</span> &nbsp;
+        `;
+    }
+
+    if (economyClass > 0) {
+        cabinClassDiv.innerHTML += `
+            <img src="assets/aircraft/econ.png" style="max-width: 80px;" alt="economy">
+            <span class="item-name" id="eclass">Economy: ${economyClass}</span>
+        `;
+    }
+
+    
+    const seatTypeDiv = document.getElementById('seattyp');
+    seatTypeDiv.innerHTML = ''; // Clear existing content
+    if (winseat > 0) {
+        seatTypeDiv.innerHTML += `
+            <img src="assets/aircraft/win.png" style="max-width: 80px;" alt="window">
+            <span class="item-name" id="window">Window: ${winseat}</span> &nbsp;
+        `;
+    }
+
+    if (middseat > 0) {
+        seatTypeDiv.innerHTML += `
+            <img src="assets/aircraft/mid.png" style="max-width: 80px;" alt="middle">
+            <span class="item-name" id="middle">Middle: ${middseat}</span> &nbsp;
+        `;
+    }
+    if (aislseat > 0) {
+        seatTypeDiv.innerHTML += `
+            <img src="assets/aircraft/aisle.png" style="max-width: 80px;" alt="aisle">
+            <span class="item-name" id="aisle">Aisle: ${aislseat}</span>
+        `;
+    }
 
     const airportCounts = {};
     const airlineCounts = {};
@@ -378,12 +422,17 @@ function updateStats(selectedFlights, monthFilter) {
     const mostFlownAircraft = Object.keys(aircraftCounts).reduce((a, b) => aircraftCounts[a] > aircraftCounts[b] ? a : b, 0);
     const mostFlownAirline = Object.keys(airlineCounts).reduce((a, b) => airlineCounts[a] > airlineCounts[b] ? a : b, 0);
 
+    const mostAircraft = document.getElementById('mostAircraftName');
+    const mostAirline = document.getElementById('mostAirlineName');
 
-    // Set the image src attributes for the most flown aircraft and airline
     const mostAircraftImg = document.getElementById('mostaircraft');
     const mostAirlineImg = document.getElementById('mostairline');
-    const mostAircraftName = document.getElementById('mostAircraftName'); // New element to hold aircraft type name
-    const mostAirlineName = document.getElementById('mostAirlineName'); // New element to hold airline name
+
+    mostAircraftImg.src = `assets/aircraft/${aircraftcode[mostFlownAircraft]}.webp`;
+    mostAircraftName.textContent = mostFlownAircraft;
+
+    mostAirlineImg.src = `assets/airlinelogo/${airlinecode[mostFlownAirline]}.webp`;
+    mostAirlineName.textContent = mostFlownAirline;
 
     mostAircraftImg.src = `assets/aircraft/${aircraftcode[mostFlownAircraft]}.webp`;
     mostAircraftName.textContent = mostFlownAircraft;
