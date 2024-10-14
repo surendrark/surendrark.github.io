@@ -425,11 +425,13 @@ function updateStats(selectedFlights, monthFilter) {
     const mostAirlineImg = document.getElementById('mostairline');
     // repace AXXX with AirBus XXX, BXXX with Boeing XXX, ATRXX with ATR XX, CRJXXX with Bombardier CRJ-XXX, EXXX with Embraer EJ-XXX
     const aircraftcode = {'A': 'Airbus-', 'B': 'Boeing-', 'ATR': 'ATR-', 'CRJ': 'Bombardier CRJ-', 'E': 'Embraer E-'};
-    mostAircraftImg.src = `assets/aircraft/${mostFlownAircraft}.webp`;
-    mostAircraftName.textContent = `${mostFlownAircraft.replace(/ATR|A|B|CRJ|E/g, m => aircraftcode[m])} ✈︎ ${mostaircraftcount}`;
+    mfa = mostFlownAircraft ? mostFlownAircraft : 'undefined';
+    mostAircraftImg.src = `assets/aircraft/${mfa}.webp`;
+
+    mostAircraftName.textContent = mostFlownAircraft ? `${mostFlownAircraft.replace(/ATR|A|B|CRJ|E/g, m => aircraftcode[m])} ✈︎ ${mostaircraftcount}` : 'On the ground with no wings';
 
     mostAirlineImg.src = `assets/airlinelogo/${airlinecode[mostFlownAirline]}.webp`;
-    mostAirlineName.textContent = `${mostFlownAirline} ✈︎ ${mostairlinecount}`;
+    mostAirlineName.textContent = mostFlownAirline ? `${mostFlownAirline} ✈︎ ${mostairlinecount}` : 'On the ground with no wings';
 
     
     const years = Object.keys(yearmonth).map(year => parseInt(year));
