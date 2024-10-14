@@ -429,7 +429,7 @@ function updateStats(selectedFlights, monthFilter) {
     mostAircraftName.textContent = `${mostFlownAircraft.replace(/ATR|A|B|CRJ|E/g, m => aircraftcode[m])} ✈︎ ${mostaircraftcount}`;
 
     mostAirlineImg.src = `assets/airlinelogo/${airlinecode[mostFlownAirline]}.webp`;
-    mostAirlineName.textContent = `${mostFlownAirline} ✈ ${mostairlinecount}`;
+    mostAirlineName.textContent = `${mostFlownAirline} ✈︎ ${mostairlinecount}`;
 
     
     const years = Object.keys(yearmonth).map(year => parseInt(year));
