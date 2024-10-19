@@ -424,17 +424,6 @@ select {
     display: block;
     margin: 10px auto; /* Center the image */
 }
-
-  /* .mostflown {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    /* color: var(--flights-color); */
-}
-
 .item-container {
     text-align: center; /* Center-align the text and image */
     margin: 0 20px; /* Add some margin around each container */

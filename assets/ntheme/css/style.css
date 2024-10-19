@@ -361,100 +361,87 @@ button:focus {
 /*==========================
         3.NAVBAR
 ============================*/
-
 .custom-nav {
     padding: 12px 0px;
-    width: 100%;
-    border-radius: 0px;
-    z-index: 999;
-    margin-bottom: 0px;
-    transition: all 0.5s ease-in-out;
-    background-color: transparent !important;
-}
-
-.custom-nav.stickyadd {
-    background-color: #fff !important;
-    padding: 8px 0;
-    box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.1);
-}
-
-.custom-nav .navbar-nav li a {
-    color: #fff;
-    font-size: 16px;
-    background-color: transparent !important;
-    padding: 15px 0;
-    position: relative;
-    margin: 0 7px;
-    font-weight: 600;
-    transition: all 0.4s;
-}
-
-.custom-nav .navbar-nav li a:before,
-.custom-nav.stickyadd .navbar-nav li a:before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 10%;
-    height: 6px;
-    width: 6px;
-    background: #fff;
-    border-radius: 50%;
-    opacity: 0;
-    transform: translateX(-50%);
-    -webkit-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-}
-
-.custom-nav.stickyadd .navbar-nav li a:before {
-    background: #000 !important;
-}
-
-.navbar-toggler {
-    font-size: 24px;
-    margin-top: 5px;
-    margin-bottom: 0px;
-    color: #ffffff;
-}
-
-.custom-nav.stickyadd .navbar-nav li a {
-    color: #000;
-}
-
-.navbar-toggle {
-    font-size: 24px;
-    margin-top: 5px;
-    margin-bottom: 0px;
-    color: #ffffff;
-}
-
-.nav .open>a,
-.nav .open>a:focus,
-.nav .open>a:hover {
-    background-color: transparent;
-    border-color: #337ab7;
-}
-
-.logo .logo-light {
-    display: inline-block;
-}
-
-.stickyadd .logo .logo-dark {
-    display: inline-block;
-}
-
-.stickyadd .logo .logo-light {
-    display: none;
-}
-
-.logo .logo-dark {
-    display: none;
-}
-
-.custom-nav .navbar-brand.logo img {
-    height: 28px;
-}
-
+   width: 100%;
+   border-radius: 0px;
+   z-index: 999;
+   margin-bottom: 0px;
+   transition: all 0.5s ease-in-out;
+   background-color: transparent !important;
+   }
+   .custom-nav.stickyadd {
+   background-color: #fff !important;
+   padding: 8px 0;
+   box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.1);
+   }
+   .custom-nav .navbar-nav li a {
+   color: #fff;
+   font-size: 16px;
+   background-color: transparent !important;
+   padding: 15px 0;
+   position: relative;
+   margin: 0 7px;
+   font-weight: 600;
+   transition: all 0.4s;
+   }
+   .custom-nav .navbar-nav li a:before,
+   .custom-nav.stickyadd .navbar-nav li a:before {
+   content: '';
+   position: absolute;
+   left: 50%;
+   bottom: 10%;
+   height: 6px;
+   width: 6px;
+   background: #fff;
+   border-radius: 50%;
+   opacity: 0;
+   transform: translateX(-50%);
+   -webkit-transition: all 0.3s ease 0s;
+   -o-transition: all 0.3s ease 0s;
+   transition: all 0.3s ease 0s;
+   }
+   .custom-nav.stickyadd .navbar-nav li a:before {
+   background: #000 !important;
+   }
+   .navbar-toggler {
+   font-size: 24px;
+   margin-top: 5px;
+   margin-bottom: 0px;
+   color: #ffffff;
+   }
+   .custom-nav.stickyadd .navbar-nav li a {
+   color: #000;
+   }
+   .navbar-toggle {
+   font-size: 24px;
+   margin-top: 5px;
+   margin-bottom: 0px;
+   color: #ffffff;
+   }
+   .nav .open>a,
+   .nav .open>a:focus,
+   .nav .open>a:hover {
+   background-color: transparent;
+   border-color: #337ab7;
+   }
+   .logo .logo-light {
+   display: inline-block;
+   }
+   .stickyadd .logo .logo-dark {
+   display: inline-block;
+   }
+   .stickyadd .logo .logo-light {
+   display: none;
+   }
+   .logo .logo-dark {
+   display: none;
+   }
+   .custom-nav .navbar-brand.logo img {
+   height: 28px;
+   }
+   
+   
 /*==========================
         4.HOME
 ============================*/
