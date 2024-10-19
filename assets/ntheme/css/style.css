@@ -370,15 +370,15 @@ button:focus {
     margin-bottom: 0px;
     transition: all 0.5s ease-in-out;
     background-color: transparent !important;
-}
-
-.custom-nav.stickyadd {
+  }
+  
+  .custom-nav.stickyadd {
     background-color: #fff !important;
     padding: 8px 0;
     box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.1);
-}
-
-.custom-nav .navbar-nav li a {
+  }
+  
+  .custom-nav .navbar-nav li a {
     color: #fff;
     font-size: 16px;
     background-color: transparent !important;
@@ -387,10 +387,10 @@ button:focus {
     margin: 0 7px;
     font-weight: 600;
     transition: all 0.4s;
-}
-
-.custom-nav .navbar-nav li a:before,
-.custom-nav.stickyadd .navbar-nav li a:before {
+  }
+  
+  .custom-nav .navbar-nav li a:before,
+  .custom-nav.stickyadd .navbar-nav li a:before {
     content: '';
     position: absolute;
     left: 50%;
@@ -401,60 +401,114 @@ button:focus {
     border-radius: 50%;
     opacity: 0;
     transform: translateX(-50%);
-    -webkit-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
-}
-
-.custom-nav.stickyadd .navbar-nav li a:before {
+  }
+  
+  .custom-nav.stickyadd .navbar-nav li a:before {
     background: #000 !important;
-}
-
-.navbar-toggler {
+  }
+  
+  .navbar-toggler {
     font-size: 24px;
     margin-top: 5px;
     margin-bottom: 0px;
     color: #ffffff;
-}
-
-.custom-nav.stickyadd .navbar-nav li a {
+  }
+  
+  .custom-nav.stickyadd .navbar-nav li a {
     color: #000;
-}
-
-.navbar-toggle {
+  }
+  
+  .navbar-toggle {
     font-size: 24px;
     margin-top: 5px;
     margin-bottom: 0px;
     color: #ffffff;
-}
-
-.nav .open>a,
-.nav .open>a:focus,
-.nav .open>a:hover {
+  }
+  
+  .nav .open>a,
+  .nav .open>a:focus,
+  .nav .open>a:hover {
     background-color: transparent;
     border-color: #337ab7;
-}
-
-.logo .logo-light {
+  }
+  
+  .logo .logo-light {
     display: inline-block;
-}
-
-.stickyadd .logo .logo-dark {
+  }
+  
+  .stickyadd .logo .logo-dark {
     display: inline-block;
-}
-
-.stickyadd .logo .logo-light {
+  }
+  
+  .stickyadd .logo .logo-light {
     display: none;
-}
-
-.logo .logo-dark {
+  }
+  
+  .logo .logo-dark {
     display: none;
-}
-
-.custom-nav .navbar-brand.logo img {
+  }
+  
+  .custom-nav .navbar-brand.logo img {
     height: 28px;
-}
-
+  }
+  
+  /* Mobile menu styles */
+  @media (max-width: 991px) {
+    .navbar-collapse {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.9);
+      transition: all 0.3s ease;
+      padding: 20px;
+      overflow-y: auto;
+    }
+  
+    .navbar-collapse.show {
+      right: 0;
+    }
+  
+    .custom-nav .navbar-nav {
+      margin-top: 20px;
+    }
+  
+    .custom-nav .navbar-nav li {
+      margin: 10px 0;
+    }
+  
+    .custom-nav .navbar-nav li a {
+      color: #fff;
+      font-size: 18px;
+      padding: 10px 0;
+      display: block;
+    }
+  
+    .custom-nav.stickyadd .navbar-nav li a {
+      color: #fff;
+    }
+  
+    .navbar-toggler {
+      position: relative;
+      z-index: 1000;
+    }
+  
+    .custom-nav.stickyadd .navbar-toggler {
+      color: #000;
+    }
+  
+    /* Close button for mobile menu */
+    .close-menu {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  }
 /*==========================
         4.HOME
 ============================*/

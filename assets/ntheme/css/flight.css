@@ -425,16 +425,6 @@ select {
     margin: 10px auto; /* Center the image */
 }
 
-  /* .mostflown {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    /* color: var(--flights-color); */
-}
-
 .item-container {
     text-align: center; /* Center-align the text and image */
     margin: 0 20px; /* Add some margin around each container */
@@ -446,3 +436,87 @@ select {
     margin: 0 20px; /* Add some margin around each container */
 } */
 
+@media (max-width: 768px) {
+    body {
+        padding-top: 20px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        padding-top: 20px;
+    }
+
+    h3 {
+        font-size: 1.2em;
+        min-height: 30px;
+    }
+
+    #map2 {
+        height: 300px;
+    }
+
+    #statsContent {
+        flex-direction: column;
+    }
+
+    .stat-row {
+        flex: 1 1 100%;
+        margin-bottom: 15px;
+    }
+
+    .innercontainer {
+        flex-direction: column;
+        align-items: center;
+        max-height: none;
+    }
+
+    .right {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #chartContainer {
+        height: 250px;
+    }
+
+    #totalkm {
+        margin-right: 0;
+        text-align: center;
+    }
+
+    #filterControls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #filterControls select {
+        width: 90%;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+
+    .mostflown {
+        flex-direction: column;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .item-container, .item-container2 {
+        margin: 10px 0;
+    }
+
+    .separator.vertical {
+        width: 100%;
+        height: 1px;
+        margin: 15px 0;
+    }
+
+    .mfimg {
+        max-width: 80%;
+        height: auto;
+    }
+}
