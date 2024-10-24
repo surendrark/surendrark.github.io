@@ -1,7 +1,7 @@
-let map2;
 let flights = [];
 let airlinecode = {};
 
+let map2;
 let is3D = false;
 
 async function initMap() {
@@ -12,27 +12,22 @@ async function initMap() {
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [0, 20],
         zoom: 1.5,
-        projection: 'equirectangular'
+        projection: 'mercator',
+        interactive: true
     });
 
     const toggleButton = document.getElementById('toggleView');
-    const globeIcon = document.getElementById('globeIcon');
-    const mapIcon = document.getElementById('mapIcon');
 
     toggleButton.addEventListener('click', () => {
         is3D = !is3D;
         if (is3D) {
+            toggleButton.textContent = '🗺️';  // Map emoji
             map2.setProjection('globe');
-            globeIcon.style.display = 'none';
-            mapIcon.style.display = 'block';
-            // Add some tilt for 3D effect
             map2.setPitch(60);
             map2.setBearing(30);
         } else {
-            map2.setProjection('equirectangular');
-            globeIcon.style.display = 'block';
-            mapIcon.style.display = 'none';
-            // Reset tilt for 2D view
+            toggleButton.textContent = '🌐';  // Globe emoji
+            map2.setProjection('mercator');
             map2.setPitch(0);
             map2.setBearing(0);
         }
@@ -48,12 +43,20 @@ async function initMap() {
         toggleButton.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
     });
 
-    // Ensure map is loaded before allowing interactions
-    await new Promise(resolve => map2.on('load', resolve));
-    map2.resize();
+    // Add atmosphere and other 3D effects when in globe mode
+    map2.on('style.load', () => {
+        map2.setFog({
+            'color': 'rgb(186, 210, 235)',
+            'high-color': 'rgb(36, 92, 223)',
+            'horizon-blend': 0.02,
+            'space-color': 'rgb(11, 11, 25)',
+            'star-intensity': 0.6
+        });
+    });
 }
 
-initMap();
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', initMap);
 
 let yearlist = [];
 function loadFlights() {
