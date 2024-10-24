@@ -1,26 +1,39 @@
 let map2;
 let flights = [];
 let airlinecode = {};
-function initMap() {
-  return new Promise((resolve) => {
+
+let is3D = false;
+
+async function initMap() {
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJja20xMm5oYTIwNDVuMnZwaTRmenlkMWVhIn0.IEP9jryaKL3Lxk_MQe4Rbg';
+    
     map2 = new mapboxgl.Map({
-      accessToken:
-        "pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJja20xMm5oYTIwNDVuMnZwaTRmenlkMWVhIn0.IEP9jryaKL3Lxk_MQe4Rbg",
-      container: "map2",
-      style: "mapbox://styles/mapbox/streets-v11",
-      center: [0, 40],
-      zoom: 1,
-      projection: "globe", // Start with 2D (default Mercator projection)
+        container: 'map2',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [0, 40],
+        zoom: 1,
+        projection: 'equirectangular'
     });
 
-    map2.on("load", () => {
-      map2.resize();
-      resolve();
+    await new Promise(resolve => map2.on('load', resolve));
+    map2.resize();
+
+    const toggleButton = document.getElementById('toggleView');
+    const icon = toggleButton.querySelector('i');
+
+    toggleButton.addEventListener('click', () => {
+        is3D = !is3D;
+        if (is3D) {
+            map2.setProjection('globe');
+            icon.className = 'fas fa-map';
+        } else {
+            map2.setProjection('mercator');
+            icon.className = 'fas fa-globe';
+        }
     });
-  });
 }
 
-
+initMap();
 
 let yearlist = [];
 function loadFlights() {
