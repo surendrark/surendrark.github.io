@@ -20,10 +20,7 @@ async function initMap() {
             center: [0, 0],
             zoom: 1.1,
             maxZoom: 1.1,
-            projection: 'eqirectangular',
-            renderWorldCopies: true,
-            preserveDrawingBuffer: true,
-            crossSourceCollisions: false
+            projection: 'eqirectangular'
         });
 
         await new Promise((resolve, reject) => {
