@@ -32,7 +32,7 @@ async function initMap() {
                 zoom: 2
             });
         } else {
-            toggleButton.textContent = '🌐';
+            toggleButton.textContent = '🌏';
             map2.setProjection('equalEarth');
             map2.easeTo({
                 pitch: 0,
