@@ -12,7 +12,7 @@ async function initMap() {
         style: 'mapbox://styles/mapbox/streets-v12',
         center: [0, 20],
         zoom: 1.5,
-        projection: 'equalEarth',
+        projection: 'equirectangular',
         renderWorldCopies: true
     });
 
@@ -33,7 +33,7 @@ async function initMap() {
             });
         } else {
             toggleButton.textContent = '🌏';
-            map2.setProjection('equalEarth');
+            map2.setProjection('equirectangular');
             map2.easeTo({
                 pitch: 0,
                 bearing: 0,
