@@ -11,16 +11,16 @@ async function initMap() {
         return;
     }
 
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJja20xMm5oYTIwNDVuMnZwaTRmenlkMWVhIn0.IEP9jryaKL3Lxk_MQe4Rbg';
+    mapboxgl.accessToken = 'pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJjbG84Ynk3d3IwMDQ4MmtrbDAyb2E4OGNxIn0.4cYOxVxfltOYEex137ZxRQ';
     
     try {
         map2 = new mapboxgl.Map({
             container: 'map2',
-            style: 'mapbox://styles/mapbox/streets-v12',
+            style: 'mapbox://styles/mapbox/streets-v11',
             center: [0, 0],
             zoom: 1.1,
-            maxZoom: 1.1,
-            projection: 'eqirectangular'
+            minZoom: 1.1,
+            projection: 'equirectangular'
         });
 
         await new Promise((resolve, reject) => {
@@ -28,7 +28,7 @@ async function initMap() {
             map2.on('error', reject);
         });
 
-        const toggleButton = document.getElementById('toggleView');
+        const toggleButton = document.getElementById('toggleView2');
 
         toggleButton.addEventListener('click', async () => {
             is3D = !is3D;
@@ -45,9 +45,9 @@ async function initMap() {
                         zoom: 2
                     });
                 } else {
-                    toggleButton.textContent = '🌐';
+                    toggleButton.textContent = '🌏';
                     await map2.once('style.load');
-                    map2.setProjection('eqirectangular');
+                    map2.setProjection('equirectangular');
                     map2.easeTo({
                         pitch: 0,
                         bearing: 0,
@@ -63,13 +63,10 @@ async function initMap() {
                 map2.remove();
                 map2 = new mapboxgl.Map({
                     container: 'map2',
-                    style: 'mapbox://styles/mapbox/streets-v12',
+                    style: 'mapbox://styles/mapbox/streets-v11',
                     center: currentCenter,
                     zoom: currentZoom,
-                    projection: is3D ? 'globe' : 'equalEarth',
-                    renderWorldCopies: true,
-                    preserveDrawingBuffer: true,
-                    crossSourceCollisions: false
+                    projection: is3D ? 'globe' : 'equirectangular'
                 });
             }
         });
