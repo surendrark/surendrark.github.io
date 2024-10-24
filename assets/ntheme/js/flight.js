@@ -9,27 +9,37 @@ async function initMap() {
     
     map2 = new mapboxgl.Map({
         container: 'map2',
-        style: 'mapbox://styles/mapbox/streets-v11',
+        style: 'mapbox://styles/mapbox/streets-v12',
         center: [0, 20],
         zoom: 1.5,
-        projection: 'mercator',
-        interactive: true
+        projection: 'equalEarth',
+        renderWorldCopies: true
     });
+
+    await new Promise(resolve => map2.on('load', resolve));
 
     const toggleButton = document.getElementById('toggleView');
 
     toggleButton.addEventListener('click', () => {
         is3D = !is3D;
         if (is3D) {
-            toggleButton.textContent = '🗺️';  // Map emoji
+            toggleButton.textContent = '🗺️';
             map2.setProjection('globe');
-            map2.setPitch(60);
-            map2.setBearing(30);
+            map2.easeTo({
+                pitch: 45,
+                bearing: -35,
+                duration: 2000,
+                zoom: 2
+            });
         } else {
-            toggleButton.textContent = '🌐';  // Globe emoji
-            map2.setProjection('mercator');
-            map2.setPitch(0);
-            map2.setBearing(0);
+            toggleButton.textContent = '🌐';
+            map2.setProjection('equalEarth');
+            map2.easeTo({
+                pitch: 0,
+                bearing: 0,
+                duration: 2000,
+                zoom: 1.5
+            });
         }
     });
 
@@ -43,21 +53,23 @@ async function initMap() {
         toggleButton.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
     });
 
-    // Add atmosphere and other 3D effects when in globe mode
+    // Add atmosphere
     map2.on('style.load', () => {
         map2.setFog({
-            'color': 'rgb(186, 210, 235)',
+            color: 'rgb(186, 210, 235)', 
             'high-color': 'rgb(36, 92, 223)',
-            'horizon-blend': 0.02,
+            'horizon-blend': 0.1,
             'space-color': 'rgb(11, 11, 25)',
-            'star-intensity': 0.6
+            'star-intensity': 0.15
         });
     });
 }
 
-// Wait for the DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', initMap);
-
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMap);
+} else {
+    initMap();
+}
 let yearlist = [];
 function loadFlights() {
     fetch('assets/files/flights.csv')
