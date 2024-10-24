@@ -5,64 +5,101 @@ let map2;
 let is3D = false;
 
 async function initMap() {
+    // Check if WebGL is supported
+    if (!mapboxgl.supported()) {
+        alert('Your browser does not support Mapbox GL');
+        return;
+    }
+
     mapboxgl.accessToken = 'pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJja20xMm5oYTIwNDVuMnZwaTRmenlkMWVhIn0.IEP9jryaKL3Lxk_MQe4Rbg';
     
-    map2 = new mapboxgl.Map({
-        container: 'map2',
-        style: 'mapbox://styles/mapbox/streets-v12',
-        center: [0, 0],
-        zoom: 1.1,
-        projection: 'equirectangular',
-        renderWorldCopies: true
-    });
-
-    await new Promise(resolve => map2.on('load', resolve));
-
-    const toggleButton = document.getElementById('toggleView');
-
-    toggleButton.addEventListener('click', () => {
-        is3D = !is3D;
-        if (is3D) {
-            toggleButton.textContent = '🗺️';
-            map2.setProjection('globe');
-            map2.easeTo({
-                pitch: 45,
-                bearing: -35,
-                duration: 2000,
-                zoom: 2
-            });
-        } else {
-            toggleButton.textContent = '🌏';
-            map2.setProjection('equirectangular');
-            map2.easeTo({
-                pitch: 0,
-                bearing: 0,
-                duration: 2000,
-                zoom: 1.1
-            });
-        }
-    });
-
-    // Add hover effects
-    toggleButton.addEventListener('mouseenter', () => {
-        toggleButton.style.transform = 'scale(1.1)';
-        toggleButton.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
-    });
-    toggleButton.addEventListener('mouseleave', () => {
-        toggleButton.style.transform = 'scale(1)';
-        toggleButton.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
-    });
-
-    // Add atmosphere
-    map2.on('style.load', () => {
-        map2.setFog({
-            color: 'rgb(186, 210, 235)', 
-            'high-color': 'rgb(36, 92, 223)',
-            'horizon-blend': 0.1,
-            'space-color': 'rgb(11, 11, 25)',
-            'star-intensity': 0.15
+    try {
+        map2 = new mapboxgl.Map({
+            container: 'map2',
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [0, 0],
+            zoom: 1.1,
+            maxZoom: 1.1,
+            projection: 'eqirectangular',
+            renderWorldCopies: true,
+            preserveDrawingBuffer: true,
+            crossSourceCollisions: false
         });
-    });
+
+        await new Promise((resolve, reject) => {
+            map2.on('load', resolve);
+            map2.on('error', reject);
+        });
+
+        const toggleButton = document.getElementById('toggleView');
+
+        toggleButton.addEventListener('click', async () => {
+            is3D = !is3D;
+            try {
+                if (is3D) {
+                    toggleButton.textContent = '🗺️';
+                    // Force reload of the map style before changing projection
+                    await map2.once('style.load');
+                    map2.setProjection('globe');
+                    map2.easeTo({
+                        pitch: 45,
+                        bearing: -35,
+                        duration: 2000,
+                        zoom: 2
+                    });
+                } else {
+                    toggleButton.textContent = '🌐';
+                    await map2.once('style.load');
+                    map2.setProjection('eqirectangular');
+                    map2.easeTo({
+                        pitch: 0,
+                        bearing: 0,
+                        duration: 2000,
+                        zoom: 1.1
+                    });
+                }
+            } catch (error) {
+                console.error('Projection change failed:', error);
+                // Fallback to recreating the map with new projection
+                const currentCenter = map2.getCenter();
+                const currentZoom = map2.getZoom();
+                map2.remove();
+                map2 = new mapboxgl.Map({
+                    container: 'map2',
+                    style: 'mapbox://styles/mapbox/streets-v12',
+                    center: currentCenter,
+                    zoom: currentZoom,
+                    projection: is3D ? 'globe' : 'equalEarth',
+                    renderWorldCopies: true,
+                    preserveDrawingBuffer: true,
+                    crossSourceCollisions: false
+                });
+            }
+        });
+
+        // Add hover effects
+        toggleButton.addEventListener('mouseenter', () => {
+            toggleButton.style.transform = 'scale(1.1)';
+            toggleButton.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
+        });
+        toggleButton.addEventListener('mouseleave', () => {
+            toggleButton.style.transform = 'scale(1)';
+            toggleButton.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
+        });
+
+        // Add atmosphere when style is loaded
+        map2.on('style.load', () => {
+            map2.setFog({
+                color: 'rgb(186, 210, 235)', 
+                'high-color': 'rgb(36, 92, 223)',
+                'horizon-blend': 0.1,
+                'space-color': 'rgb(11, 11, 25)',
+                'star-intensity': 0.15
+            });
+        });
+    } catch (error) {
+        console.error('Map initialization failed:', error);
+    }
 }
 
 if (document.readyState === 'loading') {
@@ -70,6 +107,8 @@ if (document.readyState === 'loading') {
 } else {
     initMap();
 }
+
+
 let yearlist = [];
 function loadFlights() {
     fetch('assets/files/flights.csv')
