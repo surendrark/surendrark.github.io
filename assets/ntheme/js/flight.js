@@ -10,8 +10,8 @@ async function initMap() {
     map2 = new mapboxgl.Map({
         container: 'map2',
         style: 'mapbox://styles/mapbox/streets-v12',
-        center: [0, 20],
-        zoom: 1.5,
+        center: [0, 0],
+        zoom: 1.1,
         projection: 'equirectangular',
         renderWorldCopies: true
     });
@@ -38,7 +38,7 @@ async function initMap() {
                 pitch: 0,
                 bearing: 0,
                 duration: 2000,
-                zoom: 1.5
+                zoom: 1.1
             });
         }
     });
