@@ -10,7 +10,7 @@ function initMap() {
       style: "mapbox://styles/mapbox/streets-v11",
       center: [0, 40],
       zoom: 1,
-      projection: "mercator", // Start with 2D (default Mercator projection)
+      projection: "globe", // Start with 2D (default Mercator projection)
     });
 
     map2.on("load", () => {
