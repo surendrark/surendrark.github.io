@@ -15,11 +15,11 @@ async function initMap() {
         const options = {
             container: 'map2',
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [0, 35],
-            zoom: 1,
-            minZoom: 1,
+            center: [50, 50],
+            zoom: 1.5,
+            bearing: -20,
             projection: {
-                name: 'mercator'
+                name: 'globe'
             }
         };
 
@@ -31,7 +31,7 @@ async function initMap() {
         });
 
         const toggleButton2 = document.getElementById('toggleView2');
-        toggleButton2.textContent = '🌏';
+        toggleButton2.textContent = '🗺️';
 
         // Default Mapbox atmosphere settings
         map2.setFog({
@@ -51,7 +51,7 @@ async function initMap() {
                     await map2.easeTo({
                         pitch: 0,
                         bearing: 0,
-                        zoom: 1.5,
+                        zoom: 1.25,
                         duration: 750
                     });
                     
@@ -62,10 +62,9 @@ async function initMap() {
                     
                     // Then animate to the 3D view
                     await map2.easeTo({
-                        pitch: 5,  // Keep it level instead of tilted
-                        bearing: -35, // Keep it straight instead of rotated
-                        zoom: 2,
-                        center: [30, 30],
+                        bearing: -20,
+                        zoom: 1.5,
+                        center: [50, 50],
                         duration: 1500
                     });
                     
@@ -88,7 +87,6 @@ async function initMap() {
                     await map2.easeTo({
                         zoom: 1,
                         minZoom: 1,
-                        pitch: 0,
                         bearing: 0,
                         center: [0, 35],
                         duration: 1000
