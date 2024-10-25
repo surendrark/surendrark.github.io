@@ -1,26 +1,26 @@
 cabin_class,seat,seat_typ,airline_code,airline,flight_number,aircraft_type,dep_airport,dep_airport_name,arr_airport,arr_airport_name,month,year,time_in_air,dep_country,arr_country,aircraft_family,aircraft_mfg,airline_family
-Economy,21F,win,DY,Norwegian Air Shuttle,1102,Boeing 737-800 (winglets),OSL,Oslo Gardermoen Airport,BER,Berlin Brandenburg Airport,9,2024,1:35:00,Norway,Germany,B737,Boeing,Other
-Economy,22A,win,DY,Norwegian Air Shuttle,385,Boeing 737-800 (winglets),TOS,Tromso Airport,OSL,Oslo Gardermoen Airport,9,2024,1:55:00,Norway,Norway,B737,Boeing,Other
-Economy,25A,win,DY,Norwegian Air Shuttle,374,Boeing 737-800 (winglets),OSL,Oslo Gardermoen Airport,TOS,Tromso Airport,9,2024,1:55:00,Norway,Norway,B737,Boeing,Other
-Economy,23C,aisle,DY,Norwegian Air Shuttle,1103,Boeing 737-800 (winglets),BER,Berlin Brandenburg Airport,OSL,Oslo Gardermoen Airport,9,2024,1:40:00,Germany,Norway,B737,Boeing,Other
+Economy,21F,win,DY,Norwegian Air Shuttle,1102,Boeing 737-800,OSL,Oslo Gardermoen Airport,BER,Berlin Brandenburg Airport,9,2024,1:35:00,Norway,Germany,B737,Boeing,Other
+Economy,22A,win,DY,Norwegian Air Shuttle,385,Boeing 737-800,TOS,Tromso Airport,OSL,Oslo Gardermoen Airport,9,2024,1:55:00,Norway,Norway,B737,Boeing,Other
+Economy,25A,win,DY,Norwegian Air Shuttle,374,Boeing 737-800,OSL,Oslo Gardermoen Airport,TOS,Tromso Airport,9,2024,1:55:00,Norway,Norway,B737,Boeing,Other
+Economy,23C,aisle,DY,Norwegian Air Shuttle,1103,Boeing 737-800,BER,Berlin Brandenburg Airport,OSL,Oslo Gardermoen Airport,9,2024,1:40:00,Germany,Norway,B737,Boeing,Other
 Economy,6A,win,LH,Lufthansa,210,Airbus A319,FRA,Frankfurt Airport,DRS,Dresden Airport,9,2024,1:00:00,Germany,Germany,A319,Airbus,Star Alliance
 Economy,19K,win,LH,Lufthansa,755,Boeing 747-8,BLR,Kempegowda International Airport  Bengaluru,FRA,Frankfurt Airport,9,2024,9:30:00,India,Germany,B747,Boeing,Star Alliance
 Economy,38A,win,LH,Lufthansa,754,Boeing 747-8,FRA,Frankfurt Airport,BLR,Kempegowda International Airport  Bengaluru,8,2024,8:50:00,Germany,India,B747,Boeing,Star Alliance
 Economy,21F,win,LH,Lufthansa,207,Airbus A319,DRS,Dresden Airport,FRA,Frankfurt Airport,8,2024,1:05:00,Germany,Germany,A319,Airbus,Star Alliance
 Economy,16C,aisle,EW,Eurowings,2967,Airbus A319,ZAD,Zadar Airport,STR,Stuttgart Airport,5,2024,1:20:00,Croatia,Germany,A319,Airbus,Other
 Economy,20A,win,FR,Ryanair,5196,Boeing 737-800,FKB,Karlsruhe/Baden Baden Airport,ZAD,Zadar Airport,5,2024,1:30:00,Germany,Croatia,B737,Boeing,Other
-Economy,21A,win,LH,Lufthansa,216,Airbus A320 (Sharklets),FRA,Frankfurt Airport,DRS,Dresden Airport,4,2024,1:00:00,Germany,Germany,A320,Airbus,Star Alliance
+Economy,21A,win,LH,Lufthansa,216,Airbus A320,FRA,Frankfurt Airport,DRS,Dresden Airport,4,2024,1:00:00,Germany,Germany,A320,Airbus,Star Alliance
 Economy,28F,win,LH,Lufthansa,1145,Airbus A321neo LR,BIO,Bilbao Airport,FRA,Frankfurt Airport,4,2024,2:10:00,Spain,Germany,A321,Airbus,Star Alliance
-Economy,22C,aisle,UX,Air Europa,7161,Boeing 737-800 (winglets),MAD,Adolfo Suarez Madrid Barajas Airport,BIO,Bilbao Airport,3,2024,1:00:00,Spain,Spain,B737,Boeing,SkyTeam
+Economy,22C,aisle,UX,Air Europa,7161,Boeing 737-800,MAD,Adolfo Suarez Madrid Barajas Airport,BIO,Bilbao Airport,3,2024,1:00:00,Spain,Spain,B737,Boeing,SkyTeam
 Economy,26D,aisle,LH,Lufthansa,1120,Airbus A321neo,FRA,Frankfurt Airport,MAD,Adolfo Suarez Madrid Barajas Airport,3,2024,2:40:00,Germany,Spain,A321,Airbus,Star Alliance
 Economy,23F,win,LH,Lufthansa,215,Airbus A320,DRS,Dresden Airport,FRA,Frankfurt Airport,3,2024,1:05:00,Germany,Germany,A320,Airbus,Star Alliance
-Economy,4A,win,LH,Lufthansa,210,Airbus A320 (Sharklets),FRA,Frankfurt Airport,DRS,Dresden Airport,1,2024,1:00:00,Germany,Germany,A320,Airbus,Star Alliance
+Economy,4A,win,LH,Lufthansa,210,Airbus A320,FRA,Frankfurt Airport,DRS,Dresden Airport,1,2024,1:00:00,Germany,Germany,A320,Airbus,Star Alliance
 Premium Economy,27A,win,LH,Lufthansa,755,Boeing 747-400,BLR,Kempegowda International Airport  Bengaluru,FRA,Frankfurt Airport,1,2024,9:59:00,India,Germany,B747,Boeing,Star Alliance
 Premium Economy,14D,aisle,LH,Lufthansa,758,Airbus A340-300,FRA,Frankfurt Airport,MAA,Chennai International Airport,12,2023,9:20:00,Germany,India,A340,Airbus,Star Alliance
 Economy,4A,win,LH,Lufthansa,207,Airbus A319,DRS,Dresden Airport,FRA,Frankfurt Airport,12,2023,1:05:00,Germany,Germany,A319,Airbus,Star Alliance
 Economy,19C,aisle,LH,Lufthansa,2130,Bombardier CRJ900,MUC,Munich Airport,DRS,Dresden Airport,11,2022,0:55:00,Germany,Germany,CRJ900,Bombardier,Star Alliance
 Economy,20C,aisle,LH,Lufthansa,2235,Embraer E195,CDG,Charles de Gaulle Airport  Paris,MUC,Munich Airport,11,2022,1:25:00,France,Germany,E195,Embraer,Star Alliance
-Economy,23F,win,LH,Lufthansa,1034,Airbus A320 (Sharklets),FRA,Frankfurt Airport,CDG,Charles de Gaulle Airport  Paris,11,2022,1:15:00,Germany,France,A320,Airbus,Star Alliance
+Economy,23F,win,LH,Lufthansa,1034,Airbus A320,FRA,Frankfurt Airport,CDG,Charles de Gaulle Airport  Paris,11,2022,1:15:00,Germany,France,A320,Airbus,Star Alliance
 Economy,21F,win,LH,Lufthansa,207,Airbus A319,DRS,Dresden Airport,FRA,Frankfurt Airport,11,2022,1:05:00,Germany,Germany,A319,Airbus,Star Alliance
 Economy,31G,mid,QR,Qatar Airways,291,Boeing 787-8 Dreamliner,DOH,Hamad International Airport  Doha,PRG,Vaclav Havel Airport  Prague,8,2022,6:15:00,Qatar,Czechia,B787,Boeing,OneWorld
 Economy,28B,mid,QR,Qatar Airways,529,Boeing 787-9 Dreamliner,MAA,Chennai International Airport,DOH,Hamad International Airport  Doha,8,2022,4:30:00,India,Qatar,B787,Boeing,OneWorld
@@ -36,20 +36,20 @@ Economy,25A,win,UA,United Airlines,2497,Boeing 737-900,SEA,Seattle Tacoma Intern
 Economy,25A,win,UA,United Airlines,2271,Boeing 737 MAX 9,ANC,Ted Stevens Anchorage International Airport,ORD,O'Hare International Airport  Chicago,6,2022,6:05:00,United States,United States,B737,Boeing,Star Alliance
 Economy,27D,aisle,AS,Alaska Airlines,21,Boeing 737 MAX 9,ORD,O'Hare International Airport  Chicago,SEA,Seattle Tacoma International Airport,7,2022,4:34:00,United States,United States,B737,Boeing,OneWorld
 Economy,13F,win,AS,Alaska Airlines,1221,Boeing 737-900,ORD,O'Hare International Airport  Chicago,ANC,Ted Stevens Anchorage International Airport,6,2022,6:31:00,United States,United States,B737,Boeing,OneWorld
-Economy,23D,aisle,NK,Spirit Airlines,566,Airbus A320 (Sharklets),LAS,Harry Reid International Airport  Las Vegas,IND,Indianapolis International Airport,11,2021,3:21:00,United States,United States,A320,Airbus,Other
-Economy,25C,aisle,NK,Spirit Airlines,533,Airbus A320 (Sharklets),IND,Indianapolis International Airport,LAS,Harry Reid International Airport  Las Vegas,11,2021,4:02:00,United States,United States,A320,Airbus,Other
+Economy,23D,aisle,NK,Spirit Airlines,566,Airbus A320,LAS,Harry Reid International Airport  Las Vegas,IND,Indianapolis International Airport,11,2021,3:21:00,United States,United States,A320,Airbus,Other
+Economy,25C,aisle,NK,Spirit Airlines,533,Airbus A320,IND,Indianapolis International Airport,LAS,Harry Reid International Airport  Las Vegas,11,2021,4:02:00,United States,United States,A320,Airbus,Other
 Economy,4F,win,WN,Southwest Airlines,620,Boeing 737-700 ,BNA,Nashville International Airport,ORD,O'Hare International Airport  Chicago,5,2021,1:40:00,United States,United States,B737,Boeing,Other
 Economy,6A,win,WN,Southwest Airlines,4376,Boeing 737-700 ,ORD,O'Hare International Airport  Chicago,BNA,Nashville International Airport,5,2021,1:45:00,United States,United States,B737,Boeing,Other
 Economy,22L,win,UA,United Airlines,899,Boeing 787-9 Dreamliner,DEL,Indira Gandhi International Airport  Delhi,ORD,O'Hare International Airport  Chicago,3,2021,15:25:00,India,United States,B787,Boeing,Star Alliance
 Economy,26A,win,AI,Air India,539,Airbus A321,MAA,Chennai International Airport,DEL,Indira Gandhi International Airport  Delhi,3,2021,2:50:00,India,India,A321,Airbus,Star Alliance
 Economy,17B,mid,I5,AirAsia India,934,Airbus A320,BLR,Kempegowda International Airport  Bengaluru,MAA,Chennai International Airport,2,2021,1:00:00,India,India,A320,Airbus,Other
 Economy,17B,mid,I5,AirAsia India,1543,Airbus A320,HYD,Rajiv Gandhi International Airport  Hyderabad,BLR,Kempegowda International Airport  Bengaluru,2,2021,1:20:00,India,India,A320,Airbus,Other
-Economy,14A,win,UK,Vistara,877,Boeing 737-800 (winglets),BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,HYD,Rajiv Gandhi International Airport  Hyderabad,2,2021,1:25:00,India,India,B737,Boeing,Other
-Economy,14E,mid,6E,IndiGo,969,Airbus A320 (Sharklets),HYD,Rajiv Gandhi International Airport  Hyderabad,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,2,2021,1:35:00,India,India,A320,Airbus,Other
+Economy,14A,win,UK,Vistara,877,Boeing 737-800,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,HYD,Rajiv Gandhi International Airport  Hyderabad,2,2021,1:25:00,India,India,B737,Boeing,Other
+Economy,14E,mid,6E,IndiGo,969,Airbus A320,HYD,Rajiv Gandhi International Airport  Hyderabad,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,2,2021,1:35:00,India,India,A320,Airbus,Other
 Economy,14A,win,2T,Trujet,536,ATR 72-600,CDP,Cuddapah Airport,MAA,Chennai International Airport,3,2020,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
 Economy,14A,win,2T,Trujet,535,ATR 72-600,MAA,Chennai International Airport,CDP,Cuddapah Airport,2,2020,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
-Economy,16C,aisle,SG,SpiceJet,346,Boeing 737-800 (winglets),GAU,Lokpriya Gopinath Bordoloi International Airport  Guwahati,MAA,Chennai International Airport,2,2020,3:00:00,India,India,B737,Boeing,Other
-Economy,2B,mid,SG,SpiceJet,608,Boeing 737-800 (winglets),MAA,Chennai International Airport,GAU,Lokpriya Gopinath Bordoloi International Airport  Guwahati,1,2020,2:55:00,India,India,B737,Boeing,Other
+Economy,16C,aisle,SG,SpiceJet,346,Boeing 737-800,GAU,Lokpriya Gopinath Bordoloi International Airport  Guwahati,MAA,Chennai International Airport,2,2020,3:00:00,India,India,B737,Boeing,Other
+Economy,2B,mid,SG,SpiceJet,608,Boeing 737-800,MAA,Chennai International Airport,GAU,Lokpriya Gopinath Bordoloi International Airport  Guwahati,1,2020,2:55:00,India,India,B737,Boeing,Other
 Economy,4F,win,2T,Trujet,536,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,2,2020,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
 Economy,16B,mid,6E,IndiGo,145,Airbus A320neo,IDR,Devi Ahilya Bai Holkar Airport  Indore,MAA,Chennai International Airport,12,2019,2:10:00,India,India,A320,Airbus,Other
 Economy,22C,aisle,6E,IndiGo,143,Airbus A320neo,MAA,Chennai International Airport,IDR,Devi Ahilya Bai Holkar Airport  Indore,12,2019,2:15:00,India,India,A320,Airbus,Other
@@ -99,7 +99,7 @@ Economy,38A,win,AI,Air India,310,Boeing 787-8 Dreamliner,DEL,Indira Gandhi Inter
 Economy,38A,win,AI,Air India,310,Boeing 787-8 Dreamliner,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,DEL,Indira Gandhi International Airport  Delhi,1,2018,2:05:00,India,India,B787,Boeing,Star Alliance
 Economy,15E,mid,AI,Air India,672,Airbus A321,MAA,Chennai International Airport,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,1,2018,1:50:00,India,India,A321,Airbus,Star Alliance
 Economy,6A,win,2T,Trujet,429,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,12,2017,1:05:00,India,India,ATR72,Avions de Transport Regional,Other
-Economy,14A,win,9W,Jet Airways,474,Boeing 737-800 (winglets),BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,MAA,Chennai International Airport,12,2017,1:50:00,India,India,B737,Boeing,Other
+Economy,14A,win,9W,Jet Airways,474,Boeing 737-800,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,MAA,Chennai International Airport,12,2017,1:50:00,India,India,B737,Boeing,Other
 Economy,23C,aisle,6E,IndiGo,654,Airbus A320,MAA,Chennai International Airport,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,12,2017,1:50:00,India,India,A320,Airbus,Other
 Economy,20F,win,AI,Air India,429,Airbus A321,DEL,Indira Gandhi International Airport  Delhi,MAA,Chennai International Airport,10,2017,2:45:00,India,India,A321,Airbus,Star Alliance
 Economy,14C,aisle,6E,IndiGo,6726,Airbus A320,BLR,Kempegowda International Airport  Bengaluru,DEL,Indira Gandhi International Airport  Delhi,9,2017,2:05:00,India,India,A320,Airbus,Other
@@ -110,12 +110,12 @@ Economy,14C,aisle,WN,Southwest Airlines,4303,Boeing 737-700 ,DCA,Ronald Reagan W
 Economy,16F,win,WN,Southwest Airlines,5119,Boeing 737-700 ,STL,St. Louis Lambert International Airport,DCA,Ronald Reagan Washington National Airport,1,2017,1:50:00,United States,United States,B737,Boeing,Other
 Economy,13A,win,WN,Southwest Airlines,4144,Boeing 737-700 ,DSM,Des Moines International Airport,STL,St. Louis Lambert International Airport,1,2017,1:05:00,United States,United States,B737,Boeing,Other
 Economy,14F,win,WN,Southwest Airlines,187,Boeing 737-700 ,STL,St. Louis Lambert International Airport,DSM,Des Moines International Airport,1,2017,1:10:00,United States,United States,B737,Boeing,Other
-Economy,18D,aisle,WN,Southwest Airlines,569,Boeing 737-800 (winglets),DAL,Dallas Love Field,STL,St. Louis Lambert International Airport,1,2017,1:35:00,United States,United States,B737,Boeing,Other
+Economy,18D,aisle,WN,Southwest Airlines,569,Boeing 737-800,DAL,Dallas Love Field,STL,St. Louis Lambert International Airport,1,2017,1:35:00,United States,United States,B737,Boeing,Other
 Economy,20B,mid,NK,Spirit Airlines,749,Airbus A320,MSP,Minneapolis Saint Paul International Airport,DFW,Dallas/Fort Worth International Airport,12,2016,2:31:00,United States,United States,A320,Airbus,Other
 Economy,12A,win,WN,Southwest Airlines,6314,Boeing 737-700 ,LAS,Harry Reid International Airport  Las Vegas,DSM,Des Moines International Airport,12,2016,2:50:00,United States,United States,B737,Boeing,Other
-Economy,17F,win,WN,Southwest Airlines,2566,Boeing 737-800 (winglets),SFO,San Francisco International Airport,LAS,Harry Reid International Airport  Las Vegas,12,2016,1:30:00,United States,United States,B737,Boeing,Other
+Economy,17F,win,WN,Southwest Airlines,2566,Boeing 737-800,SFO,San Francisco International Airport,LAS,Harry Reid International Airport  Las Vegas,12,2016,1:30:00,United States,United States,B737,Boeing,Other
 Economy,18A,win,WN,Southwest Airlines,6382,Boeing 737-700 ,PHX,Phoenix Sky Harbor International Airport,SFO,San Francisco International Airport,12,2016,2:10:00,United States,United States,B737,Boeing,Other
-Economy,16F,win,WN,Southwest Airlines,3123,Boeing 737-800 (winglets),IND,Indianapolis International Airport,PHX,Phoenix Sky Harbor International Airport,12,2016,4:10:00,United States,United States,B737,Boeing,Other
+Economy,16F,win,WN,Southwest Airlines,3123,Boeing 737-800,IND,Indianapolis International Airport,PHX,Phoenix Sky Harbor International Airport,12,2016,4:10:00,United States,United States,B737,Boeing,Other
 Economy,19F,win,WN,Southwest Airlines,1877,Boeing 737-700 ,MCI,Kansas City International Airport,BNA,Nashville International Airport,11,2016,1:30:00,United States,United States,B737,Boeing,Other
 Economy,14A,win,WN,Southwest Airlines,5871,Boeing 737-700 ,LGA,LaGuardia Airport  New York,MCI,Kansas City International Airport,11,2016,3:20:00,United States,United States,B737,Boeing,Other
 Economy,50A,win,AI,Air India,539,Boeing 777-200LR,DEL,Indira Gandhi International Airport  Delhi,JFK,John F. Kennedy International Airport  New York,11,2016,14:51:00,India,United States,B777,Boeing,Star Alliance
