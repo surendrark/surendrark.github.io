@@ -2,95 +2,150 @@ let flights = [];
 let airlinecode = {};
 
 let map2;
-let is3D = false;
+let is3D = true;
 
+mapboxgl.accessToken = 'pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJja20xMm5oYTIwNDVuMnZwaTRmenlkMWVhIn0.IEP9jryaKL3Lxk_MQe4Rbg';
 async function initMap() {
-    // Check if WebGL is supported
     if (!mapboxgl.supported()) {
         alert('Your browser does not support Mapbox GL');
         return;
     }
 
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic3VyZW5kcmFyayIsImEiOiJjbG84Ynk3d3IwMDQ4MmtrbDAyb2E4OGNxIn0.4cYOxVxfltOYEex137ZxRQ';
-    
     try {
-        map2 = new mapboxgl.Map({
+        const options = {
             container: 'map2',
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [0, 0],
-            zoom: 1.1,
-            minZoom: 1.1,
-            projection: 'equirectangular'
-        });
+            center: [0, 35],
+            zoom: 1,
+            minZoom: 1,
+            projection: {
+                name: 'mercator'
+            }
+        };
+
+        map2 = new mapboxgl.Map(options);
 
         await new Promise((resolve, reject) => {
             map2.on('load', resolve);
             map2.on('error', reject);
         });
 
-        const toggleButton = document.getElementById('toggleView2');
+        const toggleButton2 = document.getElementById('toggleView2');
+        toggleButton2.textContent = '🌏';
 
-        toggleButton.addEventListener('click', async () => {
-            is3D = !is3D;
+        // Default Mapbox atmosphere settings
+        map2.setFog({
+            'horizon-blend': 0.02,
+            'color': '#ffffff',
+            'high-color': '#245cdf',
+            'space-color': '#000000',
+            'star-intensity': 0.6
+        });
+
+        toggleButton2.onclick = async () => {
+            toggleButton2.disabled = true; // Prevent multiple clicks during transition
+            
             try {
-                if (is3D) {
-                    toggleButton.textContent = '🗺️';
-                    // Force reload of the map style before changing projection
-                    await map2.once('style.load');
-                    map2.setProjection('globe');
-                    map2.easeTo({
-                        pitch: 45,
-                        bearing: -35,
-                        duration: 2000,
-                        zoom: 2
-                    });
-                } else {
-                    toggleButton.textContent = '🌏';
-                    await map2.once('style.load');
-                    map2.setProjection('equirectangular');
-                    map2.easeTo({
+                if (!is3D) {
+                    // First reset the view to a neutral position
+                    await map2.easeTo({
                         pitch: 0,
                         bearing: 0,
-                        duration: 2000,
-                        zoom: 1.1
+                        zoom: 1.5,
+                        duration: 750
                     });
+                    
+                    // Switch to 3D globe
+                    map2.setProjection({
+                        name: 'globe'
+                    });
+                    
+                    // Then animate to the 3D view
+                    await map2.easeTo({
+                        pitch: 5,  // Keep it level instead of tilted
+                        bearing: -35, // Keep it straight instead of rotated
+                        zoom: 2,
+                        center: [30, 30],
+                        duration: 1500
+                    });
+                    
+                    toggleButton2.textContent = '🗺️';
+                } else {
+                    // First reset to neutral position
+                    await map2.easeTo({
+                        pitch: 0,
+                        bearing: 0,
+                        zoom: 1.5,
+                        duration: 750
+                    });
+                    
+                    // Switch back to 2D
+                    map2.setProjection({
+                        name: 'mercator'
+                    });
+                    
+                    // Then animate to the 2D view
+                    await map2.easeTo({
+                        zoom: 1,
+                        minZoom: 1,
+                        pitch: 0,
+                        bearing: 0,
+                        center: [0, 35],
+                        duration: 1000
+                    });
+                    
+                    toggleButton2.textContent = '🌏';
                 }
+                
+                is3D = !is3D;
             } catch (error) {
                 console.error('Projection change failed:', error);
-                // Fallback to recreating the map with new projection
-                const currentCenter = map2.getCenter();
-                const currentZoom = map2.getZoom();
+                // Recreate map if transition fails
+                const currentCenter = is3D ? [0, 35] : map2.getCenter();
+                const currentZoom = is3D ? 1.1 : map2.getZoom();
                 map2.remove();
+
                 map2 = new mapboxgl.Map({
                     container: 'map2',
                     style: 'mapbox://styles/mapbox/streets-v11',
                     center: currentCenter,
                     zoom: currentZoom,
-                    projection: is3D ? 'globe' : 'equirectangular'
+                    minZoom: 1.1,
+                    projection: {
+                        name: is3D ? 'globe' : 'mercator'
+                    }
+                });
+
+                // Restore fog settings if needed
+                map2.once('style.load', () => {
+                    if (is3D) {
+                        map2.setFog({
+                            'horizon-blend': 0.02,
+                            'color': '#ffffff',
+                            'high-color': '#245cdf',
+                            'space-color': '#000000',
+                            'star-intensity': 0.6
+                        });
+                    }
                 });
             }
-        });
+            
+            toggleButton2.disabled = false; // Re-enable button after transition
+        };
 
         // Add hover effects
-        toggleButton.addEventListener('mouseenter', () => {
-            toggleButton.style.transform = 'scale(1.1)';
-            toggleButton.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
+        toggleButton2.addEventListener('mouseenter', () => {
+            if (!toggleButton2.disabled) {
+                toggleButton2.style.transform = 'scale(1.1)';
+                toggleButton2.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
+            }
         });
-        toggleButton.addEventListener('mouseleave', () => {
-            toggleButton.style.transform = 'scale(1)';
-            toggleButton.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
+        
+        toggleButton2.addEventListener('mouseleave', () => {
+            toggleButton2.style.transform = 'scale(1)';
+            toggleButton2.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
         });
 
-        // Add atmosphere when style is loaded
-        map2.on('style.load', () => {
-            map2.setFog({
-                color: 'rgb(186, 210, 235)', 
-                'high-color': 'rgb(36, 92, 223)',
-                'horizon-blend': 0.1,
-                'space-color': 'rgb(11, 11, 25)',
-                'star-intensity': 0.15
-            });
-        });
     } catch (error) {
         console.error('Map initialization failed:', error);
     }
@@ -237,6 +292,10 @@ function updateMap() {
         'CNS': [145.754, -16.8858], // Cairns Airport
         'CCU': [88.4467, 22.654],   // Netaji Subhas Chandra Bose International Airport, Kolkata
         'AUS': [-97.6699, 30.2024], // Austin-Bergstrom International Airport
+        'IAD': [-77.4558, 38.9531], // Washington Dulles International Airport
+        'JAX': [-81.6857, 30.4941], // Jacksonville International Airport
+        'TLH': [-84.3503, 30.3951], // Tallahassee International Airport
+        'BOS': [-71.0052, 42.3656], // Logan International Airport, Boston
     };
     // Initialize total distance
     let totalDistance = 0;
