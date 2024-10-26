@@ -173,13 +173,13 @@ function loadFlights() {
 
             flights = rows.map(row => {
                 const [
-                cabin_class, seat, seat_typ, airline_code, airline, flight_number,
+                cabin_class, seat_typ, airline_code, airline, flight_number,
                 aircraft_type, dep_airport, dep_airport_name,
                 arr_airport, arr_airport_name, month, year, time_in_air,
                 dep_country, arr_country, aircraft_family, aircraft_mfg, airline_family
             ] = row.split(',');
             return {
-                cabin_class, seat, seat_typ, airline_code, airline, flight_number,
+                cabin_class, seat_typ, airline_code, airline, flight_number,
                 aircraft_type, dep_airport, dep_airport_name,
                 arr_airport, arr_airport_name, month, year, time_in_air,
                 dep_country, arr_country, aircraft_family, aircraft_mfg, airline_family
@@ -783,30 +783,42 @@ function renderBarChart({ labels, data, label, xLabel, yLabel }) {
                     .forEach(([family, aircraftTypes]) => {
                         const familyItem = document.createElement('div');
                         familyItem.className = 'family-item';
-                        familyItem.style.display = 'inline-block'; // Arrange family items in rows
-                        familyItem.style.textAlign = 'center'; // Align text to the left
-                        familyItem.style.width = '50%'; // Ensure 10 items per row
+                        familyItem.style.display = 'inline-block';
+                        familyItem.style.textAlign = 'center';
+                        familyItem.style.width = '50%'; // Ensure 2 items per row
     
                         // Add family image (aircraft family image)
                         const familyImage = document.createElement('img');
-                        familyImage.src = `assets/aircraft/${family}.webp`; // Adjust the path as needed
+                        familyImage.src = `assets/aircraft/${family}.webp`;
                         familyImage.alt = `${family} family`;
-                        familyImage.style.width = '450px'; // Adjust the image size
+                        familyImage.style.width = '450px';
     
                         // Create a div to hold the aircraft names and counts below the family image
                         const aircraftDetailsDiv = document.createElement('div');
                         aircraftDetailsDiv.style.display = 'block'; // Ensure the details are below the image
     
                         // Iterate over the third layer - individual aircraft (aircraft_type) and counts
-                        Object.entries(aircraftTypes)
-                            .forEach(([aircraftType, count]) => {
-                                const aircraftDetail = document.createElement('div');
-                                aircraftDetail.innerHTML = `
-                                    <span>${aircraftType} - </span>
-                                    <span style="font-weight: bold;"> ${count}</span>
-                                `;
-                                aircraftDetailsDiv.appendChild(aircraftDetail);
-                            });
+                        let rowDiv;
+                        Object.entries(aircraftTypes).forEach(([aircraftType, count], index) => {
+                            if (index % 4 === 0) {
+                                rowDiv = document.createElement('div');
+                                aircraftDetailsDiv.appendChild(rowDiv);
+                            }
+                        
+                            const aircraftDetail = document.createElement('span');
+                            aircraftDetail.innerHTML = `${aircraftType} ✈︎ <span style="font-weight: bold;">${count}</span>`;
+                            aircraftDetail.style.paddingRight = '5px';
+                            // add separtoar and space between items if there are more than one
+                            if (index > 0) {
+                                aircraftDetail.style.borderLeft = '2px solid #000';
+                                aircraftDetail.style.paddingLeft = '5px';
+                            }
+
+                            // Add margin-right to create space between items, except for the last item in a row
+                            // aircraftDetail.style.marginRight = '20px';
+                            
+                            rowDiv.appendChild(aircraftDetail);
+                        });
     
                         // Append the image and aircraft details to the family item
                         familyItem.appendChild(familyImage);
