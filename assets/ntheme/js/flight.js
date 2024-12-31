@@ -1052,3 +1052,120 @@ window.onload = () => {
         loadFlights();
     });
 };
+
+
+
+const badgeData = [
+    {
+      src: "assets/aircraft/FF.svg",
+      tooltip: "Flown on at least one operational aircraft of each family from each manufacturer (Airbus A220-A380, ATR 42-72, Boeing 717-787, COMAC 909-919, De Havilland Dash-8, Dornier 328, Embraer EJets-ERJ, Ilyushin Il-96, MHI CRJ) - 17/25 Completed"
+    },
+    {
+      src: "assets/aircraft/AA.svg",
+      tooltip: "Flown on all Airbus families (A220, A320, A330, A340, A350, A380)"
+    },
+    {
+      src: "assets/aircraft/BB.svg",
+      tooltip: "Flown on all Boeing families (717, 737, 747, 757, 767, 777, 787) - 6/7 Completed"
+    },
+    {
+      src: "assets/aircraft/ALA.svg",
+      tooltip: "Completed 10+ flights with each major airline alliance - 3/4 Completed"
+    },
+    {
+      src: "assets/aircraft/WW.svg",
+      tooltip: "Landed in airports on every continent (North America, South America, Europe, Asia, Africa, Oceania) - 4/6 Completed"
+    },
+    {
+      src: "assets/aircraft/SS.svg",
+      tooltip: "Completed the same route at least once in every month of any year"
+    },
+    {
+      src: "assets/aircraft/RR.svg",
+      tooltip: "Flown 25 unique routes with no repeated airports across all routes - 24/25 Completed"
+    }
+  ];
+  
+  // DOM Elements
+  const grid = document.getElementById('badgesGrid');
+  const lightboxOverlay = document.getElementById('lightboxOverlay');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+  
+  let currentIndex = 0;
+  
+  // Populate grid with badges
+  function populateGrid() {
+    grid.innerHTML = '';
+    badgeData.forEach((badge, index) => {
+      const badgeItem = document.createElement('div');
+      badgeItem.className = 'badge-item';
+      badgeItem.innerHTML = `
+        <img src="${badge.src}" alt="Achievement" class="achievement-badge">
+        <div class="badge-tooltip">${badge.tooltip}</div>
+      `;
+      badgeItem.addEventListener('click', () => openLightbox(index));
+      grid.appendChild(badgeItem);
+    });
+  }
+  
+  // Lightbox functions
+  function openLightbox(index) {
+    currentIndex = index;
+    updateLightbox();
+    lightboxOverlay.style.display = 'block';
+  }
+  
+  function closeLightbox() {
+    lightboxOverlay.style.display = 'none';
+  }
+  
+  function updateLightbox() {
+    const badge = badgeData[currentIndex];
+    lightboxImage.src = badge.src;
+    lightboxCaption.textContent = badge.tooltip;
+    
+    // Update navigation buttons
+    lightboxPrev.style.display = currentIndex > 0 ? 'block' : 'none';
+    lightboxNext.style.display = currentIndex < badgeData.length - 1 ? 'block' : 'none';
+  }
+  
+  function navigate(direction) {
+    currentIndex += direction;
+    if (currentIndex >= 0 && currentIndex < badgeData.length) {
+      updateLightbox();
+    }
+  }
+  
+  // Event Listeners
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', () => navigate(-1));
+  lightboxNext.addEventListener('click', () => navigate(1));
+  lightboxOverlay.addEventListener('click', (e) => {
+    if (e.target === lightboxOverlay) {
+      closeLightbox();
+    }
+  });
+  
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (lightboxOverlay.style.display === 'block') {
+      switch (e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          if (currentIndex > 0) navigate(-1);
+          break;
+        case 'ArrowRight':
+          if (currentIndex < badgeData.length - 1) navigate(1);
+          break;
+      }
+    }
+  });
+  
+  // Initialize
+  populateGrid();

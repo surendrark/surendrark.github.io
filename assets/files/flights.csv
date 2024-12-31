@@ -1,4 +1,8 @@
 cabin_class,seat_typ,airline_code,airline,flight_number,aircraft_type,dep_airport,dep_airport_name,arr_airport,arr_airport_name,month,year,time_in_air,dep_country,arr_country,aircraft_family,aircraft_mfg,airline_family
+Economy,win,DL,Delta Airlines,2923,757-200,ATL,Hartsfield Jackson Atlanta International Airport,JAX,Jacksonville International Airport,12,2024,1:11:00,United States,United States,B757,Boeing,SkyTeam
+Economy,mid,DL,Delta Airlines,1354,A220-300,IAD,Dulles International Airport Washington DC,ATL,Hartsfield Jackson Atlanta International Airport,12,2024,2:05:00,United States,United States,A220,Airbus,SkyTeam
+Economy,win,UA,United Airlines,988,777-300ER,FRA,Frankfurt Airport,IAD,Dulles International Airport Washington DC,12,2024,9:10:00,Germany,United States,B777,Boeing,Star Alliance
+Economy,mid,LH,Lufthansa,207,A319,DRS,Dresden Airport,FRA,Frankfurt Airport,12,2024,1:00:00,Germany,Germany,A319,Airbus,Star Alliance
 Economy,win,DY,Norwegian Air Shuttle,1102,737-800,OSL,Oslo Gardermoen Airport,BER,Berlin Brandenburg Airport,9,2024,1:35:00,Norway,Germany,B737,Boeing,Other
 Economy,win,DY,Norwegian Air Shuttle,385,737-800,TOS,Tromso Airport,OSL,Oslo Gardermoen Airport,9,2024,1:55:00,Norway,Norway,B737,Boeing,Other
 Economy,win,DY,Norwegian Air Shuttle,374,737-800,OSL,Oslo Gardermoen Airport,TOS,Tromso Airport,9,2024,1:55:00,Norway,Norway,B737,Boeing,Other
@@ -18,7 +22,7 @@ Economy,win,LH,Lufthansa,210,A320,FRA,Frankfurt Airport,DRS,Dresden Airport,1,20
 Premium Economy,win,LH,Lufthansa,755,747-400,BLR,Kempegowda International Airport  Bengaluru,FRA,Frankfurt Airport,1,2024,9:59:00,India,Germany,B747,Boeing,Star Alliance
 Premium Economy,aisle,LH,Lufthansa,758,A340-300,FRA,Frankfurt Airport,MAA,Chennai International Airport,12,2023,9:20:00,Germany,India,A340,Airbus,Star Alliance
 Economy,win,LH,Lufthansa,207,A319,DRS,Dresden Airport,FRA,Frankfurt Airport,12,2023,1:05:00,Germany,Germany,A319,Airbus,Star Alliance
-Economy,aisle,LH,Lufthansa,2130,CRJ900,MUC,Munich Airport,DRS,Dresden Airport,11,2022,0:55:00,Germany,Germany,CRJ900,Bombardier,Star Alliance
+Economy,aisle,LH,Lufthansa,2130,CRJ900,MUC,Munich Airport,DRS,Dresden Airport,11,2022,0:55:00,Germany,Germany,CRJ900,Mitsubishi Heavy Industries Regional Jet,Star Alliance
 Economy,aisle,LH,Lufthansa,2235,E195,CDG,Charles de Gaulle Airport  Paris,MUC,Munich Airport,11,2022,1:25:00,France,Germany,E195,Embraer,Star Alliance
 Economy,win,LH,Lufthansa,1034,A320,FRA,Frankfurt Airport,CDG,Charles de Gaulle Airport  Paris,11,2022,1:15:00,Germany,France,A320,Airbus,Star Alliance
 Economy,win,LH,Lufthansa,207,A319,DRS,Dresden Airport,FRA,Frankfurt Airport,11,2022,1:05:00,Germany,Germany,A319,Airbus,Star Alliance
@@ -28,8 +32,8 @@ Economy,mid,6E,IndiGo,5314,A321neo,HYD,Rajiv Gandhi International Airport  Hyder
 Economy,mid,6E,IndiGo,6912,A320neo,BBI,Biju Patnaik International Airport  Bhubaneswar,HYD,Rajiv Gandhi International Airport  Hyderabad,8,2022,1:35:00,India,India,A320,Airbus,Other
 Economy,mid,6E,IndiGo,922,A321neo,HYD,Rajiv Gandhi International Airport  Hyderabad,BBI,Biju Patnaik International Airport  Bhubaneswar,8,2022,1:40:00,India,India,A321,Airbus,Other
 Economy,win,6E,IndiGo,7251,ATR 72-201/202,CDP,Cuddapah Airport,HYD,Rajiv Gandhi International Airport  Hyderabad,8,2022,1:15:00,India,India,ATR72,Avions de Transport Regional,Other
-Business,win,AF,Air France,108,787-9 Dreamliner,CDG,Charles de Gaulle Airport  Paris,MAA,Chennai International Airport,8,2022,9:55:00,France,India,B787,Boeing,SkyTeam
-Economy,win,AF,Air France,681,A350-900,ATL,Hartsfield Jackson Atlanta International Airport,CDG,Charles de Gaulle Airport  Paris,8,2022,8:30:00,United States,France,A350,Airbus,SkyTeam
+Business,win,AF,Air France,108,A350-900,CDG,Charles de Gaulle Airport  Paris,MAA,Chennai International Airport,8,2022,9:55:00,France,India,A350,Airbus,SkyTeam
+Economy,win,AF,Air France,681,787-9 Dreamliner,ATL,Hartsfield Jackson Atlanta International Airport,CDG,Charles de Gaulle Airport  Paris,8,2022,8:30:00,United States,France,B787,Boeing,SkyTeam
 Economy,win,WN,Southwest Airlines,1654,737-700 ,BNA,Nashville International Airport,ATL,Hartsfield Jackson Atlanta International Airport,8,2022,1:10:00,United States,United States,B737,Boeing,Other
 Economy,win,WN,Southwest Airlines,4402,737-700 ,ORD,O'Hare International Airport  Chicago,BNA,Nashville International Airport,7,2022,1:30:00,United States,United States,B737,Boeing,Other
 Economy,win,UA,United Airlines,2497,737-900,SEA,Seattle Tacoma International Airport,ORD,O'Hare International Airport  Chicago,7,2022,3:58:00,United States,United States,B737,Boeing,Star Alliance
@@ -42,8 +46,8 @@ Economy,win,WN,Southwest Airlines,620,737-700 ,BNA,Nashville International Airpo
 Economy,win,WN,Southwest Airlines,4376,737-700 ,ORD,O'Hare International Airport  Chicago,BNA,Nashville International Airport,5,2021,1:45:00,United States,United States,B737,Boeing,Other
 Economy,win,UA,United Airlines,899,787-9 Dreamliner,DEL,Indira Gandhi International Airport  Delhi,ORD,O'Hare International Airport  Chicago,3,2021,15:25:00,India,United States,B787,Boeing,Star Alliance
 Economy,win,AI,Air India,539,A321,MAA,Chennai International Airport,DEL,Indira Gandhi International Airport  Delhi,3,2021,2:50:00,India,India,A321,Airbus,Star Alliance
-Economy,mid,I5,AirAsia India,934,A320,BLR,Kempegowda International Airport  Bengaluru,MAA,Chennai International Airport,2,2021,1:00:00,India,India,A320,Airbus,Other
-Economy,mid,I5,AirAsia India,1543,A320,HYD,Rajiv Gandhi International Airport  Hyderabad,BLR,Kempegowda International Airport  Bengaluru,2,2021,1:20:00,India,India,A320,Airbus,Other
+Economy,mid,IX,Air India Express,934,A320,BLR,Kempegowda International Airport  Bengaluru,MAA,Chennai International Airport,2,2021,1:00:00,India,India,A320,Airbus,Star Alliance
+Economy,mid,IX,Air India Express,1543,A320,HYD,Rajiv Gandhi International Airport  Hyderabad,BLR,Kempegowda International Airport  Bengaluru,2,2021,1:20:00,India,India,A320,Airbus,Star Alliance
 Economy,win,UK,Vistara,877,737-800,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,HYD,Rajiv Gandhi International Airport  Hyderabad,2,2021,1:25:00,India,India,B737,Boeing,Other
 Economy,mid,6E,IndiGo,969,A320,HYD,Rajiv Gandhi International Airport  Hyderabad,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,2,2021,1:35:00,India,India,A320,Airbus,Other
 Economy,win,2T,Trujet,536,ATR 72-600,CDP,Cuddapah Airport,MAA,Chennai International Airport,3,2020,1:00:00,India,India,ATR72,Avions de Transport Regional,Other

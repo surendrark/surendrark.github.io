@@ -96,14 +96,6 @@
         <div class="right">
             <canvas id="chartCanvas"></canvas>
         </div>
-        <div id="totalkm" class="center">
-            <img src="assets/aircraft/flights.png" style="width: 50px;">
-            <span class="total-number" id="totalFlights">0</span>
-            <img src="assets/aircraft/time.png" style="width: 50px;">
-            <span class="total-time" id="totalTime"> 0 hours</span><br>
-            <img src="assets/aircraft/dist.png" style="width: 50px;">
-            <span class="total-number" id="totalDistance">0 km</span>
-        </div>
         </div>
             <!-- <div class="separator horizontal"></div> -->
             <div class="statsContent" id="statsContent">
@@ -131,7 +123,7 @@
                     <span class="stat-number" id="aircraftCount"></span>
                 </div>
                 
-                <div class="stat-details" id="statsDetails">
+                <!-- <div class="stat-details" id="statsDetails">
                     <div id="mostflown" class="mostflown">
                         <div class="item-container">
                             <h3>Cabin</h3><br>
@@ -153,6 +145,97 @@
                             <h3>Seat</h3>
                             <div class="item-container2" id="seattyp">
                             </div>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <div class="stat-details" id="statsDetails">
+                    <!-- Flight Statistics Grid -->
+                    <div class="stats-summary-grid">
+                        <div class="stat-summary-item">
+                            <img src="assets/aircraft/flights.png" style="width: 40px;">
+                            <div class="stat-value" id="totalFlights" style="font-weight: bold; font-size: 20px;">0</div>
+                            <div class="stat-desc">Total Flights</div>
+                        </div>
+                        <div class="stat-summary-item">
+                            <img src="assets/aircraft/time.png" style="width: 40px;">
+                            <div class="stat-value" id="totalTime" style="font-weight: bold; font-size: 20px;">0 hours</div>
+                            <div class="stat-desc">Flight Time</div>
+                        </div>
+                        <div class="stat-summary-item">
+                            <img src="assets/aircraft/dist.png" style="width: 40px;">
+                            <div class="stat-value" id="totalDistance" style="font-weight: bold; font-size: 20px;">0 km</div>
+                            <div class="stat-desc">Distance</div>
+                        </div>
+                    </div>
+            
+                    <!-- Achievement Badges -->
+                    <div class="badges-section">
+                        <h3>Achievements</h3>
+                        <div class="badges-grid" id="badgesGrid">
+                          <div class="badge-item">
+                                <object data="assets/aircraft/FF.svg" type="image/svg+xml" class="achievement-badge"></object>
+                                <div class="badge-tooltip">Flown on at least one operational aircraft of each family from each manufacturer (Airbus A220-A380, ATR 42-72, Boeing 717-787, COMAC 909-919, De Havilland Dash-8, Dornier 328, Embraer EJets-ERJ, Ilyushin Il-96, MHI CRJ) - 17/25 Completed</div>
+                            </div>
+                            <div class="badge-item">
+                                <object data="assets/aircraft/AA.svg" type="image/svg+xml" class="achievement-badge"></object>
+                                <div class="badge-tooltip">Flown on all Airbus families (A220, A320, A330, A340, A350, A380)</div>
+                            </div>
+                            <div class="badge-item">
+                                <object data="assets/aircraft/BB.svg" type="image/svg+xml" class="achievement-badge"></object>
+                                <div class="badge-tooltip">Flown on all Boeing families (717, 737, 747, 757, 767, 777, 787) - 6/7 Completed</div>
+                            </div>
+                            <div class="badge-item">
+                                <object data="assets/aircraft/ALA.svg" type="image/svg+xml" class="achievement-badge"></object>
+                                <div class="badge-tooltip">Completed 10+ flights with each major airline alliance - 3/4 Completed</div>
+                            </div>
+                            <div class="badge-item">
+                                <object data="assets/aircraft/WW.svg" type="image/svg+xml" class="achievement-badge"></object>
+                                <div class="badge-tooltip">Landed in airports on every continent (North America, South America, Europe, Asia, Africa, Oceania) - 4/6 Completed</div>
+                            </div>
+                            <div class="badge-item">
+                                <object data="assets/aircraft/SS.svg" type="image/svg+xml" class="achievement-badge"></object>
+                                <div class="badge-tooltip">Completed the same route at least once in every month of any year</div>
+                            </div>
+                            <div class="badge-item">
+                                <object data="assets/aircraft/RR.svg" type="image/svg+xml" class="achievement-badge"></object>
+                                <div class="badge-tooltip">Flown 25 unique routes with no repeated airports across all routes - 24/25 Completed</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="lightboxOverlay">
+                        <button id="lightboxClose">&times;</button>
+                        <button id="lightboxPrev" class="lightbox-nav">&lt;</button>
+                        <button id="lightboxNext" class="lightbox-nav">&gt;</button>
+                        <div id="lightboxContainer">
+                          <img id="lightboxImage" src="" alt="Enlarged badge">
+                          <div id="lightboxCaption"></div>
+                        </div>
+                      </div>
+                    <!-- Travel Stats -->
+                    <div class="travel-stats">
+                        <div class="stats-row most-frequent">
+                            <h3>Most Frequent</h3>
+                            <div class="most-frequent-grid">
+                                <div id="mostAircraftContainer">
+                                    <img id="mostaircraft" class="mfimg" alt="Most flown aircraft">
+                                    <span id="mostAircraftName"></span>
+                                </div>
+                                <div id="mostAirlineContainer">
+                                    <img id="mostairline" class="mfimg" alt="Most flown airline" style="height: 100px;">
+                                    <span id="mostAirlineName"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stats-row cabin-class">
+                            <h3>Travel Classes</h3>
+                            <div id="cabinclass"></div>
+                        </div>
+                        <div class="stats-row seat-types">
+                            <h3>Seat Preferences</h3>
+                            <div id="seattyp"></div>
                         </div>
                     </div>
                 </div>
@@ -244,7 +327,10 @@
 
     <script type='text/javascript'>
         <!-- ADD YOUR VISITED COUNTRIES HERE -->
-        var countries = {'IN':'#50483F','AU':'#50483F','US':'#50483F','CN':'#50483F','AE':'#50483F','DE':'#50483F','FR':'#50483F','DK':'#50483F','SE':'#50483F','FI':'#50483F','NL':'#50483F','AT':'#50483F', 'CZ':'#50483F','CH':'#50483F','PL':'#50483F','SK':'#50483F','ES':'#50483F','HR':'#50483F','NO':'#50483F'};
+        var countries = {'IN':'#50483F','AU':'#50483F','US':'#50483F','CN':'#50483F','AE':'#50483F','DE':'#50483F','FR':'#50483F','DK':'#50483F','SE':'#50483F',
+        'FI':'#50483F','NL':'#50483F','AT':'#50483F', 'CZ':'#50483F','CH':'#50483F','PL':'#50483F','SK':'#50483F','ES':'#50483F','HR':'#50483F','NO':'#50483F',
+        'HU':'#50483F'
+    };
         <!-- ADD YOUR VISITED CITIES AND THEIR COORDINATES HERE -->
             var markersVar = [
                 <!-- Home -->
@@ -298,7 +384,7 @@
                 {latLng: [46.787731, -121.735861], name: 'Mount Rainier National Park', imgsrc:'mtr.jpg', style: {fill: '#30A704', r:4}},
                 {latLng: [47.861345, -123.934130], name: 'Olympic National Park ', imgsrc:'hoh.jpg', style: {fill: '#30A704', r:4}},
                 {latLng: [47.620335, -122.349562], name: 'Seattle', imgsrc:'sea.jpg', style: {fill: '#30A704', r:4}},
-                {latLng: [51.037599, 13.763493], name: 'Dresden', imgsrc:'dresden.jpg', style: {fill: '#30A704', r:4}},
+                {latLng: [51.037599, 13.763493], name: 'Dresden', imgsrc:'dresden.jpeg', style: {fill: '#30A704', r:4}},
                 {latLng: [48.857897, 2.295028], name: 'Paris', imgsrc:'paris.jpeg', style: {fill: '#30A704', r:4}},
                 {latLng: [50.115282, 8.671814], name: 'Frankfurt', imgsrc:'frankfurt.jpeg', style: {fill: '#30A704', r:4}},
                 {latLng: [50.725940, 13.413379], name: 'Seiffen', imgsrc:'seiffen.jpeg', style: {fill: '#30A704', r:4}},
@@ -337,7 +423,9 @@
                 {latLng: [43.5052602, 16.4289698], name: 'Split', imgsrc:'split.jpeg', style: {fill: '#30A704', r:4}},
                 {latLng: [42.6430788, 18.1066965], name: 'Dubrovnik', imgsrc:'dub.jpeg', style: {fill: '#30A704', r:4}},
                 {latLng: [69.666069, 18.508462], name: 'Sommarøy', imgsrc:'sommar.jpeg', style: {fill: '#30A704', r:4}},
-                {latLng: [69.616949, 19.397707], name: 'Tromsø', imgsrc:'trom.jpeg', style: {fill: '#30A704', r:4}}
+                {latLng: [69.616949, 19.397707], name: 'Tromsø', imgsrc:'trom.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [48.210496, 16.360816], name: 'Vienna', imgsrc:'wein.jpeg', style: {fill: '#30A704', r:4}},
+                {latLng: [47.507208, 19.039494], name: 'Budapest', imgsrc:'bp.jpeg', style: {fill: '#30A704', r:4}}
             ];
 
             $(function(e){
