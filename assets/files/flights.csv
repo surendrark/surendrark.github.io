@@ -1,4 +1,6 @@
 cabin_class,seat_typ,airline_code,airline,flight_number,aircraft_type,dep_airport,dep_airport_name,arr_airport,arr_airport_name,month,year,time_in_air,dep_country,arr_country,aircraft_family,aircraft_mfg,airline_family
+Economy,win,DL,Delta Airlines,1400,717-200,ATL,Hartsfield Jackson Atlanta International Airport,IAD,Dulles International Airport Washington DC,1,2025,1:45:00,United States,United States,B717,Boeing,SkyTeam
+Economy,win,DL,Delta Airlines,1683,737-900,TLH,Tallahassee International Airport,ATL,Hartsfield Jackson Atlanta International Airport,1,2025,1:12:00,United States,United States,B737,Boeing,SkyTeam
 Economy,win,DL,Delta Airlines,2923,757-200,ATL,Hartsfield Jackson Atlanta International Airport,JAX,Jacksonville International Airport,12,2024,1:11:00,United States,United States,B757,Boeing,SkyTeam
 Economy,mid,DL,Delta Airlines,1354,A220-300,IAD,Dulles International Airport Washington DC,ATL,Hartsfield Jackson Atlanta International Airport,12,2024,2:05:00,United States,United States,A220,Airbus,SkyTeam
 Economy,win,UA,United Airlines,988,777-300ER,FRA,Frankfurt Airport,IAD,Dulles International Airport Washington DC,12,2024,9:10:00,Germany,United States,B777,Boeing,Star Alliance
