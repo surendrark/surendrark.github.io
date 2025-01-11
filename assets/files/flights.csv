@@ -1,4 +1,7 @@
 cabin_class,seat_typ,airline_code,airline,flight_number,aircraft_type,dep_airport,dep_airport_name,arr_airport,arr_airport_name,month,year,time_in_air,dep_country,arr_country,aircraft_family,aircraft_mfg,airline_family
+Economy,win,LH,Lufthansa,2126,CRJ900,MUC,Munich Airport,DRS,Dresden Airport,1,2025,0:55:00,Germany,Germany,CRJ900,Mitsubishi Heavy Industries Regional Jet,Star Alliance
+Economy,aisle,LH,Lufthansa,425,A350-900,BOS,Boston-Logan International Airport,MUC,Munich Airport,1,2025,7:05:00,United States,Germany,A350,Airbus,Star Alliance
+Economy,win,UA,United Airlines,688,737-800,IAD,Dulles International Airport Washington DC,BOS,Boston-Logan International Airport,1,2025,1:35:00,United States,United States,B737,Boeing,Star Alliance
 Economy,win,DL,Delta Airlines,1400,717-200,ATL,Hartsfield Jackson Atlanta International Airport,IAD,Dulles International Airport Washington DC,1,2025,1:45:00,United States,United States,B717,Boeing,SkyTeam
 Economy,win,DL,Delta Airlines,1683,737-900,TLH,Tallahassee International Airport,ATL,Hartsfield Jackson Atlanta International Airport,1,2025,1:12:00,United States,United States,B737,Boeing,SkyTeam
 Economy,win,DL,Delta Airlines,2923,757-200,ATL,Hartsfield Jackson Atlanta International Airport,JAX,Jacksonville International Airport,12,2024,1:11:00,United States,United States,B757,Boeing,SkyTeam
