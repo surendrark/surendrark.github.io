@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /assets/files/flights.csv
+Disallow: /assets/files/wordcloud.csv
+Allow: /assets/files/Curriculam_Vitae_Surendra.pdf
+Allow: /assets/files/*.pdf
+
+# Allow access to main pages and images for SEO
+Allow: /
+Allow: /assets/images/
+
+Sitemap: https://surendrark.github.io/sitemap.xml
