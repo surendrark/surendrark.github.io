@@ -1,13 +1,13 @@
 {
-  "name": "Surendra Kancharla - Transportation Universe Portfolio",
+  "name": "Surendra Kancharla Portfolio",
   "short_name": "Surendra Portfolio",
-  "description": "Interactive 3D portfolio showcasing transportation research and engineering expertise",
+  "description": "Transportation research scientist and engineer portfolio showcasing expertise in vehicle routing and optimization",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#3b82f6",
   "orientation": "portrait-primary",
-  "categories": ["portfolio", "research", "3d", "interactive"],
+  "categories": ["portfolio", "research", "transportation", "engineering"],
   "lang": "en",
   "scope": "/",
   "icons": [
