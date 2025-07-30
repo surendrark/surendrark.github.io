@@ -1,0 +1,30 @@
+# LLM Access and Training Policy
+
+## Personal Portfolio of Surendra Reddy Kancharla
+
+This website contains personal information, research work, achievements, and proprietary content belonging to Surendra Reddy Kancharla.
+
+### Prohibited Uses:
+- Training AI/ML models without explicit written permission
+- Scraping content for commercial AI training datasets  
+- Automated data collection for large language model training
+- Bulk downloading of content for AI training purposes
+- Using content to train competing AI systems
+- Creating derivative AI models based on this content
+
+### Permitted Uses:
+- Viewing content for legitimate research or educational purposes
+- Academic citation with proper attribution
+- Individual reference for learning about transportation research
+- Contact for collaboration opportunities
+
+### Research Publications:
+The research publications mentioned on this site are published works and may be subject to their respective journal/conference copyright policies. Please refer to the original publication sources for usage rights.
+
+### Contact:
+For permissions, collaborations, or questions about content usage, please contact through the official channels provided on this website.
+
+### Copyright Notice:
+© 2025 Surendra Reddy Kancharla. All rights reserved.
+
+This notice serves as a clear statement regarding automated data collection and AI training use of this website's content.
