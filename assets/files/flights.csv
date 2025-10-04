@@ -1,0 +1,154 @@
+cabin_class,seat_typ,airline_code,airline,flight_number,aircraft_type,dep_airport,dep_airport_name,arr_airport,arr_airport_name,month,year,time_in_air,dep_country,arr_country,aircraft_family,aircraft_mfg,airline_family
+Economy,win,LH,Lufthansa,2124,CRJ900,MUC,Munich Airport,DRS,Dresden Airport,9,2025,0:55:00,Germany,Germany,CRJ900,Mitsubishi Heavy Industries Regional Jet,Star Alliance
+Economy,win,LH,Lufthansa,765,A350-900,BLR,Kempegowda International Airport  Bengaluru,MUC,Munich Airport,9,2025,9:10:00,India,Germany,A350,Airbus,Star Alliance
+Economy,win,LH,Lufthansa,764,A350-900,MUC,Munich Airport,BLR,Kempegowda International Airport  Bengaluru,8,2025,8:50:00,Germany,India,A350,Airbus,Star Alliance
+Economy,win,LH,Lufthansa,2123,CRJ900,DRS,Dresden Airport,MUC,Munich Airport,8,2025,0:55:00,Germany,Germany,CRJ900,Mitsubishi Heavy Industries Regional Jet,Star Alliance
+Economy,win,LH,Lufthansa,2126,CRJ900,MUC,Munich Airport,DRS,Dresden Airport,1,2025,0:55:00,Germany,Germany,CRJ900,Mitsubishi Heavy Industries Regional Jet,Star Alliance
+Economy,aisle,LH,Lufthansa,425,A350-900,BOS,Boston-Logan International Airport,MUC,Munich Airport,1,2025,7:05:00,United States,Germany,A350,Airbus,Star Alliance
+Economy,win,UA,United Airlines,688,737-800,IAD,Dulles International Airport Washington DC,BOS,Boston-Logan International Airport,1,2025,1:35:00,United States,United States,B737,Boeing,Star Alliance
+Economy,win,DL,Delta Airlines,1400,717-200,ATL,Hartsfield Jackson Atlanta International Airport,IAD,Dulles International Airport Washington DC,1,2025,1:45:00,United States,United States,B717,Boeing,SkyTeam
+Economy,win,DL,Delta Airlines,1683,737-900,TLH,Tallahassee International Airport,ATL,Hartsfield Jackson Atlanta International Airport,1,2025,1:12:00,United States,United States,B737,Boeing,SkyTeam
+Economy,win,DL,Delta Airlines,2923,757-200,ATL,Hartsfield Jackson Atlanta International Airport,JAX,Jacksonville International Airport,12,2024,1:11:00,United States,United States,B757,Boeing,SkyTeam
+Economy,mid,DL,Delta Airlines,1354,A220-300,IAD,Dulles International Airport Washington DC,ATL,Hartsfield Jackson Atlanta International Airport,12,2024,2:05:00,United States,United States,A220,Airbus,SkyTeam
+Economy,win,UA,United Airlines,988,777-300ER,FRA,Frankfurt Airport,IAD,Dulles International Airport Washington DC,12,2024,9:10:00,Germany,United States,B777,Boeing,Star Alliance
+Economy,mid,LH,Lufthansa,207,A319,DRS,Dresden Airport,FRA,Frankfurt Airport,12,2024,1:00:00,Germany,Germany,A319,Airbus,Star Alliance
+Economy,win,DY,Norwegian Air Shuttle,1102,737-800,OSL,Oslo Gardermoen Airport,BER,Berlin Brandenburg Airport,9,2024,1:35:00,Norway,Germany,B737,Boeing,Other
+Economy,win,DY,Norwegian Air Shuttle,385,737-800,TOS,Tromso Airport,OSL,Oslo Gardermoen Airport,9,2024,1:55:00,Norway,Norway,B737,Boeing,Other
+Economy,win,DY,Norwegian Air Shuttle,374,737-800,OSL,Oslo Gardermoen Airport,TOS,Tromso Airport,9,2024,1:55:00,Norway,Norway,B737,Boeing,Other
+Economy,aisle,DY,Norwegian Air Shuttle,1103,737-800,BER,Berlin Brandenburg Airport,OSL,Oslo Gardermoen Airport,9,2024,1:40:00,Germany,Norway,B737,Boeing,Other
+Economy,win,LH,Lufthansa,210,A319,FRA,Frankfurt Airport,DRS,Dresden Airport,9,2024,1:00:00,Germany,Germany,A319,Airbus,Star Alliance
+Economy,win,LH,Lufthansa,755,747-8,BLR,Kempegowda International Airport  Bengaluru,FRA,Frankfurt Airport,9,2024,9:30:00,India,Germany,B747,Boeing,Star Alliance
+Economy,win,LH,Lufthansa,754,747-8,FRA,Frankfurt Airport,BLR,Kempegowda International Airport  Bengaluru,8,2024,8:50:00,Germany,India,B747,Boeing,Star Alliance
+Economy,win,LH,Lufthansa,207,A319,DRS,Dresden Airport,FRA,Frankfurt Airport,8,2024,1:05:00,Germany,Germany,A319,Airbus,Star Alliance
+Economy,aisle,EW,Eurowings,2967,A319,ZAD,Zadar Airport,STR,Stuttgart Airport,5,2024,1:20:00,Croatia,Germany,A319,Airbus,Other
+Economy,win,FR,Ryanair,5196,737-800,FKB,Karlsruhe/Baden Baden Airport,ZAD,Zadar Airport,5,2024,1:30:00,Germany,Croatia,B737,Boeing,Other
+Economy,win,LH,Lufthansa,216,A320,FRA,Frankfurt Airport,DRS,Dresden Airport,4,2024,1:00:00,Germany,Germany,A320,Airbus,Star Alliance
+Economy,win,LH,Lufthansa,1145,A321neo LR,BIO,Bilbao Airport,FRA,Frankfurt Airport,4,2024,2:10:00,Spain,Germany,A321,Airbus,Star Alliance
+Economy,aisle,UX,Air Europa,7161,737-800,MAD,Adolfo Suarez Madrid Barajas Airport,BIO,Bilbao Airport,3,2024,1:00:00,Spain,Spain,B737,Boeing,SkyTeam
+Economy,aisle,LH,Lufthansa,1120,A321neo,FRA,Frankfurt Airport,MAD,Adolfo Suarez Madrid Barajas Airport,3,2024,2:40:00,Germany,Spain,A321,Airbus,Star Alliance
+Economy,win,LH,Lufthansa,215,A320,DRS,Dresden Airport,FRA,Frankfurt Airport,3,2024,1:05:00,Germany,Germany,A320,Airbus,Star Alliance
+Economy,win,LH,Lufthansa,210,A320,FRA,Frankfurt Airport,DRS,Dresden Airport,1,2024,1:00:00,Germany,Germany,A320,Airbus,Star Alliance
+Premium Economy,win,LH,Lufthansa,755,747-400,BLR,Kempegowda International Airport  Bengaluru,FRA,Frankfurt Airport,1,2024,9:59:00,India,Germany,B747,Boeing,Star Alliance
+Premium Economy,aisle,LH,Lufthansa,758,A340-300,FRA,Frankfurt Airport,MAA,Chennai International Airport,12,2023,9:20:00,Germany,India,A340,Airbus,Star Alliance
+Economy,win,LH,Lufthansa,207,A319,DRS,Dresden Airport,FRA,Frankfurt Airport,12,2023,1:05:00,Germany,Germany,A319,Airbus,Star Alliance
+Economy,aisle,LH,Lufthansa,2130,CRJ900,MUC,Munich Airport,DRS,Dresden Airport,11,2022,0:55:00,Germany,Germany,CRJ900,Mitsubishi Heavy Industries Regional Jet,Star Alliance
+Economy,aisle,LH,Lufthansa,2235,E195,CDG,Charles de Gaulle Airport  Paris,MUC,Munich Airport,11,2022,1:25:00,France,Germany,E195,Embraer,Star Alliance
+Economy,win,LH,Lufthansa,1034,A320,FRA,Frankfurt Airport,CDG,Charles de Gaulle Airport  Paris,11,2022,1:15:00,Germany,France,A320,Airbus,Star Alliance
+Economy,win,LH,Lufthansa,207,A319,DRS,Dresden Airport,FRA,Frankfurt Airport,11,2022,1:05:00,Germany,Germany,A319,Airbus,Star Alliance
+Economy,mid,QR,Qatar Airways,291,787-8 Dreamliner,DOH,Hamad International Airport  Doha,PRG,Vaclav Havel Airport  Prague,8,2022,6:15:00,Qatar,Czechia,B787,Boeing,OneWorld
+Economy,mid,QR,Qatar Airways,529,787-9 Dreamliner,MAA,Chennai International Airport,DOH,Hamad International Airport  Doha,8,2022,4:30:00,India,Qatar,B787,Boeing,OneWorld
+Economy,mid,6E,IndiGo,5314,A321neo,HYD,Rajiv Gandhi International Airport  Hyderabad,TIR,Tirupati Airport,8,2022,1:05:00,India,India,A321,Airbus,Other
+Economy,mid,6E,IndiGo,6912,A320neo,BBI,Biju Patnaik International Airport  Bhubaneswar,HYD,Rajiv Gandhi International Airport  Hyderabad,8,2022,1:35:00,India,India,A320,Airbus,Other
+Economy,mid,6E,IndiGo,922,A321neo,HYD,Rajiv Gandhi International Airport  Hyderabad,BBI,Biju Patnaik International Airport  Bhubaneswar,8,2022,1:40:00,India,India,A321,Airbus,Other
+Economy,win,6E,IndiGo,7251,ATR 72-201/202,CDP,Cuddapah Airport,HYD,Rajiv Gandhi International Airport  Hyderabad,8,2022,1:15:00,India,India,ATR72,Avions de Transport Regional,Other
+Business,win,AF,Air France,108,A350-900,CDG,Charles de Gaulle Airport  Paris,MAA,Chennai International Airport,8,2022,9:55:00,France,India,A350,Airbus,SkyTeam
+Economy,win,AF,Air France,681,787-9 Dreamliner,ATL,Hartsfield Jackson Atlanta International Airport,CDG,Charles de Gaulle Airport  Paris,8,2022,8:30:00,United States,France,B787,Boeing,SkyTeam
+Economy,win,WN,Southwest Airlines,1654,737-700 ,BNA,Nashville International Airport,ATL,Hartsfield Jackson Atlanta International Airport,8,2022,1:10:00,United States,United States,B737,Boeing,Other
+Economy,win,WN,Southwest Airlines,4402,737-700 ,ORD,O'Hare International Airport  Chicago,BNA,Nashville International Airport,7,2022,1:30:00,United States,United States,B737,Boeing,Other
+Economy,win,UA,United Airlines,2497,737-900,SEA,Seattle Tacoma International Airport,ORD,O'Hare International Airport  Chicago,7,2022,3:58:00,United States,United States,B737,Boeing,Star Alliance
+Economy,win,UA,United Airlines,2271,737 MAX 9,ANC,Ted Stevens Anchorage International Airport,ORD,O'Hare International Airport  Chicago,6,2022,6:05:00,United States,United States,B737,Boeing,Star Alliance
+Economy,aisle,AS,Alaska Airlines,21,737 MAX 9,ORD,O'Hare International Airport  Chicago,SEA,Seattle Tacoma International Airport,7,2022,4:34:00,United States,United States,B737,Boeing,OneWorld
+Economy,win,AS,Alaska Airlines,1221,737-900,ORD,O'Hare International Airport  Chicago,ANC,Ted Stevens Anchorage International Airport,6,2022,6:31:00,United States,United States,B737,Boeing,OneWorld
+Economy,aisle,NK,Spirit Airlines,566,A320,LAS,Harry Reid International Airport  Las Vegas,IND,Indianapolis International Airport,11,2021,3:21:00,United States,United States,A320,Airbus,Other
+Economy,aisle,NK,Spirit Airlines,533,A320,IND,Indianapolis International Airport,LAS,Harry Reid International Airport  Las Vegas,11,2021,4:02:00,United States,United States,A320,Airbus,Other
+Economy,win,WN,Southwest Airlines,620,737-700 ,BNA,Nashville International Airport,ORD,O'Hare International Airport  Chicago,5,2021,1:40:00,United States,United States,B737,Boeing,Other
+Economy,win,WN,Southwest Airlines,4376,737-700 ,ORD,O'Hare International Airport  Chicago,BNA,Nashville International Airport,5,2021,1:45:00,United States,United States,B737,Boeing,Other
+Economy,win,UA,United Airlines,899,787-9 Dreamliner,DEL,Indira Gandhi International Airport  Delhi,ORD,O'Hare International Airport  Chicago,3,2021,15:25:00,India,United States,B787,Boeing,Star Alliance
+Economy,win,AI,Air India,539,A321,MAA,Chennai International Airport,DEL,Indira Gandhi International Airport  Delhi,3,2021,2:50:00,India,India,A321,Airbus,Star Alliance
+Economy,mid,IX,Air India Express,934,A320,BLR,Kempegowda International Airport  Bengaluru,MAA,Chennai International Airport,2,2021,1:00:00,India,India,A320,Airbus,Star Alliance
+Economy,mid,IX,Air India Express,1543,A320,HYD,Rajiv Gandhi International Airport  Hyderabad,BLR,Kempegowda International Airport  Bengaluru,2,2021,1:20:00,India,India,A320,Airbus,Star Alliance
+Economy,win,UK,Vistara,877,737-800,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,HYD,Rajiv Gandhi International Airport  Hyderabad,2,2021,1:25:00,India,India,B737,Boeing,Other
+Economy,mid,6E,IndiGo,969,A320,HYD,Rajiv Gandhi International Airport  Hyderabad,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,2,2021,1:35:00,India,India,A320,Airbus,Other
+Economy,win,2T,Trujet,536,ATR 72-600,CDP,Cuddapah Airport,MAA,Chennai International Airport,3,2020,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,535,ATR 72-600,MAA,Chennai International Airport,CDP,Cuddapah Airport,2,2020,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,aisle,SG,SpiceJet,346,737-800,GAU,Lokpriya Gopinath Bordoloi International Airport  Guwahati,MAA,Chennai International Airport,2,2020,3:00:00,India,India,B737,Boeing,Other
+Economy,mid,SG,SpiceJet,608,737-800,MAA,Chennai International Airport,GAU,Lokpriya Gopinath Bordoloi International Airport  Guwahati,1,2020,2:55:00,India,India,B737,Boeing,Other
+Economy,win,2T,Trujet,536,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,2,2020,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,mid,6E,IndiGo,145,A320neo,IDR,Devi Ahilya Bai Holkar Airport  Indore,MAA,Chennai International Airport,12,2019,2:10:00,India,India,A320,Airbus,Other
+Economy,aisle,6E,IndiGo,143,A320neo,MAA,Chennai International Airport,IDR,Devi Ahilya Bai Holkar Airport  Indore,12,2019,2:15:00,India,India,A320,Airbus,Other
+Economy,win,2T,Trujet,536,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,10,2019,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,535,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,10,2019,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,536,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,9,2019,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,536,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,8,2019,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,SG,SpiceJet,124,737-700 ,IXL,Kushok Bakula Rimpochee Airport  Leh,DEL,Indira Gandhi International Airport  Delhi,7,2019,1:30:00,India,India,B737,Boeing,Other
+Economy,mid,SG,SpiceJet,103,737-700 ,DEL,Indira Gandhi International Airport  Delhi,MAA,Chennai International Airport,7,2019,3:00:00,India,India,B737,Boeing,Other
+Economy,aisle,SG,SpiceJet,104,737-900,MAA,Chennai International Airport,DEL,Indira Gandhi International Airport  Delhi,7,2019,2:55:00,India,India,B737,Boeing,Other
+Economy,win,2T,Trujet,535,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,7,2019,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,mid,6E,IndiGo,6217,A320neo,MAA,Chennai International Airport,BLR,Kempegowda International Airport  Bengaluru,6,2019,1:10:00,India,India,A320,Airbus,Other
+Economy,win,2T,Trujet,535,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,6,2019,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,536,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,5,2019,1:05:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,535,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,5,2019,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,6E,IndiGo,386,A320neo,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,MAA,Chennai International Airport,5,2019,2:00:00,India,India,A320,Airbus,Other
+Economy,aisle,G8,GoAir,302,A320neo,MAA,Chennai International Airport,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,5,2019,1:55:00,India,India,A320,Airbus,Other
+Economy,win,2T,Trujet,535,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,4,2019,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,536,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,4,2019,1:05:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,536,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,3,2019,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,536,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,1,2019,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,EK,Emirates,544,777-300ER,DXB,Dubai International Airport,MAA,Chennai International Airport,11,2018,3:55:00,United Arab Emirates,India,B777,Boeing,Other
+Economy,win,EK,Emirates,224,777-300ER,EWR,Newark Liberty International Airport,DXB,Dubai International Airport,11,2018,12:30:00,United States,United Arab Emirates,B777,Boeing,Other
+Economy,mid,AA,American Airlines,1439,737-800,PHX,Phoenix Sky Harbor International Airport,EWR,Newark Liberty International Airport,11,2018,4:29:00,United States,United States,B737,Boeing,OneWorld
+Economy,win,WN,Southwest Airlines,2235,737-700 ,AUS,Austin-Bergstrom International Airport,PHX,Phoenix Sky Harbor International Airport,11,2018,2:21:00,United States,United States,B737,Boeing,Other
+Economy,win,WN,Southwest Airlines,757,737-700 ,EWR,Newark Liberty International Airport,AUS,Austin-Bergstrom International Airport,11,2018,3:04:00,United States,United States,B737,Boeing,Other
+Economy,win,EK,Emirates,201,A380-800,DXB,Dubai International Airport,JFK,John F. Kennedy International Airport  New York,10,2018,13:55:00,United Arab Emirates,United States,A380,Airbus,Other
+Economy,win,EK,Emirates,543,777-300ER,MAA,Chennai International Airport,DXB,Dubai International Airport,10,2018,4:20:00,India,United Arab Emirates,B777,Boeing,Other
+Economy,win,2T,Trujet,536,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,11,2018,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,535,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,11,2018,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,430,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,10,2018,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,429,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,10,2018,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,430,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,9,2018,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,430,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,8,2018,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,429,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,8,2018,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,aisle,2T,Trujet,430,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,6,2018,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,aisle,2T,Trujet,429,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,6,2018,1:00:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,430,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,4,2018,1:05:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,430,ATR 72-201/202,CDP,Cuddapah Airport,MAA,Chennai International Airport,3,2018,1:05:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,2T,Trujet,429,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,3,2018,1:05:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,aisle,2T,Trujet,429,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,3,2018,1:05:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,aisle,2T,Trujet,429,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,1,2018,1:05:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,mid,AI,Air India,570,A320,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,MAA,Chennai International Airport,1,2018,1:50:00,India,India,A320,Airbus,Star Alliance
+Economy,win,AI,Air India,317,787-8 Dreamliner,DEL,Indira Gandhi International Airport  Delhi,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,1,2018,2:05:00,India,India,B787,Boeing,Star Alliance
+Economy,win,AI,Air India,317,787-8 Dreamliner,HKG,Hong Kong International Airport,DEL,Indira Gandhi International Airport  Delhi,1,2018,6:00:00,Hong Kong,India,B787,Boeing,Star Alliance
+Economy,win,AI,Air India,310,787-8 Dreamliner,DEL,Indira Gandhi International Airport  Delhi,HKG,Hong Kong International Airport,1,2018,6:00:00,India,Hong Kong,B787,Boeing,Star Alliance
+Economy,win,AI,Air India,310,787-8 Dreamliner,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,DEL,Indira Gandhi International Airport  Delhi,1,2018,2:05:00,India,India,B787,Boeing,Star Alliance
+Economy,mid,AI,Air India,672,A321,MAA,Chennai International Airport,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,1,2018,1:50:00,India,India,A321,Airbus,Star Alliance
+Economy,win,2T,Trujet,429,ATR 72-201/202,MAA,Chennai International Airport,CDP,Cuddapah Airport,12,2017,1:05:00,India,India,ATR72,Avions de Transport Regional,Other
+Economy,win,9W,Jet Airways,474,737-800,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,MAA,Chennai International Airport,12,2017,1:50:00,India,India,B737,Boeing,Other
+Economy,aisle,6E,IndiGo,654,A320,MAA,Chennai International Airport,BOM,Chhatrapati Shivaji Maharaj International Airport  Mumbai,12,2017,1:50:00,India,India,A320,Airbus,Other
+Economy,win,AI,Air India,429,A321,DEL,Indira Gandhi International Airport  Delhi,MAA,Chennai International Airport,10,2017,2:45:00,India,India,A321,Airbus,Star Alliance
+Economy,aisle,6E,IndiGo,6726,A320,BLR,Kempegowda International Airport  Bengaluru,DEL,Indira Gandhi International Airport  Delhi,9,2017,2:05:00,India,India,A320,Airbus,Other
+Economy,mid,6E,IndiGo,847,A320,MAA,Chennai International Airport,BLR,Kempegowda International Airport  Bengaluru,9,2017,0:55:00,India,India,A320,Airbus,Other
+Economy,win,AI,Air India,42,A321,DEL,Indira Gandhi International Airport  Delhi,MAA,Chennai International Airport,1,2017,2:45:00,India,India,A321,Airbus,Star Alliance
+Economy,win,AI,Air India,126,777-300ER,ORD,O'Hare International Airport  Chicago,DEL,Indira Gandhi International Airport  Delhi,1,2017,14:15:00,United States,India,B777,Boeing,Star Alliance
+Economy,aisle,WN,Southwest Airlines,4303,737-700 ,DCA,Ronald Reagan Washington National Airport,MDW,Chicago Midway International Airport,1,2017,2:05:00,United States,United States,B737,Boeing,Other
+Economy,win,WN,Southwest Airlines,5119,737-700 ,STL,St. Louis Lambert International Airport,DCA,Ronald Reagan Washington National Airport,1,2017,1:50:00,United States,United States,B737,Boeing,Other
+Economy,win,WN,Southwest Airlines,4144,737-700 ,DSM,Des Moines International Airport,STL,St. Louis Lambert International Airport,1,2017,1:05:00,United States,United States,B737,Boeing,Other
+Economy,win,WN,Southwest Airlines,187,737-700 ,STL,St. Louis Lambert International Airport,DSM,Des Moines International Airport,1,2017,1:10:00,United States,United States,B737,Boeing,Other
+Economy,aisle,WN,Southwest Airlines,569,737-800,DAL,Dallas Love Field,STL,St. Louis Lambert International Airport,1,2017,1:35:00,United States,United States,B737,Boeing,Other
+Economy,mid,NK,Spirit Airlines,749,A320,MSP,Minneapolis Saint Paul International Airport,DFW,Dallas/Fort Worth International Airport,12,2016,2:31:00,United States,United States,A320,Airbus,Other
+Economy,win,WN,Southwest Airlines,6314,737-700 ,LAS,Harry Reid International Airport  Las Vegas,DSM,Des Moines International Airport,12,2016,2:50:00,United States,United States,B737,Boeing,Other
+Economy,win,WN,Southwest Airlines,2566,737-800,SFO,San Francisco International Airport,LAS,Harry Reid International Airport  Las Vegas,12,2016,1:30:00,United States,United States,B737,Boeing,Other
+Economy,win,WN,Southwest Airlines,6382,737-700 ,PHX,Phoenix Sky Harbor International Airport,SFO,San Francisco International Airport,12,2016,2:10:00,United States,United States,B737,Boeing,Other
+Economy,win,WN,Southwest Airlines,3123,737-800,IND,Indianapolis International Airport,PHX,Phoenix Sky Harbor International Airport,12,2016,4:10:00,United States,United States,B737,Boeing,Other
+Economy,win,WN,Southwest Airlines,1877,737-700 ,MCI,Kansas City International Airport,BNA,Nashville International Airport,11,2016,1:30:00,United States,United States,B737,Boeing,Other
+Economy,win,WN,Southwest Airlines,5871,737-700 ,LGA,LaGuardia Airport  New York,MCI,Kansas City International Airport,11,2016,3:20:00,United States,United States,B737,Boeing,Other
+Economy,win,AI,Air India,539,777-200LR,DEL,Indira Gandhi International Airport  Delhi,JFK,John F. Kennedy International Airport  New York,11,2016,14:51:00,India,United States,B777,Boeing,Star Alliance
+Economy,win,AI,Air India,539,A319,MAA,Chennai International Airport,DEL,Indira Gandhi International Airport  Delhi,11,2016,2:50:00,India,India,A319,Airbus,Star Alliance
+Economy,win,UL,SriLankan Airlines,123,A320,CMB,Bandaranaike International Airport  Colombo,MAA,Chennai International Airport,1,2016,1:20:00,Sri Lanka,India,A320,Airbus,OneWorld
+Economy,win,UL,SriLankan Airlines,315,A321,KUL,Kuala Lumpur International Airport,CMB,Bandaranaike International Airport  Colombo,1,2016,3:45:00,Malaysia,Sri Lanka,A321,Airbus,OneWorld
+Economy,win,MH,Malaysia Airlines,2328,A330-300,MEL,Melbourne Airport,KUL,Kuala Lumpur International Airport,1,2016,8:20:00,Australia,Malaysia,A330,Airbus,OneWorld
+Economy,win,VA,Virgin Australia,878,737-800,SYD,Sydney Kingsford Smith Airport,MEL,Melbourne Airport,1,2016,1:35:00,Australia,Australia,B737,Boeing,Other
+Economy,mid,VA,Virgin Australia,833,737-800,MEL,Melbourne Airport,SYD,Sydney Kingsford Smith Airport,12,2015,1:35:00,Australia,Australia,B737,Boeing,Other
+Economy,win,VA,Virgin Australia,302,737-800,BNE,Brisbane Airport,MEL,Melbourne Airport,11,2015,2:15:00,Australia,Australia,B737,Boeing,Other
+Economy,win,VA,Virgin Australia,790,737-800,CNS,Cairns Airport,BNE,Brisbane Airport,11,2015,2:00:00,Australia,Australia,B737,Boeing,Other
+Economy,win,JQ,Jetstar,940,A320,MEL,Melbourne Airport,CNS,Cairns Airport,11,2015,3:16:00,Australia,Australia,A320,Airbus,OneWorld
+Economy,win,MH,Malaysia Airlines,149,A330-300,KUL,Kuala Lumpur International Airport,MEL,Melbourne Airport,11,2015,8:55:00,Malaysia,Australia,A330,Airbus,OneWorld
+Business,win,UL,SriLankan Airlines,314,A321,CMB,Bandaranaike International Airport  Colombo,KUL,Kuala Lumpur International Airport,11,2015,3:45:00,Sri Lanka,Malaysia,A321,Airbus,OneWorld
+Economy,win,UL,SriLankan Airlines,126,A320,MAA,Chennai International Airport,CMB,Bandaranaike International Airport  Colombo,11,2015,1:20:00,India,Sri Lanka,A320,Airbus,OneWorld
+Economy,win,SG,SpiceJet,309,737-800,DEL,Indira Gandhi International Airport  Delhi,MAA,Chennai International Airport,6,2015,2:50:00,India,India,B737,Boeing,Other
+Economy,win,SG,SpiceJet,2328,Dash 8,DED,Jolly Grant Airport  Dehradun,DEL,Indira Gandhi International Airport  Delhi,6,2015,1:00:00,India,India,Dash8,De Havilland Canada,Other
+Economy,win,SG,SpiceJet,2325,Dash 8,DEL,Indira Gandhi International Airport  Delhi,DED,Jolly Grant Airport  Dehradun,6,2015,0:45:00,India,India,Dash8,De Havilland Canada,Other
+Economy,win,SG,SpiceJet,312,737-800,MAA,Chennai International Airport,DEL,Indira Gandhi International Airport  Delhi,6,2015,2:40:00,India,India,B737,Boeing,Other
+Economy,win,AI,Air India,765,A321,CCU,Netaji Subhash Chandra Bose International Airport Kolkata,MAA,Chennai International Airport,6,2013,2:11:00,India,India,A321,Airbus,Star Alliance
+Economy,win,AI,Air India,739,A320,GAU,Lokpriya Gopinath Bordoloi International Airport  Guwahati,CCU,Netaji Subhash Chandra Bose International Airport Kolkata,6,2013,1:05:00,India,India,A320,Airbus,Star Alliance
+Economy,win,6E,IndiGo,292,A320,MAA,Chennai International Airport,GAU,Lokpriya Gopinath Bordoloi International Airport  Guwahati,6,2013,3:55:00,India,India,A320,Airbus,Other
+Economy,win,AI,Air India,542,A321,DEL,Indira Gandhi International Airport  Delhi,TIR,Tirupati Airport,6,2013,4:20:00,India,India,A321,Airbus,Star Alliance
