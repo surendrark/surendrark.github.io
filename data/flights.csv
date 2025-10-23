@@ -1,4 +1,6 @@
 cabin_class,seat_typ,airline_code,airline,flight_number,aircraft_type,dep_airport,dep_airport_name,arr_airport,arr_airport_name,month,year,time_in_air,dep_country,arr_country,aircraft_family,aircraft_mfg,airline_family
+Economy,mid,AI,Air India,2417,A320neo,DEL,Indira Gandhi International Airport  Delhi,BLR,Kempegowda International Airport  Bengaluru,10,2025,2:45:00,India,India,A320,Airbus,Star Alliance
+Economy,win,AI,Air India,2030,787-9 Dreamliner,FRA,Frankfurt Airport,DEL,Indira Gandhi International Airport  Delhi,10,2025,9:10:00,Germany,India,B787,Boeing,Star Alliance
 Economy,win,LH,Lufthansa,2124,CRJ900,MUC,Munich Airport,DRS,Dresden Airport,9,2025,0:55:00,Germany,Germany,CRJ900,Mitsubishi Heavy Industries Regional Jet,Star Alliance
 Economy,aisle,LH,Lufthansa,765,A350-900,BLR,Kempegowda International Airport  Bengaluru,MUC,Munich Airport,9,2025,9:10:00,India,Germany,A350,Airbus,Star Alliance
 Economy,aisle,LH,Lufthansa,764,A350-900,MUC,Munich Airport,BLR,Kempegowda International Airport  Bengaluru,8,2025,8:50:00,Germany,India,A350,Airbus,Star Alliance
