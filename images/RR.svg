@@ -288,7 +288,7 @@
      stroke-width="8"
      id="circle18" />
   <path
-     d="M100,20 A80,80 0 1 1 75.2,24"
+     d="M100,20 A80,80 0 0 1 100,180 A80,80 0 0 1 100,20"
      fill="none"
      stroke="#4CAF50"
      stroke-width="8"
