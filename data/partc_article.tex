@@ -1,0 +1,1260 @@
+%% elsarticle LaTeX template
+%% Transportation Research Part C: Emerging Technologies
+%% Submission namespace: fx2_pop1_a800_t500_dc150_r3
+%%
+%% All numerical claims are from the locked namespace above (10 paired seeds,
+%% N=100 customers, pop-weighted demand, min-of-3 evaluation budget).
+
+\documentclass[review,3p,authoryear]{elsarticle}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{graphicx}
+\graphicspath{{../figures/}{figures/}}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{hidelinks,hypertexnames=false}
+\usepackage{natbib}
+\usepackage{microtype}
+\usepackage{siunitx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[capitalize,noabbrev]{cleveref}
+\usepackage{enumitem}
+
+% theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+% notation shorthands
+\newcommand{\Rstar}{R^{*}}
+\newcommand{\Qprime}{Q^{\prime}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\SoC}{\mathrm{SoC}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\ELRP}{\text{GW-ELRP}}
+
+\journal{Transportation Research Part C: Emerging Technologies}
+
+%%----------------------------------------------------------------------
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Battery size moderates the value of terrain and winter information\\
+in charger siting for regional electric freight}
+
+%% Authors — fill in before submission
+\author[trond]{Surendra Reddy Kancharla}
+\ead{kanna.srk@icloud.com}
+
+\address[trond]{[Affiliation -- to be completed]}
+
+%%----------------------------------------------------------------------
+\begin{abstract}
+We study how omitting road grade or winter energy losses changes
+charger-siting decisions for regional electric freight.  The model combines
+arc-level grade, payload-dependent traction and regenerative braking,
+nonlinear charging, and budget-constrained site selection.  A conservative
+state-of-charge-grid dynamic program evaluates fixed routes; adaptive
+large-neighbourhood search generates a route pool assembled by a
+set-partitioning mixed-integer program.  On 44 small flat-network benchmark
+instances, the matheuristic agrees with a discretized state-space reference
+on 42 (median gap 0.00\%, mean 0.25\%).  A further 168 instances with up to
+320 customers test compatibility but are not quality-certified against
+best-known solutions.
+
+A $2\times2$ experiment compares full, terrain-only, winter-only, and blind
+planners on ten paired 100-customer Trondheim instances, all with a free
+150\,kW depot charger.  Averaged over budgets $B=2,\ldots,8$, blind planning
+adds an estimated 17.5\,min/day for a 145\,kWh pack (95\% confidence interval
+0.8--34.2) and 60.8\,min/day for a 100\,kWh pack (16.6--104.9), equivalent
+to 0.86\% and 2.97\% of baseline route duration.  Component means change
+ordering with battery size, but paired terrain--winter contrasts include
+zero.  Regret shows no decreasing budget trend.  Blind planners use fewer
+than one non-depot site on average even at $B=8$, indicating that omitted
+energy terms suppress perceived charging demand.  No customer is left
+unserved.
+
+A continuum threshold identifies 100\,kWh winter as Trondheim's only
+mean-tour capacity exceedance.  Transfer calculations for Stuttgart and
+Groningen expose sensitivity to digital-surface-model bias.  The evidence
+supports battery-dependent information value, but not a universal
+terrain-versus-winter dominance rule.
+\end{abstract}
+
+\begin{keyword}
+Electric vehicle routing \sep charger siting \sep road grade \sep
+regenerative braking \sep winter range degradation \sep placement regret \sep
+matheuristic \sep fixed-route charging problem \sep value of information
+\end{keyword}
+
+\end{frontmatter}
+
+%%======================================================================
+\section{Introduction}
+\label{sec:intro}
+
+Freight decarbonisation is placing battery-electric trucks on road
+networks that are neither flat nor seasonally uniform.  Field experience
+shows that the operational viability of these fleets hinges on
+route-specific operating profiles and battery
+sizing~\citep{Link2022,Hovi2019}.  Planners who site en-route chargers
+must therefore decide how much to invest in characterising the road
+network's topography and the seasonal variation in vehicle consumption.
+Many routing and siting studies represent energy use by a constant
+distance rate or a scenario-independent range.  Whether that simplification
+changes infrastructure decisions, rather than only route-energy estimates,
+is less well established.
+
+One practical objection is that depot charging makes en-route siting moot.
+A truck
+that can swing back to its depot to charge mid-tour has a natural
+alternative to any public en-route charger.  In a hub-and-spoke urban
+distribution network the depot charger is effectively free infrastructure,
+so en-route charger quality matters only at the margin.
+
+We test that objection directly and separate the information effects with
+a factorial design.  The main result is a battery-dependent difference in
+the value of model fidelity.  A blind planner has a substantially larger
+route-duration penalty with a 100\,kWh pack than with a 145\,kWh pack.
+The component means change ordering across the two packs, although ten
+paired instances do not estimate that contrast precisely enough to support
+a categorical ``dominance flip.''  Regret also shows no decreasing trend as
+the site-count upper bound rises from two to eight.  This occurs because the
+blind model generally leaves the additional allowance unused, not because
+extra sites are proven incapable of correcting a bad ranking.  Every planner
+has access to a free 150\,kW depot charger, and no evaluated cell leaves a
+customer unserved.
+
+\subsection*{Magnitude framing}
+
+Across budgets $B=2,\ldots,8$, the estimated penalty of a fully blind
+planner relative to the full-information heuristic baseline averages
+60.8\,min/day for a 100\,kWh fleet and 17.5\,min/day for a 145\,kWh
+fleet.  These are sums of route completion times, so they can be read as
+driver-minutes only under the assumption that labour cost is proportional
+to route duration.
+
+\subsection*{Contributions}
+
+On the modelling and algorithmic side, we formulate the grade+winter
+ELRP (\ELRP): an electric location-routing problem with
+arc-level grade-dependent consumption, regenerative braking with
+battery-saturation clamping, a seasonal energy factor, and a
+budget-constrained site-selection layer.  We implement a conservative
+SoC-grid FRVCP dynamic program for the graded energy model and show that
+the energy representation remains piecewise linear under regeneration and
+battery saturation.  The usual load-monotone dominance argument cannot be
+used unchanged on regen-dominant arcs (35.9\% of valid Trondheim arcs), so
+the small-instance reference method retains the delivered-customer subset
+explicitly.  The \ELRP{} is solved with an ALNS route-pool matheuristic and
+a set-partitioning MILP.  We run the flat special case on 212 Schneider
+(2014) and Montoya (2017) instances with up to 320 customers; 42 of 44
+small instances numerically agree with the discretized reference
+(0.00\% median and 0.25\% mean gap).
+
+On the analytical side, we derive a closed-form ruggedness threshold
+$\Rstar$ that screens which battery $\times$ season combinations have mean
+tour energy above usable capacity, and assess prospectively recorded
+predictions on Stuttgart and Groningen.  Finally, through a
+2$\times$2 factorial regret experiment with common-random-number paired
+seeds, we quantify how total and component information effects change with
+battery size, test whether estimated regret declines with the charger-budget
+upper bound, and separate route-duration penalties from unserved-customer
+outcomes under depot charging.
+
+\subsection*{Scope}
+
+This paper provides single-region siting experiments for Trondheim (Norway).
+Stuttgart and Groningen are transfer checks for the aggregate threshold, not
+full siting replications.  The threshold is a mean-tour screening relation,
+not an optimization-derived density or a prediction of the discrete siting
+optimum.  Cross-regional causal or policy generalisation is therefore outside
+the evidence presented here.
+
+\subsection*{Paper organisation}
+
+\Cref{sec:related} reviews the relevant literature.
+\Cref{sec:model} formalises the road network, energy model, and ruggedness
+threshold.
+\Cref{sec:elrp} defines the \ELRP{} and its algorithmic components.
+\Cref{sec:validation} validates the solver on standard benchmarks.
+\Cref{sec:experiment} describes the factorial regret experiment.
+\Cref{sec:results} presents the results.
+\Cref{sec:discussion} discusses implications and limitations.
+Appendices provide the PWL monotonicity argument, the threshold derivation,
+and details of the conservative SoC discretization.
+
+%%======================================================================
+\section{Related Work}
+\label{sec:related}
+
+\subsection{Electric vehicle routing and the location-routing problem}
+
+The electric vehicle routing problem (E-VRP) has generated a substantial
+body of research since the introduction of the first E-VRPTW
+formulation~\citep{Schneider2014}.  Pelletier et al.~\citep{Pelletier2016} provide an
+early synthesis of the modelling building blocks for electric goods
+distribution, covering battery constraints, charging decisions, and
+infrastructure dependencies, and argue that siting and routing cannot be
+decoupled once realistic range limitations are imposed.  More recent
+surveys~\citep{Erdelic2019,Kucukoglu2021,Qin2021} classify the
+rapidly-growing literature into families by charging policy (full,
+partial, opportunity), fleet composition, and energy model, and
+collectively cover over 160 papers on E-VRP variants.  The problem of jointly
+optimising charger locations and vehicle routes---the electric
+location-routing problem (ELRP)---is reviewed by
+Schiffer et al.~\citep{Schiffer2019rev}, who map its connections to the broader class of
+routing problems with intermediate stops and show that even moderate
+fleet sizes render the joint problem computationally demanding.
+Across these surveys, energy consumption is usually represented by a
+constant distance rate or by charging-state dynamics; arc-level terrain and
+seasonal energy factors are uncommon in the reviewed location-routing
+formulations.
+
+\subsection{Nonlinear charging and the fixed-route charging problem}
+
+The most consequential modelling step in recent E-VRP research is the
+transition from linear to nonlinear (concave) charging
+functions~\citep{Montoya2017}.  Montoya et al.~\citep{Montoya2017} show that forcing
+linear charging on nonlinear hardware can yield routes that are infeasible
+or materially suboptimal when evaluated on real charging curves, and
+they introduce the fixed-route vehicle charging problem (FRVCP) as the
+key subproblem: given a fixed customer sequence, find the optimal charging
+schedule.  Froger et al.~\citep{Froger2019} develop strengthened formulations and an
+efficient labeling algorithm for the FRVCP based on piecewise-linear
+SoC-function labels, which underpins the open-source solver
+frvcpy~\citep{Kullman2021joc} and several subsequent exact and heuristic
+algorithms~\citep{Lee2021,Kullman2021ts}.  Froger et al.~\citep{Froger2021cap}
+extend the E-VRP-NL with capacitated charging stations, pairing an
+iterated-local-search route generator with an exact route-assembly
+phase---the same generate-then-assemble pattern adopted here.  Pelletier et al.~\citep{Pelletier2018} apply
+FRVCP-style DP to charge-scheduling for fixed-route electric freight fleets
+over multiple days, demonstrating that charging decisions can materially affect
+fleet operating cost when battery limits interact with service patterns.
+The cited formulations do not jointly propagate arc-level terrain and a
+seasonal energy scenario into infrastructure location.
+
+\subsection{Grade and road topology in EV energy models}
+
+The effect of road grade on EV energy consumption is well-established in
+the vehicle-engineering literature.  Longitudinal-dynamics models express
+arc energy as the sum of rolling resistance, aerodynamic drag, and a
+gravitational term proportional to elevation change and
+mass~\citep{Fiori2016}.  Basso et al.~\citep{Basso2019} integrate such a model
+directly into the E-VRP and demonstrate that neglecting elevation changes
+leads to systematic underestimates of energy use and downstream routing
+infeasibilities.  Data-driven approaches using GPS and CAN-bus data
+confirm the empirical importance of grade for route-level range
+prediction~\citep{DeCauwer2017}, and optimisation studies show that
+terrain-aware route selection can reduce battery draw even
+before charger placement is considered~\citep{Perger2020}.  These works,
+however, primarily treat grade as an input to routing.  Comparatively little
+work asks how grade changes the \emph{siting} of charger infrastructure or
+quantifies the cost of omitting grade at siting time.
+
+\subsection{Cold-weather range degradation}
+
+At low ambient temperatures, usable battery capacity decreases as
+internal resistance rises, regenerative braking efficiency falls, and
+auxiliary heating loads grow substantially~\citep{Neubauer2014}.
+Steinstr\"{a}ter et al.~\citep{Steinstraeter2021} decompose observed cold-weather
+range loss into heating demand (up to 31.9\%) and limited regeneration
+(up to 21.7\%), with a combined maximum near 50\% in their passenger-car
+data.
+Laboratory dynamometer studies~\citep{AAA2019} confirm that at
+$-6.7\,^{\circ}$C with HVAC enabled, range falls on average by 41\%.
+Yuksel and Michalek~\citep{Yuksel2015} show that cold climate regions incur roughly a 24\%
+efficiency penalty attributable primarily to cabin heating.  For
+commercial freight in particular, field experience from Norway---the
+country of our primary study city---documents winter range reductions and
+operational adaptations in electric truck fleets~\citep{Hovi2019}.
+We did not identify a prior ELRP study that isolates the placement effect of
+omitting a seasonal energy factor while holding the demand instances and
+evaluation model fixed.
+
+\subsection{Charging infrastructure location models}
+
+Schiffer and Walther~\citep{Schiffer2017} introduce the ELRP with time windows and partial
+recharging as the foundational model for joint charger-siting and routing,
+and Schiffer and Walther~\citep{Schiffer2018} extend it to robust strategic network design under
+operational uncertainty, using an ALNS to generate candidate routing
+structures.  Kchaou-Boujelben~\citep{Kchaou2021} surveys the broader charging-station
+location literature and documents the diversity of objectives, demand
+representations, and range assumptions in that field.  He et al.~\citep{He2018} demonstrate
+that even in a network-flow siting model, the assumed driving range
+changes optimal station placement---a result that motivates
+asking how \emph{energy-model misspecification} (rather than range
+uncertainty) propagates to siting decisions.
+
+\subsection{Value of information and placement regret}
+
+Uncertainty in facility location has been studied primarily from the
+demand side: stochastic-programming formulations measure the expected cost
+of siting under unknown customer patterns, and regret-based models hedge
+against scenario-worst outcomes~\citep{Snyder2006}.  Within the E-VRP
+literature, Pelletier et al.~\citep{Pelletier2019} quantify the operational consequences of
+energy-consumption uncertainty on routing, finding that simplified energy
+assumptions can produce routes that are infeasible or expensive when
+evaluated under a richer model.  Our work is complementary: rather than
+stochastic demand or uncertain consumption, we study \emph{deterministic
+model misspecification}---a planner who simply omits terrain or season from
+the energy model---and measure the resulting placement regret under the
+full-information evaluation model using a controlled factorial design with
+common-random-number variance reduction~\citep{Glasserman1992}.
+Our specific contribution is to estimate separate terrain and winter
+information effects within one charger-siting pipeline.
+
+\subsection{Metaheuristics, matheuristics, and continuum approximation}
+
+The ALNS framework of Ropke and Pisinger~\citep{Ropke2006} is the standard methodological
+anchor for rich vehicle routing; Schiffer et al.~\citep{Schiffer2019alns} apply an ALNS
+to the location-routing problem with intraroute facilities, the closest
+prior algorithmic precedent for our charger-siting matheuristic.  The
+pattern of generating route pools via local search and assembling them
+with a set-partitioning MILP is a recognised family of VRP
+matheuristics~\citep{Archetti2014,Montoya2017}.  For the strategic
+threshold result, the continuum-approximation framework of
+Daganzo~\citep{Daganzo1984} provides closed-form tour-length estimates;
+Ouyang and Daganzo~\citep{Ouyang2006} validate the CA scheme against discrete facility
+designs, and Ansari et al.~\citep{Ansari2018} survey its application to a broad class
+of logistics network-design problems.  Our ruggedness threshold theorem
+is a terrain-and-season extension of this CA tradition.
+
+\subsection*{Summary of the gap}
+
+The literature thus supplies: exact and heuristic E-VRP and ELRP algorithms
+(on flat networks); physics-based energy models with grade and regen (for
+single-vehicle routing); empirical winter range degradation factors; and
+robustness frameworks for demand-side uncertainty in facility location.
+The gap addressed here is a study that (i) couples arc-level grade \emph{and}
+seasonal energy factors into a charger-siting formulation, (ii) measures
+the cost of omitting either factor factorially with common random numbers,
+and (iii) relates the discrete experiment to a transparent mean-tour
+capacity screen.  The present paper addresses that combination while
+retaining the limitations of a single-region heuristic study.
+
+%%======================================================================
+\section{Problem Setting and Energy Model}
+\label{sec:model}
+
+\subsection{Road network and grade data}
+\label{sec:network}
+
+The study region is the Trondheim delivery district (Norway), bounded by
+63.27--63.52\,N and 10.10--10.90\,E (approximately $45 \times 65$\,km).
+The road network is extracted from OpenStreetMap (OSM).  Arc elevation
+changes are computed from the Norwegian national LiDAR digital terrain
+model (Kartverket NHM; native 1\,m, resampled to 10\,m for the regional
+extent), sampled at each arc endpoint in UTM zone 33N (EPSG:25833).  The
+resulting network has 296{,}276 directed arcs, of which 291{,}145 have
+valid DEM coverage at both endpoints and enter the energy statistics
+below.  \Cref{fig:network} shows the study region, the grade structure of
+the network, the depot, and the candidate charging sites.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.95\textwidth]{network_grade_map.png}
+\caption{Trondheim study region.  Road network coloured by absolute
+grade (capped at 12\%), with the fleet depot (Sluppen, black triangle),
+candidate charging sites (dots), and an illustrative customer draw.
+Steep corridors concentrate in the By\aa{}sen hills to the west and the
+Gauldalen valley to the south.}
+\label{fig:network}
+\end{figure}
+
+\emph{Ruggedness} $R$ is the length-weighted mean absolute grade of the
+road network (both driving directions, so net elevation cancels):
+\begin{equation}
+  R = \frac{\sum_a |dz_a|}{\sum_a d_a},
+  \label{eq:ruggedness}
+\end{equation}
+where $dz_a$ and $d_a$ are the signed elevation change and horizontal
+length of arc $a$.  For Trondheim, $R = 4.57\%$.  The out-of-sample
+transfer cities use Copernicus GLO-30 DSM (30\,m).  Because a surface
+model includes buildings and vegetation, its ruggedness values are not
+directly comparable with the Trondheim terrain-model estimate; this
+measurement limitation is discussed in \cref{sec:predictions}.
+
+\subsection{Physics energy model}
+\label{sec:energy}
+
+For an arc of horizontal length $d$\,(m) and signed elevation change
+$dz$\,(m), the wheel energy at payload $u$\,(kg above curb mass $m_0$) is:
+\begin{equation}
+  E_{\text{wheel}}(u) = d\,(k_0 + k_1 u) + \frac{g\,(m_0 + u)\,dz}{J},
+  \label{eq:Ewheel}
+\end{equation}
+where $k_0$ (kWh/m) lumps the rolling and aerodynamic resistance of the
+empty vehicle and is anchored to the assumed flat-road consumption of the
+hypothetical truck, $k_1$ (kWh/m/kg) is the payload coefficient of rolling
+resistance ($k_1 = C_r\,g / J$ with $C_r = 0.0075$),
+$g = 9.81$\,m/s$^2$ is gravitational acceleration,
+$J = 3.6 \times 10^6$\,J/kWh converts joules to kWh, and the second term
+is the gravitational potential energy.  Battery energy consumption is:
+\begin{equation}
+  E_{\text{batt}}(u) =
+  \begin{cases}
+    E_{\text{wheel}}(u) / \eta_{\text{drive}} & \text{if } E_{\text{wheel}} \ge 0 \quad \text{(traction)},\\
+    E_{\text{wheel}}(u) \cdot \eta_{\text{regen}} & \text{if } E_{\text{wheel}} < 0 \quad \text{(regeneration)},
+  \end{cases}
+  \label{eq:Ebatt}
+\end{equation}
+with drive efficiency $\eta_{\text{drive}} = 0.90$ and regeneration
+efficiency $\eta_{\text{regen}} = 0.60$ (baseline; sensitivity band
+$\eta_{\text{regen}} \in [0.5, 0.7]$ in \cref{sec:sensitivity}).
+
+\emph{Winter scenario.}  At a design temperature of $-3\,^{\circ}$C,
+positive battery draw is multiplied by $\alpha_w = 1.35$ and recovered
+energy by $\beta_w = 0.80$.  Published studies establish that auxiliary
+loads, battery limitations, and reduced recuperation can produce effects of
+this order~\citep{Steinstraeter2021,Neubauer2014,Jeffers2016}; they do not
+identify these two coefficients for the hypothetical truck used here.
+Accordingly, $\alpha_w$ and $\beta_w$ are scenario parameters rather than
+an OEM-calibrated winter model.
+
+\subsubsection*{Load-monotone dominance and its failure}
+\label{sec:dominance}
+
+Because $E_{\text{batt}}$ involves the grade term $g\,dz/J$, the sign of
+$\partial E_{\text{wheel}} / \partial u = d k_1 + g\,dz/J$ can be
+negative on downhill arcs steeper than $-k_1 J / g = -C_r \approx
+-0.75\%$.  On such arcs a heavier vehicle recovers \emph{more}
+charge, invalidating the standard load-monotone dominance rule used in
+exact E-VRP-NL label-setting.  Among the 291{,}145 arcs with valid
+elevation at both endpoints, 35.9\%
+have $\partial E_{\text{batt}} / \partial u < 0$; of all downhill arcs
+($dz < 0$), 87.0\% are regen-dominant.  \Cref{app:frvcp} proves that
+SoC-function monotonicity and the finite piecewise-linear representation
+are nevertheless preserved.  We therefore avoid applying the usual
+load-dominance partial order across different delivered-customer subsets.
+
+\subsection{Terrain law and ruggedness threshold}
+\label{sec:threshold}
+
+Let $\eff(R)$ denote the fleet-average effective energy consumption
+(kWh/km), estimated by simulating the physics model over the real road
+geometry of all 2\,km tiles with sufficient road coverage and fitting a
+linear terrain law:
+\begin{equation}
+  \eff(R) = a + b\,R,
+  \label{eq:terrainlaw}
+\end{equation}
+with intercept $a$ pinned to the flat-terrain rate and slope $b$ capturing
+the grade-regen interaction.  The fit achieves $R^2 = 0.985$ on
+Trondheim 2\,km tiles (\cref{fig:efflaw}).  The intercept is a
+physics-derived quantity, not a free parameter; the terrain law is a
+spatial summary of the vehicle model applied to real network geometry,
+not an empirical vehicle calibration.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.78\textwidth]{eff_vs_ruggedness.png}
+\caption{Terrain law for the Trondheim region (winter, half payload).
+Each point is a 2\,km network tile (marker size proportional to road km);
+effective consumption from both-direction traversal of the real road
+geometry rises linearly in tile ruggedness $R$.  The pinned fit
+$\eff(R) = 0.99 + 10.5\,R$ achieves $R^2 = 0.985$; the dashed line marks
+the regional mean $R = 4.6\%$.}
+\label{fig:efflaw}
+\end{figure}
+
+Winter modifies both intercept and slope: traction increases $a$ and
+weakens regeneration (which reduces the fraction of downhill energy
+recovered), raising $b$.  For the 14\,t FL-class vehicle:
+\begin{equation}
+  \eff(R) =
+  \begin{cases}
+    0.732 + 5.24\,R & \text{summer},\\
+    0.989 + 10.47\,R & \text{winter}.
+  \end{cases}
+  \label{eq:terrainlaw_num}
+\end{equation}
+The slope roughly doubles in winter ($b_w / b_s \approx 2.0$), reflecting
+the asymmetric impact of reduced regen efficiency on rugged terrain.
+
+\subsubsection*{Continuum screening threshold}
+\begin{proposition}[Mean-tour ruggedness screen]
+\label{thm:threshold}
+Let $L$ be the expected tour length (km) under the Daganzo continuum
+approximation and $\Qprime = Q(1-r)$ the usable battery capacity with
+reserve fraction $r$.  Within this mean-tour approximation, expected tour
+energy exceeds usable capacity if and only if
+\begin{equation}
+  \eff(R) \cdot L > \Qprime
+  \quad \Longleftrightarrow \quad
+  R > \Rstar = \frac{\Qprime / L - a}{b}.
+  \label{eq:Rstar}
+\end{equation}
+\end{proposition}
+
+\noindent The derivation is given in \cref{app:threshold}.  The threshold has
+closed-form comparative statics: $\partial\Rstar/\partial\Qprime = 1/(bL)
+> 0$ (larger battery raises the threshold), $\partial\Rstar/\partial L =
+-\Qprime/(bL^2) < 0$ (longer tours lower it), and winter lowers $\Rstar$
+through both a larger $a$ and a larger $b$.
+
+\subsubsection*{Numerical thresholds (Trondheim)}
+
+\Cref{tab:thresholds} reports $\Rstar$ for each battery $\times$ season
+combination at the Trondheim CA tour length $L = 64.7$\,km.  With $R =
+4.57\%$, only the 100\,kWh winter case crosses the mean-tour screen.
+\Cref{fig:threshold} visualises the threshold as a function of battery
+size: the winter curve passes through the regional ruggedness line
+between the two candidate pack sizes, which is precisely what makes the
+procurement decision an information decision.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.78\textwidth]{threshold_phase.png}
+\caption{Mean-tour ruggedness screen $\Rstar(Q)$ for summer and winter at the
+Trondheim tour length $L = 64.7$\,km.  A region whose ruggedness lies
+above the curve has expected tour energy above usable capacity under the
+continuum approximation.  The dashed line is
+the Trondheim regional $R = 4.6\%$; dotted verticals mark the 100 and
+145\,kWh pack options.  Only the 100\,kWh winter combination binds.}
+\label{fig:threshold}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\caption{Ruggedness threshold $\Rstar$ by battery and season.
+Trondheim regional ruggedness $R = 4.57\%$.
+Binding column indicates $R > \Rstar$.}
+\label{tab:thresholds}
+\begin{tabular}{llcccc}
+\toprule
+Battery & Season & $a$ & $b$ & $\Rstar$ & Binds ($R = 4.57\%$) \\
+        &        & (kWh/km) & (kWh/km) & & \\
+\midrule
+145\,kWh & Summer & 0.732 & 5.24 & 24.5\% & No \\
+145\,kWh & Winter & 0.989 & 10.47 & 9.8\%  & No \\
+100\,kWh & Summer & 0.732 & 5.24 & 12.6\% & No \\
+100\,kWh & Winter & 0.989 & 10.47 & \textbf{3.8\%}  & \textbf{Yes} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection*{Vehicle-class stratification}
+
+The same screen applied to the hypothetical 3.5\,t E-Transit-class van
+($m_0 = 2600$\,kg; 89/68\,kWh; $k_0 = 2.2 \times 10^{-4}$; terrain law
+$0.26 + 1.4R$ summer / $0.35 + 2.7R$ winter) yields
+$\Rstar \in [22\%, 72\%]$ across battery $\times$ season.  None of the
+regions evaluated in this study approaches these values, so the screen does
+not bind for the modeled van scenarios.  This is a model-based class
+comparison, not a universal claim that last-mile vans never require
+en-route charging.
+
+\subsection{Vehicle and energy parameters}
+\label{sec:params}
+
+\Cref{tab:vehicles} summarises the vehicle configurations used in the
+siting experiments.  Both battery variants share the chassis mass and
+aerodynamic coefficients.
+
+\begin{table}[ht]
+\centering
+\caption{Vehicle and energy model parameters.
+These are representative hypothetical configurations, not OEM specifications.}
+\label{tab:vehicles}
+\begin{tabular}{lcc}
+\toprule
+Parameter & 14\,t FL-class truck & 3.5\,t E-Transit van \\
+\midrule
+Curb mass $m_0$ (kg)                        & 8,200   & 2,600 \\
+Max payload $u_{\max}$ (kg)                 & 5,800   & 1,100 \\
+Battery capacity $Q$ (kWh)                  & 145 / 100 & 89 / 68 \\
+Vehicle DC power limit (kW)                 & 150     & 180 \\
+Rolling+aero coeff.\ $k_0$ (kWh/m)        & $6.0\times10^{-4}$ & $2.2\times10^{-4}$ \\
+Payload coeff.\ $k_1$ (kWh/m/kg)          & $2.04\times10^{-8}$ & $2.04\times10^{-8}$ \\
+Drive efficiency $\eta_{\text{drive}}$      & 0.90    & 0.90 \\
+Regen efficiency $\eta_{\text{regen}}$      & 0.60    & 0.60 \\
+Winter traction factor $\alpha_w$           & 1.35    & 1.35 \\
+Winter regen factor $\beta_w$              & 0.80    & 0.80 \\
+Battery reserve fraction $r$               & 0.10    & 0.10 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In the discrete Trondheim experiments, the depot charger is 150\,kW.
+Existing candidate sites use the maximum power parsed from OSM when
+available; sites with unknown power, including the synthetic coverage-grid
+candidates, default to 22\,kW, and all powers are capped by the vehicle
+limit.  The 150\,kW power used in the continuum screen is therefore a
+strategic reference value, not the power assigned to every discrete site.
+
+%%======================================================================
+\section{The Grade+Winter ELRP and Matheuristic}
+\label{sec:elrp}
+
+\subsection{Problem formulation}
+\label{sec:formulation}
+
+Let $G = (V, A)$ be the road network with node set $V$ and arc set $A$.
+The \emph{depot} is node $0 \in V$; the set of customer nodes is
+$C \subseteq V$; the set of candidate charging-station locations is
+$\mathcal{F} \subseteq V$.  Each customer $i \in C$ has a delivery demand
+$q_i$\,(kg), a service time $s_i$\,(min), and a time window $[e_i, l_i]$.
+A fleet of identical vehicles with curb mass $m_0$, payload capacity
+$u_{\max}$, and battery $Q$ departs from and returns to the depot.
+
+A \emph{site-selection decision} is a subset $F \subseteq \mathcal{F}$,
+$|F| \le B$, where $B$ is an upper bound on the number of non-depot sites.
+The depot is always
+available as a charging site at no cost.  Given $F$, the \emph{routing
+problem} seeks a minimum-duration set of routes covering all customers,
+where each route must be battery-feasible (SoC remains in $[0, Q]$ at all
+times, with reserve $rQ$ maintained) and may visit sites in $F \cup \{0\}$
+for en-route charging.
+
+The \emph{\ELRP{}} minimises total route duration (travel time + service
+time + charging time + waiting time) over both the site-selection and
+routing decisions:
+\begin{equation}
+  \min_{F \subseteq \mathcal{F},\; |F| \le B} \;
+  \min_{\text{routes covering } C \text{ feasible given } F} \;
+  \sum_{\text{routes}} \text{duration}(\text{route}, F),
+\end{equation}
+subject to battery feasibility using the energy model of
+\cref{eq:Ewheel,eq:Ebatt}.
+
+The four \emph{planner variants} in the factorial experiment differ only
+in which model is used to \emph{solve} the siting problem; all are
+\emph{evaluated} against the full (grade+winter) model:
+\begin{itemize}
+  \item \textbf{Full}: grade+winter model (the reference planner).
+  \item \textbf{GOnly}: grade-aware, winter-blind ($\alpha_w = \beta_w = 1$).
+  \item \textbf{WOnly}: winter-aware, grade-blind (flat energy model,
+    winter factors applied).
+  \item \textbf{Blind}: flat model, summer factors only.
+\end{itemize}
+
+\subsection{Conservative SoC-grid FRVCP}
+\label{sec:frvcp}
+
+Given a fixed ordered sequence of customer visits and candidate charging
+stops, the \emph{fixed-route vehicle charging problem} (FRVCP) seeks
+the minimum-time charging policy within a restricted charging-detour
+neighbourhood.  Following the FRVCP literature
+\citep{Montoya2017,Froger2019}, we propagate the earliest clock time at each
+point of a uniform SoC grid.  For every customer-to-customer leg, the vehicle
+may travel directly or detour through one of the eight open chargers with
+the smallest detour time.  Charging amounts are optimized over the grid
+using the site's piecewise-linear charging curve.
+
+After each transition, SoC is rounded downward to the grid.  The resulting
+route is therefore feasible for the discretized model and conservative with
+respect to available charge.  The main experiments use
+$\Delta_{\SoC}=0.5$\,kWh, or 0.34--0.50\% of nominal capacity.  This does
+not establish a uniform time-domain $\varepsilon$ bound: rounding can alter
+a discrete detour or time-window decision.  We therefore describe the method
+as a conservative discretization rather than an exact continuous FRVCP
+algorithm.  Lexicographic tie-breaking prefers fewer charging stops.
+
+\subsection{ALNS route-pool matheuristic}
+\label{sec:alns}
+
+The siting problem is solved by alternating between a route-generation
+phase (ALNS heuristic) and a set-partitioning MILP over the accumulated
+route pool.
+
+\paragraph{ALNS route generation.}
+An adaptive large-neighbourhood search~\citep{Ropke2006} iterates over
+destroy operators (random, related, worst-cost, and route removal)
+and repair operators (regret-$k$ insertion with $k=2$, greedy insertion).
+Candidate insertion positions are prescreened by travel-time detour and the
+five best positions are evaluated with the SoC-grid FRVCP.  Operator weights
+are adaptive and simulated annealing governs acceptance.  This is route-pool
+generation, not column generation: no reduced-cost pricing problem is solved.
+
+\paragraph{Set-partitioning MILP.}
+Let $\cR$ be the set of distinct routes accumulated over the ALNS run.
+For each route $r \in \cR$, let $x_r \in \{0, 1\}$ be the selection
+variable, $F_r \subseteq \mathcal{F}$ the set of charging sites used, and
+$z_i$ a binary penalty variable for an uncovered customer.  The
+set-partitioning formulation is:
+\begin{align}
+  \min_{x,\,y,\,z} \quad & \sum_{r \in \cR} c_r\,x_r
+    + M\sum_{i\in C}z_i \label{eq:milp_obj}\\
+  \text{s.t.} \quad & \sum_{r \in \cR} a_{ir}\,x_r + z_i = 1
+    \quad \forall i \in C \label{eq:milp_cover}\\
+  & \sum_{s \in \mathcal{F}} y_s \le B \label{eq:milp_budget}\\
+  & x_r \le y_s \quad \forall r \in \cR,\; s \in F_r
+    \label{eq:milp_site}\\
+  & x_r \in \{0, 1\},\; y_s \in \{0, 1\},\; z_i \in \{0,1\}.
+    \label{eq:milp_bin}
+\end{align}
+where $a_{ir} = 1$ if route $r$ serves customer $i$, $c_r$ is the
+route duration, $y_s$ indicates whether site $s$ is open, and
+$M=10{,}000$ minutes prioritizes coverage over route duration.  The depot
+charger is pre-opened ($y_0 = 1$ fixed) and excluded from the budget
+count.  Only sites used by selected routes are reported.  The MILP is solved
+with Gurobi when available and HiGHS otherwise.  It is exact for the
+generated route pool, not for the full location-routing problem.
+
+\subsection{Discretized small-instance reference}
+\label{sec:exact}
+
+For benchmark instances with $n \le 10$ customers, a state-space dynamic
+program enumerates route customer subsets and propagates states indexed by
+(delivered subset, last customer, SoC level), followed by a subset-partition
+DP over feasible routes.  Its complexity is of order $3^n$ times the SoC
+and transition dimensions.  The reference uses the benchmark-specific
+SoC step $Q/200$ and the six smallest-detour charging candidates per leg.
+It is optimal conditional on those restrictions.  Because the matheuristic
+uses eight charging candidates per leg, the reference is an internal
+agreement check rather than a global lower bound or a published BKS.
+
+%%======================================================================
+\section{Solver Validation on Standard Benchmarks}
+\label{sec:validation}
+
+We exercise the flat special case of the matheuristic on two standard
+benchmark sets, 212 instances in total: 92 Schneider (2014) E-VRPTW
+instances with $n = 5$--$100$ customers, run through a linear-charging
+adapter that maps the PWL charging model to unit-rate linear charging,
+and 120 Montoya (2017) E-VRP-NL instances with $n = 10$--$320$
+customers, run through a PWL adapter using the published station-type
+curves.
+
+On the 44 instances small enough for the discretized reference
+($n \le 10$), the matheuristic agrees to numerical tolerance on 42: all
+20 Montoya $n = 10$ instances, all 12 Schneider $n = 5$ instances, and
+10 of 12 Schneider $n = 10$ instances (\cref{tab:bench}).  The median
+gap is 0.00\% and the mean 0.25\%; the only nonzero gaps are rc108C10
+(4.48\%) and rc205C10 (6.59\%).  Both are RC-class Schneider instances,
+but the current outputs do not isolate whether waiting, route-pool coverage,
+or insertion prescreening causes the gaps.
+
+The benchmark file also reports a separate Schneider run with a large
+per-route fixed cost to prioritize vehicle count, followed by route duration.
+That is not the published vehicle-count-then-distance objective.  The gaps in
+\cref{tab:bench} instead compare a pure-duration ALNS run with the
+pure-duration discretized DP.  Montoya's total-time objective is closer to
+ours.  Since BKS values have not yet been transcribed into the repository,
+the remaining 168 runs establish compatibility and scale coverage, not
+competitive solution quality.
+
+\begin{table}[ht]
+\centering
+\caption{Internal benchmark agreement summary (flat special case).
+Reference instances have $n \le 10$ and use the discretized state-space
+DP; gaps are computed on those instances only.  The two nonzero gaps
+are rc108C10 (4.48\%) and rc205C10 (6.59\%).}
+\label{tab:bench}
+\footnotesize
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{llrrrrr}
+\toprule
+Benchmark & $n$ range & \#Inst. & Reference & Numerical & Median gap & Mean gap \\
+          &           &         & ($n \le 10$) & agreements & (\%) & (\%) \\
+\midrule
+Schneider E-VRPTW & 5--100  & 92  & 24 & 22 & 0.00 & 0.46 \\
+Montoya E-VRP-NL  & 10--320 & 120 & 20 & 20 & 0.00 & 0.00 \\
+\midrule
+Total             & 5--320  & 212 & 44 & 42 & 0.00 & 0.25 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%%======================================================================
+\section{Experimental Design: The Factorial Regret Experiment}
+\label{sec:experiment}
+
+\subsection{Instance generation}
+\label{sec:instances}
+
+Instances have $N = 100$ customers sampled from a population-weighted
+spatial distribution: each candidate customer location is drawn from a
+mixture of the SSB 250\,m census grid (weight proportional to population
+within 300\,m) and a uniform base component (weight 0.1).  Population is a
+transparent residential-delivery proxy, not an observed freight-demand
+surface.  Customer demand is sampled uniformly from 150--500\,kg, service
+time is 15 minutes, 40\% of customers receive a three-hour time window, and
+the route horizon is nine hours.
+
+Ten instances are generated with seeds $s \in \{42, \ldots, 51\}$, each
+run under four planner variants and two battery sizes (145\,kWh and
+100\,kWh).  The candidate set contains 86 OSM charging locations and
+30 terrain-blind 3\,km coverage-grid locations, plus the depot.
+
+\subsection{Common-random-number design}
+\label{sec:crn}
+
+Each seed defines one fixed customer instance.  All four planners receive
+the same planner seed, and every selected site set is evaluated with the
+same three evaluation seeds.  A frozen full-information route-pool snapshot
+is copied before each evaluation top-up, preventing evaluation order from
+leaking routes between site sets.  Common random numbers reduce avoidable
+simulation noise, but planner trajectories still diverge when their energy
+models rank moves differently.
+
+\emph{Estimated placement regret} for a misinformed planner $p$ at budget
+$B$ and seed $s$ is:
+\begin{equation}
+  \delta^p_{B,s} = \text{cost}(F^p_{B,s},\,M_{\text{full}})
+    - \text{cost}(F^{\text{full}}_{B,s},\,M_{\text{full}}),
+  \label{eq:regret}
+\end{equation}
+where $F^p_{B,s}$ is the site set chosen by planner $p$ and
+$F^{\text{full}}_{B,s}$ is the site set returned by the full-information
+matheuristic.  Both are evaluated under the full model $M_{\text{full}}$.
+The evaluation takes the best of three independent 500-iteration ALNS
+top-ups followed by the pool MILP.  Thus the baseline is a matched heuristic
+reference, not a proven optimum; individual estimates can be negative
+because of residual search error.
+
+The total regret of the \textbf{Blind} planner decomposes as:
+\begin{equation}
+  \delta^{\text{blind}}_{B,s}
+    = \delta^{\text{terrain}}_{B,s}
+    + \delta^{\text{season}}_{B,s}
+    + \delta^{\text{interaction}}_{B,s},
+  \label{eq:regret_decomp}
+\end{equation}
+where the terrain simple effect is WOnly minus Full, the season simple
+effect is GOnly minus Full, and the interaction is the residual.  These are
+reference-cell factorial contrasts, not optimization-independent causal
+effects.  Their signs may suggest substitution or complementarity, but that
+interpretation requires uncertainty intervals that exclude zero.
+
+\subsection{Depot charging counterfactual}
+\label{sec:depot}
+
+A free 150\,kW DC charger at the depot is open to all planners and routes
+under all scenarios.  The route evaluator may insert a depot detour between
+two customer visits, so the experiment measures the incremental value of
+non-depot sites conditional on this fallback.
+
+\subsection{Summary statistics and inference}
+\label{sec:inference}
+
+For each (battery, budget) cell we report the mean regret and an unadjusted
+Student-$t$ 95\% confidence interval across the ten seeds.  For summaries
+over $B=2,\ldots,8$, we first average within seed and then form the interval
+across ten seed-level means, avoiding pseudoreplication across budgets.  To
+assess budget response, we fit a linear slope over $B=2,\ldots,8$ within
+each seed and report the mean slope and its $t$ interval.  These intervals
+are descriptive and are not multiplicity-adjusted.
+
+%%======================================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{Battery-dependent information effects}
+\label{sec:flip}
+
+\Cref{tab:regret} and \cref{fig:regret_factorial} present mean placement
+regret by battery, budget, and component.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{regret_factorial_n100.png}
+\caption{Estimated placement regret (min/day) with unadjusted pointwise
+Student-$t$ 95\% confidence bands over ten paired demand seeds.  Component
+means change ordering with battery size, but the paired terrain--season
+contrasts averaged over $B=2,\ldots,8$ include zero for both packs.
+Total regret is larger for 100\,kWh, and neither panel shows evidence of
+a decreasing budget trend.}
+\label{fig:regret_factorial}
+\end{figure}
+
+\paragraph{Total effect.}
+Averaged within seed over $B=2,\ldots,8$, blind planning adds
+17.5\,min/day for the 145\,kWh pack (95\% CI 0.8--34.2) and
+60.8\,min/day for the 100\,kWh pack (16.6--104.9).  Relative to the
+full-information baseline, the corresponding means are 0.86\%
+(0.04--1.69) and 2.97\% (0.86--5.08).  The total effect is therefore
+larger and more operationally relevant for the smaller pack.
+
+\paragraph{Factorial components.}
+For 145\,kWh, the seed-averaged terrain and season simple effects are
+21.7\,min/day ($-1.1$--44.5) and 8.8\,min/day ($-9.3$--26.9).
+For 100\,kWh, they are 15.2\,min/day ($-1.8$--32.1) and
+29.5\,min/day (2.3--56.6).  The component means therefore change ordering,
+consistent with the threshold screen in \cref{tab:thresholds}.  However,
+the paired season-minus-terrain contrasts are $-12.9$\,min/day
+($-31.9$--6.1) and 14.3\,min/day ($-17.0$--45.6), respectively.
+The present ten-seed experiment supports a shift in relative importance,
+not a statistically resolved dominance reversal.  The mean interactions
+also change sign, but their seed-level confidence intervals include zero.
+
+\begin{table}[ht]
+\centering
+\caption{Mean estimated placement regret (min/day, 10 seeds) by battery,
+budget, and factorial contrast.  Total = Blind minus Full; Terrain =
+WOnly minus Full; Season = GOnly minus Full; Interaction = residual.
+The table reports means only; uncertainty is summarized in the text and
+shown pointwise in \cref{fig:regret_factorial}.}
+\label{tab:regret}
+\small
+\begin{tabular}{ccrrrr}
+\toprule
+Battery & $B$ & Total & Terrain & Season & Interaction \\
+\midrule
+\multirow{8}{*}{145\,kWh}
+ & 1 & 14.1 & 14.0 & 11.0 & $-10.9$ \\
+ & 2 & 14.4 & 21.4 &  7.1 & $-14.1$ \\
+ & 3 & 19.3 & 23.1 & 10.4 & $-14.2$ \\
+ & 4 & 15.4 & 19.2 &  6.5 & $-10.3$ \\
+ & 5 & 15.4 & 19.2 &  6.5 & $-10.3$ \\
+ & 6 & 22.1 & 25.9 & 13.2 & $-16.9$ \\
+ & 7 & 17.8 & 21.6 &  8.9 & $-12.7$ \\
+ & 8 & 17.8 & 21.6 &  8.9 & $-12.7$ \\
+\midrule
+\multirow{8}{*}{100\,kWh}
+ & 1 & 27.9 &  3.9 & 11.3 & $+12.7$ \\
+ & 2 & 56.2 &  6.2 & 27.2 & $+22.8$ \\
+ & 3 & 59.6 & 18.9 & 28.4 & $+12.3$ \\
+ & 4 & 64.6 & 20.9 & 36.1 & $+7.5$  \\
+ & 5 & 58.8 & 15.3 & 24.7 & $+18.8$ \\
+ & 6 & 60.0 & 11.4 & 29.9 & $+18.7$ \\
+ & 7 & 64.2 & 17.8 & 31.8 & $+14.6$ \\
+ & 8 & 62.2 & 15.7 & 28.1 & $+18.4$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{No decreasing regret trend over the tested budget range}
+\label{sec:plateau}
+
+\Cref{tab:regret} shows no decline in total regret from $B=2$ through
+$B=8$.  The mean within-seed slope is 0.49\,min/day per additional
+budgeted site for 145\,kWh (95\% CI $-0.96$--1.94) and 0.81 for
+100\,kWh ($-2.03$--3.64).  Thus the experiment provides no evidence of
+repair over this range, but it also does not prove a mathematically flat
+response.
+
+The used-site counts identify the immediate mechanism.  At $B=8$, the
+Full planner uses on average 2.3 non-depot sites for 145\,kWh and 6.1 for
+100\,kWh; the Blind planner uses only 0.2 and 0.9.  Because the constraint
+is $|F|\le B$, the blind model is not forced to spend the allowance.  By
+omitting grade and winter losses, it sees little incremental value in
+en-route charging and leaves most of the budget unused.  The result should
+therefore not be interpreted as a test or falsification of facility-location
+submodularity.
+
+\subsection{No unserved customers under depot charging}
+\label{sec:stranded}
+
+Under every evaluated planner, battery, budget, and seed combination, the
+pool MILP leaves zero customers uncovered.  The estimated penalty therefore
+appears in travel, charging, and customer-time-window waiting rather than in
+the model's unserved-customer penalty.  This does not prove that every
+possible operating realization is feasible; it describes the generated
+instances and route pools.
+
+\subsection{Prospectively recorded transfer checks}
+\label{sec:predictions}
+
+Before fetching Stuttgart and Groningen data, we committed five prediction
+groups from the threshold screen to the project repository:
+
+\begin{enumerate}[label=P\arabic*.]
+  \item Ruggedness ordering: Trondheim $>$ Stuttgart $>$ Groningen.
+    Predicted intervals were 2.5--4.5\% for Stuttgart and 0.1--0.9\%
+    for Groningen.
+  \item Groningen (flat control): nothing binds for any battery $\times$ season $\times$ class.
+  \item Stuttgart boundary: 145\,kWh never binds; 100\,kWh winter within $\pm 1.5$\,pp of $\Rstar$.
+  \item The modeled van class remains below its threshold in both cities.
+  \item Slope transfer: Stuttgart and Groningen winter slopes $b$ within $\pm 25\%$ of Trondheim's 10.47\,kWh/km.
+\end{enumerate}
+
+\Cref{tab:predictions} records the outcomes without collapsing compound
+predictions into a single hit rate.  The ordering, Stuttgart interval,
+binding classifications, van classification, and slope-transfer checks
+were consistent with the recorded expectations.  Groningen ruggedness was
+2.2\%, outside the predicted 0.1--0.9\% interval, and its closest
+$\Rstar/R$ ratio was 4.1 rather than the predicted minimum of 5.
+Copernicus GLO-30 is a DSM whereas Trondheim uses a LiDAR terrain model, so
+surface artefacts are a plausible explanation; without a matched Groningen
+DTM comparison, they are not a demonstrated causal diagnosis.
+
+\begin{table}[ht]
+\centering
+\caption{Prospectively recorded transfer-check outcomes for Stuttgart
+and Groningen.  Predictions were committed to the repository before the
+city-data fetch; the timestamped record is included in the supplement.}
+\label{tab:predictions}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.4cm}
+                >{\raggedright\arraybackslash}p{5.1cm}
+                >{\raggedright\arraybackslash}p{4.7cm}}
+\toprule
+Pred.\ & Statement & Outcome \\
+\midrule
+P1 (ordering) & $R_{\text{Trd}} > R_{\text{Stgt}} > R_{\text{Gron}}$ & Consistent: 4.6\% > 4.2\% > 2.2\% \\
+P1 (Stuttgart) & $R \in [2.5\%, 4.5\%]$ & Consistent: 4.2\% \\
+P1 (Groningen) & $R \in [0.1\%, 0.9\%]$ & Outside interval: 2.2\% \\
+P2 & Groningen: no binding; closest $\Rstar/R\ge5$ & No binding, but ratio 4.1 \\
+P3 & Stuttgart 100\,kWh winter $|\Rstar - R| \le 1.5$\,pp & Consistent: 1.2\,pp (binding side) \\
+P4 & Modeled van does not bind & Consistent: minimum van $\Rstar = 19.7\%$ \\
+P5 & $b$ within $\pm 25\%$ of 10.47 & Consistent: Stgt 10.5, Gron 8.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Sensitivity analysis}
+\label{sec:sensitivity}
+
+\paragraph{Regeneration efficiency band.}
+\Cref{tab:sensitivity} shows the threshold $\Rstar$ for each
+$\eta_{\text{regen}} \in \{0.5, 0.6, 0.7\}$.  For the small100 winter
+case, $\Rstar$ ranges from 3.6\% to 4.2\% across the band, remaining below
+the regional $R = 4.57\%$ throughout.  The binding verdict is invariant
+across the entire sensitivity band.  This sensitivity analysis concerns the
+mean-tour threshold only; it does not establish robustness of the discrete
+factorial components.
+
+\begin{table}[ht]
+\centering
+\caption{Threshold sensitivity to regeneration efficiency
+$\eta_{\text{regen}}$.  All three values bind for small100 winter
+($\Rstar < R = 4.57\%$); no other scenario binds.}
+\label{tab:sensitivity}
+\begin{tabular}{llccc}
+\toprule
+Battery & Season & $\eta_{\text{regen}} = 0.5$ & $0.6$ & $0.7$ \\
+\midrule
+145\,kWh & Summer & 20.5\% & 24.5\% & 30.5\% \\
+145\,kWh & Winter &  9.1\% &  9.8\% & 12.1\% \\
+100\,kWh & Summer & 10.5\% & 12.6\% & 15.6\% \\
+100\,kWh & Winter & \textbf{3.6\%} & \textbf{3.8\%} & \textbf{4.2\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%%======================================================================
+\section{Discussion and Conclusions}
+\label{sec:discussion}
+
+\subsection{Procurement-vs-information tradeoff}
+\label{sec:procurement}
+
+The strongest procurement result concerns the total information effect,
+not the ranking of its components.  Relative blind-planning regret is
+approximately 0.9\% for 145\,kWh and 3.0\% for 100\,kWh over the tested
+budgets.  The mean-tour screen offers a coherent explanation: 100\,kWh
+in winter crosses the aggregate capacity boundary, whereas 145\,kWh
+does not.  A smaller pack can therefore increase the value of collecting
+and representing environmental information in the siting study.
+
+This is not a complete procurement calculation.  Battery capital cost,
+payload displacement, degradation, energy price, and charging-infrastructure
+cost are outside the objective.  The results can inform such a calculation
+but do not by themselves establish that either pack is economically
+preferred~\citep{Basma2022}.
+
+\subsection{Why additional allowance is unused}
+\label{sec:plateau_why}
+
+The blind planner's low used-site count is consistent with a demand-
+suppression mechanism.  On flat summer roads, the depot fallback makes most
+non-depot charging routes unattractive, so increasing an upper bound does
+not force the planner to install sites that its own model does not value.
+The full model perceives more charging demand and uses more of the available
+allowance.  Distinguishing this mechanism from site-rank misspecification
+would require a separate exactly-$B$ experiment or a construction-cost
+objective; neither is included here.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+\emph{Single-region depth.}  The siting experiment is conducted only in
+Trondheim; Stuttgart and Groningen serve as threshold transfer checks, not
+full siting experiments.  Results may not generalise quantitatively to
+regions with very different grade distributions.
+
+\emph{Hypothetical vehicle classes.}  The 14\,t FL-class and 3.5\,t van
+parameters define plausible scenarios but are not calibrated against OEM
+test data or truck telemetry.  The energy model is used for relative
+comparison rather than absolute prediction.
+
+\emph{Design-temperature winter model.}  A single $-3\,^{\circ}$C design
+temperature and two assumed multipliers are used.  They are informed by
+passenger-EV evidence but are not estimated for the modeled truck.
+
+\emph{Demand proxy and charging supply.}  Population is not observed freight
+demand.  OSM charger power is incomplete, synthetic candidates default to
+22\,kW, and charging queues, station capacities, construction costs, grid
+constraints, and charger availability are not modeled.
+
+\emph{Heuristic and discretization error.}  The full-information baseline is
+not a proven optimum.  The route evaluator uses a downward-rounded SoC grid
+and a top-$k$ charging neighbourhood.  The internal reference differs in
+$k$, and the benchmark file does not yet include published BKS values or
+runtime results.  The two nonzero small-instance gaps are 4.48\% and 6.59\%.
+
+\emph{Transfer elevation data.}  Trondheim uses a LiDAR terrain model,
+whereas Stuttgart and Groningen use a 30\,m surface model.  A matched
+DTM/DSM comparison is needed before attributing the Groningen miss to a
+specific bias magnitude.
+
+\emph{Statistical precision.}  Ten paired seeds resolve the total blind
+effect but not the terrain-versus-season contrast or interaction.  The
+pointwise intervals are exploratory and are not multiplicity-adjusted.
+
+\subsection{Forward outlook}
+\label{sec:forward}
+
+The threshold relation makes $\Rstar(Q, L, \text{season})$ computable from
+topographic and road data once vehicle and climate scenarios are supplied.
+A natural follow-up study maps
+$\Rstar$ across a broader portfolio of cities to classify regions into:
+mean-tour binding and non-binding cases, then tests those classifications
+with observed freight demand and discrete siting replications.  A stronger
+strategic model would endogenize facility density, construction cost, and
+queueing rather than treating the threshold as an optimization result.
+
+\subsection{Conclusions}
+\label{sec:conclusions}
+
+In this Trondheim experiment, omitting both terrain and winter information
+increases estimated fleet route duration by 17.5\,min/day with a 145\,kWh
+pack and 60.8\,min/day with a 100\,kWh pack over budgets $B=2,\ldots,8$.
+The component means shift from a larger terrain effect at 145\,kWh to a
+larger winter effect at 100\,kWh, but the paired contrasts remain
+statistically unresolved.  The defensible finding is therefore
+battery-dependent information value, not a universal dominance flip.
+
+Estimated regret does not decline over the tested budget range because the
+blind planner leaves most of the site allowance unused.  With depot charging,
+no customer is left uncovered, so the measured consequence is additional
+route duration rather than modeled service failure.  The continuum threshold
+helps interpret why the small-pack winter case is sensitive, while its
+transfer checks also show the need for comparable elevation instruments.
+For practice, battery sizing and model fidelity should be evaluated jointly;
+the present results quantify one operational part of that decision.
+
+%%======================================================================
+\section*{Acknowledgements}
+[To be completed.]
+
+\section*{Data availability}
+The code, processed result tables, and instructions for rebuilding the
+open-data inputs will be archived in a versioned repository.  Repository URL,
+software licence, and data licences must be inserted before submission.
+
+\section*{CRediT author statement}
+[To be completed.]
+
+\section*{Funding}
+[To be completed.]
+
+\section*{Declaration of competing interest}
+The author declares no known competing financial interests or personal
+relationships that could have appeared to influence the work reported here.
+
+%%======================================================================
+%% BIBLIOGRAPHY
+%%======================================================================
+\bibliographystyle{elsarticle-harv}
+\bibliography{references}
+
+%%======================================================================
+%% APPENDICES
+%%======================================================================
+\appendix
+
+\section{SoC-Function Monotonicity under Regeneration}
+\label{app:frvcp}
+
+This appendix proves that the piecewise-linear SoC-function representation
+is preserved under the grade+regen energy model of \cref{sec:energy}.
+
+\begin{lemma}[SoC-function monotonicity under regen]
+\label{lem:monotone}
+Let $f: [0, Q] \to \mathbb{R} \cup \{+\infty\}$ be a non-increasing PWL
+function representing the minimum continuation time from a node $w$.
+Prepending arc $(u, w)$ with battery energy $E_{uw}$
+(which may be negative for downhill arcs) produces the composition:
+\begin{equation}
+f'(y)=
+\begin{cases}
+f\bigl(\min\{Q,\,y-E_{uw}\}\bigr)+t_{uw},
+  & \min\{Q,\,y-E_{uw}\}\ge rQ,\\
++\infty, & \text{otherwise},
+\end{cases}
+\end{equation}
+where $y$ is the arrival SoC at $u$ and $t_{uw}$ is the arc travel time.
+Then $f'$ is non-increasing and PWL.
+\end{lemma}
+
+\begin{proof}
+Let $h(y) = \min(Q, y - E_{uw})$.  This function is non-decreasing and
+piecewise-linear in $y$ (with a single breakpoint at $y = Q + E_{uw}$ where
+the ceiling binds for downhill arcs with $E_{uw} < 0$).  The composition
+$f \circ h$ is non-increasing because $f$ is non-increasing and $h$ is
+non-decreasing.  Adding the constant $t_{uw}$ preserves both properties.
+Restricting the finite-valued portion to $h(y)\ge rQ$ adds at most one
+feasibility breakpoint and preserves extended-real monotonicity.
+Together with the ceiling breakpoint of $h$, the number of breakpoints
+therefore increases by at most two, so the PWL representation remains finite.
+\end{proof}
+
+\begin{remark}
+For downhill arcs ($E_{uw} < 0$), the ceiling $\min(Q, \cdot)$ introduces a
+\emph{saturation piece}: when the arrival SoC satisfies
+$y \ge Q + E_{uw}$,
+the battery reaches the ceiling and the excess regen is wasted.  The
+minimum continuation time is therefore $f(Q) + t_{uw}$ for all such $y$,
+creating a flat segment in $f'$.  This is the only structural difference
+from the flat-network case.
+\end{remark}
+
+\section{Mean-Tour Threshold Derivation}
+\label{app:threshold}
+
+\begin{proof}[Derivation of \cref{thm:threshold}]
+Under the Daganzo continuum approximation, the expected energy consumed on
+a tour of length $L$\,(km) with fleet-average effective consumption
+$\eff(R) = a + bR$\,(kWh/km) is $\eff(R) \cdot L$.  A tour is
+below the mean-tour capacity screen if and only if this expected energy does
+not exceed the usable capacity $\Qprime = Q(1-r)$:
+\begin{equation*}
+  \eff(R) \cdot L \le \Qprime
+  \quad \Longleftrightarrow \quad
+  (a + bR) L \le \Qprime
+  \quad \Longleftrightarrow \quad
+  R \le \frac{\Qprime/L - a}{b} = \Rstar.
+\end{equation*}
+The mean-tour screen is crossed iff $R > \Rstar$.  This algebra does not
+claim that every discrete route binds on the same side of the threshold.
+The comparative statics follow by differentiation.  Note that
+$\partial\Rstar/\partial Q'
+= 1/(bL) > 0$ because $b, L > 0$; and $\partial\Rstar/\partial b =
+-(Q'/L - a)/b^2 < 0$ iff $a < Q'/L$, which holds when the flat-terrain
+consumption is less than the battery-per-km ratio---a necessary condition
+for any feasible tour.
+\end{proof}
+
+\section{Conservative SoC Discretization}
+\label{app:eps_exact}
+
+The SoC-grid DP discretises the SoC axis into steps of $\Delta_\SoC =
+0.5$\,kWh in the main experiments.  After each transition, reachable SoC
+is rounded down to the next grid point.  Consequently, the stored state
+never credits energy that the continuous transition did not provide, and a
+route returned as feasible has a feasible counterpart under the same
+discrete detour sequence with at least the represented SoC.
+
+This argument establishes conservatism in represented charge, not a global
+time-error bound.  Up to one grid step can be lost at every transition, and
+near a time-window or detour-choice boundary that loss can change the
+discrete decision.  A formal continuous-optimum bound would require
+additional regularity assumptions and a grid-convergence study.  The
+benchmark comparison therefore uses the term \emph{discretized reference}
+and matches the SoC resolution between the reference and the reported
+pure-duration run.
+
+\end{document}

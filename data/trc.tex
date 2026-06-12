@@ -1,0 +1,608 @@
+%% 
+%% Copyright 2007-2025 Elsevier Ltd
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% -----------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.3 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for Elsevier's document class `elsarticle'
+%% with harvard style bibliographic references
+
+\documentclass[preprint,3p,12pt,authoryear]{elsarticle}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+% \documentclass[final,1p,times,authoryear]{elsarticle}
+% \documentclass[final,1p,times,twocolumn,authoryear]{elsarticle}
+% \documentclass[final,3p,times,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn,authoryear]{elsarticle}
+
+%% For including figures, graphicx.sty has been loaded in
+%% elsarticle.cls. If you prefer to use the old commands
+%% please give \usepackage{epsfig}
+
+%% \usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{geometry}
+\usepackage{placeins}
+%\usepackage{natbib}  % Commented out - conflicts with biblatex
+\usepackage{url}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{physics}
+\usepackage{braket}
+\usepackage{hyperref}
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers.
+\usepackage{lineno}
+
+
+\journal{Transportation Research Part C: Emerging Technologies}
+
+\begin{document}
+
+\begin{frontmatter}
+
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \affiliation for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \affiliation{organization={},
+%%            addressline={}, 
+%%            city={},
+%%            postcode={}, 
+%%            state={},
+%%            country={}}
+%% \fntext[label3]{}
+
+\title{Quantum Computing for Vehicle Routing: Promise, Hype, and Reality} %% Article title
+
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{}
+%% \affiliation[label1]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+%%
+%% \affiliation[label2]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+
+\author[label1]{Surendra Reddy Kancharla \corref{cor1}}
+ \ead{surendra_reddy.kancharla@tu-dresden.de} %% Author name
+\author[label1]{Nikola Be\u{s}inovi\'c}
+\author[label1]{S. Travis Waller}
+
+%% Author affiliation
+\affiliation[label1]{organization={``Friedrich List'' Faculty of Transport and Traffic Sciences},%Department and Organization
+            addressline={Technische Universität Dresden}, 
+            city={Dresden},
+            postcode={01069}, 
+            country={Germany}}
+
+%% Abstract
+\begin{abstract}
+Quantum computing approaches to vehicle routing in transport and logistics have attracted significant attention, but reported results vary widely in rigor. We analyzed over 40 studies and conducted experiments on D-Wave Advantage2 and IBM's ibm\_torino hardware to test key claims. Three issues recur: inconsistent benchmarking favoring quantum methods, theoretical work assuming fault-tolerant hardware, and reliance on QUBO formulations despite poor performance for constrained problems. For D-Wave hybrid CQM (Constrained Quadratic Model) solver, we ran 29 CVRP benchmarks (12-100 customers) with each instance solved 5 times at two time limits to assess variance. CQM achieved 89\% feasibility, optimal solutions for 3 instances and near‑optimal solutions for several others under 21 customers, with gaps exceeding 20\% beyond 35 customers. In our experiments, QUBO on pure QPU produced no feasible solutions despite extensive tuning, demonstrating the importance of native constraint handling. For QAOA, we tested identical configurations on simulator and real IBM hardware. The simulator achieved optimality for 3-5 customer instances; real hardware achieved optimality only for 3 customers (6 qubits), with noise degrading performance at higher qubit counts. {\color{red}In our tests, the state-of-the-art HGS metaheuristic found the known optimal on every instance up to 50 customers in 1--3 seconds, and even general-purpose OR-Tools achieved gaps under 1\% within 60 seconds.} Current quantum methods require further development, though hybrid approaches reach comparable solution quality to classical solvers on the smallest instances.
+\end{abstract}
+
+%%Research highlights
+\begin{highlights}
+\item D-Wave CQM: 89\% feasibility on 29 CVRPs; QUBO on QPU finds no feasible solutions
+\item QAOA on IBM hardware is optimal only for 3 customers (6 qubits); larger cases degrade
+\item Hybrid quantum–classical solvers match classical on small VRPs, with heavy preprocessing
+\item Critical review of 40+ quantum VRP studies exposes benchmarking gaps
+\end{highlights}
+
+%% Keywords
+\begin{keyword}
+quantum computing \sep vehicle routing problem \sep quantum annealing \sep QAOA \sep CQM \sep combinatorial optimization \sep NISQ \sep D-Wave
+
+\end{keyword}
+
+\end{frontmatter}
+
+%% Add \usepackage{lineno} before \begin{document} and uncomment 
+%% following line to enable line numbers
+\linenumbers
+
+%% main text
+%%
+\section{Introduction}
+
+The vehicle routing problem sits at the intersection of theoretical computer science and practical logistics, making it an attractive target for emerging computational paradigms. As quantum computing transitions from laboratory curiosity to commercial availability, VRP has emerged as one of the most studied applications, second only to cryptography and chemistry simulations. This popularity stems partly from VRP's economic importance, and partly from its relatively straightforward mapping to quantum-compatible formulations.
+
+The quantum computing literature paints an optimistic picture. Papers routinely discuss theoretical quantum speedups, novel algorithmic approaches, and the promise of solving previously intractable routing problems \citep{cerezo2021variational, bharti2022noisy}. Major corporations like Volkswagen \citep{neukart2017traffic}, BMW, and Toyota have invested in quantum routing research. D-Wave Systems markets their quantum annealers specifically for logistics optimization \citep{yarkoni2022quantum}. IBM includes VRP examples in their Qiskit textbook. This enthusiasm has led to substantial research activity, but also to expectations that may not align with current hardware capabilities \citep{preskill2018quantum}.
+
+
+The current state requires careful assessment, however. After analyzing dozens of quantum VRP implementations and conducting our own experiments on D-Wave's hybrid quantum-classical platform and IBM platform, we find that progress has been meaningful but uneven. While quantum approaches have not yet demonstrated advantages over classical methods for practical problem sizes, several demonstrations show promising quantum-classical integration strategies. The CQM hybrid solver, for instance, reaches near-parity in solution quality with classical solvers on the smallest instances (albeit at substantially higher wall-clock overhead) providing a meaningful baseline for future improvement. Recent real-world deployments, while requiring extensive classical preprocessing, demonstrate that quantum components can be successfully integrated into practical workflows. Theoretical proposals for quantum advantage remain largely untested on actual hardware, though recent advances in error mitigation and hybrid approaches suggest potential pathways forward.
+
+This paper provides a comprehensive assessment of quantum approaches to vehicle routing that acknowledges both current limitations and future potential. We focus primarily on the two approaches with the most experimental validation, namely quantum annealing on D-Wave systems and the Quantum Approximate Optimization Algorithm (QAOA) on gate-based quantum computers. Other proposed methods, including quantum walks and Grover-based approaches, while promising in theory, lack sufficient hardware implementations to warrant detailed practical analysis. While existing reviews \citep{yarkoni2022quantum, cerezo2021variational,smartcities8060206,10918658,10087522} provide valuable surveys of quantum optimization methods and hybrid approaches, they typically catalog algorithmic developments without systematic experimental validation on current hardware. Our contribution fills this gap by combining critical literature analysis with reproducible experiments on state-of-the-art quantum systems.
+
+{\color{red}The objective of this study is twofold: (1) to quantify the deviation of quantum algorithm solutions from known optimal values on standard CVRP benchmarks, and (2) to identify the structural and methodological reasons why current quantum approaches do not yet match state-of-the-art classical solvers. We do not claim or expect quantum superiority on these instances; rather, we aim to provide an honest empirical baseline that reveals where current quantum methods stand relative to classical optimization.} To this end, our contribution is threefold. First, we critically analyze quantum VRP implementations to date, systematically cataloging the gap between theoretical claims and experimental performance. Second, we identify three systemic issues (benchmarking inadequacies, theory-practice disconnect, and formulation limitations) that collectively explain this gap. Third, we empirically validate our critique through experiments on both paradigms: for D-Wave CQM, 29 benchmark instances (12--100 customers) solved 5 times at two time limits, achieving 89\% feasibility and 3 optimal solutions; for QAOA, 4 configurations on both simulator and IBM hardware, with optimality achievable only for 3 customers on real hardware and 3--5 on simulator.
+
+The remainder of this paper is organized as follows. Section~\ref{sec:literature} reviews the relevant literature, distinguishing between theoretical proposals and actual implementations. Section~\ref{sec:formulations} examines the mathematical challenges of encoding VRP for quantum processors. Sections~\ref{sec:annealing} and \ref{sec:gatebased} analyze quantum annealing and gate-based approaches respectively, with particular attention to experimental results. Section~\ref{sec:limitations} discusses the broader challenges of the NISQ era, and Section~\ref{sec:conclusions} concludes.
+
+\section{Literature Review}\label{sec:literature}
+
+\subsection{Evolution of Quantum VRP Research}
+
+\citet{farhi2000quantum} established the foundation for quantum optimization by introducing quantum adiabatic computation, later demonstrating its application to NP-complete problems \citep{farhi2001quantum}. However, these early demonstrations used classical simulations rather than quantum hardware. \citet{grover1996quantum} quadratic speedup for unstructured search provided subroutines later incorporated into hybrid approaches. \citet{lucas2014ising} survey on Ising formulations of NP-hard problems showed that the Traveling Salesman Problem, which VRP generalizes, face particular challenges for quantum implementation due to inefficient embedding onto experimental hardware architectures.
+
+The transition to hardware implementations around 2017 exposed tensions between theoretical frameworks and quantum hardware realities. Cloud access to D-Wave and IBM processors enabled the first actual quantum VRP implementations, but revealed limitations that theoretical work had not addressed. Early work by \citet{crispin2013quantum} relied on classical simulations; subsequent implementations struggled with basic feasibility on noisy devices. The literature has since fragmented, with quantum annealing studies focusing on D-Wave and gate-based research on QAOA and VQE. Recent reviews \citep{cerezo2021variational, bharti2022noisy} note that both approaches face significant challenges including trainability issues, connectivity constraints for hardware embedding, and noise effects that have so far prevented demonstration of practical quantum advantage.
+
+\citet{preskill2018quantum} characterized the current era as Noisy Intermediate-Scale Quantum (NISQ), describing near-term devices with tens to a few hundred qubits where gate noise fundamentally limits reliable circuit execution. Notably, Preskill argued that quantum computers are not expected to efficiently solve hard instances of NP-hard problems such as the traveling salesman problem. \citet{chen2023complexity} formalized NISQ as a complexity class, establishing that it lies strictly between classical and fault-tolerant quantum computation (Bounded-error Probabilistic Polynomial time (BPP) $\subseteq$ NISQ $\subseteq$ Bounded-error Quantum Polynomial time (BQP)). Their analysis further demonstrated that NISQ algorithms cannot achieve Grover-like quadratic speedups for unstructured search, requiring query complexity comparable to classical methods. These theoretical constraints have significant implications for VRP. The circuit depth limitations imposed by noise, combined with the absence of search-based speedups, suggest that NISQ's intermediate computational position may not confer practical advantages over classical optimization methods for routing applications.
+
+\subsection{Quantum Annealing Studies}
+
+Academic implementations have encountered consistent scalability challenges. \citet{feld2019hybrid} proposed a hybrid approach for capacitated VRP that decomposes problems into TSP-like subproblems, achieving results on CVRP instances with 50–199 customers by solving TSP subproblems ranging from 14 to 38 cities. Their performance analysis revealed that embedding overhead dominates computation time (15.8 seconds total versus 0.11 seconds actual QPU time), leaving little room for quantum speedup. \citet{borowski2020new} compared four quantum annealing solvers on D-Wave's 2000Q processor and found hybrid methods matched classical algorithms on small instances (2-30 destinations), though pure quantum approaches degraded with increasing vehicle numbers. \citet{irie2019quantum} extended QUBO formulations to handle time-dependent constraints and dynamic capacity, but their encoding required 83 logical qubits for just 6 customers and 3 vehicles, scaling to over 2000 logical qubits for 30+ customers. Given that D-Wave Advantage systems deliver only 100-500 logical qubits after embedding overhead, this scaling presents a near-term barrier.
+
+Industrial applications tell a similar story. \citet{neukart2017traffic} integrated quantum annealing into Volkswagen's traffic optimization workflow, though the quantum component handled route selection rather than full routing optimization. More recently, \citet{osaba2024solving} solved package delivery problems using D-Wave's hybrid CQM solver, achieving verified optimal solutions for 21-29 node instances in the two-dimensional heterogeneous pickup and delivery problem with priorities (2DH-PDP). This represents the largest verified optimal VRP solution using quantum-assisted methods to date. However, to the best of our knowledge, \emph{pure} D-Wave QPU annealing (without hybrid classical help) has produced no documented verified optimal VRP solutions at any problem size.
+
+Recent benchmarking provides more rigorous assessment. \citet{pelofske2025comparing} compared three D-Wave hardware generations for max clique and max cut problems, finding improvements in connectivity and chain break rates, with the newest Zephyr topology performing best overall. \citet{tasseff2024emerging} showed encouraging progress, demonstrating approximately 50× speedups under best-case conditions and 15× under real-world communication overheads for hardware-native problems, though they note this does not yet constitute irrefutable evidence of fundamental performance benefit. For routing applications specifically, \citet{haba2022travel} found reverse annealing performing up to 10 times faster than Gurobi for small-scale AGV problems, though advantages diminished as problem size increased, and \citet{tambunan2023quantum} demonstrated quantum annealing for vehicle routing with weighted road segments, achieving 11-29\% cost improvements over manual calculations for 3-5 vehicles. Hardware limitations have been systematically documented. \citet{jain2021solving} found D-Wave Advantage 1.1 could only reliably solve TSP instances with $n \leq 8$ nodes, with solution quality degrading sharply beyond this threshold; for $n = 9$, five of eight test cases returned no valid solution. However, across these studies, successful implementations at scale tend to rely on hybrid approaches combining quantum and classical methods \citep{kim2025quantum, haba2022travel, tambunan2023quantum}.
+
+
+\subsection{Gate-Based Quantum Algorithms}
+Gate-based VRP research has focused on variational approaches, particularly QAOA and VQE. \cite{farhi2014quantum} introduced QAOA with alternating problem and mixing Hamiltonians through $p$ layers, establishing the framework for most subsequent gate-based VRP research. \cite{azad2022solving} implemented QAOA for VRP on IBM quantum processors for small instances (4-5 customers) and conducted comparative analysis with the CPLEX classical solver; their results showed that QAOA performance has a multifaceted dependence on the classical optimization routine used, the depth of the ansatz parameterized by $p$, initialization of variational parameters, and the problem instance itself. The largest VRP instance solved to verified optimality on gate-based hardware remains 3 customers with 2 vehicles on IBM's 127-qubit Eagle r3 processor (IBM-Rensselaer), where \cite{azfar2025quantum} demonstrated that the most probable observed state corresponded with the correct solution. For comparison, classical heuristics achieve 0.95+ approximation ratios while handling thousands of customers.
+
+\citet{fitzek2024applying} derived an Ising formulation for HVRP requiring $N_0^2 \cdot V$ qubits and found that while QAOA successfully shifts probability toward constraint-satisfying solutions, it fails to distinguish between feasible solutions of different costs-attributed to small energy gaps and non-convex landscapes from capacity constraints. Circuit depth is the limiting factor. \cite{leonidas2023qubit} developed qubit-efficient encodings that reduced the number of qubits needed for VRPTW, testing instances with up to 3964 routes using only 13 qubits; however, their results indicate that additional resources are still required for larger problem sizes on NISQ hardware, and useful VRP sizes would likely require hundreds to thousands of gates, far exceeding the roughly 100-gate practical limit often cited for NISQ devices \cite{preskill2018quantum}.
+
+Parameter optimization has seen some progress. \cite{zhou2020quantum} achieved exponential speedup using FOURIER heuristics, finding quasioptimal p-level QAOA parameters in polynomial time whereas random initialization requires exponentially many optimization runs to achieve similar performance. \cite{cheng2024quantum} improved stability through Bayesian optimization with their DARBO algorithm, which outperforms conventional optimizers in speed, accuracy, and stability. However, \cite{wang2021noise} proved that gradients vanish exponentially with circuit depth under realistic local Pauli noise when depth grows linearly with qubit count, inducing noise-induced barren plateaus that make deep variational circuits fundamentally difficult to train a limitation likely applicable to variational approaches for routing problems.
+
+Alternative variational approaches face similar barriers. \cite{tilly2022variational} reviewed VQE and extensively characterized the barren plateau problem and optimization challenges, noting that questions remain about whether VQE can achieve quantum advantage given current understanding of these limitations. \cite{mohanty2024solving} combined quantum support vector machines with VQE for VRP, testing 3-city and 4-city scenarios using 6 and 12 qubits respectively, demonstrating the method but remaining limited to trivial problem sizes. 
+Adaptive methods like ADAPT-VQE \cite{grimsley2019adaptive} and Qubit-ADAPT-VQE \cite{tang2021qubit} construct circuits iteratively to reduce depth Qubit-ADAPT-VQE demonstrated an order of magnitude reduction in circuit depth compared to fixed-structure ansatze for molecular systems. However, these adaptive methods have primarily been demonstrated on molecular chemistry problems rather than combinatorial optimization, and 
+their applicability to VRP-like problems at meaningful scales remains unexplored.
+
+\subsection{The Benchmarking Problem}
+
+The quantum VRP literature exhibits benchmarking inconsistencies that can obscure genuine progress. Studies frequently compare quantum results against naive or outdated classical methods rather than state-of-the-art solvers like Gurobi, CPLEX, or OR-Tools. Many use problem instances designed to fit quantum hardware constraints rather than standard benchmarks, making cross-study comparison difficult. Reported quantum runtimes often exclude embedding time, parameter tuning, and multiple sampling runs, while classical baselines include all overhead.
+
+\citet{abbas2024challenges} established requirements for meaningful quantum-classical comparisons, including model-independent benchmarking, wall-clock time reporting against state-of-the-art solvers, and statistical rigor. Recent assessments \citep{yarkoni2022quantum, osaba2024hybrid} consistently find that when proper benchmarking is applied, classical methods outperform quantum approaches for practical routing.
+
+\subsection{Theoretical Proposals vs. Reality}
+
+Theoretical quantum VRP papers assume idealized quantum computers; experiments use noisy devices with severe constraints. The theoretical literature typically assumes fault-tolerant computers with unlimited connectivity and arbitrary circuit depth, while actual devices have two-qubit gate error rates of approximately 0.4-0.6\% (0.36\% in isolation, 0.62\% simultaneous) \citep{arute2019quantum}, coherence times of several hundred microseconds (median T1 of 288 $\mu s$ and T2 of 127 $\mu s$ on recent IBM processors) \citep{kim2023evidence}, and practical circuit depths that remain challenging despite demonstrations of circuits with up to 60 CNOT layers \citep{kim2023evidence}.
+
+{\color{red}The notion of problem complexity in VRP deserves more nuanced treatment than the literature provides. Complexity may arise from multiple sources: the number of decision variables and constraints, which grows as $O(n^2K)$ for $n$ customers and $K$ vehicles; the structure and coupling of constraints, such as precedence relationships in pickup-and-delivery variants where customer $i$ must be visited before customer $j$; and specific constraint types such as time windows, heterogeneous fleet capacities, and synchronized operations. In operations research, certain constraint structures (particularly precedence and coupling constraints) are known to be especially difficult to satisfy even for advanced commercial solvers such as Gurobi and CPLEX. The quantum VRP literature largely ignores this distinction, treating problem size (customer count) as the sole measure of difficulty. Consequently, claims of solving ``commercially relevant'' instances must be evaluated not only by customer count but also by the richness and difficulty of the constraint structure involved. Most quantum demonstrations to date address the basic CVRP with uniform capacity constraints, which represents the simplest VRP variant; extending to richer variants with precedence, time windows, or heterogeneous fleets would dramatically increase the number of qubits and penalty terms required.}
+
+{\color{red}It is also important to acknowledge the inherent asymmetry in comparing quantum and classical methods. The quantum algorithms evaluated here, quantum annealing and QAOA, are fundamentally stochastic: each run samples from a probability distribution over solutions, requiring multiple executions and statistical analysis. In contrast, the algorithms implemented in state-of-the-art commercial solvers (Branch-and-Bound, Branch-and-Cut, cutting plane methods) are deterministic and benefit from decades of engineering, including presolve techniques, warm-starting, and problem-specific cutting planes. To the best of our knowledge, no quantum implementation in the literature consistently outperforms such solvers on VRP instances of any size. This asymmetry is essential context for interpreting the experimental comparisons in Sections~\ref{sec:annealing} and~\ref{sec:gatebased}.}
+
+Meanwhile, classical algorithms continue improving. Machine learning-enhanced optimization, parallel processing, and problem-specific heuristics have advanced classical VRP performance during the same period that quantum approaches focused on basic feasibility. \citet{perelshtein2023nisq} demonstrated hybrid quantum-classical approaches can boost classical solvers on MaxCut problems exceeding 1,000 nodes, while \citet{dupont2025benchmarking} found that achieving quantum advantage remains uncertain, noting it is unclear whether the framework could lead to a quantum advantage given the narrow path offered by current approaches. Recent work by \citet{sciorilli2025towards} presents more optimistic findings, describing their results as a promising route towards solving commercially-relevant problems on near-term quantum devices; {\color{red}however, the problems addressed remain small-scale and lack the rich constraint structures (precedence, heterogeneous fleets) that characterize the most challenging real-world routing applications.}
+
+{\color{red}\subsection{Summary of Reviewed Studies}
+
+Table~\ref{tab:lit-summary} summarizes the key characteristics of representative quantum VRP studies reviewed in this section, organized by quantum paradigm. We include the 26 studies most directly relevant to VRP formulation and implementation; the remaining reviewed works address broader topics (error mitigation, complexity theory, parameter optimization) that inform our analysis but do not report VRP-specific results. The table highlights the diversity in problem sizes, hardware platforms, and reported outcomes, and illustrates the difficulty of cross-study comparison due to inconsistent benchmarking practices.}
+
+\begin{table}[h!]
+\centering
+\caption{\color{red}Summary of quantum VRP studies reviewed. QA = Quantum Annealing, GB = Gate-Based, Hyb = Hybrid. Size refers to the number of customers in the largest instance tested.}
+\label{tab:lit-summary}
+\scriptsize
+\color{red}
+\begin{tabular}{p{3.2cm}p{1.2cm}p{2.0cm}p{1.0cm}p{4.5cm}}
+\toprule
+\textbf{Study} & \textbf{Type} & \textbf{Hardware} & \textbf{Size} & \textbf{Key Finding} \\
+\midrule
+\citet{farhi2000quantum} & QA & Simulation & -- & Introduced quantum adiabatic computation \\
+\citet{grover1996quantum} & GB & Theory & -- & Quadratic speedup for unstructured search \\
+\citet{lucas2014ising} & QA & Theory & -- & Ising formulations of NP-hard problems \\
+\citet{crispin2013quantum} & QA & Simulation & 135 & Early quantum VRP, classical simulation only \\
+\citet{neukart2017traffic} & QA/Hyb & D-Wave 2000Q & -- & Volkswagen traffic optimization; QC for route selection \\
+\citet{feld2019hybrid} & Hyb & D-Wave 2000Q & 199 & Hybrid decomposition; embedding dominates runtime \\
+\citet{borowski2020new} & QA & D-Wave 2000Q & 9 & Hybrid matched classical on small instances \\
+\citet{irie2019quantum} & QA & D-Wave 2000Q & 6 & Time-dependent QUBO; 83 qubits for 6 customers \\
+\citet{osaba2024solving} & Hyb & D-Wave CQM & 28 & Verified optimal on 21, 29 node instances \\
+\citet{pelofske2025comparing} & QA & D-Wave (3 gen.) & -- & Benchmarked hardware generations; Zephyr best \\
+\citet{tasseff2024emerging} & QA & D-Wave Adv. & -- & $\sim$50$\times$ speedup on hardware-native problems \\
+\citet{haba2022travel} & QA & Simulation & 20 & Reverse annealing 10$\times$ faster for small AGV \\
+\citet{tambunan2023quantum} & QA & D-Wave & 9 & 11--29\% cost improvement over manual routing \\
+\citet{jain2021solving} & QA & D-Wave Adv. 1.1 & 8 & Reliable TSP only for $n \leq 8$ \\
+\citet{kim2025quantum} & Hyb & D-Wave & -- & Successful hybrid approach at scale \\
+\citet{holliday2025advanced} & QA/Hyb & D-Wave CQM & -- & Classical repair heuristics for QA output \\
+\citet{farhi2014quantum} & GB & Theory & -- & Introduced QAOA framework \\
+\citet{azad2022solving} & GB & Simulation & 4 & QAOA for VRP; performance depends on many factors \\
+\citet{azfar2025quantum} & GB & IBM Eagle r3 & 3 & Feasible solution for 3 customers only \\
+\citet{fitzek2024applying} & GB & Simulation & -- & QAOA shifts probability but cannot rank solutions \\
+\citet{leonidas2023qubit} & GB & IBMQ, IonQ, Rigetti & 3964 & Qubit-efficient encoding; 13 qubits, limited scale \\
+\citet{zhou2020quantum} & GB & Simulation & -- & FOURIER heuristic for QAOA parameters \\
+\citet{cheng2024quantum} & GB & QPU & -- & Bayesian optimization for QAOA stability \\
+\citet{wang2021noise} & GB & Theory & -- & Noise-induced barren plateaus in variational circuits \\
+\citet{mohanty2024solving} & GB & Simulation & 4 & QSVM + VQE for VRP; trivial sizes \\
+\citet{sciorilli2025towards} & Hyb & Theory & -- & Optimistic on near-term commercial relevance \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\section{Mathematical Formulations and the Encoding Challenge}\label{sec:formulations}
+
+\subsection{Mapping VRP to Quantum Formulations}
+
+Solving VRP on quantum hardware requires a multi-step transformation pipeline that differs fundamentally from classical optimization. Here we outline the key steps, each of which is addressed in detail in the subsequent subsections:
+
+\begin{enumerate}
+\item \textbf{Problem Formulation}: The VRP is first expressed as a mixed-integer program (MIP) with binary decision variables indicating route selections.
+\item \textbf{QUBO Conversion}: Constraints are converted to penalty terms added to the objective function, creating a Quadratic Unconstrained Binary Optimization (QUBO) problem. This step eliminates explicit constraints but requires careful penalty weight tuning.
+\item \textbf{Ising Transformation}: The QUBO is mapped to an Ising model by converting binary variables $\{0,1\}$ to spin variables $\{-1,+1\}$, the native representation for quantum computers.
+\item \textbf{Minor Embedding}: The logical problem graph must be mapped onto the physical qubit connectivity of the quantum processor. Since quantum hardware has limited connectivity (each qubit connects to only a few neighbors), logical variables often require multiple physical qubits chained together.
+\end{enumerate}
+
+Each transformation step introduces overhead. For example, a 20-customer instance starts with roughly 1,600 variables; after QUBO conversion and embedding, it may require 8,000-16,000 physical qubits. 
+In general, VRP's irregular connectivity is the core problem. The problem requires all-to-all interactions between customers and vehicles, but quantum hardware (both annealers and gate-based processors) is optimized for local interactions. This mismatch necessitates extensive overhead that grows with problem size.
+
+{\color{red}\subsection{CVRP Integer Programming Formulation}
+
+We first present the complete CVRP formulation as a mixed-integer program, which serves as the basis for subsequent QUBO conversion. Let $N = \{0, 1, \ldots, n\}$ denote the set of nodes where node $0$ is the depot and nodes $1, \ldots, n$ are customers. Let $K = \{1, \ldots, m\}$ be the set of vehicles, $d_{ij}$ the travel distance from node $i$ to node $j$, $q_i$ the demand of customer $i$ (with $q_0 = 0$), and $Q$ the uniform vehicle capacity. The binary decision variable $x_{ijk} \in \{0,1\}$ equals 1 if vehicle $k$ traverses arc $(i,j)$.
+
+\begin{align}
+\min \quad & \sum_{k \in K} \sum_{i \in N} \sum_{j \in N} d_{ij}\, x_{ijk} \label{eq:obj} \\
+\text{s.t.} \quad & \sum_{k \in K} \sum_{j \in N \setminus \{i\}} x_{ijk} = 1, \quad \forall\, i \in N \setminus \{0\} \label{eq:visit} \\
+& \sum_{j \in N} x_{ijk} = \sum_{j \in N} x_{jik}, \quad \forall\, i \in N,\; \forall\, k \in K \label{eq:flow} \\
+& \sum_{j \in N \setminus \{0\}} x_{0jk} \leq 1, \quad \forall\, k \in K \label{eq:depot} \\
+& \sum_{i \in N \setminus \{0\}} q_i \sum_{j \in N} x_{ijk} \leq Q, \quad \forall\, k \in K \label{eq:cap} \\
+& u_i - u_j + n\, x_{ijk} \leq n - 1, \quad \forall\, i,j \in N \setminus \{0\},\; \forall\, k \in K \label{eq:mtz} \\
+& x_{ijk} \in \{0,1\}, \quad u_i \geq 0 \label{eq:binary}
+\end{align}
+
+Constraint~\eqref{eq:visit} ensures each customer is visited exactly once. Constraint~\eqref{eq:flow} enforces flow conservation at every node. Constraint~\eqref{eq:depot} ensures each vehicle leaves the depot at most once. Constraint~\eqref{eq:cap} enforces vehicle capacity. Constraints~\eqref{eq:mtz} are the Miller--Tucker--Zemlin subtour elimination constraints, where $u_i$ are auxiliary continuous variables representing the position of customer $i$ in a route.
+
+For $n$ customers and $K$ vehicles, this formulation requires $O(n^2 K)$ binary variables. A modest 20-customer, 4-vehicle instance needs approximately 1,600 binary variables, already approaching the logical qubit limits of current quantum hardware after embedding overhead.}
+
+{\color{red}\subsection{QUBO Conversion}
+
+Converting the above integer program to QUBO format is not equally straightforward for all constraints. Equality constraints translate directly to quadratic penalties, whereas inequality and subtour-elimination constraints require auxiliary binary variables that can substantially enlarge the model. We therefore illustrate the penalty construction for the directly encodable components and then explain why subtour elimination becomes the main bottleneck in a faithful full-CVRP QUBO.
+
+\textbf{Step 1: Equality constraints} Constraints that are naturally equalities, such as the visit constraint~\eqref{eq:visit} and flow conservation~\eqref{eq:flow}, are converted directly to quadratic penalty terms. For the visit constraint:
+\begin{equation}
+H_{\text{visit}} = P_1 \sum_{i \in N \setminus \{0\}} \left(1 - \sum_{k \in K} \sum_{j \in N \setminus \{i\}} x_{ijk}\right)^2 \label{eq:qubo-visit}
+\end{equation}
+When the constraint is satisfied, the penalty is zero; any deviation (a customer visited zero times or more than once) incurs a quadratic cost.
+
+\textbf{Step 2: Inequality constraints via slack variables} The capacity constraint~\eqref{eq:cap} is an inequality ($\leq$), which cannot be directly squared into a penalty without incorrectly penalizing feasible solutions that use less than full capacity. The standard approach introduces binary slack variables to convert the inequality to an equality. For each vehicle $k$, define slack variables $s_{k\ell} \in \{0,1\}$ for $\ell = 0, 1, \ldots, L$ with $L = \lceil \log_2 Q \rceil$, so that:
+\begin{equation}
+\sum_{i \in N \setminus \{0\}} q_i \sum_{j \in N} x_{ijk} + \sum_{\ell=0}^{L} 2^{\ell}\, s_{k\ell} = Q, \quad \forall\, k \in K \label{eq:slack}
+\end{equation}
+The corresponding penalty term becomes:
+\begin{equation}
+H_{\text{cap}} = P_2 \sum_{k \in K} \left(\sum_{i \in N \setminus \{0\}} q_i \sum_{j \in N} x_{ijk} + \sum_{\ell=0}^{L} 2^{\ell}\, s_{k\ell} - Q\right)^2 \label{eq:qubo-cap}
+\end{equation}
+This correctly penalizes only capacity violations: when total demand plus slack equals capacity, the penalty is zero regardless of how much spare capacity remains. Crucially, each vehicle requires $\lceil \log_2 Q \rceil + 1$ additional slack qubits, adding $O(K \log Q)$ variables to the problem.
+
+\textbf{Step 3: Subtour elimination} The classical model eliminates subtours through the MTZ constraints~\eqref{eq:mtz}. A faithful QUBO encoding of these constraints is possible in principle, but unlike Steps~1 and~2 it is not a direct quadratic rewrite: each order variable $u_i$ must first be discretized into binary variables, and each MTZ inequality then requires additional penalty terms (and, in equality-based constructions, further slack variables). This substantially increases the number of binary variables and quadratic couplings. For this reason, our treatment of subtour elimination is diagnostic: we identify it as the dominant encoding bottleneck rather than propose a compact MTZ-to-QUBO implementation.
+
+The full QUBO objective combines the original cost with all penalty terms:
+\begin{equation}
+\min \; H = \sum_{i,j,k} d_{ij}\, x_{ijk} + H_{\text{visit}} + H_{\text{cap}} + H_{\text{flow}} + H_{\text{subtour}} + \ldots \label{eq:qubo-full}
+\end{equation}
+Eq.~\eqref{eq:qubo-full} should be read schematically: $H_{\text{flow}}$ can be written as a direct quadratic penalty analogous to $H_{\text{visit}}$, whereas $H_{\text{subtour}}$ is the most resource-intensive component because it requires binary encoding of the MTZ order variables rather than a simple direct penalty.
+
+The penalty weights $P_1, P_2, \ldots$ create a critical bottleneck requiring problem-specific tuning that negates potential quantum speedups. Too small penalties allow constraint violations, while excessive penalties dominate the objective function, obscuring cost differences between feasible solutions. The optimal penalty selection often requires extensive trial-and-error processes that exceed the runtime of classical VRP solvers. For the capacity term specifically, the penalty weight $P_2$ must be large enough to enforce $\sum_i q_i x_{ijk} \leq Q$ but not so large that it prevents the optimizer from distinguishing between feasible solutions of different routing costs. This balance is difficult to achieve in practice, as the energy scale of penalty terms typically exceeds that of the cost objective by orders of magnitude.}
+
+More problematically, QUBO formulations destroy the natural decomposition structure that classical algorithms exploit. Branch-and-bound methods leverage cutting planes, LP relaxations, and problem-specific heuristics that become inaccessible once the problem is encoded as a dense quadratic form. The result is a quantum-compatible formulation that eliminates the mathematical structure enabling classical efficiency.
+
+\subsection{The Ising Transformation}
+
+Quantum annealers operate with Ising models requiring transformation of binary variables $x_i \in \{0,1\}$ to spin variables $s_i \in \{-1,+1\}$ through $x_i = (1+s_i)/2$. This seemingly straightforward transformation doubles the number of terms in the objective function and introduces numerical precision issues that compound with problem size.
+
+The Ising transformation creates additional challenges through the need for problem-specific parameter tuning. The energy scale of the Ising model must match the quantum annealer's operating parameters, requiring normalization that often involves extensive calibration. Different quantum annealers may require different parameter ranges, making solutions device-specific rather than algorithmically robust.
+
+\subsection{Minor Embedding}
+
+The final transformation maps logical problem variables to physical qubits through minor embedding, an NP-hard problem itself \citep{choi2008minor} that dramatically increases resource requirements. Minor embedding is necessary because current quantum annealers have limited qubit connectivity: D-Wave's Advantage2 system uses the Zephyr topology where each qubit connects to at most 20 neighbors, far short of the fully-connected graphs required by VRP formulations. To represent a logical variable that must interact with many others, multiple physical qubits are ``chained'' together and constrained to take the same value.
+
+Current D-Wave Advantage systems provide 5,760 qubits but achieve only 100-500 logical qubits after embedding for dense connectivity problems \citep{e25030541}. Practical VRP instances exceed hardware capabilities by orders of magnitude, and projected improvements cannot close this gap in the near term.
+
+Embedding quality directly impacts solution reliability through chain break phenomena, where connected physical qubits representing the same logical variable disagree in their final states. Chain break rates increase with embedding complexity, creating a trade-off between problem size and solution quality that favors classical approaches for practical applications.
+
+\section{Quantum Annealing}\label{sec:annealing}
+
+\subsection{Analysis of Prior Implementations}
+
+Before presenting our experimental results, we synthesize key patterns from the literature reviewed in Section~\ref{sec:literature} to identify the specific limitations our experiments aim to quantify. Prior quantum annealing VRP studies have employed various D-Wave solvers, including the 2000Q QPU \citep{borowski2020new}, Advantage QPU \citep{jain2021solving}, and hybrid solvers like the CQM \citep{osaba2024solving}. Our analysis distinguishes between pure quantum annealing approaches (which face severe limitations) and hybrid quantum-classical solvers like D-Wave's CQM, which leverage classical optimization alongside quantum sampling and demonstrate substantially better performance as shown in our experiments.
+
+Problem size remains a significant constraint. Most published implementations report successful solutions only for instances with roughly 4-20 customers, despite years of research and hardware improvements. The largest published result solved a 25-customer TSP requiring problem-specific decomposition and multiple annealing runs, establishing current boundaries that ongoing research aims to extend.
+
+Solution quality has not yet matched classical methods across quantum annealing studies. Typical approximation ratios range from 0.85 to 0.95 for small instances, dropping below 0.8 for larger problems. Classical heuristics achieve 0.95+ approximation ratios for problems with thousands of customers while maintaining computational efficiency. The quantum advantage threshold has not yet been reached at practical problem sizes, though hybrid approaches show encouraging progress.
+
+Reliability is another issue, with success rates ranging from 50\% to 90\% depending on instance size and structure. Multiple annealing runs are typically required to find good solutions, increasing total computation time beyond classical method runtimes. The stochastic nature of quantum annealing necessitates statistical analysis and multiple runs that eliminate theoretical time advantages.
+
+Runtime analysis reveals that while individual annealing runs execute in microseconds, total workflow time often requires minutes. This overhead stems from three sources: embedding the problem onto physical hardware, parameter tuning (adjusting annealing schedules, chain strengths, and penalty weights to improve solution quality), and multiple sampling (practitioners execute hundreds to thousands of independent runs, called ``reads,'' and select the best result, since quantum annealing is inherently stochastic). Classical methods solve these small instances in milliseconds, creating a practical performance gap that increases with problem size. These patterns are largely explained by the encoding and benchmarking challenges discussed in Sections~\ref{sec:formulations} and \ref{sec:literature}.
+
+\subsection{Experimental Evaluation on D-Wave Advantage2}
+
+For quantum annealing experiments, we used D-Wave's Advantage2 system, which became generally available in May 2025. The Advantage2 processor features over 4,400 qubits in the Zephyr topology, where each qubit connects to 20 neighbors (up from 15 in the previous Advantage system). These hardware advances translate to higher-quality solutions and faster time-to-solution for optimization problems. We accessed Advantage2 through D-Wave's Leap cloud service using the hybrid CQM (Constrained Quadratic Model) solver, which combines quantum sampling with classical optimization to handle constraints natively rather than through penalty terms.
+
+To empirically validate our theoretical analysis of formulation limitations, we conducted a comprehensive experimental study comparing D-Wave's CQM hybrid solver against classical methods on standard CVRP benchmarks. Our methodology emphasized rigorous benchmarking with multiple runs per instance, comparison against classical solver (OR-Tools with 60-second time limits), and transparent reporting of all performance metrics including variance across runs.
+
+We tested 29 benchmark instances from the Augerat (A, B, P) \citep{augerat1995computational} and Christofides (E) \citep{christofides1969algorithm} problem sets, ranging from 12 to 100 customers. We selected these established benchmarks because they represent the smaller end of standard VRP test sets. If quantum methods cannot solve these modest instances competitively, testing on larger modern benchmarks would be futile. Each instance was solved 5 times at both 5-second and 10-second solver time limits to assess solution variance. We initially tested time limits up to 60 seconds but found solution quality plateaued after approximately 10 seconds; hence we report only the 5s and 10s results.
+
+{\color{red}The reported wall-clock times (11--137 seconds) substantially exceed the nominal 5-second value because the \texttt{time\_limit} parameter governs only the server-side hybrid solver budget, not the total request. It is important to emphasize that \texttt{time\_limit} is \emph{not} a QPU time; it bounds the entire hybrid CQM process, which internally comprises classical presolve, problem decomposition, orchestrated QPU sampling calls, and classical postprocessing. To clarify this, we decompose the total wall time for a representative instance (A-n32-k5, 5-second solver limit, wall time 14.8~s) as follows: client-side problem construction and CQM model building ($\sim$0.5~s), API submission and network latency ($\sim$2--4~s), hybrid CQM solver execution (nominally the 5~s \texttt{time\_limit}, covering presolve, decomposition, QPU sampling, and postprocessing combined), and result retrieval and parsing ($\sim$2--3~s). The actual QPU anneal time within the hybrid solver is not directly exposed by the CQM API, as the solver orchestrates multiple quantum sampling calls internally; D-Wave's documentation notes that for small problems QPU access time can even be zero when presolve resolves the instance before sampling begins. For context, individual anneal operations typically execute in 20--200~$\mu$s, so even $\sim$1{,}000 anneal calls at $\sim$100~$\mu$s each would accumulate only $\sim$0.1~s of raw QPU time, roughly 2\% of the 5-second budget. The remainder of the solver budget is consumed by classical presolve, decomposition, and iterative refinement.
+
+Two sources explain why wall times are not constant across instances despite identical 5- or 10-second \texttt{time\_limit} settings. First, client-side overhead (problem construction, serialization, network round-trip, result parsing) scales modestly with problem size. Second, and more importantly, the D-Wave hybrid solver enforces a problem-dependent \texttt{minimum\_time\_limit\_s} that grows with the number of variables, biases, and constraints; when the requested 5~s is below this internal floor, the solver runs for its minimum required duration and ignores the lower request. This is why larger instances marked $\dagger$ in Table~\ref{tab:main-results} report wall times well beyond 5~s even though the same nominal limit was specified for every instance. In other words, the 5-second figure reported throughout this section should be read as the requested solver budget rather than a guaranteed uniform runtime.}
+
+
+{\color{red}We compare against two classical solvers. First, OR-Tools configured with Guided Local Search (GLS) and a 60-second time limit serves as a general-purpose, open-source baseline. Second, HGS (Hybrid Genetic Search) \citep{vidal2022hybrid}, the state-of-the-art specialized metaheuristic for CVRP, was run without a fixed time limit, terminating upon convergence. All OR-Tools and HGS runs were executed on a workstation with an Intel Core i9-14900K CPU, 128~GB RAM, running Ubuntu~24.04. As shown in Table~\ref{tab:main-results}, OR-Tools achieves gaps of 0--0.6\% across all instances, while HGS finds the known optimal (0\% gap) on every instance in 1--3 seconds. Together, these baselines establish that classical methods outperform current quantum approaches across all tested instances: a general-purpose solver suffices, and a specialized heuristic finds exact optima roughly one-to-two orders of magnitude faster than CQM's 11--137 second wall times on the same instances.}
+
+We attempted 29 instances. CQM produced consistent feasible solutions on 26 of them (89\% feasibility). The E-n51-k5 instance (50 customers) yielded one feasible solution across runs but failed in others, so we excluded it from the main results. The E-n76-k14 (75 customers) and E-n101-k14 (100 customers) instances failed to produce any feasible solutions. Table~\ref{tab:main-results} presents results across the 26 instances where CQM produced consistent feasible solutions.
+
+\begin{table}[h!]
+\centering
+\caption{{\color{red}Comprehensive CQM Results: D-Wave Hybrid vs Classical Solvers. Wall time includes problem setup, API submission, and result retrieval. HGS times reflect actual convergence time.}}
+\label{tab:main-results}
+\scriptsize
+\resizebox{\textwidth}{!}{
+\begin{tabular}{lrrr|rrr|rrr|rr|rr}
+\toprule
+& & & & \multicolumn{3}{c|}{\textbf{CQM 5s}} & \multicolumn{3}{c|}{\textbf{CQM 10s}} & \multicolumn{2}{c|}{\textbf{OR-Tools}} & \multicolumn{2}{c}{\color{red}\textbf{HGS}} \\
+\textbf{Instance} & \textbf{n} & \textbf{K} & \textbf{Opt} & \textbf{Best} & \textbf{$\sigma$} & \textbf{Wall} & \textbf{Best} & \textbf{$\sigma$} & \textbf{Wall} & \textbf{Gap} & \textbf{Time} & {\color{red}\textbf{Gap}} & {\color{red}\textbf{Time}} \\
+\midrule
+E-n13-k4  & 12 & 4 & 247 & \textbf{0.0} & 0.0 & 11.0 & \textbf{0.0} & 0.0 & 16.0 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}0.8} \\
+P-n16-k8  & 15 & 8 & 450 & \textbf{0.0} & 0.0 & 12.0 & \textbf{0.0} & 0.0 & 17.0 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}1.2} \\
+P-n19-k2  & 18 & 2 & 212 & \textbf{0.0} & 1.9 & 11.0 & \textbf{0.0} & 1.4 & 16.0 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}1.0} \\
+P-n20-k2  & 19 & 2 & 216 & 0.9 & 1.8 & 11.1 & 0.5 & 0.7 & 16.1 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}0.8} \\
+P-n21-k2  & 20 & 2 & 211 & 1.4 & 1.1 & 11.2 & 0.5 & 1.1 & 16.2 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}1.2} \\
+P-n22-k2  & 21 & 2 & 216 & 1.9 & 2.2 & 11.2 & 1.4 & 1.8 & 16.2 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}1.3} \\
+P-n22-k8  & 21 & 8 & 603 & 0.8 & 1.2 & 12.6 & 0.2 & 0.2 & 17.6 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}1.6} \\
+P-n23-k8  & 22 & 8 & 529 & 12.5 & 2.1 & 11.7 & 2.6 & 2.7 & 16.7 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}1.9} \\
+E-n30-k3  & 29 & 3 & 534 & 16.1 & 2.5 & 11.6 & 15.7 & 2.1 & 16.6 & 0.6 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.0} \\
+B-n31-k5  & 30 & 5 & 672 & 8.8 & 3.3 & 12.6 & 11.6 & 1.5 & 17.6 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.8} \\
+A-n32-k5  & 31 & 5 & 784 & 23.5 & 1.9 & 14.8 & 15.9 & 4.6 & 19.8 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.2} \\
+A-n33-k5  & 32 & 5 & 661 & 10.6 & 3.9 & 53.4$^\dagger$ & 10.0 & 0.8 & 58.4$^\dagger$ & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.0} \\
+A-n33-k6  & 32 & 6 & 742 & 12.3 & 3.1 & 100.3$^\dagger$ & 5.3 & 2.2 & 105.3$^\dagger$ & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.5} \\
+A-n34-k5  & 33 & 5 & 778 & 17.7 & 1.9 & 17.5 & 11.1 & 1.9 & 22.5 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.2} \\
+B-n34-k5  & 33 & 5 & 788 & 18.5 & 3.0 & 14.1 & 14.0 & 2.1 & 19.1 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.9} \\
+B-n35-k5  & 34 & 5 & 955 & 13.2 & 2.7 & 12.3 & 13.6 & 1.5 & 17.3 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.7} \\
+A-n36-k5  & 35 & 5 & 799 & 17.6 & 4.8 & 14.5 & 17.6 & 2.4 & 19.5 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.5} \\
+A-n37-k5  & 36 & 5 & 669 & 28.7 & 1.9 & 14.3 & 16.1 & 3.9 & 19.3 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.7} \\
+A-n37-k6  & 36 & 6 & 949 & 23.6 & 6.0 & 12.8 & 19.7 & 1.8 & 17.8 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.7} \\
+A-n38-k5  & 37 & 5 & 730 & 26.6 & 5.4 & 13.0 & 21.1 & 2.4 & 18.0 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.5} \\
+B-n38-k6  & 37 & 6 & 805 & 19.5 & 2.8 & 13.0 & 14.8 & 3.3 & 18.0 & 0.2 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.3} \\
+A-n39-k5  & 38 & 5 & 822 & 35.8 & 3.3 & 79.8 & 20.2 & 4.2 & 84.8 & 0.4 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.9} \\
+A-n39-k6  & 38 & 6 & 831 & 35.5 & 3.6 & 15.1 & 20.2 & 2.4 & 20.1 & 0.2 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.6} \\
+B-n39-k5  & 38 & 5 & 549 & 24.0 & 5.9 & 46.4 & 11.7 & 4.5 & 51.4 & 0.2 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.2} \\
+P-n40-k5  & 39 & 5 & 458 & 25.1 & 7.4 & 132.5$^\dagger$ & 17.0 & 3.6 & 137.5$^\dagger$ & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.9} \\
+B-n41-k6  & 40 & 6 & 829 & 28.1 & 4.2 & 14.4 & 19.1 & 3.0 & 19.4 & 0.0 & 60.0 & {\color{red}\textbf{0.0}} & {\color{red}2.7} \\
+\bottomrule
+\end{tabular}
+}
+\vspace{2pt}
+\\\small{$\sigma$ is standard deviation of solution. Best, Gap values in \%. Wall time in seconds. n = customers, K = vehicles, Opt = known optimal. Bold = optimal found.\\$^\dagger$Extended wall times for some instances reflect CQM's internal preprocessing and decomposition phases, which vary based on problem structure.}
+\end{table}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{fig1_method_comparison.pdf}
+\caption{Solution quality comparison across D-Wave CQM hybrid solver, OR-Tools, and HGS. {\color{red}HGS achieves 0\% gap on every instance; OR-Tools stays below 1\%. CQM matches classical solvers for small instances ($\leq$21 customers) but gaps grow rapidly beyond that threshold, exceeding 20\% for the largest instances.}}
+\label{fig:method-comparison}
+\end{figure}
+
+\subsubsection{Analysis and Findings}
+
+The results split cleanly by problem size (Figure~\ref{fig:method-comparison}). {\color{red}The three-method comparison makes the performance hierarchy immediately visible: HGS (yellow) achieves 0\% gap uniformly, OR-Tools (orange) stays below 1\%, while CQM (blue) is the only method with appreciable gaps.} For instances with 21 or fewer customers, CQM performed surprisingly well, achieving exact optimal solutions (0\% gap) on three instances (E-n13-k4, P-n16-k8, P-n19-k2), plus near optimal on P-n20-k2, P-n21-k2, and P-n22-k8 at the 10-second limit. On these smallest instances, CQM reaches comparable solution quality to classical solvers, though with substantially higher wall-clock overhead. Giving the solver more time helped consistently across all instances, with the average best gap dropping from 15.5\% at 5 seconds to 11.8\% at 10 seconds.
+
+{\color{red}Since both classical and quantum methods find optimal solutions for the smallest instances, wall-clock time alone is uninformative, as it reveals infrastructure overhead rather than algorithmic capability. A more revealing metric is the rate of convergence toward optimality. We note that D-Wave's CQM solver returns only the final solution at each time limit, not intermediate solutions during optimization, which precludes constructing continuous convergence trajectories. However, comparing the 5-second and 10-second CQM results provides a discrete window into convergence behavior: for instances below 25 customers, CQM reaches near-optimal gaps within 5 seconds and gains little from the additional time; for larger instances (30--40 customers), the 10-second limit yields substantial improvement (e.g., A-n37-k5 drops from 28.7\% to 16.1\%), suggesting the solver has not yet converged. In contrast, HGS converges to the known optimal in 1--3 seconds for all instances up to 50 customers, and OR-Tools achieves gaps below 1\% under its 60-second time limit. This convergence disparity highlights that the meaningful comparison is not raw time but rather the optimality gap achievable within a given computational budget, and on this metric, classical solvers outperform CQM across our test set for all but the smallest instances.}
+
+However, solution variance introduces practical concerns. Standard deviation ranged from 0\% for small instances (hitting optimal every time) up to 7.4\% for P-n40-k5 (Figure~\ref{fig:variance}), meaning that running the solver once and trusting the result becomes risky for larger problems.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{fig2_variance_boxplot.pdf}
+\caption{Solution variance analysis across multiple CQM runs (5-second time limit). Box plots show the distribution of optimality gaps for each instance, with boxes indicating quartiles and whiskers showing the full range.}
+\label{fig:variance}
+\end{figure}
+
+The scalability picture is less encouraging. As shown in Figure~\ref{fig:scalability}, gaps stay under 5\% below 25 customers, climb to 10-20\% between 25 and 35 customers, and exceed 20\% consistently beyond 35 customers; instances over 50 customers mostly failed outright. {\color{red}For comparison, HGS found the known optimal on every instance up to 50 customers in 1--3 seconds, and OR-Tools achieved gaps under 1\% within 60 seconds. CQM required 11--137 seconds wall time (with 5--10 second solver limits) to achieve gaps of 0--35\%.}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{fig3_scalability.pdf}
+\caption{CQM scalability analysis. Left: Solution quality variance across problem sizes with 5-second time limit, showing min-max range and average gap. Right: Comparison of 5-second vs 10-second time limits, demonstrating consistent improvement with extended solver time.}
+\label{fig:scalability}
+\end{figure}
+
+Regression analysis ($R^2$ = 0.86) confirmed customer count as the dominant predictor ($r = 0.91$, $p < 0.001$). Spatial structure contributed secondarily, with dispersed instances averaging 14.9\% gaps versus 3.8\% for compact ones (Figure~\ref{fig:categorical}). Capacity tightness showed no significant effect, medium and tight instances performed similarly, though no loose instances were available for comparison. More vehicles for a given customer count improved results, consistent with CQM benefiting when problems decompose into smaller subproblems.
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{fig4_categorical_analysis.pdf}
+\caption{CQM performance by instance characteristics. Left: Solution quality degrades sharply beyond 20 customers. Center: Capacity tightness shows no significant difference between medium and tight instances (no loose instances in dataset). Right: Compact spatial structures outperform dispersed ones. Error bars indicate standard deviation across runs.}
+\label{fig:categorical}
+\end{figure}
+
+\subsubsection{Comparison with Pure Quantum Annealing}
+
+To validate our theoretical critique of penalty-based constraint handling, we tested penalty-based QUBO formulations of the type commonly used in the quantum-VRP literature \citep{okada2019efficient, cattelan2024modeling} directly on D-Wave's quantum processing unit (QPU). {\color{red}These experiments used reduced penalty-based encodings that enforce visit, position, and capacity constraints, rather than a full MTZ-consistent CVRP QUBO. This distinction is important: a faithful MTZ-based subtour encoding (Section~\ref{sec:formulations}, Step~3) would require additional binary order variables and penalty terms, making the QUBO larger and denser. Our point is therefore conservative: current QPU hardware failed to recover feasible routes even for the reduced penalty-based formulation, so a full subtour-preserving QUBO would be at least as challenging.} The results highlight the challenge of penalty-based approaches. In our experiments, QUBO on pure QPU did not produce feasible solutions even on 3‑customer (4‑node including depot) instances. We tested three anneal times (20–200 µs) with 1000 reads per configuration, exploring penalty weight ratios systematically. Our baseline ratios of 50:30:40 for visit, position, and capacity constraints were derived from the relative importance of each constraint type, with visit constraints receiving highest weight as they are fundamental to solution validity. We also tested penalty weights ranging from 10 to 100 in various combinations, adjusted chain strengths from 0.5 to 2.0 times the maximum coupler strength, and increased reads to 5000 per configuration. None of these configurations produced a feasible solution for even the smallest instances. 
+
+This difficulty with penalty-based QUBO is not surprising given that penalty weight tuning is itself a challenging optimization problem: weights must be large enough to discourage violations yet small enough to preserve meaningful cost differences between feasible solutions. The CQM hybrid solver addresses this differently by handling constraints natively through a combination of classical preprocessing (which identifies and enforces constraint structure before quantum sampling) and hybrid optimization that uses classical methods to repair and refine solutions. This approach sidesteps the penalty tuning problem by decomposing the original problem into smaller subproblems where constraint satisfaction can be managed classically, while quantum sampling contributes to exploring the solution space.
+
+The stark contrast between CQM and pure QPU performance validates our theoretical analysis. We note that pure quantum annealing can be augmented with classical postprocessing heuristics to repair infeasible solutions; for example, \citet{holliday2025advanced} developed sequential swapping operations (simple swap, two-opt, three-opt) to correct time window violations in quantum annealer outputs. While such repair strategies can recover feasibility, they shift the computational burden to classical methods and raise questions about what value the quantum component provides. We acknowledge that the precise balance of classical versus quantum computation within D-Wave's CQM solver is proprietary. What is clear is that CQM's hybrid architecture, combining classical preprocessing, decomposition, and solution refinement with quantum sampling, produces dramatically better results than pure QUBO formulations. This suggests that for constrained optimization problems like VRP, the path forward likely involves sophisticated classical-quantum integration rather than pure quantum approaches.
+
+\subsection{Promising Directions for Quantum Annealing}
+
+Despite the limitations of pure quantum annealing for VRP, our analysis and the CQM results point to three promising directions where quantum annealing may contribute value:
+
+\begin{enumerate}
+
+{\color{red}\item The success of CQM relative to pure QUBO suggests that problem decomposition is essential. Future research could develop VRP-specific decomposition strategies that partition large instances into quantum-tractable subproblems. Our results show CQM handles instances up to 21 customers well (gaps $<$5\%), which suggests a concrete decomposition target: partition a large VRP instance into subproblems of 15--20 customers each, solve each subproblem with CQM, and coordinate the subproblem solutions classically. Several principled decomposition approaches are promising:
+\begin{itemize}
+\item \textbf{Geographic clustering with cluster-first, route-second}: Partition customers into geographic clusters using $k$-means or density-based methods (e.g., DBSCAN), with cluster sizes bounded to 15--20 customers. Each cluster becomes an independent CVRP subproblem solvable by CQM. A classical coordination layer assigns inter-cluster depot returns and optimizes cluster boundaries iteratively. This follows the classical cluster-first, route-second paradigm of \citet{fisher1981generalized}, calibrated to the empirical capability boundary we identify and with CQM replacing the intra-cluster routing solver.
+\item \textbf{Column generation with quantum pricing}: In column generation, the master problem selects routes from a pool while the pricing subproblem generates new profitable routes. The pricing subproblem is a shortest-path problem with resource constraints (SPPRC), which can be formulated as a small QUBO. For a fleet of $K$ vehicles and route lengths bounded to 15--20 customers, each pricing subproblem would require $\sim$200--400 qubits after encoding, within the effective range of current CQM.
+\item \textbf{Large Neighborhood Search (LNS) with quantum re-optimization}: Starting from a classically generated solution, LNS iteratively destroys and repairs portions of the solution. The repair step, re-optimizing a neighborhood of 10--20 customers while fixing the rest, could be delegated to CQM. This leverages quantum sampling for local diversification while the classical framework maintains global solution quality.
+\end{itemize}
+Each of these approaches bridges the gap between the $\sim$100 logical qubit limit and real-world VRP sizes (hundreds to thousands of customers) by ensuring quantum components operate within their demonstrated capability range.}
+
+\item While standard VRP has dense connectivity that maps poorly to quantum hardware, certain VRP variants may have more favorable structure. Problems with natural hub-and-spoke patterns, regular delivery grids, or hierarchical depot structures might embed more efficiently. Identifying and characterizing such ``quantum-friendly'' problem classes represents a research opportunity, though practical applications may be limited.
+
+\item Classical metaheuristics such as tabu search, simulated annealing, and genetic algorithms have proven highly effective for VRP, achieving near-optimal solutions for large instances through sophisticated neighborhood search and diversification strategies. Quantum annealing could complement these methods in two ways. First, quantum annealers may serve as diversification mechanisms within metaheuristic frameworks: when a classical algorithm becomes trapped in a local optimum, quantum sampling from a modified energy landscape could suggest escape directions, providing stochastic exploration that differs qualitatively from classical random restarts. Second, quantum annealing could generate initial solutions that seed classical optimization, even infeasible or suboptimal quantum outputs might provide useful starting points for branch-and-bound or local search methods to refine. This hybrid approach leverages quantum hardware for exploration while relying on classical methods for constraint satisfaction and local refinement.
+\end{enumerate}
+
+Beyond these technical directions, continued proof-of-concept demonstrations, as exemplified by the Volkswagen project, provide value for quantum-classical integration development even without performance advantages. Learning to incorporate quantum systems into classical workflows prepares for future hardware improvements while developing necessary software infrastructure and expertise.
+
+\section{Gate-Based QAOA}\label{sec:gatebased}
+
+\subsection{QAOA Implementation Challenges}
+
+The Quantum Approximate Optimization Algorithm appeared ideally suited for VRP applications, with its systematic structure alternating between problem and mixing operators that naturally encodes the exploration-exploitation tradeoff central to combinatorial optimization. However, practical implementation reveals structural obstacles that prevent QAOA from achieving quantum advantages for routing problems.
+
+Circuit depth requirements present a significant limitation. QAOA circuits grow with both problem size and the number of rounds $p$ (each round adds one layer of problem and mixing operators). Even small VRP instances require substantial circuit depths that challenge current hardware. Error mitigation techniques can partially address noise but add computational overhead. Methods such as zero-noise extrapolation require additional measurements, increasing total execution time and potentially offsetting speedup benefits.
+
+The parameter optimization landscape for VRP compounds these challenges. Unlike problems with regular structure such as MAX-CUT on uniform graphs, VRP's irregular connectivity creates rough optimization landscapes with numerous local optima. Classical optimization of QAOA parameters often requires thousands of function evaluations to converge, with each evaluation necessitating hundreds of quantum circuit executions for statistical accuracy  \citep{scriva2024challenges, pellow2024effect}. The interplay between quantum noise and classical optimization creates moving targets where parameters optimal for one run fail on subsequent executions due to calibration drift.
+
+\subsection{QAOA Experimental Evaluation}
+
+To complement our D-Wave CQM experiments and to validate our theoretical critique of gate-based approaches, we conducted QAOA experiments on both a noise-free simulator and real IBM quantum hardware. We tested three custom VRP instances with 3, 5, and 7 customers (4, 6, and 8 nodes including depot). Our implementation uses one-hot encoding, where each customer-vehicle assignment is represented by a binary variable, requiring $(n-1) \times K$ qubits for an $n$-node problem with $K$ vehicles resulting in 6 qubits for 3 customers, 10 for 5 customers, and 21 for 7 customers. This encoding is standard for VRP QUBO formulations \citep{okada2019efficient, cattelan2024modeling}. We used Gurobi to compute optimal baselines (85 for Small, 124 for Medium, 163 for Large) because these custom instances are small enough for exact solution, and Gurobi provides verified optimal values. For the CQM experiments, we used OR-Tools because we tested standard benchmarks where optimal values are already known from the literature.
+
+We tested both a noise-free simulator (Qiskit's statevector simulator - {\color{red}executed on a workstation with an Intel Core i9-14900K CPU, 128~GB RAM, running Ubuntu~24.04.}) and real IBM quantum hardware using identical parameter configurations to enable direct comparison of the impact of hardware noise. The ibm\_torino features the Heron r1 processor with 133 qubits, introduced in December 2023. Heron represents IBM's highest-performing processor family, employing fixed-frequency qubits with tunable couplers arranged in a heavy-hexagonal lattice. The tunable coupler architecture yields 3-5$\times$ improvement in device performance over the previous 127-qubit Eagle processors and virtually eliminates crosstalk between qubits. We accessed ibm\_torino through IBM Quantum's cloud platform using Qiskit Runtime's SamplerV2 for direct QPU execution. All experiments used COBYLA as the classical optimizer. On quantum hardware, each objective function evaluation during optimization used 1024 measurement shots, with the final solution measurement using 4096 shots. The simulator used exact statevector sampling for comparison.
+
+We evaluated four parameter configurations, where $p$ denotes the number of QAOA layers (each layer applies one round of problem and mixing unitaries, with higher $p$ generally improving solution quality at the cost of deeper circuits):
+
+
+\begin{itemize}
+\item \textbf{Quick-Test}: $p$=1, 10 optimizer trials, 1 attempt
+\item \textbf{Fast}: $p$=1, 15 trials, 1 attempt
+\item \textbf{Balanced}: $p$=2, 15 trials, 2 attempts
+\item \textbf{High-Quality}: $p$=2, 20 trials, 3 attempts
+\end{itemize}
+
+\subsubsection{Results}
+
+\begin{table}[h!]
+\centering
+\caption{QAOA Results: Simulator vs Real Hardware (IBM's ibm\_torino, 133 qubits)}
+\label{tab:qaoa-results}
+\small
+\resizebox{\textwidth}{!}{
+\begin{tabular}{l|rr|rr|rr|rr|rr|rr}
+\toprule
+& \multicolumn{4}{c|}{\textbf{Small (6 qubits)}} 
+& \multicolumn{4}{c|}{\textbf{Medium (10 qubits)}} 
+& \multicolumn{4}{c}{\textbf{Large (21 qubits)}} \\
+& \multicolumn{2}{c|}{Simulator} & \multicolumn{2}{c|}{Hardware} 
+& \multicolumn{2}{c|}{Simulator} & \multicolumn{2}{c|}{Hardware} 
+& \multicolumn{2}{c|}{Simulator} & \multicolumn{2}{c}{Hardware} \\
+\textbf{Config} & \textbf{Cost} & \textbf{Gap} & \textbf{Cost} & \textbf{Gap} 
+& \textbf{Cost} & \textbf{Gap} & \textbf{Cost} & \textbf{Gap} 
+& \textbf{Cost} & \textbf{Gap} & \textbf{Cost} & \textbf{Gap} \\
+\midrule
+Quick-Test   & \textbf{85} & \textbf{0\%} & 100 & 17.6\% & 150 & 21.0\% & 151 & 21.8\% & -- & Fail & 230 & 41.1\% \\
+Fast         & \textbf{85} & \textbf{0\%} & 100 & 17.6\% & 139 & 12.1\% & 151 & 21.8\% & -- & Fail & 177 & 8.6\% \\
+Balanced     & \textbf{85} & \textbf{0\%} & \textbf{85} & \textbf{0\%} & \textbf{124} & \textbf{0\%} & 150 & 21.0\% & -- & Fail & 238 & 46.0\% \\
+High-Quality & \textbf{85} & \textbf{0\%} & 100 & 17.6\% & \textbf{124} & \textbf{0\%} & \textbf{139} & \textbf{12.1\%} & -- & Fail & 216 & 32.5\% \\
+\bottomrule
+\end{tabular}
+}
+\vspace{2pt}
+
+{\small Optimal values: Small=85, Medium=124, Large=163. Fail = no feasible solution found in 5000 sec.}
+\end{table}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{fig5_qpu_experiment_plots.pdf}
+\caption{QAOA results on IBM's ibm\_torino quantum processor. Top-left: Solution quality across configurations. Top-right: Wall-clock execution time. Bottom-left: Number of QPU jobs submitted. Bottom-right: Best solution found per instance with qubit requirements.}
+\label{fig:qpu-results}
+\end{figure}
+
+The results (Table~\ref{tab:qaoa-results} and Figure~\ref{fig:qpu-results}) reveal several patterns. First, the noise-free simulator achieved optimal solutions for Small (all configurations) and Medium (Balanced and High-Quality configurations), but failed entirely on the Large instance (21 qubits). Second, real hardware achieved optimality only on the smallest instance (6 qubits) with a single configuration (Balanced), demonstrating significant noise-induced degradation. For Medium, hardware's best result (12.1\% gap with High-Quality) fell far short of simulator's optimal. Third, the best hardware results per instance came from different configurations, with Balanced performing best for Small, High-Quality for Medium, and surprisingly Fast for Large. This inconsistency complicates practical deployment since no single configuration dominates. Fourth, more optimizer effort did not guarantee better solutions on hardware. The Large instance achieved its best result (177, 8.6\% gap) with the Fast configuration, while higher-effort configurations produced worse results (up to 46\% gap). This is consistent with \citet{azfar2025quantum}, who also report verified optimal solutions only for 3-customer VRP instances on IBM’s 127-qubit Eagle processor.
+
+Hardware execution times ranged from 68 to 350 seconds wall-clock time, with the number of QPU jobs scaling with configuration complexity (11 jobs for Quick-Test up to 42 for High-Quality). These times include queue waiting, data transfer, and classical pre/post-processing, not just QPU execution. The direct comparison confirms that hardware noise significantly degrades QAOA performance, with the gap between simulator and hardware widening as qubit counts increase.
+
+\section{Current Limitations and Future Prospects}\label{sec:limitations}
+
+\subsection{Hardware Connectivity Limitations}
+
+Modern quantum processors impose strict connectivity limitations. IBM's heavy-hex lattice, Google's 2D grid, and D-Wave's specialized topologies all constrain which qubits can interact directly. VRP formulations require all-to-all connectivity between customer and vehicle variables, necessitating extensive SWAP operations (each requiring three CNOT gates) that triple error rates and circuit depth while adding no computational value.
+
+Compiler optimizations can reduce SWAP overhead through clever qubit routing, but VRP's dense connectivity ensures routing costs dominate for meaningful problem sizes. Reported implementations show connectivity constraints increasing circuit depth by an order of magnitude, transforming potentially feasible circuits into prohibitively deep ones.
+
+{\color{red}\subsection{Empirical Complexity and Scale Boundaries}
+
+Based on our experiments (Sections~\ref{sec:annealing} and~\ref{sec:gatebased}) and the reviewed literature, we delineate the empirical boundaries of what current quantum methods can solve for CVRP:
+
+\begin{itemize}
+\item \textbf{Pure quantum annealing (QUBO on QPU)}: No feasible solutions in our experiments; the literature reports reliability only for $n \leq 8$ \citep{jain2021solving}. \emph{Current boundary: $\sim$8 customers for feasibility; no verified optimal solutions.}
+
+\item \textbf{D-Wave hybrid CQM}: Optimal for $n \leq 21$; near-optimal (gap $<$5\%) for $n \leq 25$; moderate quality for $25 < n \leq 35$; poor quality or infeasible beyond. \emph{Current boundary: $\sim$20 customers for near-optimal; $\sim$50 customers for any feasible solution.}
+
+\item \textbf{QAOA on real hardware (IBM)}: Verified optimal only for $n = 3$ (6 qubits); rapid degradation beyond. \emph{Current boundary: $\sim$3 customers on real hardware; $\sim$5 customers on simulator.}
+
+\item \textbf{Classical solvers}: OR-Tools achieves gaps $<$1\% for $n \leq 40$ within 60 seconds. HGS finds the known optimal on all instances up to $n = 50$ in 1--3 seconds. \emph{No observed performance boundary within the scales relevant to current quantum methods (up to $\sim$100 customers); classical solvers remain competitive well beyond this range, though large-scale CVRP retains its own computational challenges.}
+\end{itemize}
+
+These boundaries reflect current hardware (D-Wave Advantage2, IBM Heron r1) as of 2025. The gap between quantum capability ($\sim$20 customers for near-optimal) and practical routing needs (hundreds to thousands of customers) spans roughly two orders of magnitude, motivating the decomposition strategies discussed in Section~\ref{sec:annealing} and the hardware roadmap below.}
+
+\subsection{Roadmap to Quantum Relevance for Routing}
+
+Based on our analysis, quantum approaches may become competitive for mid-scale VRP when several hardware and algorithmic milestones are achieved. For quantum annealing, a key distinction is between physical qubits (the actual hardware units) and logical qubits (the problem variables after embedding). Due to limited connectivity, each logical qubit may require 5-10 physical qubits chained together. Current D-Wave systems provide thousands of physical qubits but only hundreds of logical qubits for densely-connected problems like VRP. Meaningful VRP instances require logical qubit counts exceeding 1,000, which would demand tens of thousands of physical qubits with current embedding overhead. For gate-based systems, two-qubit gate error rates must fall below $10^{-4}$ to enable useful circuit depths for VRP.
+
+Current hardware roadmaps suggest these thresholds may be approached within 5--10 years, though timeline uncertainty remains substantial. Importantly, simply increasing qubit counts will not suffice if connectivity remains sparse. D-Wave's progression from Chimera (6 connections per qubit) to Pegasus (15) to Zephyr (20) shows incremental improvement, but even 20 connections falls far short of the all-to-all connectivity VRP requires. This suggests that algorithmic advances in problem reduction and decomposition may be as important as hardware improvements. Effective preprocessing that reduces problem size before quantum processing, or decomposition strategies that create smaller subproblems matching hardware connectivity, could extend the practical reach of current and near-term quantum systems. Our experiments used the latest available systems from both paradigms (D-Wave Advantage2, Section~\ref{sec:annealing}; IBM Heron r1, Section~\ref{sec:gatebased}), yet the scalability limits we observed indicate that further hardware advances are needed. D-Wave's roadmap includes an Advantage2 Performance Update in 2026 and Advantage3 by 2028, while IBM targets error rates compatible with error correction by 2029. However, even with these improvements, the gap between hardware capabilities and practical VRP requirements will likely require continued algorithmic innovation in hybrid approaches, formulation efficiency, and problem decomposition strategies.
+
+The most promising near-term path appears to be hybrid quantum-classical approaches where quantum components handle specific subproblems or provide diversification in metaheuristic frameworks, rather than serving as standalone VRP solvers. This aligns with successful demonstrations like CQM, where classical optimization handles constraint satisfaction while quantum sampling contributes to solution exploration.
+
+\section{Conclusions}\label{sec:conclusions}
+
+This review examined quantum VRP implementations across 40+ studies and tested key claims on both D-Wave CQM and QAOA. A key finding is that formulation matters as much as hardware. For instance, CQM achieved 89\% feasibility while QUBO did not produce feasible solutions on the same instances, demonstrating that native constraint handling is essential for current quantum hardware.
+
+It is important to note that current demonstrations remain limited to small instances. Across all reviewed works, pure quantum annealing has not yet demonstrated verified optimal VRP solutions at meaningful scale, though hybrid approaches show encouraging progress. In our experiments, CQM found optimal or near-optimal solutions for instances up to 21 customers, reaching comparable solution quality to classical solvers on these small problems (at substantially higher wall-clock overhead). Beyond 35 customers, gaps exceeded 20\%. For gate-based QAOA, we tested identical configurations on both simulated and real IBM hardware. Simulation achieved optimality for 3 to 5 customer instances but failed on 7 customers. On real hardware, optimality was reached only for 3-customer instances (6 qubits), with noise causing significant degradation at higher qubit counts. {\color{red}For comparison, classical solvers solved every instance up to 40 customers to optimality or near-optimality in seconds.}
+
+Benchmarking practices across the field need attention. Studies use inconsistent classical baselines, incomplete time accounting, and problem instances chosen to fit hardware rather than test capability. We addressed this by using standard CVRP benchmarks, reporting full wall-clock times, running multiple trials with variance analysis, and comparing against modern solvers.
+
+\subsection*{Implications for Transport Practice and Research}
+
+For logistics operators and routing software vendors, our results indicate that quantum approaches may find their initial transport applications not in general VRP, but in specialized variants where problem structure aligns with hardware strengths. Rich VRP extensions involving complex constraint interactions (heterogeneous fleets, synchronized operations, multi-echelon distribution) impose computational burdens on classical branch-and-bound through exponential constraint branching, yet translate naturally to CQM's native constraint framework. Similarly, real-time re-optimization scenarios where solution speed matters more than global optimality, and where problem windows can be bounded to 15-20 customers, may represent near-term opportunities worth investigating.
+
+Several research directions emerge from this analysis. First, despite CQM's superior performance, advancing pure quantum annealing remains important because hybrid solvers ultimately depend on quantum sampling for their exploratory component. Second, the field also requires standardized benchmarking protocols and reporting conventions to enable meaningful progress assessment across studies. Finally, transport-specific problem structure deserves attention. VRP variants with natural clustering (depot regions, time window groups) may decompose into quantum-tractable subproblems more readily than arbitrary instances, suggesting that problem selection and preprocessing strategies could significantly expand the effective application range of current quantum hardware.
+
+\section*{Acknowledgments}
+The authors gratefully acknowledge D-Wave for providing access to the Leap Quantum Cloud Service through the Leap Quantum LaunchPad Program, and IBM Quantum for access to the ibm\_torino processor, which enabled the experimental work in this study.
+
+\bibliographystyle{elsarticle-harv} 
+\bibliography{cas-refs.bib}
+\end{document}
+
+\endinput
+%%
+%% End of file `elsarticle-template-harv.tex'.
+
+
